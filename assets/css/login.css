@@ -1,0 +1,99 @@
+.login-form {
+    border-radius: 30px;
+}
+
+.login-icon {
+    margin-bottom: 2em;
+    width: 100pt;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px rgba(60, 64, 67, 0.149);
+}
+
+.d-none-important {
+    display: none !important;
+}
+
+#loader div {
+    position: absolute;
+}
+
+#loader {
+    position: absolute;
+    margin-left: -9.5vw;
+    margin-top: 32.5vh;
+}
+
+#loader .text-light {
+    -webkit-animation: spinner-border 1.25s linear infinite !important;
+    animation: spinner-border 1.25s linear infinite !important;
+}
+
+#loader .text-info {
+    -webkit-animation: spinner-border 1.75s linear infinite !important;
+    animation: spinner-border 1.75s linear infinite !important;
+}
+
+@media only screen and (max-width: 600px) {
+    #loader {
+        position: absolute;
+        margin-left: -34vw;
+        margin-top: 33vh;
+    }
+}
+
+.position-icon {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -13em;
+    right: 50px;
+    left: 50px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group+.form-group {
+    margin-top: 30px;
+}
+
+.form-label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    left: 15px;
+    color: rgba(153, 153, 153, 0.836) !important;
+    background-color: #fff;
+    z-index: 10;
+    -webkit-transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+    transition: font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+    transition: transform 150ms ease-out, font-size 150ms ease-out;
+    transition: transform 150ms ease-out, font-size 150ms ease-out, -webkit-transform 150ms ease-out;
+}
+
+.focused .form-label {
+    -webkit-transform: translateY(-125%);
+    transform: translateY(-120%);
+    font-size: .70em;
+    /* color: rgba(15, 30, 119, 0.486); */
+}
+
+.form-input {
+    position: relative;
+    padding: 12px 0px 5px 0;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    -webkit-transition: box-shadow 150ms ease-out;
+    transition: box-shadow 150ms ease-out;
+}
+
+.form-input:focus {
+    box-shadow: 0 2px 0 0 blue;
+}
+
+.form-input.filled {
+    box-shadow: 0 2px 0 0 lightgreen;
+}
