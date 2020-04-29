@@ -32,4 +32,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
+	<script>
+		const api = '<?= base_url() ?>'
+	</script>
 </head>

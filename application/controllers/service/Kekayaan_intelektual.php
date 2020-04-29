@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master extends CI_Controller
+class Kekayaan_intelektual extends CI_Controller
 {
-	protected $table = "table";
+	protected $table = "kekayaan_intelektual";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,7 +12,19 @@ class Master extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id" => post('produk_id'),
+			"jenis" => post('jenis'),
+			"deskripsi" => post('deskripsi'),
+			"status_perolehan" => post('status_perolehan'),
+			"no_pemohon" => post('no_pemohon'),
+			"file_formulir" => post('file_formulir'),
+			"no_sertifikat" => post('no_sertifikat'),
+			"file " => post('file'),
+			"pemegang" => post('pemegang'),
+			"tanggal_mulai" => post('tanggal_mulai'),
+			"tanggal_selesai" => post('tanggal_selesai'),
+			"created_by" => AUTHORIZATION::User()->id,
+			"updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -40,7 +52,18 @@ class Master extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id" => post('produk_id'),
+			"jenis" => post('jenis'),
+			"deskripsi" => post('deskripsi'),
+			"status_perolehan" => post('status_perolehan'),
+			"no_pemohon" => post('no_pemohon'),
+			"file_formulir" => post('file_formulir'),
+			"no_sertifikat" => post('no_sertifikat'),
+			"file " => post('file'),
+			"pemegang" => post('pemegang'),
+			"tanggal_mulai" => post('tanggal_mulai'),
+			"tanggal_selesai" => post('tanggal_selesai'),
+			"updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$where = array(

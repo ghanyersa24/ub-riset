@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master extends CI_Controller
+class Pengujian extends CI_Controller
 {
-	protected $table = "table";
+	protected $table = "pengujian";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,7 +12,16 @@ class Master extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id"=> post('produk_id'),
+			"nama"=> post('nama'),
+			"tahun"=> post('tahun'),
+			"status "=> post('status'),
+			"jenis"=> post('jenis'),
+			"lembaga"=> post('lembaga'),
+			"tujuan"=> post('tujuan'),
+			"hasil"=> post('hasil'),
+			"created_by"=> AUTHORIZATION::User()->id,
+			"updated_by"=> AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -40,7 +49,15 @@ class Master extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id"=> post('produk_id'),
+			"nama"=> post('nama'),
+			"tahun"=> post('tahun'),
+			"status "=> post('status'),
+			"jenis"=> post('jenis'),
+			"lembaga"=> post('lembaga'),
+			"tujuan"=> post('tujuan'),
+			"hasil"=> post('hasil'),
+			"updated_by"=> AUTHORIZATION::User()->id,
 		);
 
 		$where = array(

@@ -25,7 +25,7 @@
       						<div class="card-body">
       							<div class="form-group">
       								<label for="view-name">Nama Lengkap</label>
-      								<input type="text" class="form-control" id="view-name" name="name" value="UB Riset Administrator">
+      								<input type="text" class="form-control" id="view-name" name="name" value="<?=$this->session->userdata('nama')?>">
       							</div>
       							<div class="form-group">
       								<label for="view-contact">Kontak</label>

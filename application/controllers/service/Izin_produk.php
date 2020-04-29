@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master extends CI_Controller
+class Izin_produk extends CI_Controller
 {
-	protected $table = "table";
+	protected $table = "izin_produk";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,7 +12,18 @@ class Master extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id" => post('produk_id'),
+			"nama" => post('nama'),
+			"deskripsi" => post('deskripsi'),
+			"status " => post('status'),
+			"tahun_perolehan" => post('tahun_perolehan'),
+			"no_izin" => post('no_izin'),
+			"tanggal_mulai" => post('tanggal_mulai'),
+			"tanggal_selesai" => post('tanggal_selesai'),
+			"lembaga" => post('lembaga'),
+			"file " => post('file'),
+			"created_by" => AUTHORIZATION::User()->id,
+			"updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -40,7 +51,17 @@ class Master extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id" => post('produk_id'),
+			"nama" => post('nama'),
+			"deskripsi" => post('deskripsi'),
+			"status " => post('status'),
+			"tahun_perolehan" => post('tahun_perolehan'),
+			"no_izin" => post('no_izin'),
+			"tanggal_mulai" => post('tanggal_mulai'),
+			"tanggal_selesai" => post('tanggal_selesai'),
+			"lembaga" => post('lembaga'),
+			"file " => post('file'),
+			"updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$where = array(

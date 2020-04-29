@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master extends CI_Controller
+class Roadmap extends CI_Controller
 {
-	protected $table = "table";
+	protected $table = "roadmap";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,7 +12,18 @@ class Master extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id" => post('produk_id'),
+			"nama" => post('nama'),
+			"tahun_mulai" => post('tahun_mulai'),
+			"tahun_selesai" => post('tahun_selesai'),
+			"sumber_pendanaan" => post('sumber_pendanaan'),
+			"skema" => post('skema'),
+			"nilai_pendanaan" => post('nilai_pendanaan'),
+			"aktivitas" => post('aktivitas'),
+			"tujuan" => post('tujuan'),
+			"hasil" => post('hasil'),
+			"created_by" => AUTHORIZATION::User()->id,
+			"updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -40,7 +51,18 @@ class Master extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"column" => post('column'),
+			"produk_id" => post('produk_id'),
+			"nama" => post('nama'),
+			"tahun_mulai" => post('tahun_mulai'),
+			"tahun_selesai" => post('tahun_selesai'),
+			"sumber_pendanaan" => post('sumber_pendanaan'),
+			"skema" => post('skema'),
+			"nilai_pendanaan" => post('nilai_pendanaan'),
+			"aktivitas" => post('aktivitas'),
+			"tujuan" => post('tujuan'),
+			"hasil" => post('hasil'),
+			"updated_by" => AUTHORIZATION::User()->id,
+			
 		);
 
 		$where = array(

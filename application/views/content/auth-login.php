@@ -8,6 +8,9 @@
 	<title><?php echo $title; ?> &mdash; UB Riset</title>
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/login.css">
+	<script>
+		const api = '<?= base_url() ?>'
+	</script>
 </head>
 
 <body class="bg-primary overflow-hidden">
@@ -34,7 +37,7 @@
 				<form name="form-login" id="form-login" method="post">
 					<div class="form-group">
 						<label class="form-label" for="username">Username</label>
-						<input id="username" class="form-control rounded-pill" type="text" name="email">
+						<input id="username" class="form-control rounded-pill" type="text" name="username">
 					</div>
 					<div class="form-group mt-n1">
 						<label class="form-label" for="password">Password</label>
@@ -59,17 +62,31 @@
 			}, 500);
 		}
 
-		$('#btn-login').click(function(e) {
-			$('#card-login').hide();
-			$('#loader').delay(300).fadeIn();
-			bounce(0);
-			$('#loader').delay(700).fadeOut();
-			$("#icon-login").delay(700).fadeOut(1000, function() {
-				$("#name").text('UB Riset');
-				$("#greating").fadeIn(2000, function() {
-					window.location.replace("<?= base_url("admin") ?>")
-				})
-			});
+		$('#btn-login').click(async function(e) {
+			$('#card-login').hide()
+			$('#loader').delay(300).fadeIn()
+			await bounce(0)
+			await $.ajax({
+				type: "post",
+				url: api + 'account/auth',
+				data: $('#form-login').serialize(),
+				success: function(response) {
+					if (!response.error) {
+						$('#loader').delay(700).fadeOut();
+						$("#icon-login").delay(700).fadeOut(1000, function() {
+							$("#name").text(response.data.nama)
+							$("#greating").fadeIn(2000, function() {
+								window.location.replace("<?= base_url("admin") ?>")
+							})
+						})
+					} else {
+						$('#loader').delay(700).fadeOut();
+						$('#card-login').delay(1450).slideDown(400);
+						bounce(-13, 1000);
+						$("#msg").text(response.message);
+					}
+				}
+			})
 		});
 
 		$('input').focus(function() {
