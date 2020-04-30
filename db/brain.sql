@@ -1,8 +1,16 @@
+CREATE TABLE guest (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  fcm VARCHAR(255) NULL,
+  created_at TIMESTAMP NULL,
+  updated_at TIMESTAMP NULL,
+  PRIMARY KEY(id)
+);
+
 CREATE TABLE produk (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   nama_produk TINYTEXT NOT NULL,
-  bidang ENUM() NULL,
-  kategori ENUM() NULL,
+  bidang ENUM('Kesehatan','Pertahanan Keamanan','Material Maju','Kemaritiman',  'Sosial Budaya') NULL,
+  kategori TINYTEXT NULL,
   jenis ENUM('digital','non digital') NULL,
   produksi_barang_fisik ENUM('ada','tidak') NULL,
   logo_produk TINYTEXT NULL,
@@ -18,9 +26,9 @@ CREATE TABLE produk (
   kegunaan_manfaat TEXT NULL,
   keunggulan TEXT NULL,
   keunikan TEXT NULL,
-  kesiapan_teknologi ENUM NULL,
-  kepemilikan_teknologi ENUM NULL,
-  pemilik_teknologi ENUM('individu','instansi') NULL,
+  kesiapan_teknologi ENUM('masih riset','prototype','siap komersil') NULL,
+  kepemilikan_teknologi ENUM('sendiri','perguruan tinggi') NULL,
+  pemilik_teknologi ENUM('individu','institusi') NULL,
   teknologi_yang_dikembangkan TEXT NULL,
   rencana_pengembangan TEXT NULL,
   tautan_video TINYTEXT NULL,
@@ -31,26 +39,9 @@ CREATE TABLE produk (
   PRIMARY KEY(id)
 );
 
-CREATE TABLE guest (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  fcm VARCHAR(255) NULL,
-  created_at TIMESTAMP NULL,
-  updated_at TIMESTAMP NULL,
-  PRIMARY KEY(id)
-);
-
-CREATE TABLE users (
-  id VARCHAR(15) NOT NULL AUTO_INCREMENT,
-  nama VARCHAR(100) NULL,
-  nik VARCHAR(20) NULL,
-  jenis_kelamin ENUM('laki-laki','perempuan') NULL,
-  tanggal_lahir DATE NULL,
-  foto_ktp TINYTEXT NULL,
-  cv TINYTEXT NULL,
-  foto TINYTEXT NULL,
-  pendidikan_terakhir ENUM('SD','SMP/Sederajat','SMA/Sederajat','D1','D2','D3','S1','S2','S3') NULL,
-  status  ENUM('mahasiswa','dosen') NULL,
-  fcm VARCHAR(255) NULL,
+CREATE TABLE kategori (
+  id TINYINT UNSIGNED NOT NULL,
+  kategori TINYTEXT NULL,
   created_by VARCHAR(15) NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_by VARCHAR(15) NULL,
@@ -63,6 +54,25 @@ CREATE TABLE calon_perusahaan (
   nama VARCHAR(100) NULL,
   kota_kabupaten VARCHAR(100) NULL,
   alamat TINYTEXT NULL,
+  created_by VARCHAR(15) NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_by VARCHAR(15) NULL,
+  updated_at TIMESTAMP NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE users (
+  id VARCHAR(15) NOT NULL,
+  nama VARCHAR(100) NULL,
+  nik VARCHAR(20) NULL,
+  jenis_kelamin ENUM('laki-laki','perempuan') NULL,
+  tanggal_lahir DATE NULL,
+  foto_ktp TINYTEXT NULL,
+  cv TINYTEXT NULL,
+  foto TINYTEXT NULL,
+  pendidikan_terakhir ENUM('SD','SMP/Sederajat','SMA/Sederajat','D1','D2','D3','S1','S2','S3') NULL,
+  status  ENUM('mahasiswa','dosen') NULL,
+  fcm VARCHAR(255) NULL,
   created_by VARCHAR(15) NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_by VARCHAR(15) NULL,
@@ -92,35 +102,11 @@ CREATE TABLE pengujian (
       ON UPDATE NO ACTION
 );
 
-CREATE TABLE roadmap (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  produk_id INTEGER UNSIGNED NOT NULL,
-  nama TINYTEXT NULL,
-  tahun_mulai YEAR NULL,
-  tahun_selesai YEAR NULL,
-  sumber_pendanaan VARCHAR(50) NULL,
-  skema VARCHAR(50) NULL,
-  nilai_pendanaan INT NULL,
-  aktivitas TEXT NULL,
-  tujuan TEXT NULL,
-  hasil TEXT NULL,
-  created_by VARCHAR(15) NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_by VARCHAR(15) NULL,
-  updated_at TIMESTAMP NULL,
-  PRIMARY KEY(id),
-  INDEX roadmap_FKIndex1(produk_id),
-  FOREIGN KEY(produk_id)
-    REFERENCES produk(id)
-      ON DELETE NO ACTION
-      ON UPDATE NO ACTION
-);
-
-CREATE TABLE view  (
+CREATE TABLE seen (
   produk_id INTEGER UNSIGNED NOT NULL,
   created_at TIMESTAMP NOT NULL,
   created_by VARCHAR(15) NULL,
-  INDEX view _FKIndex1(produk_id),
+  INDEX seen_FKIndex1(produk_id),
   FOREIGN KEY(produk_id)
     REFERENCES produk(id)
       ON DELETE NO ACTION
@@ -151,17 +137,24 @@ CREATE TABLE sertifikasi (
       ON UPDATE NO ACTION
 );
 
-CREATE TABLE foto_produk (
+CREATE TABLE roadmap (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   produk_id INTEGER UNSIGNED NOT NULL,
-  foto TINYTEXT NULL,
-  keterangan TINYTEXT NULL,
+  nama TINYTEXT NULL,
+  tahun_mulai YEAR NULL,
+  tahun_selesai YEAR NULL,
+  sumber_pendanaan VARCHAR(50) NULL,
+  skema VARCHAR(50) NULL,
+  nilai_pendanaan INT NULL,
+  aktivitas TEXT NULL,
+  tujuan TEXT NULL,
+  hasil TEXT NULL,
   created_by VARCHAR(15) NOT NULL,
   created_at TIMESTAMP NOT NULL,
   updated_by VARCHAR(15) NULL,
   updated_at TIMESTAMP NULL,
   PRIMARY KEY(id),
-  INDEX foto_produk_FKIndex1(produk_id),
+  INDEX roadmap_FKIndex1(produk_id),
   FOREIGN KEY(produk_id)
     REFERENCES produk(id)
       ON DELETE NO ACTION
@@ -179,6 +172,23 @@ CREATE TABLE foto_kegiatan (
   updated_at TIMESTAMP NULL,
   PRIMARY KEY(id),
   INDEX foto_kegiatan_FKIndex1(produk_id),
+  FOREIGN KEY(produk_id)
+    REFERENCES produk(id)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+);
+
+CREATE TABLE foto_produk (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  produk_id INTEGER UNSIGNED NOT NULL,
+  foto TINYTEXT NULL,
+  keterangan TINYTEXT NULL,
+  created_by VARCHAR(15) NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_by VARCHAR(15) NULL,
+  updated_at TIMESTAMP NULL,
+  PRIMARY KEY(id),
+  INDEX foto_produk_FKIndex1(produk_id),
   FOREIGN KEY(produk_id)
     REFERENCES produk(id)
       ON DELETE NO ACTION
@@ -289,7 +299,7 @@ CREATE TABLE rating (
   rating TINYINT UNSIGNED NOT NULL,
   created_by VARCHAR(15) NOT NULL,
   created_at TIMESTAMP NOT NULL,
-  updated_by VARCHAR NULL,
+  updated_by VARCHAR(15) NULL,
   updated_at TIMESTAMP NULL,
   PRIMARY KEY(produk_id, users_id),
   INDEX produk_has_users_FKIndex1(produk_id),
