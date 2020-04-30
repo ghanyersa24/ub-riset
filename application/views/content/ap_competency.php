@@ -11,64 +11,232 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<div class="section-body">
 			<div class="row mt-sm-4">
-				<div class="col-12 col-md-12 col-lg-5">
-					<div class="card text-center">
-						<div class="card-header">
-							<h4>Logo produk</h4>
-						</div>
-						<div class="my-3">
-							<img class="w-50 rounded-circle" src="https://www.blexar.com/avatar.png" alt="gambar profil">
-						</div>
-						<p class="h5 text-capitalize pb-3" id="name"> Product Inovation I </p>
-					</div>
+				<div class="col-12 col-md-12 col-lg-12">
+					<div class="card ">
+						<form id="form-view" name="form-view" method="post">
+							<div class="card-body">
+								<div class="form-group">
+									<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
+									<label for="view-nama_produk" class="">Nama Produk</label>
+									<input id="view-nama_produk" class="form-control" type="text" name="nama_produk">
+								</div>
+								<div class="form-group">
+									<label for="view-deskripsi_singkat">Deskripsi Singkat</label>
+									<textarea name="deskripsi_singkat" id="view-deskripsi_singkat" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-kategori">Kategori</label>
+									<select id="input-kartu-pemerintah" class="select2" multiple="multiple" data-placeholder="Kategori" style="width: 100%;" name="KartuPemerintah[]">
+										<option value="1">Kartu Keluarga Sejahtera (KKS)/Kartu Perlindungan Sejahtera(KPS)</option>
+										<option value="2">Kartu Indonesia Pintar (KIP)/Bantuan Siswa Miskin (BSM)</option>
+										<option value="3">Kartu Indonesia Sehat (KIS)/BPJS Kesehatan/JAMKESMAS</option>
+										<option value="4">BPJS Kesehatan Peserta Mandiri </option>
+										<option value="5">JAMSOSTEK/BPJS Ketenagakerjaan</option>
+										<option value="6">Asuransi kesehatan lainnya</option>
+										<option value="7">Program Keluarha Harapan (PKH)</option>
+										<option value="8">Beras untuk orang miskin (RASKIN)</option>
+										<option value="9">Kredit Usaha Rakyat (KUR)</option>
+									</select>
+								</div>
+								<div class="row">
+									<div class="col">
+										<div class="form-group">
+											<label for="view-jenis">Jenis</label>
+											<select class="custom-select" name="jenis" id="view-jenis">
+												<option value="digital">Digital</option>
+												<option value="non digital">Non Digital</option>
+											</select>
+										</div>
+									</div>
+									<div class="col">
+										<div class="form-group">
+											<label for="view-bidang">Bidang</label>
+											<select class="custom-select" name="bidang" id="view-bidang">
+												<option value="Pangan">Pangan</option>
+												<option value="Energi">Energi</option>
+												<option value="Transportasi">Transportasi</option>
+												<option value="Rekayasa Keteknikan">Rekayasa Keteknikan</option>
+												<option value="Kesehatan">Kesehatan</option>
+												<option value="Pertahanan Keamanan">Pertahanan Keamanan</option>
+												<option value="Material Maju">Material Maju</option>
+												<option value="Kemaritiman">Kemaritiman</option>
+												<option value="Sosial Budaya">Sosial Budaya</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-12">
+										<div class="form-group">
+											<label for="view-produksi_barang_fisik">Produksi Barang Fisik</label>
+											<select class="custom-select" name="produksi_barang_fisik">
+												<option value="ada">Ada</option>
+												<option value="tidak">Tidak</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="view-logo_produk">Logo Produk</label>
+									<input type="file" id="view-logo_produk" name="logo_produk" accept="image/*">
+									<img src="" alt="foto content" id="prev-view-logo_produk" class="img-fluid">
+								</div>
+
+								<div class="form-group">
+									<label for="view-website">Website</label>
+									<input id="view-website" class="form-control" type="text" name="website">
+								</div>
+								<div class="form-group">
+									<label for="view-media_sosial">Sosial Media</label>
+									<input id="view-media_sosial" class="form-control" type="text" name="media_sosial">
+								</div>
+								<div class="form-group">
+									<label for="view-tautan_video">Tautan Video</label>
+									<input id="view-tautan_video" class="form-control" type="text" name="tautan_video">
+								</div>
+								<!-- </div> -->
+
+								<!-- </div>
 				</div>
-				<div class="col-12 col-md-12 col-lg-7">
+				<div class="col-12 col-md-12 col-lg-8">
 					<div class="card">
-						<!-- <form id="form-view" method="post"> -->
-						<div class="card-header">
-							<h4>Detail Product</h4>
-						</div>
-						<div class="card-body">
-							<div class="form-group">
-								<label for="view-name">Keunikan produk</label>
-								<textarea name="spesifikasi" id="spesifikasi" class="form-control"></textarea>
+						<div class="card-body"> -->
+								<!-- CK EDITOR GROUP START-->
+								<div class="form-group">
+									<label for="view-deskripsi_lengkap">Deskripsi Lengkap</label>
+									<textarea id="view-deskripsi_lengkap" name="deskripsi_lengkap" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-latar_belakang">Latar Belakang</label>
+									<textarea id="view-latar_belakang" name="latar_belakang" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-masalah">Masalah</label>
+									<textarea id="view-masalah" name="masalah" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-solusi">Solusi</label>
+									<textarea id="view-solusi" name="solusi" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-keunggulan_keunikan">Keunggulan & Keunikan</label>
+									<textarea name="keunggulan_keunikan" id="view-keunggulan_keunikan" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-kegunaan_manfaat">Kegunaan & Manfaat</label>
+									<textarea name="kegunaan_manfaat" id="view-kegunaan_manfaat" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-spesifikasi_teknis">Spesifikasi Teknis</label>
+									<textarea name="spesifikasi_teknis" id="view-spesifikasi_teknis" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-keterbaruan_produk">Keterbaharuan Produk</label>
+									<textarea id="view-keterbaruan_produk" name="keterbaruan_produk" class="form-control"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="view-rencana_pengembangan">Rencana Pengembangan</label>
+									<textarea id="view-rencana_pengembangan" name="rencana_pengembangan" class="form-control"></textarea>
+								</div>
+								<!-- CK EDITOR GROUP END -->
+								<div class="form-group">
+									<label for="view-kesiapan_teknologi">Kesiapan Teknologi</label>
+									<select class="custom-select" name="kesiapan_teknologi" id="view-kesiapan_teknologi">
+										<option selected disabled>Pilih salah satu</option>
+										<option value="masih riset">Masih Riset</option>
+										<option value="prototype">Prototype</option>
+										<option value="siap komersil">Siap Komersil</option>
+									</select>
+								</div>
+								<div class="form-group">
+									<label for="view-kepemilikan_teknologi">Kepemilikan Teknologi</label>
+									<select class="custom-select" name="kepemilikan_teknologi" id="view-kepemilikan_teknologi">
+										<option selected disabled>Pilih salah satu</option>
+										<option value="sendiri">Sendiri </option>
+										<option value="instansi">Instansi</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="view-pemilik_teknologi">Nama Pemilik Teknologi</label>
+									<input id="view-pemilik_teknologi" class="form-control" type="text" name="pemilik_teknologi">
+								</div>
+
 							</div>
-							<div class="form-group">
-								<label for="view-name">Kesiapan Produk</label><select class="custom-select">
-									<option selected disabled>Pilih salah satu</option>
-									<option value="1">Perlu Riset</option>
-									<option value="2">pengembangan </option>
-									<option value="3">sudah siap komersil</option>
-								</select>
+							<div class="card-footer text-right">
+								<button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
 							</div>
-							<div class="form-group">
-								<label for="view-name">Kepemilikan teknologi</label>
-								<input type="text" class="form-control" id="view-name" name="name" value="UB Riset Administrator">
-							</div>
-							<div class="form-group">
-								<label for="view-name">Spesifikasi Teknis Produk</label>
-								<textarea name="spesifikasi" id="spesifikasi" class="form-control"></textarea>
-							</div>
-							<div class="form-group">
-								<label for="view-name">Kepemilikan Kekayaan Intelektual </label><select class="custom-select">
-									<option selected disabled>Pilih salah satu</option>
-									<option value="1">paten</option>
-									<option value="2">hak cipta</option>
-									<option value="3">desain industri</option>
-									<option value="3">desain tata letak dan sirkuit terpadu</option>
-									<option value="3">merk dagang</option>
-									<option value="3">rahasia dagang</option>
-									<option value="3">belum punya</option>
-								</select>
-							</div>
-						</div>
-						<div class="card-footer text-right">
-							<button class="btn btn-primary" id="btn-save">Simpan Perubahan</button>
-						</div>
-						<!-- </form> -->
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 </div>
+<script>
+	let latarBelakang,
+		deskripsiLengkap,
+		masalah,
+		keunggulanKeunikan,
+		keterbaruanProduk,
+		solusi,
+		spesifikasiTeknis,
+		kegunaanManfaat,
+		rencanaPengembangan
+
+	editor('latar_belakang', latarBelakang)
+	editor('deskripsi_lengkap', deskripsiLengkap)
+	editor('masalah', masalah)
+	editor('solusi', solusi)
+	editor('keterbaruan_produk', keterbaruanProduk)
+	editor('spesifikasi_teknis', spesifikasiTeknis)
+	editor('kegunaan_manfaat', kegunaanManfaat)
+	editor('keunggulan_keunikan', keunggulanKeunikan)
+	editor('rencana_pengembangan', rencanaPengembangan)
+	$(document).ready(function() {
+		$.ajax({
+			type: "GET",
+			url: api + 'service/produk/get/1',
+			success: function(response) {
+				let data = response.data
+				for (key in data) {
+					$('#view-' + key).val(data[key])
+				}
+			}
+		})
+
+		$('#form-view').validate({
+			rules: {
+				id: {
+					required: true,
+				},
+				nama_produk: {
+					required: true,
+				},
+				jenis: {
+					required: true
+				},
+				deskripsi_singkat: {
+					required: true
+				},
+				bidang: {
+					required: true,
+				}
+			},
+			submitHandler: function(form) {
+				var data = $('#form-view').serialize();
+				$.ajax({
+					type: "POST",
+					url: api + "service/produk/update",
+					data: data,
+					dataType: "json",
+					success: function(response) {
+						if (!response.error) {
+							swal('Berhasil !', response.message, 'success')
+						} else {
+							swal('Gagal !', response.message, 'error')
+						}
+					}
+				});
+			}
+		});
+	});
+</script>

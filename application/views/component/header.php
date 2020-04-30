@@ -18,6 +18,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/custom.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/components.css">
+	<link rel="stylesheet" href="<?= base_url(); ?>assets/modules/select2/dist/css/select2.min.css">
+	</script>
+
 	<!-- CSS per Page -->
 	<?php
 	if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") { ?>
@@ -32,7 +35,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/modules/select2/dist/js/select2.min.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
 	<script>
 		const api = '<?= base_url() ?>'
+
+		function editor(id, editor) {
+			ClassicEditor.create(document.querySelector(`#view-${id}`)).then(newEditor => {
+				$(`#view-${id}`).css('max-height', '100px')
+				editor = newEditor
+			}).catch(error => {
+				console.error(error)
+			});
+		}
 	</script>
+	<style>
+		.ck-editor__main {
+			max-height: 150px;
+			overflow-y: scroll;
+		}
+	</style>
 </head>
