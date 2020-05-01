@@ -337,8 +337,3 @@ body h1 {
 .rounded {
     border-radius: 10px !important;
 }
-
-.badge-xs {
-    padding: 4px 7px;
-    font-size: 0.7em;
-}

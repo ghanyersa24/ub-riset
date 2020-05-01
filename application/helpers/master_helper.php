@@ -181,7 +181,7 @@ function required($params, $value)
 	return $value;
 }
 
-function numeric($params, $value)
+function numberic($params, $value)
 {
 	if (!is_numeric($value)) {
 		error("$params harus berupa angka");

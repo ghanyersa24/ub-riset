@@ -42,17 +42,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		function editor(id, editor) {
 			ClassicEditor.create(document.querySelector(`#view-${id}`)).then(newEditor => {
+				$(`#view-${id}`).css('max-height', '100px')
 				editor = newEditor
 			}).catch(error => {
 				console.error(error)
 			});
-		}
-
-		function response_alert(response) {
-			if (!response.error)
-				swal('Berhasil !', response.message, 'success')
-			else
-				swal('Gagal !', response.message, 'error')
 		}
 	</script>
 	<style>
