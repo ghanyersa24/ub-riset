@@ -53,6 +53,17 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function research($nama)
+	{
+		$nama = str_replace('%20', ' ', $nama);
+		$title = "Roadmap Riset dan Pengembangan Produk $nama";
+		$data = array(
+			'content' => $this->load->view('content/ap_research', array('title' => $title), true),
+			'title' => $title
+		);
+		$this->load->view('template', $data);
+	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();

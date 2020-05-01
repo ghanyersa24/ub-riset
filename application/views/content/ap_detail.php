@@ -37,7 +37,7 @@
       									<div class="col-md-12">
       										<div class="main-timeline7">
       											<div class="timeline">
-      												<a href="">
+      												<a href="<?= base_url('admin/competency/Product Inovation I') ?>">
       													<div class="timeline-icon"><i class="fa fa-box"></i></div>
       												</a>
       												<span class="year">Tahap 1 <i class="fa fa-check"></i> </span>
@@ -49,7 +49,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="">
+      												<a href="<?= base_url('admin/research/Product Inovation I') ?>">
       													<div class="timeline-icon"><i class="fa fa-bolt"></i></div>
       												</a>
       												<span class="year">Tahap 2 <i class="fa fa-check"></i></span>
