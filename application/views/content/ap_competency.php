@@ -180,15 +180,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		kegunaanManfaat,
 		rencanaPengembangan
 
-	editor('latar_belakang', latarBelakang)
-	editor('deskripsi_lengkap', deskripsiLengkap)
-	editor('masalah', masalah)
-	editor('solusi', solusi)
-	editor('keterbaruan_produk', keterbaruanProduk)
-	editor('spesifikasi_teknis', spesifikasiTeknis)
-	editor('kegunaan_manfaat', kegunaanManfaat)
-	editor('keunggulan_keunikan', keunggulanKeunikan)
-	editor('rencana_pengembangan', rencanaPengembangan)
+	editor('#view-latar_belakang', latarBelakang)
+	editor('#view-deskripsi_lengkap', deskripsiLengkap)
+	editor('#view-masalah', masalah)
+	editor('#view-solusi', solusi)
+	editor('#view-keterbaruan_produk', keterbaruanProduk)
+	editor('#view-spesifikasi_teknis', spesifikasiTeknis)
+	editor('#view-kegunaan_manfaat', kegunaanManfaat)
+	editor('#view-keunggulan_keunikan', keunggulanKeunikan)
+	editor('#view-rencana_pengembangan', rencanaPengembangan)
 	$(document).ready(function() {
 		$.ajax({
 			type: "GET",

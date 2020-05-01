@@ -41,13 +41,24 @@ class Admin extends CI_Controller
 		);
 		$this->load->view('template', $data);
 	}
-	
+
 	public function competency($nama)
 	{
 		$nama = str_replace('%20', ' ', $nama);
 		$title = "Data dasar $nama";
 		$data = array(
 			'content' => $this->load->view('content/ap_competency', array('title' => $title), true),
+			'title' => $title
+		);
+		$this->load->view('template', $data);
+	}
+
+	public function roadmap($nama)
+	{
+		$nama = str_replace('%20', ' ', $nama);
+		$title = "Data dasar $nama";
+		$data = array(
+			'content' => $this->load->view('content/ap_roadmap', array('title' => $title), true),
 			'title' => $title
 		);
 		$this->load->view('template', $data);

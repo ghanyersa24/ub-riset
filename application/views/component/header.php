@@ -41,7 +41,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		const api = '<?= base_url() ?>'
 
 		function editor(id, editor) {
-			ClassicEditor.create(document.querySelector(`#view-${id}`)).then(newEditor => {
+			ClassicEditor.create(document.querySelector(`${id}`)).then(newEditor => {
 				editor = newEditor
 			}).catch(error => {
 				console.error(error)
