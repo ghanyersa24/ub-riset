@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="card-body">
 								<div class="form-group">
 									<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
-									<label for="view-nama_produk" class="">Nama Produk</label>
+									<label for="view-nama_produk" class="">Nama Produk <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Tooltip on right">!</span></label>
 									<input id="view-nama_produk" class="form-control" type="text" name="nama_produk">
 								</div>
 								<div class="form-group">
@@ -26,16 +26,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 								<div class="form-group">
 									<label for="view-kategori">Kategori</label>
-									<select id="input-kartu-pemerintah" class="select2" multiple="multiple" data-placeholder="Kategori" style="width: 100%;" name="KartuPemerintah[]">
-										<option value="1">Kartu Keluarga Sejahtera (KKS)/Kartu Perlindungan Sejahtera(KPS)</option>
-										<option value="2">Kartu Indonesia Pintar (KIP)/Bantuan Siswa Miskin (BSM)</option>
-										<option value="3">Kartu Indonesia Sehat (KIS)/BPJS Kesehatan/JAMKESMAS</option>
-										<option value="4">BPJS Kesehatan Peserta Mandiri </option>
-										<option value="5">JAMSOSTEK/BPJS Ketenagakerjaan</option>
-										<option value="6">Asuransi kesehatan lainnya</option>
-										<option value="7">Program Keluarha Harapan (PKH)</option>
-										<option value="8">Beras untuk orang miskin (RASKIN)</option>
-										<option value="9">Kredit Usaha Rakyat (KUR)</option>
+									<select id="view-kategori" class="select2" multiple="multiple" data-placeholder="Kategori" style="width: 100%;" name="kategori">
+										<option value="Pangan">Pangan</option>
+										<option value="Energi">Energi</option>
+										<option value="Transportasi">Transportasi</option>
+										<option value="Rekayasa Keteknikan">Rekayasa Keteknikan</option>
+										<option value="Kesehatan">Kesehatan</option>
+										<option value="Pertahanan Keamanan">Pertahanan Keamanan</option>
+										<option value="Material Maju">Material Maju</option>
+										<option value="Kemaritiman">Kemaritiman</option>
+										<option value="Sosial Budaya">Sosial Budaya</option>
 									</select>
 								</div>
 								<div class="row">
@@ -74,10 +74,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="view-logo_produk">Logo Produk</label>
-									<input type="file" id="view-logo_produk" name="logo_produk" accept="image/*">
-									<img src="" alt="foto content" id="prev-view-logo_produk" class="img-fluid">
+								<div class="form-group row">
+									<div class="col-4">
+										<label for="view-logo_produk">Logo Produk</label>
+										<input type="file" id="view-logo_produk" name="logo_produk" accept="image/*">
+									</div>
+									<div class="col-8">
+										<img src="" alt="foto content" id="prev-view-logo_produk" class="w-50">
+									</div>
 								</div>
 
 								<div class="form-group">
@@ -92,13 +96,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<label for="view-tautan_video">Tautan Video</label>
 									<input id="view-tautan_video" class="form-control" type="text" name="tautan_video">
 								</div>
-								<!-- </div> -->
 
-								<!-- </div>
-				</div>
-				<div class="col-12 col-md-12 col-lg-8">
-					<div class="card">
-						<div class="card-body"> -->
 								<!-- CK EDITOR GROUP START-->
 								<div class="form-group">
 									<label for="view-deskripsi_lengkap">Deskripsi Lengkap</label>
@@ -200,9 +198,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				for (key in data) {
 					$('#view-' + key).val(data[key])
 				}
+				$("#view-kategori").select2({
+					tags: true,
+					tokenSeparators: data.kategori
+				})
 			}
 		})
-
+		
 		$('#form-view').validate({
 			rules: {
 				id: {
@@ -222,21 +224,31 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}
 			},
 			submitHandler: function(form) {
-				var data = $('#form-view').serialize();
+				var data = $('#form-view').serialize()
 				$.ajax({
 					type: "POST",
 					url: api + "service/produk/update",
 					data: data,
 					dataType: "json",
 					success: function(response) {
-						if (!response.error) {
-							swal('Berhasil !', response.message, 'success')
-						} else {
-							swal('Gagal !', response.message, 'error')
-						}
+						response_alert(response)
 					}
-				});
+				})
 			}
-		});
+		})
 	});
+
+	$("#view-logo_produk").change(function() {
+		readURL(this)
+	})
+
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader()
+			reader.onload = function(e) {
+				$('#prev-view-logo_produk').attr('src', e.target.result)
+			}
+			reader.readAsDataURL(input.files[0])
+		}
+	}
 </script>

@@ -31,6 +31,7 @@ class Admin extends CI_Controller
 		);
 		$this->load->view('template', $data);
 	}
+
 	public function detail($id)
 	{
 		$title = "Product Inovasi $id";
@@ -40,6 +41,7 @@ class Admin extends CI_Controller
 		);
 		$this->load->view('template', $data);
 	}
+	
 	public function competency($nama)
 	{
 		$nama = str_replace('%20', ' ', $nama);
