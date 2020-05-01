@@ -41,7 +41,7 @@ class Admin extends CI_Controller
 		);
 		$this->load->view('template', $data);
 	}
-	
+
 	public function competency($nama)
 	{
 		$nama = str_replace('%20', ' ', $nama);
@@ -53,12 +53,12 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
-	public function research($nama)
+	public function roadmap($nama)
 	{
 		$nama = str_replace('%20', ' ', $nama);
 		$title = "Roadmap Riset dan Pengembangan Produk $nama";
 		$data = array(
-			'content' => $this->load->view('content/ap_research', array('title' => $title), true),
+			'content' => $this->load->view('content/ap_roadmap', array('title' => $title), true),
 			'title' => $title
 		);
 		$this->load->view('template', $data);

@@ -49,7 +49,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="<?= base_url('admin/research/Product Inovation I') ?>">
+      												<a href="<?= base_url('admin/roadmap/Product Inovation I') ?>">
       													<div class="timeline-icon"><i class="fa fa-bolt"></i></div>
       												</a>
       												<span class="year">Tahap 2 <i class="fa fa-check"></i></span>
