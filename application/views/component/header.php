@@ -60,6 +60,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			else
 				swal('Gagal !', response.message, 'error')
 		}
+
+		function pad(n) {
+			var s = "000" + n;
+			return s.substr(s.length - 4);
+		}
 	</script>
 	<style>
 		.ck.ck-content ul,

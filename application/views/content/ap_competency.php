@@ -120,7 +120,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 													</div>
 												</div>
 											</div>
-											<div class="form-group row">
+											<!-- <div class="form-group row">
 												<div class="col-4">
 													<label for="view-logo_produk">Logo Produk</label>
 													<input type="file" id="view-logo_produk" name="logo_produk" accept="image/*">
@@ -128,9 +128,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-8">
 													<img src="" alt="foto content" id="prev-view-logo_produk" class="w-50">
 												</div>
-											</div>
+											</div> -->
 										</section>
-										
+
 										<section id="tab-landasan">
 											<div class="form-group">
 												<label for="view-deskripsi_lengkap">Deskripsi Lengkap</label>
@@ -217,7 +217,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	$(document).ready(function() {
 		$.ajax({
 			type: "GET",
-			url: api + 'service/produk/get/1',
+			url: api + 'service/produk/get/<?= $id ?>',
 			success: function(response) {
 				let data = response.data
 				for (key in data) {
@@ -297,7 +297,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					data: data,
 					dataType: "json",
 					success: function(response) {
-						response_alert(response)
+						$.ajax({
+							type: "POST",
+							url: api + "service/produk/update",
+							data: data,
+							dataType: "json",
+							success: function(response) {
+								response_alert(response)
+								setTimeout(function() {
+									window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
+								}, 2000)
+							}
+						})
 					}
 				})
 			}
