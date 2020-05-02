@@ -26,23 +26,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <thead>
                                         <tr>
                                             <th class="text-center">
-                                                #
+                                                No.
                                             </th>
-                                            <th>Title</th>
-                                            <th>Author</th>
+                                            <th>Nama</th>
+                                            <th>Tahun</th>
                                             <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Lembaga</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th class="text-center">
-                                                #
+
                                             </th>
-                                            <th class="table_search"></th>
-                                            <th class="table_search"></th>
-                                            <th class="table_search"></th>
-                                            <th>#</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -61,85 +63,157 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah <?= $title ?></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             </div>
-            <div class="modal-body" id="form-data">
-                <div class="row">
-                    <div class="col-md-7">
-                        <div class="form-group">
-                            <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly>
-                            <label for="add-nama">Nama Pengujian</label>
-                            <input type="text" id="add-nama" name="nama" class="form-control">
+            <form class="form-add" id="form-add">
+                <div class="modal-body" id="form-data">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <label for="add-nama">Nama Pengujian</label>
+                                <input type="text" id="add-nama" name="nama" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label for="add-tahun">Tahun Pengujian</label>
-                            <input type="number" id="add-tahun" name="tahun" class="form-control">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="add-tahun">Tahun Pengujian</label>
+                                <input type="number" id="add-tahun" name="tahun" class="form-control">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="add-tahun_selesai">Status Pengujian</label>
-                            <select name="status" id="add-status" class="form-control">
-                                <option value="belum dilakukan" selected>Belum dilakukan</option>
-                                <option value="sedang dilakukan">sedang dilakukan</option>
-                                <option value="sudah dilakukan">sudah dilakukan</option>
-                            </select>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-tahun_selesai">Status Pengujian</label>
+                                <select name="status" id="add-status" class="form-control">
+                                    <option value="belum dilakukan" selected>Belum dilakukan</option>
+                                    <option value="sedang dilakukan">sedang dilakukan</option>
+                                    <option value="sudah dilakukan">sudah dilakukan</option>
+                                </select>
 
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="add-jenis">Jenis Pengujian <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="misal: pengujian mandiri, melalui lembaga/ laboratorium terakreditasi dsb">!</span></label>
-                            <input name="jenis" id="add-jenis" class="form-control"></input>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="add-jenis">Jenis Pengujian <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="misal: pengujian mandiri, melalui lembaga/ laboratorium terakreditasi dsb">!</span></label>
+                                <input name="jenis" id="add-jenis" class="form-control"></input>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="add-lembaga">Lembaga Pengujian</label>
-                            <input name="lembaga" id="add-lembaga" class="form-control"></input>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="add-lembaga">Lembaga Pengujian</label>
+                                <input name="lembaga" id="add-lembaga" class="form-control"></input>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="add-tujuan">Tujuan Pengujian</label>
-                            <textarea name="tujuan" id="add-tujuan" class="form-control"></textarea>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-tujuan">Tujuan Pengujian</label>
+                                <textarea name="tujuan" id="add-tujuan" class="form-control"></textarea>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="add-hasil">Hasil Pengujian</label>
-                            <textarea name="hasil" id="add-hasil" class="form-control"></textarea>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-hasil">Hasil Pengujian</label>
+                                <textarea name="hasil" id="add-hasil" class="form-control"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
-                <button type="button" class="btn btn-info" id="submit">Add</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
+                    <button type="submit" class="btn btn-info" id="submit">Add</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-<script>
-    let tujuan, hasil
-    editor('#add-tujuan', tujuan)
-    editor('#add-hasil', hasil)
 
+<div class="modal fade" id="view">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah <?= $title ?></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <form class="form-view" id="form-view">
+                <div class="modal-body" id="form-data">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <label for="view-nama">Nama Pengujian</label>
+                                <input type="text" id="view-nama" name="nama" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="view-tahun">Tahun Pengujian</label>
+                                <input type="number" id="view-tahun" name="tahun" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-tahun_selesai">Status Pengujian</label>
+                                <select name="status" id="view-status" class="form-control">
+                                    <option value="belum dilakukan" selected>Belum dilakukan</option>
+                                    <option value="sedang dilakukan">sedang dilakukan</option>
+                                    <option value="sudah dilakukan">sudah dilakukan</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="view-jenis">Jenis Pengujian <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="misal: pengujian mandiri, melalui lembaga/ laboratorium terakreditasi dsb">!</span></label>
+                                <input name="jenis" id="view-jenis" class="form-control"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="view-lembaga">Lembaga Pengujian</label>
+                                <input name="lembaga" id="view-lembaga" class="form-control"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-tujuan">Tujuan Pengujian</label>
+                                <textarea name="tujuan" id="view-tujuan" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-hasil">Hasil Pengujian</label>
+                                <textarea name="hasil" id="view-hasil" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
+                    <button type="submit" class="btn btn-info" id="submit">Add</button>
+                </div>
+
+        </div>
+        </form>
+    </div>
+</div>
+<script>
     $(document).ready(function() {
+        triggerEditor('#form-add')
+        triggerEditor('#form-view')
         $('#table').DataTable({
-            "ajax": api + 'service/roadmap/get',
+            "ajax": api + 'service/pengujian/get',
             "columns": [{
                 "render": function(data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 },
                 className: "text-center"
             }, {
-                "data": "title"
+                "data": "nama"
             }, {
-                "data": "author"
+                "data": "tahun"
             }, {
                 "data": "status"
+            }, {
+                "data": "lembaga"
             }, {
                 "render": function(data, type, JsonResultRow, meta) {
                     return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
@@ -149,47 +223,91 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
-            $('#view-id').val(data.id)
-            $('#view-title').val(data.title)
+            $('#view-nama').val(data.nama)
+            $('#view-tahun').val(data.tahun)
             $('#view-status').val(data.status)
-            $('#prev-view-picture').attr('src', data.pictures)
-            content.setData(data.content)
-            $('#view-content').html(data.content)
+            $('#view-jenis').val(data.jenis)
+            $('#view-lembaga').val(data.lembaga)
+            setEditor('view-tujuan', data.tujuan)
+            setEditor('view-hasil', data.hasil)
             $('#view').modal('show')
+        })
+
+        $('#form-add').validate({
+            rules: {
+                id: {
+                    required: true,
+                },
+                nama: {
+                    required: true,
+                },
+                tahun: {
+                    required: true
+                },
+                status: {
+                    required: true
+                },
+                jenis: {
+                    required: true,
+                },
+                lembaga: {
+                    required: true,
+                }
+            },
+            submitHandler: function(form) {
+                var data = $('#form-add').serialize()
+                $.ajax({
+                    type: "POST",
+                    url: api + "service/pengujian/create",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#table').dataTable().api().ajax.reload()
+                        $('#form-add').trigger('reset')
+                        response_alert(response)
+                    }
+                })
+            }
+        })
+
+        $('#form-view').validate({
+            rules: {
+                id: {
+                    required: true,
+                },
+                nama: {
+                    required: true,
+                },
+                tahun: {
+                    required: true
+                },
+                status: {
+                    required: true
+                },
+                jenis: {
+                    required: true,
+                },
+                lembaga: {
+                    required: true,
+                }
+            },
+            submitHandler: function(form) {
+                var data = $('#form-view').serialize()
+                $.ajax({
+                    type: "POST",
+                    url: api + "service/pengujian/update",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#table').dataTable().api().ajax.reload()
+                        response_alert(response)
+                    }
+                })
+            }
         })
     });
 
-    $('#form-view').validate({
-        rules: {
-            id: {
-                required: true,
-            },
-            nama_produk: {
-                required: true,
-            },
-            jenis: {
-                required: true
-            },
-            deskripsi_singkat: {
-                required: true
-            },
-            bidang: {
-                required: true,
-            }
-        },
-        submitHandler: function(form) {
-            var data = $('#form-view').serialize()
-            $.ajax({
-                type: "POST",
-                url: api + "service/produk/update",
-                data: data,
-                dataType: "json",
-                success: function(response) {
-                    response_alert(response)
-                }
-            })
-        }
-    })
+
 
     $("#view-logo_produk").change(function() {
         readURL(this)

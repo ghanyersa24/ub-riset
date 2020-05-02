@@ -367,3 +367,8 @@ body h1 {
 .content .form-group {
     margin-bottom: 2.3em;
 }
+
+/*label error*/
+label.error{
+    color: rgb(255, 42, 42);
+}

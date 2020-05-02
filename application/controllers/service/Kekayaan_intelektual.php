@@ -23,8 +23,8 @@ class Kekayaan_intelektual extends CI_Controller
 			"pemegang" => post('pemegang'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
-			"created_by" => AUTHORIZATION::User()->id,
-			"updated_by" => AUTHORIZATION::User()->id,
+			// "created_by" => AUTHORIZATION::User()->id,
+			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -63,7 +63,7 @@ class Kekayaan_intelektual extends CI_Controller
 			"pemegang" => post('pemegang'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
-			"updated_by" => AUTHORIZATION::User()->id,
+			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$where = array(

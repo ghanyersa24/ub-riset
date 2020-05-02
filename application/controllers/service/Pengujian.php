@@ -12,16 +12,16 @@ class Pengujian extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id"=> post('produk_id'),
-			"nama"=> post('nama'),
-			"tahun"=> post('tahun'),
-			"status "=> post('status'),
-			"jenis"=> post('jenis'),
-			"lembaga"=> post('lembaga'),
-			"tujuan"=> post('tujuan'),
-			"hasil"=> post('hasil'),
-			"created_by"=> AUTHORIZATION::User()->id,
-			"updated_by"=> AUTHORIZATION::User()->id,
+			"produk_id" => post('produk_id'),
+			"nama" => post('nama'),
+			"tahun" => post('tahun'),
+			"status " => post('status'),
+			"jenis" => post('jenis'),
+			"lembaga" => post('lembaga'),
+			"tujuan" => post('tujuan'),
+			"hasil" => post('hasil'),
+			// "created_by"=> AUTHORIZATION::User()->id,
+			// "updated_by"=> AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -49,15 +49,15 @@ class Pengujian extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id"=> post('produk_id'),
-			"nama"=> post('nama'),
-			"tahun"=> post('tahun'),
-			"status "=> post('status'),
-			"jenis"=> post('jenis'),
-			"lembaga"=> post('lembaga'),
-			"tujuan"=> post('tujuan'),
-			"hasil"=> post('hasil'),
-			"updated_by"=> AUTHORIZATION::User()->id,
+			"produk_id" => post('produk_id'),
+			"nama" => post('nama'),
+			"tahun" => post('tahun'),
+			"status " => post('status'),
+			"jenis" => post('jenis'),
+			"lembaga" => post('lembaga'),
+			"tujuan" => post('tujuan'),
+			"hasil" => post('hasil'),
+			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$where = array(

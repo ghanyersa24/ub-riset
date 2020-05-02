@@ -66,15 +66,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="col-md-4">
                         <div class="form-group">
                             <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly>
-                            <label for="add-nama">Nama / Jenis Sertifikasi</label>
-                            <input type="text" id="add-nama" name="nama" class="form-control">
+                            <label for="add-nama">Nama / Jenis Izin <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Contoh jenis BPOM MD, BPOM NA, Halal, Penyelanggara Sistem Elektronik, dll">!</span></label>
+                            <input type="text" id="add-nama" class="form-control">
 
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="add-status_perolehan">Lembaga Penerbit Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat sudah diperoleh">!</span></label>
-                            <input type="text" id="add-lembaga_penerbit" name="lembaga_penerbit" class="form-control">
+                            <label for="add-lembaga">Lembaga Pemberi Izin <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika izin sudah diperoleh">!</span></label>
+                            <input type="text" id="add-lembaga" name="lembaga" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -95,8 +95,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="add-no_sertifikat">Nomor Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nomor Sertifikat KI (misal: IDP0000xxxxx, IDM0000xxxxxx)">!</span></label>
-                            <input name="no_sertifikat" id="add-no_sertifikat" class="form-control" type="text"></input>
+                            <label for="add-no_izin">Nomor Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nomor Sertifikat KI (misal: IDP0000xxxxx, IDM0000xxxxxx)">!</span></label>
+                            <input name="no_izin" id="add-no_izin" class="form-control" type="text"></input>
                         </div>
                     </div>
 
@@ -114,8 +114,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="add-file_sertifikasi">File Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-                            <input name="file_sertifikasi" id="add-file_sertifikasi" class="form-control" type="file"></input>
+                            <label for="add-file">File Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
+                            <input name="file" id="add-file" class="form-control" type="file"></input>
                         </div>
                     </div>
                     <div class="col-md-12">

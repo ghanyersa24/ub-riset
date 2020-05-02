@@ -73,7 +73,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="add-status_perolehan">Lembaga Penerbit Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat sudah diperoleh">!</span></label>
+                            <label for="add-lembaga_penerbit">Lembaga Penerbit Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat sudah diperoleh">!</span></label>
                             <input type="text" id="add-lembaga_penerbit" name="lembaga_penerbit" class="form-control">
                         </div>
                     </div>
@@ -114,7 +114,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="add-file_sertifikasi">File Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
+                            <label for="add-file_sertifikasi">File Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
                             <input name="file_sertifikasi" id="add-file_sertifikasi" class="form-control" type="file"></input>
                         </div>
                     </div>

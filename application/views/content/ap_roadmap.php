@@ -5,9 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="main-content">
     <section class="section">
         <div class="section-header d-block justify-content-start align-items-center">
-
             <a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
-
             </a>
             <h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
         </div>
@@ -26,23 +24,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <thead>
                                         <tr>
                                             <th class="text-center">
-                                                #
+                                                No.
                                             </th>
-                                            <th>Nama</th>
-                                            <th>Author</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Nama Riset / Pengembangan</th>
+                                            <th>Tahun Mulai</th>
+                                            <th>Skema</th>
+                                            <th>Aktivitas Riset dan Pengembangan</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th class="text-center">
-                                                #
+
                                             </th>
-                                            <th class="table_search"></th>
-                                            <th class="table_search"></th>
-                                            <th class="table_search"></th>
-                                            <th>#</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -180,7 +179,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="view-skema">Skema</label>
+                                <label for="view-skema">Skema <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="misal: penelitian dasar, penelitian terapan, PKM-K, PMW dsb">!</span></label>
                                 <textarea name="skema" id="view-skema" class="form-control"></textarea>
                             </div>
                         </div>
@@ -195,7 +194,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="view-sumber_pendanaan">Sumber Pendanaan</label>
+                                <label for="view-sumber_pendanaan">Sumber Pendanaan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="misal: mandiri, hibah, insentif dsb">!</span></label>
                                 <input name="sumber_pendanaan" id="view-sumber_pendanaan" class="form-control" type="text"></input>
                             </div>
                         </div>
@@ -229,43 +228,46 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 </div>
 <script>
-    let content, timPelaksana, skema, aktivitas, tujuan, hasil
-    editor('#add-content', content)
-    editor('#add-tim_pelaksana', timPelaksana)
-    editor('#add-skema', skema)
-    editor('#add-aktivitas', aktivitas)
-    editor('#add-tujuan', tujuan)
-    editor('#add-hasil', hasil)
-
     $(document).ready(function() {
+        triggerEditor('#form-add')
+        triggerEditor('#form-view')
         $('#table').DataTable({
             "ajax": api + 'service/roadmap/get',
             "columns": [{
-                "render": function(data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
+                    "render": function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    },
+                    className: "text-center"
+                }, {
+                    "data": "nama"
+                }, {
+                    "data": "tahun_mulai"
+                }, {
+                    "data": "skema"
                 },
-                className: "text-center"
-            }, {
-                "data": "nama"
-            }, {
-                "data": "author"
-            }, {
-                "data": "status"
-            }, {
-                "render": function(data, type, JsonResultRow, meta) {
-                    return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
+                {
+                    "data": "aktivitas"
+                }, {
+                    "render": function(data, type, JsonResultRow, meta) {
+                        return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
+                    }
                 }
-            }]
+            ]
         });
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
             $('#view-id').val(data.id)
             $('#view-nama').val(data.nama)
-            $('#view-status').val(data.status)
-            $('#prev-view-picture').attr('src', data.pictures)
-            // content.setData(data.content)
-            $('#view-content').html(data.content)
+            $('#view-tahun_mulai').val(data.tahun_mulai)
+            $('#view-tahun_selesai').val(data.tahun_selesai)
+            $('#view-tahun_selesai').val(data.tahun_selesai)
+            $('#view-sumber_pendanaan').val(data.sumber_pendanaan)
+            $('#view-nilai_pendanaan').val(data.nilai_pendanaan)
+            setEditor('view-skema', data.skema)
+            setEditor('view-aktivitas', data.aktivitas)
+            setEditor('view-tujuan', data.tujuan)
+            setEditor('view-hasil', data.hasil)
             $('#view').modal('show')
         })
 
@@ -277,15 +279,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 nama: {
                     required: true,
                 },
-                jenis: {
+                tahun_mulai: {
                     required: true
                 },
-                deskripsi_singkat: {
+                tahun_selesai: {
                     required: true
                 },
-                bidang: {
+                sumber_pendanaan: {
                     required: true,
-                }
+                },
+                nilai_pendanaan: {
+                    required: true,
+                },
+
             },
             submitHandler: function(form) {
                 var data = $('#form-add').serialize()
@@ -295,6 +301,45 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     data: data,
                     dataType: "json",
                     success: function(response) {
+                        $('#table').dataTable().api().ajax.reload()
+                        $('#form-add').trigger('reset')
+                        response_alert(response)
+                    }
+                })
+            }
+        })
+
+        $('#form-view').validate({
+            rules: {
+                id: {
+                    required: true,
+                },
+                nama: {
+                    required: true,
+                },
+                tahun_mulai: {
+                    required: true
+                },
+                tahun_selesai: {
+                    required: true
+                },
+                sumber_pendanaan: {
+                    required: true,
+                },
+                nilai_pendanaan: {
+                    required: true,
+                },
+
+            },
+            submitHandler: function(form) {
+                var data = $('#form-view').serialize()
+                $.ajax({
+                    type: "POST",
+                    url: api + "service/roadmap/update",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#table').dataTable().api().ajax.reload()
                         response_alert(response)
                     }
                 })

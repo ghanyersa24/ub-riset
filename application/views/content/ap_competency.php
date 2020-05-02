@@ -4,8 +4,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <!-- Main Content -->
 <div class="main-content">
 	<section class="section">
-		<div class="section-header">
-			<h1><?= $title ?></h1>
+		<div class="section-header d-block justify-content-start align-items-center">
+			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
+			</a>
+			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
 
 
@@ -130,7 +132,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 											</div>
 										</section>
-										
+
 										<section id="tab-landasan">
 											<div class="form-group">
 												<label for="view-deskripsi_lengkap">Deskripsi Lengkap</label>

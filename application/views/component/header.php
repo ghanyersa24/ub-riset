@@ -44,14 +44,45 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</script>
 	<script>
 		const api = '<?= base_url() ?>'
+		let editorList = [];
 
 		function editor(id) {
-			return ClassicEditor.create(document.querySelector(`${id}`), {
+			return ClassicEditor.create(document.getElementById(id), {
 				removePlugins: ['Heading', 'Link'],
 				toolbar: ['bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
+			}).then(editor => {
+				let key = '#' + id
+				editorList.push({
+					id,
+					editor
+				})
 			}).catch(error => {
 				console.error(error)
 			})
+		}
+
+		function setEditor(id, data) {
+			const index = getEditorIndex(id);
+			editorList[index].editor.setData(data)
+		}
+
+		function getEditorIndex(key) {
+			const dataIndex = editorList.findIndex((data) => data.id === key);
+			return dataIndex;
+		}
+
+		function triggerEditor(id) {
+			let editorId = $(id + ' textarea');
+			for (let index = 0; index < editorId.length; index++) {
+				editor(editorId[index].id)
+			}
+		}
+
+		function triggerSetEditor(id, data) {
+			let editorId = $(id + ' textarea');
+			for (let index = 0; index < editorId.length; index++) {
+				setEditor(editorId[index].id, data)
+			}
 		}
 
 		function response_alert(response) {
@@ -66,6 +97,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		.ck.ck-content ul li {
 			list-style-type: inherit;
 		}
-
 	</style>
 </head>
