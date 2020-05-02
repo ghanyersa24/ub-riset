@@ -117,7 +117,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
 				}
 			}]
-		});
+		})
+
 		var table = $('#table').DataTable()
 		$('#table tbody').on('click', 'button', function() {
 			var data = table.row($(this).parents('tr')).data()

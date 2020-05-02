@@ -40,12 +40,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script>
 		const api = '<?= base_url() ?>'
 
-		function editor(id, editor) {
-			ClassicEditor.create(document.querySelector(`${id}`)).then(newEditor => {
-				editor = newEditor
+		function editor(id) {
+			return ClassicEditor.create(document.querySelector(`${id}`), {
+				removePlugins: ['Heading', 'Link'],
+				toolbar: ['bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
 			}).catch(error => {
 				console.error(error)
-			});
+			})
 		}
 
 		function response_alert(response) {
@@ -56,9 +57,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}
 	</script>
 	<style>
-		.ck-editor__main {
-			max-height: 150px;
-			overflow-y: scroll;
+		.ck.ck-content ul,
+		.ck.ck-content ul li {
+			list-style-type: inherit;
 		}
+
 	</style>
 </head>
