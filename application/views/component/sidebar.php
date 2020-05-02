@@ -17,11 +17,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<!-- Power Go -->
 
 			<!-- account -->
-			<li class="dropdown <?php echo $this->uri->segment(3) == 'I' || $this->uri->segment(3) == 'II' ? 'active' : '' ?>">
+
+			<li class="dropdown <?php echo (is_null($slug) ? '' : $this->uri->segment(3) == $slug) ? 'active' : '' ?>">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Product</span></a>
 				<ul class="dropdown-menu">
-					<li class="<?php echo $this->uri->segment(3) == 'I' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/detail/I">Inovasi I</a></li>
-					<li class="<?php echo $this->uri->segment(3) == 'II' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/detail/II">Inovasi II</a></li>
+					<?php
+					foreach ($produk as $value) {
+					?>
+						<li class="<?php echo (is_null($slug) ? '' : $value['slug'] == $slug) ? 'active' : ''; ?>"><a class="nav-link" href="<?= base_url() . "admin/detail/$value[slug]" ?>"> <?= $value['nama_produk'] ?></a></li>
+					<?php
+					}
+					?>
 				</ul>
 			</li>
 			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>profile</span></a></li>

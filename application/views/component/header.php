@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-	<title><?php echo $title; ?> &mdash; UB Riset</title>
+	<title><?= $title; ?> &mdash; UB Riset</title>
 
 	<!-- Global CSS -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.css">
@@ -66,6 +66,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		.ck.ck-content ul li {
 			list-style-type: inherit;
 		}
-
 	</style>
 </head>
