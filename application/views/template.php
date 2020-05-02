@@ -5,4 +5,3 @@ $this->load->view('component/layout');
 $this->load->view('component/sidebar');
 echo $content;
 $this->load->view('component/footer');
-?>

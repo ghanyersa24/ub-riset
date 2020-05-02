@@ -22,8 +22,8 @@ class Roadmap extends CI_Controller
 			"aktivitas" => post('aktivitas'),
 			"tujuan" => post('tujuan'),
 			"hasil" => post('hasil'),
-			"created_by" => AUTHORIZATION::User()->id,
-			"updated_by" => AUTHORIZATION::User()->id,
+			// "created_by" => AUTHORIZATION::User()->id,
+			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -62,7 +62,7 @@ class Roadmap extends CI_Controller
 			"tujuan" => post('tujuan'),
 			"hasil" => post('hasil'),
 			"updated_by" => AUTHORIZATION::User()->id,
-			
+
 		);
 
 		$where = array(

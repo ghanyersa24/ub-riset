@@ -1,65 +1,320 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
-
+<!-- Main Content -->
 <div class="main-content">
     <section class="section">
-        <div class="section-header">
-            <h1><?= $title ?></h1>
+        <div class="section-header d-block justify-content-start align-items-center">
+
+            <a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
+
+            </a>
+            <h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
         </div>
+        <button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
+            <i class="fa fa-plus"></i>
+        </button>
+
 
         <div class="section-body">
-            <div class="card">
-                <p>Halo bosku</p>
+            <div class="row mt-sm-4">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+                                            <th>Nama</th>
+                                            <th>Author</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-center">
+                                                #
+                                            </th>
+                                            <th class="table_search"></th>
+                                            <th class="table_search"></th>
+                                            <th class="table_search"></th>
+                                            <th>#</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button></button>
         </div>
     </section>
 </div>
 
-<div id="add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+<div class="modal fade" id="add">
+    <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Daftarkan !!!</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah <?= $title ?></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             </div>
-            <div class="modal-body">
-                <form id="form-view" name="form-view" method="post">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly>
-                                    <label for="add-nama" class="">Nama Produk <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Tooltip on right">!</span></label>
-                                    <input id="add-nama" class="form-control" type="text" name="nama">
-                                </div>
+            <form id="form-add">
+                <div class="modal-body" id="form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <label for="add-nama">Nama Riset/Pengembangan</label>
+                                <input type="text" id="add-nama" name="nama" class="form-control">
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-
-                                    <label for="add-tahun_mulai" class="">Tahun Mulai <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Tooltip on right">!</span></label>
-                                    <input id="add-tahun_mulai" class="form-control" type="number" name="tahun_mulai">
-                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="add-tahun_mulai">Tahun Mulai</label>
+                                <input type="number" id="add-tahun_mulai" name="tahun_mulai" class="form-control">
                             </div>
-                            <div class="col-md-3">
-                                <div class="form-group">
-
-                                    <label for="add-tahun_selesai" class="">Tahun Selesai <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Tooltip on right">!</span></label>
-                                    <input id="add-tahun_selesai" class="form-control" type="number" name="tahun_selesai">
-                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="add-tahun_selesai">Tahun Selesai</label>
+                                <input type="number" id="add-tahun_selesai" name="tahun_selesai" class="form-control">
                             </div>
-
-
-                            <div class="card-footer text-right d-block mr-0 ml-auto">
-                                <button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="add-tim_pelaksana">Tim Pelaksana</label>
+                                <textarea name="tim_pelaksana" id="add-tim_pelaksana" class="form-control"></textarea>
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="add-skema">Skema</label>
+                                <textarea name="skema" id="add-skema" class="form-control"></textarea>
+                            </div>
+                        </div>
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default" data-dismiss="modal">Batal</button>
-                <button class="btn btn-primary" id="btn-save">Tambah</button>
-            </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="add-aktivitas">Aktivitas Riset dan Pengembangan</label>
+                                <textarea name="aktivitas" id="add-aktivitas" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-sumber_pendanaan">Sumber Pendanaan</label>
+                                <input name="sumber_pendanaan" id="add-sumber_pendanaan" class="form-control" type="text"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-nilai_pendanaan">Nilai Pendanaan</label>
+                                <input name="nilai_pendanaan" id="add-nilai_pendanaan" class="form-control" type="number"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-tujuan">Tujuan</label>
+                                <textarea name="tujuan" id="add-tujuan" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="add-hasil">Hasil / Output</label>
+                                <textarea name="hasil" id="add-hasil" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
+                    <button type="submit" class="btn btn-info" id="submit">Add</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="view">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah <?= $title ?></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            </div>
+            <form id="form-view">
+                <div class="modal-body" id="form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <label for="view-nama">Nama Riset/Pengembangan</label>
+                                <input type="text" id="view-nama" name="nama" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="view-tahun_mulai">Tahun Mulai</label>
+                                <input type="number" id="view-tahun_mulai" name="tahun_mulai" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="view-tahun_selesai">Tahun Selesai</label>
+                                <input type="number" id="view-tahun_selesai" name="tahun_selesai" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="view-tim_pelaksana">Tim Pelaksana</label>
+                                <textarea name="tim_pelaksana" id="view-tim_pelaksana" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="view-skema">Skema</label>
+                                <textarea name="skema" id="view-skema" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="view-aktivitas">Aktivitas Riset dan Pengembangan</label>
+                                <textarea name="aktivitas" id="view-aktivitas" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-sumber_pendanaan">Sumber Pendanaan</label>
+                                <input name="sumber_pendanaan" id="view-sumber_pendanaan" class="form-control" type="text"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-nilai_pendanaan">Nilai Pendanaan</label>
+                                <input name="nilai_pendanaan" id="view-nilai_pendanaan" class="form-control" type="number"></input>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-tujuan">Tujuan</label>
+                                <textarea name="tujuan" id="view-tujuan" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="view-hasil">Hasil / Output</label>
+                                <textarea name="hasil" id="view-hasil" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
+                    <button type="submit" class="btn btn-info" id="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    let content, timPelaksana, skema, aktivitas, tujuan, hasil
+    editor('#add-content', content)
+    editor('#add-tim_pelaksana', timPelaksana)
+    editor('#add-skema', skema)
+    editor('#add-aktivitas', aktivitas)
+    editor('#add-tujuan', tujuan)
+    editor('#add-hasil', hasil)
+
+    $(document).ready(function() {
+        $('#table').DataTable({
+            "ajax": api + 'service/roadmap/get',
+            "columns": [{
+                "render": function(data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                },
+                className: "text-center"
+            }, {
+                "data": "nama"
+            }, {
+                "data": "author"
+            }, {
+                "data": "status"
+            }, {
+                "render": function(data, type, JsonResultRow, meta) {
+                    return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
+                }
+            }]
+        });
+        var table = $('#table').DataTable()
+        $('#table tbody').on('click', 'button', function() {
+            var data = table.row($(this).parents('tr')).data()
+            $('#view-id').val(data.id)
+            $('#view-nama').val(data.nama)
+            $('#view-status').val(data.status)
+            $('#prev-view-picture').attr('src', data.pictures)
+            // content.setData(data.content)
+            $('#view-content').html(data.content)
+            $('#view').modal('show')
+        })
+
+        $('#form-add').validate({
+            rules: {
+                id: {
+                    required: true,
+                },
+                nama: {
+                    required: true,
+                },
+                jenis: {
+                    required: true
+                },
+                deskripsi_singkat: {
+                    required: true
+                },
+                bidang: {
+                    required: true,
+                }
+            },
+            submitHandler: function(form) {
+                var data = $('#form-add').serialize()
+                $.ajax({
+                    type: "POST",
+                    url: api + "service/roadmap/create",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        response_alert(response)
+                    }
+                })
+            }
+        })
+    });
+
+
+
+    $("#view-logo_produk").change(function() {
+        readURL(this)
+    })
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader()
+            reader.onload = function(e) {
+                $('#prev-view-logo_produk').attr('src', e.target.result)
+            }
+            reader.readAsDataURL(input.files[0])
+        }
+    }
+</script>

@@ -61,7 +61,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="">
+      												<a href="<?= base_url('admin/testing/Product Inovation I') ?>">
       													<div class="timeline-icon"><i class="fa fa-vial"></i></div>
       												</a>
       												<span class="year">Tahap 3</span>
@@ -73,7 +73,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="">
+      												<a href="<?= base_url('admin/ki/Product Inovation I') ?>">
       													<div class="timeline-icon"><i class="fa fa-lightbulb"></i></div>
       												</a>
       												<span class="year">Tahap 4</span>
@@ -86,7 +86,7 @@
       											</div>
 
       											<div class="timeline">
-      												<a href="">
+      												<a href="<?= base_url('admin/sertifikasi/Product Inovation I') ?>">
       													<div class="timeline-icon"><i class="fa fa-certificate"></i></div>
       												</a>
       												<span class="year">Tahap 5</span>
@@ -99,7 +99,9 @@
       											</div>
 
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-check-circle"></i></div>
+      												<a href="<?= base_url('admin/izin/Product Inovation I') ?>">
+      													<div class="timeline-icon"><i class="fa fa-check-circle"></i></div>
+      												</a>
       												<span class="year">Tahap 6</span>
       												<div class="timeline-content">
       													<h5 class="title">Izin</h5>
@@ -107,7 +109,9 @@
       														Udah punya izin belum?
       													</p>
       												</div>
+
       											</div>
+
 
       											<div class="timeline">
       												<div class="timeline-icon"><i class="fa fa-camera"></i></div>

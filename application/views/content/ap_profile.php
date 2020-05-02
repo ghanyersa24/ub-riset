@@ -2,8 +2,12 @@
 
       <div class="main-content">
       	<section class="section">
-      		<div class="section-header">
-      			<h1><?= $title ?></h1>
+      		<div class="section-header d-block justify-content-start align-items-center">
+
+      			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
+
+      			</a>
+      			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
       		</div>
       		<div class="section-body">
       			<div class="row mt-sm-4">
@@ -25,7 +29,7 @@
       						<div class="card-body">
       							<div class="form-group">
       								<label for="view-name">Nama Lengkap</label>
-      								<input type="text" class="form-control" id="view-name" name="name" value="<?=$this->session->userdata('nama')?>">
+      								<input type="text" class="form-control" id="view-name" name="name" value="<?= $this->session->userdata('nama') ?>">
       							</div>
       							<div class="form-group">
       								<label for="view-contact">Kontak</label>
