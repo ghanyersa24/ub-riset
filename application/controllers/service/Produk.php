@@ -41,6 +41,24 @@ class Produk extends CI_Controller
 			error("data gagal ditemukan");
 	}
 
+	public function upload()
+	{
+		$data = [
+			"logo_produk" => UPLOAD_FILE::img('logo_produk', 'logo'),
+		];
+		$where = array(
+			"id" => post('id', 'required'),
+		);
+		$product = DB_MODEL::find('produk', $where)->data;
+		$do = DB_MODEL::update($this->table, $where, $data);
+		if ($product->logo_produk != null)
+			unlink(getcwd() . '\uploads\logo' . str_replace('http://localhost/ub-riset/uploads/logo/', '/', $product->logo_produk));
+		if (!$do->error)
+			success("logo berhasil diupload", $do->data);
+		else
+			error("data gagal diubah");
+	}
+
 	public function update()
 	{
 		$data = array(
@@ -49,7 +67,6 @@ class Produk extends CI_Controller
 			"kategori" => json_encode($this->input->post('kategori')),
 			"jenis" => post('jenis', 'required', 'enum:digital&non digital'),
 			"produksi_barang_fisik" => post('produksi_barang_fisik', 'enum:ada&tidak'),
-			// "logo_produk" => UPLOAD_FILE::img('logo_produk', 'logo'),
 			"deskripsi_singkat" => post('deskripsi_singkat', 'required'),
 			"deskripsi_lengkap" => post('deskripsi_lengkap', 'allow_html'),
 			"latar_belakang" => post('latar_belakang', 'allow_html'),

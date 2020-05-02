@@ -118,17 +118,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<option value="Sosial Budaya">Sosial Budaya</option>
 														</select>
 													</div>
+
+													<div class="form-group row">
+														<div class="col-4">
+															<label for="view-logo_produk">Upload Logo</label>
+															<button class="btn btn-secondary form-control" type="button" data-toggle="modal" data-target="#logo">pilih logo</button>
+														</div>
+														<div class="col-8">
+															<img src="" alt="foto content" id="prev-view-logo_produk" class="w-50">
+														</div>
+													</div>
 												</div>
 											</div>
-											<!-- <div class="form-group row">
-												<div class="col-4">
-													<label for="view-logo_produk">Logo Produk</label>
-													<input type="file" id="view-logo_produk" name="logo_produk" accept="image/*">
-												</div>
-												<div class="col-8">
-													<img src="" alt="foto content" id="prev-view-logo_produk" class="w-50">
-												</div>
-											</div> -->
 										</section>
 
 										<section id="tab-landasan">
@@ -213,7 +214,78 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</section>
 </div>
+
+<div id="progress-upload" class="position-fixed row bg-trans h-100" tabindex="-1" style="display:none; top:0; left:0; right:0;z-index:999999;background: rgba(137, 191, 202, 0.48)">
+	<div class="d-flex justify-content-center vw-100">
+		<div class="d-flex align-items-center" style="width: 15%;top:50vh">
+			<img src="https://media3.giphy.com/media/1YePlEuqaWfba/source.gif" alt="" class="w-100">
+		</div>
+	</div>
+</div>
+
+<div id="logo" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Upload Logo Produk</label>
+					<div class="input-group">
+						<div class="custom-file">
+							<input type="file" class="custom-file-input" id="view-logo" aria-describedby="btn-upload">
+							<label class="custom-file-label" for="view-logo">Cari file</label>
+						</div>
+						<div class="input-group-append">
+							<button class="btn btn-primary" type="button" id="btn-upload">Upload</button>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-center w-100 ">
+					<img style="display:none" src="" alt="logo produk" id="prev-view-logo" class="w-75 text-center">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
+	$('#view-logo').change(function() {
+		let filename = document.getElementById('view-logo').files[0].name
+		$('label.custom-file-label').html(filename)
+		$('#prev-view-logo').show()
+	})
+
+	$('#btn-upload').click(async function(e) {
+		if (document.getElementById('view-logo').files[0] == undefined) {
+			$('label.custom-file-label').html('<span class="text-danger">Pilih file terlebih dahulu</span>');
+		} else {
+			await $('#progress-upload').fadeIn().delay(500)
+			$('body').addClass('overflow-hidden')
+			let formData = new FormData();
+			formData.append('logo_produk', document.getElementById('view-logo').files[0])
+			formData.append('id', $('#view-id').val())
+			await setTimeout(async function() {
+				await $.ajax({
+					type: "POST",
+					url: api + 'service/produk/upload',
+					data: formData,
+					async: false,
+					processData: false,
+					contentType: false,
+					success: function(response) {
+						setTimeout(function() {
+							response_alert(response)
+							if (!response.error) {
+								$('#prev-view-logo_produk').attr('src', response.data.logo_produk)
+								$('label.custom-file-label').html('<span class="text-primary">File berhasil diupload</span>')
+								$('#logo').modal('hide')
+							}
+						}, 500)
+					}
+				})
+				await $('body').removeClass('overflow-hidden')
+				await $('#progress-upload').fadeOut()
+			}, 1500)
+		}
+	});
 	$(document).ready(function() {
 		$.ajax({
 			type: "GET",
@@ -223,6 +295,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				for (key in data) {
 					$(`#view-${key}`).val(data[key])
 				}
+				$('#prev-view-logo_produk').attr('src', response.data.logo_produk)
+
 				editor('#view-latar_belakang')
 				$('#view-latar_belakang').html(data.latar_belakang)
 
@@ -315,7 +389,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		})
 	});
 
-	$("#view-logo_produk").change(function() {
+	$("#view-logo").change(function() {
 		readURL(this)
 	})
 
@@ -323,7 +397,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		if (input.files && input.files[0]) {
 			var reader = new FileReader()
 			reader.onload = function(e) {
-				$('#prev-view-logo_produk').attr('src', e.target.result)
+				$('#prev-view-logo').attr('src', e.target.result)
 			}
 			reader.readAsDataURL(input.files[0])
 		}
