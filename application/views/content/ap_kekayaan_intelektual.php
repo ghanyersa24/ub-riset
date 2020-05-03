@@ -68,7 +68,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
                                 <label for="add-nama">Jenis Kekayaan Intelektual</label>
                                 <select name="jenis" id="add-jenis" class="form-control">
                                     <option value="Paten">Paten</option>
@@ -166,7 +166,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
                                 <label for="view-nama">Jenis Kekayaan Intelektual</label>
                                 <select name="jenis" id="view-jenis" class="form-control">
                                     <option value="Paten">Paten</option>
@@ -257,7 +257,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         triggerEditor('#form-add')
         triggerEditor('#form-view')
         $('#table').DataTable({
-            "ajax": api + 'service/kekayaan_intelektual/get',
+            "ajax": api + 'service/kekayaan_intelektual/get/<?= $id ?>',
             "columns": [{
                 "render": function(data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;

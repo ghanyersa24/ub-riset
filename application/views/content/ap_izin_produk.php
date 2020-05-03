@@ -67,7 +67,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
                                 <label for="add-nama">Nama / Jenis Izin <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Contoh jenis BPOM MD, BPOM NA, Halal, Penyelanggara Sistem Elektronik, dll">!</span></label>
                                 <input type="text" id="add-nama" class="form-control" name="nama">
 
@@ -150,7 +150,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
                                 <label for="view-nama">Nama / Jenis Izin <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Contoh jenis BPOM MD, BPOM NA, Halal, Penyelanggara Sistem Elektronik, dll">!</span></label>
                                 <input type="text" id="view-nama" class="form-control" name="nama">
 

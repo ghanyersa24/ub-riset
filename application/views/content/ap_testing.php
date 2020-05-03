@@ -68,7 +68,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group">
-                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
                                 <label for="add-nama">Nama Pengujian</label>
                                 <input type="text" id="add-nama" name="nama" class="form-control">
                             </div>
@@ -137,7 +137,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group">
-                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="1">
+                                <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
                                 <label for="view-nama">Nama Pengujian</label>
                                 <input type="text" id="view-nama" name="nama" class="form-control">
                             </div>
@@ -200,7 +200,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         triggerEditor('#form-add')
         triggerEditor('#form-view')
         $('#table').DataTable({
-            "ajax": api + 'service/pengujian/get',
+            "ajax": api + 'service/pengujian/get/<?= $id ?>',
             "columns": [{
                 "render": function(data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
