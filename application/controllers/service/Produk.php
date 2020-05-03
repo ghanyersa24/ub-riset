@@ -52,7 +52,7 @@ class Produk extends CI_Controller
 		$product = DB_MODEL::find('produk', $where)->data;
 		$do = DB_MODEL::update($this->table, $where, $data);
 		if ($product->logo_produk != null)
-			unlink(getcwd() . '\uploads\logo' . str_replace('http://localhost/ub-riset/uploads/logo/', '/', $product->logo_produk));
+			unlink(getcwd() . '\uploads\logo' . str_replace(base_url('/uploads/logo/'), '/', $product->logo_produk));
 		if (!$do->error)
 			success("logo berhasil diupload", $do->data);
 		else

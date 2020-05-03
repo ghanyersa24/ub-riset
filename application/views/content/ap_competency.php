@@ -23,26 +23,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<ul>
 										<li title="produk">
 											<label for="tab1" role="button" id="tabs-produk">
-												<i class="far fa-address-card"></i>
-												<br><span>produk</span>
+											<i class="fas fa-brain"></i>
+												<br><span>Produk</span>
 											</label>
 										</li>
 										<li title="landasan">
 											<label for="tab2" role="button" id="tabs-landasan">
-												<i class="fas fa-shipping-fast"></i>
-												<br><span>landasan</span>
+											<i class="fab fa-react"></i>
+												<br><span>Landasan</span>
 											</label>
 										</li>
 										<li title="rancangan">
 											<label for="tab3" role="button" id="tabs-rancangan">
-												<i class="fas fa-chart-line"></i>
-												<br><span>rancangan</span>
+											<i class="fas fa-code-branch"></i>
+												<br><span>Rancangan</span>
 											</label>
 										</li>
 										<li title="kepemilikan">
 											<label for="tab4" role="button" id="tabs-kepemilikan">
-												<i class="fas fa-journal-whills"></i>
-												<br><span>kepemilikan</span>
+											<i class="fas fa-list-ul"></i>
+												<br><span>Kesiapan</span>
 											</label>
 										</li>
 									</ul>
