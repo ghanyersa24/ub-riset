@@ -79,7 +79,7 @@ class Kekayaan_intelektual extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id')
+			"id" => post('id','required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

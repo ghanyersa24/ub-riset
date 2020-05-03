@@ -63,7 +63,7 @@ class Izin_produk extends CI_Controller
 			$data['file'] = UPLOAD_FILE::update('pdf', 'file', "izin/$produk", "izin-$produk");
 
 		$where = array(
-			"id" => post('id'),
+			"id" => post('id','required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -76,7 +76,7 @@ class Izin_produk extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id')
+			"id" => post('id','required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

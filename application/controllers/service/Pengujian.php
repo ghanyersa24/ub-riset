@@ -12,16 +12,14 @@ class Pengujian extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"nama" => post('nama'),
 			"tahun" => post('tahun'),
 			"status " => post('status'),
 			"jenis" => post('jenis'),
 			"lembaga" => post('lembaga'),
-			"tujuan" => post('tujuan'),
-			"hasil" => post('hasil'),
-			// "created_by"=> AUTHORIZATION::User()->id,
-			// "updated_by"=> AUTHORIZATION::User()->id,
+			"tujuan" => post('tujuan', 'allow_html'),
+			"hasil" => post('hasil', 'allow_html')
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -49,19 +47,18 @@ class Pengujian extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"nama" => post('nama'),
 			"tahun" => post('tahun'),
 			"status " => post('status'),
 			"jenis" => post('jenis'),
 			"lembaga" => post('lembaga'),
-			"tujuan" => post('tujuan'),
-			"hasil" => post('hasil'),
-			// "updated_by" => AUTHORIZATION::User()->id,
+			"tujuan" => post('tujuan','allow_html'),
+			"hasil" => post('hasil','allow_html')
 		);
 
 		$where = array(
-			"id" => post('id'),
+			"id" => post('id','required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -74,7 +71,7 @@ class Pengujian extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id')
+			"id" => post('id','required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

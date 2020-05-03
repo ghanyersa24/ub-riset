@@ -12,7 +12,7 @@ class Roadmap extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk=post('produk_id','required'),
 			"nama" => post('nama'),
 			"tahun_mulai" => post('tahun_mulai'),
 			"tahun_selesai" => post('tahun_selesai'),
@@ -22,8 +22,6 @@ class Roadmap extends CI_Controller
 			"aktivitas" => post('aktivitas'),
 			"tujuan" => post('tujuan'),
 			"hasil" => post('hasil'),
-			// "created_by" => AUTHORIZATION::User()->id,
-			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -39,7 +37,7 @@ class Roadmap extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -51,7 +49,7 @@ class Roadmap extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk=post('produk_id','required'),
 			"nama" => post('nama'),
 			"tahun_mulai" => post('tahun_mulai'),
 			"tahun_selesai" => post('tahun_selesai'),
@@ -61,12 +59,10 @@ class Roadmap extends CI_Controller
 			"aktivitas" => post('aktivitas'),
 			"tujuan" => post('tujuan'),
 			"hasil" => post('hasil'),
-			"updated_by" => AUTHORIZATION::User()->id,
-
 		);
 
 		$where = array(
-			"id" => post('id'),
+			"id" => post('id','required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -79,7 +75,7 @@ class Roadmap extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id')
+			"id" => post('id','required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

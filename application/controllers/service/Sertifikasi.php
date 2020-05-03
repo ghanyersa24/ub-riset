@@ -64,7 +64,7 @@ class Sertifikasi extends CI_Controller
 			$data['file_sertifikasi'] = UPLOAD_FILE::update('pdf', 'file_sertifikasi', "sertifikasi/$produk", "sertifikasi-$produk");
 
 		$where = array(
-			"id" => post('id'),
+			"id" => post('id','required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -77,7 +77,7 @@ class Sertifikasi extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id')
+			"id" => post('id','required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);
