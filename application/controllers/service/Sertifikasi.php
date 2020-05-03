@@ -12,18 +12,16 @@ class Sertifikasi extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"nama" => post('nama'),
-			"deskripsi" => post('deskripsi'),
+			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
 			"no_sertifikat" => post('no_sertifikat'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 			"lembaga_penerbit" => post('lembaga_penerbit'),
-			"file_sertifikasi" => post('file_sertifikasi'),
-			"created_by" => AUTHORIZATION::User()->id,
-			"updated_by" => AUTHORIZATION::User()->id,
+			"file_sertifikasi" => UPLOAD_FILE::pdf('file_sertifikasi', "sertifikasi/$produk", "sertifikasi-$produk"),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -39,7 +37,7 @@ class Sertifikasi extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -51,18 +49,19 @@ class Sertifikasi extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"nama" => post('nama'),
-			"deskripsi" => post('deskripsi'),
+			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
 			"no_sertifikat" => post('no_sertifikat'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 			"lembaga_penerbit" => post('lembaga_penerbit'),
-			"file_sertifikasi" => post('file_sertifikasi'),
-			"updated_by" => AUTHORIZATION::User()->id,
 		);
+
+		if (isset($_FILES['file_sertifikasi']))
+			$data['file_sertifikasi'] = UPLOAD_FILE::update('pdf', 'file_sertifikasi', "sertifikasi/$produk", "sertifikasi-$produk");
 
 		$where = array(
 			"id" => post('id'),

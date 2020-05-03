@@ -12,18 +12,16 @@ class Izin_produk extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"nama" => post('nama'),
-			"deskripsi" => post('deskripsi'),
+			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
 			"no_izin" => post('no_izin'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 			"lembaga" => post('lembaga'),
-			"file " => post('file'),
-			"created_by" => AUTHORIZATION::User()->id,
-			"updated_by" => AUTHORIZATION::User()->id,
+			"file " => UPLOAD_FILE::pdf('file', "izin/$produk", "izin-$produk")
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -51,18 +49,18 @@ class Izin_produk extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"nama" => post('nama'),
-			"deskripsi" => post('deskripsi'),
+			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
 			"no_izin" => post('no_izin'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
-			"lembaga" => post('lembaga'),
-			"file " => post('file'),
-			"updated_by" => AUTHORIZATION::User()->id,
+			"lembaga" => post('lembaga')
 		);
+		if (isset($_FILES['file']))
+			$data['file'] = UPLOAD_FILE::update('pdf', 'file', "izin/$produk", "izin-$produk");
 
 		$where = array(
 			"id" => post('id'),

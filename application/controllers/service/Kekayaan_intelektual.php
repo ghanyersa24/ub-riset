@@ -12,19 +12,17 @@ class Kekayaan_intelektual extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"jenis" => post('jenis'),
-			"deskripsi" => post('deskripsi'),
+			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status_perolehan" => post('status_perolehan'),
 			"no_pemohon" => post('no_pemohon'),
-			"file_formulir" => post('file_formulir'),
+			"file_formulir" => UPLOAD_FILE::pdf('file_formulir', "ki/$produk", "formulir-$produk"),
+			"file " => UPLOAD_FILE::pdf('file', "ki/$produk", "file-$produk"),
 			"no_sertifikat" => post('no_sertifikat'),
-			"file " => post('file'),
 			"pemegang" => post('pemegang'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
-			// "created_by" => AUTHORIZATION::User()->id,
-			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -40,7 +38,7 @@ class Kekayaan_intelektual extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -52,22 +50,23 @@ class Kekayaan_intelektual extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"jenis" => post('jenis'),
-			"deskripsi" => post('deskripsi'),
+			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status_perolehan" => post('status_perolehan'),
 			"no_pemohon" => post('no_pemohon'),
-			"file_formulir" => post('file_formulir'),
 			"no_sertifikat" => post('no_sertifikat'),
-			"file " => post('file'),
 			"pemegang" => post('pemegang'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
-			// "updated_by" => AUTHORIZATION::User()->id,
 		);
+		if (isset($_FILES['file_formulir']))
+			$data['file_formulir'] = UPLOAD_FILE::update('pdf', 'file_formulir', "ki/$produk", "formulir-$produk");
+		if (isset($_FILES['file']))
+			$data['file_formulir'] = UPLOAD_FILE::update('pdf', 'file', "ki/$produk", "file-$produk");
 
 		$where = array(
-			"id" => post('id'),
+			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
