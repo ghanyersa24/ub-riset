@@ -114,7 +114,9 @@
 
 
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-camera"></i></div>
+      												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
+      													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
+      												</a>
       												<span class="year">Tahap 7</span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Produk</h5>
@@ -124,7 +126,9 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-camera"></i></div>
+      												<a href="<?= base_url() . 'admin/kegiatan/' . $slug ?>">
+      													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
+      												</a>
       												<span class="year">Tahap 8</span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Kegiatan</h5>

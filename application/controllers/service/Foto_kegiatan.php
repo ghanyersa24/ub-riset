@@ -12,11 +12,10 @@ class Foto_kegiatan extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
-			"foto" => post('foto'),
-			"keterangan" => post('keterangan'),
-			"created_by" => AUTHORIZATION::User()->id,
-			"updated_by" => AUTHORIZATION::User()->id,
+			"produk_id" => $produk = post('produk_id', 'required'),
+			"title" => $title = post('title', 'required'),
+			"foto" => UPLOAD_FILE::img('foto', "foto/$produk", "$title-foto-$produk"),
+			"keterangan" => post('keterangan', 'allow_html')
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -32,7 +31,7 @@ class Foto_kegiatan extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -44,15 +43,14 @@ class Foto_kegiatan extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id'),
-			"foto" => post('foto'),
-			"keterangan" => post('keterangan'),
-			"updated_by" => AUTHORIZATION::User()->id,
-
+			"produk_id" => $produk = post('produk_id', 'required'),
+			"title" => $title = post('title', 'required'),
+			"keterangan" => post('keterangan', 'allow_html')
 		);
-
+		if (isset($_FILES['foto']))
+			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "foto/$produk", "$title-foto-$produk");
 		$where = array(
-			"id" => post('id'),
+			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -65,9 +63,10 @@ class Foto_kegiatan extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id')
+			"id" => post('id', 'required')
 		);
 
+		UPLOAD_FILE::delete('foto');
 		$do = DB_MODEL::delete($this->table, $where);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);

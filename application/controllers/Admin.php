@@ -85,6 +85,22 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function foto($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Foto Produk ' . $data['title'];
+		$data['content'] = 'ap_foto';
+		$this->load->view('template', $data);
+	}
+
+	public function kegiatan($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Foto Kegiatan ' . $data['title'];
+		$data['content'] = 'ap_kegiatan';
+		$this->load->view('template', $data);
+	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();

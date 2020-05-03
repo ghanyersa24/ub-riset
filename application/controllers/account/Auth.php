@@ -9,12 +9,22 @@ class Auth extends CI_Controller
 		$password = post('password', 'required');
 		$auth = json_decode(file_get_contents("https://em.ub.ac.id/redirect/login/loginApps/?nim=$username&password=$password"), true);
 		if ($auth['status']) {
-			$auth['logged_in'] = true;
-			$this->session->set_userdata($auth);
+			$data = [
+				'id' => $auth['nim'],
+				'nama' => $auth['nama'],
+				'status' => 'mahasiswa',
+				'foto' => $auth['foto'],
+			];
+			$this->session->set_userdata($data);
+			$this->session->set_userdata('logged_in', true);
+			$profile = DB_MODEL::find('users', ['id' => $username]);
+			if ($profile->error)
+				DB_MODEL::insert('users', $data);
 			success("Welcome to system", $auth);
 		} else
 			error("username & password tidak cocok dengan akun UB");
 	}
+
 	// public function index()
 	// {
 	// 	$username = post('username', 'required');
