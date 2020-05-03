@@ -126,9 +126,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							</div>
 
 							<div class="form-group">
-								<label for="add-kategori">Kategori</label>
-								<select class="custom-select" name="kategori">
-									<option selected disabled>Pilih salah satu</option>
+								<label for="view-kategori">Kategori</label>
+								<select id="view-kategori" class="select2" multiple="multiple" data-placeholder="Kategori" style="width: 100%;" name="kategori[]">
 									<option value="Pangan">Pangan</option>
 									<option value="Energi">Energi</option>
 									<option value="Transportasi">Transportasi</option>
@@ -165,8 +164,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				if (!response.error) {
 					swal('Success !', response.message, 'success')
 					$('#add').modal('hide')
+
 					setTimeout(function() {
-						window.location.replace('http://localhost/ub-riset/admin/detail/I')
+						window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
 					}, 2000)
 				} else
 					swal('Gagal !', response.message, 'error')
@@ -174,4 +174,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		});
 
 	});
+
+
 </script>

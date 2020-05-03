@@ -10,106 +10,78 @@ class Admin extends CI_Controller
 		if (!$this->session->has_userdata('logged_in')) {
 			redirect('login');
 		}
+		$this->load->helper('riset');
 	}
 
 	public function index()
 	{
-		$title = 'Dashboard';
-		$data = array(
-			'content' => $this->load->view('content/ap_dasboard', array('title' => $title), true),
-			'title' => $title
-		);
+		$data = riset::slugs();
+		$data['title'] = 'Dashboard';
+		$data['content'] = 'ap_dasboard';
 		$this->load->view('template', $data);
 	}
 
 	public function profile()
 	{
-		$title = 'My Profile';
-		$data = array(
-			'content' => $this->load->view('content/ap_profile', array('title' => $title), true),
-			'title' => $title
-		);
+		$data = riset::slugs();
+		$data['title'] = 'My Profile';
+		$data['content'] = 'ap_profile';
 		$this->load->view('template', $data);
 	}
 
-	public function detail($id)
+	public function detail($slug)
 	{
-		$title = "Product Inovasi $id";
-		$data = array(
-			'content' => $this->load->view('content/ap_detail', array('title' => $title), true),
-			'title' => $title
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Roadmap Produk ' . $data['title'];
+		$data['content'] = 'ap_detail';
 		$this->load->view('template', $data);
 	}
 
-	public function competency($slug)
+	public function produk($slug)
 	{
-		$slug = str_replace('%20', ' ', $slug);
-		$title = "Data dasar $slug";
-		$data = array(
-			'content' => $this->load->view('content/ap_competency', array('title' => $title, 'slug' => $slug), true),
-			'title' => $title,
-			'slug' => $slug
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Data Dasar ' . $data['title'];
+		$data['content'] = 'ap_competency';
 		$this->load->view('template', $data);
 	}
 
 	public function roadmap($slug)
 	{
-		$slug = str_replace('%20', ' ', $slug);
-		$title = "Roadmap Riset dan Pengembangan Produk $slug";
-		$data = array(
-			'content' => $this->load->view('content/ap_roadmap', array('title' => $title, 'slug' => $slug), true),
-			'title' => $title,
-
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Roadmap ' . $data['title'];
+		$data['content'] = 'ap_roadmap';
 		$this->load->view('template', $data);
 	}
 
 	public function testing($slug)
 	{
-		$slug = str_replace('%20', ' ', $slug);
-		$title = "Pengujian Produk $slug";
-		$data = array(
-			'content' => $this->load->view('content/ap_testing', array('title' => $title, 'slug' => $slug), true),
-			'title' => $title,
-
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Testing ' . $data['title'];
+		$data['content'] = 'ap_testing';
 		$this->load->view('template', $data);
 	}
 
 	public function ki($slug)
 	{
-		$slug = str_replace('%20', ' ', $slug);
-		$title = "Kekayaan Intelektual Produk $slug";
-		$data = array(
-			'content' => $this->load->view('content/ap_kekayaan_intelektual', array('title' => $title, 'slug' => $slug), true),
-			'title' => $title,
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Testing ' . $data['title'];
+		$data['content'] = 'ap_kekayaan_intelektual';
 		$this->load->view('template', $data);
 	}
 
 	public function sertifikasi($slug)
 	{
-		$slug = str_replace('%20', ' ', $slug);
-		$title = "Sertifikasi Produk $slug";
-		$data = array(
-			'content' => $this->load->view('content/ap_sertifikasi', array('title' => $title, 'slug' => $slug), true),
-			'title' => $title,
-
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Testing ' . $data['title'];
+		$data['content'] = 'ap_sertifikasi';
 		$this->load->view('template', $data);
 	}
 
 	public function izin($slug)
 	{
-		$slug = str_replace('%20', ' ', $slug);
-		$title = "Izin Produk $slug";
-		$data = array(
-			'content' => $this->load->view('content/ap_izin_produk', array('title' => $title, 'slug' => $slug), true),
-			'title' => $title,
-
-		);
+		$data = riset::slugs($slug);
+		$data['title'] = 'Testing ' . $data['title'];
+		$data['content'] = 'ap_izin_produk';
 		$this->load->view('template', $data);
 	}
 

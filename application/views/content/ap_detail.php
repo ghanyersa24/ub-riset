@@ -37,7 +37,7 @@
       									<div class="col-md-12">
       										<div class="main-timeline7">
       											<div class="timeline">
-      												<a href="<?= base_url('admin/competency/Product Inovation I') ?>">
+      												<a href="<?= base_url() . 'admin/produk/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-box"></i></div>
       												</a>
       												<span class="year">Tahap 1 <i class="fa fa-check"></i> </span>
@@ -49,7 +49,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="<?= base_url('admin/roadmap/Product Inovation I') ?>">
+      												<a href="<?= base_url() . 'admin/roadmap/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-bolt"></i></div>
       												</a>
       												<span class="year">Tahap 2 <i class="fa fa-check"></i></span>
@@ -61,7 +61,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="<?= base_url('admin/testing/Product Inovation I') ?>">
+      												<a href="<?= base_url() . 'admin/testing/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-vial"></i></div>
       												</a>
       												<span class="year">Tahap 3</span>
@@ -73,7 +73,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="<?= base_url('admin/ki/Product Inovation I') ?>">
+      												<a href="<?= base_url() . 'admin/ki/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-lightbulb"></i></div>
       												</a>
       												<span class="year">Tahap 4</span>
@@ -86,7 +86,7 @@
       											</div>
 
       											<div class="timeline">
-      												<a href="<?= base_url('admin/sertifikasi/Product Inovation I') ?>">
+      												<a href="<?= base_url() . 'admin/sertifikasi/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-certificate"></i></div>
       												</a>
       												<span class="year">Tahap 5</span>
@@ -99,7 +99,7 @@
       											</div>
 
       											<div class="timeline">
-      												<a href="<?= base_url('admin/izin/Product Inovation I') ?>">
+      												<a href="<?= base_url() . 'admin/izin/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-check-circle"></i></div>
       												</a>
       												<span class="year">Tahap 6</span>

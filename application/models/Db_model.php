@@ -49,6 +49,7 @@ class DB_MODEL extends CI_Model
 	public static function insert($table, $data)
 	{
 		$CI = &get_instance();
+		$data['created_by'] = $CI->session->userdata('nim');
 		$query = $CI->db->insert($table, $data);
 		if ($query) {
 			$data['id'] = $CI->db->insert_id();
@@ -70,6 +71,7 @@ class DB_MODEL extends CI_Model
 	public static function update($table, $where, $data)
 	{
 		$CI = &get_instance();
+		$data['updated_by'] = $CI->session->userdata('nim');
 		$CI->db->where($where)->update($table, $data);
 		if (is_array($where))
 			return true(array_merge($where, $data));
@@ -80,6 +82,7 @@ class DB_MODEL extends CI_Model
 	public static function update_straight($table, $where, $data)
 	{
 		$CI = &get_instance();
+		$data['updated_by'] = $CI->session->userdata('nim');
 		$query = $CI->db->where($where)->update($table, $data);
 		if ($CI->db->affected_rows() !== 0)
 			if (is_array($where))
@@ -99,7 +102,7 @@ class DB_MODEL extends CI_Model
 		else
 			return false();
 	}
-	
+
 	public static function login($table, $username)
 	{
 		$CI = &get_instance();

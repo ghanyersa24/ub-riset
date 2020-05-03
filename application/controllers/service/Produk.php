@@ -14,30 +14,9 @@ class Produk extends CI_Controller
 		$data = array(
 			"nama_produk" => post('nama_produk', 'required'),
 			"bidang" => post('bidang', 'required|enum:Pangan&Energi&Transportasi&Rekayasa Keteknikan&Kesehatan&Pertahanan Keamanan&Material Maju&Kemaritiman&Sosial Budaya'),
-			"kategori" => post('kategori', 'required'),
+			"kategori" => json_encode($this->input->post('kategori')),
 			"jenis" => post('jenis', 'required|enum:digital&non digital'),
-			// "produksi_barang_fisik" => post('produksi_barang_fisik'),
-			// "logo_produk" => post('logo_produk1'),
-			// "website" => post('website'),
-			// "media_sosial" => post('media_sosial'),
 			"deskripsi_singkat" => post('deskripsi_singkat', 'required'),
-			// "deskripsi_lengkap" => post('deskripsi_lengkap'),
-			// "latar_belakang" => post('latar_belakang'),
-			// "keterbaruan_produk" => post('keterbaruan_produk'),
-			// "masalah" => post('masalah'),
-			// "solusi" => post('solusi'),
-			// "spesifikasi_teknis" => post('spesifikasi_teknis'),
-			// "kegunaan_manfaat" => post('kegunaan_manfaat'),
-			// "keunggulan" => post('keunggulan'),
-			// "keunikan" => post('keunikan'),
-			// "kesiapan_teknologi" => post('kesiapan_teknologi'),
-			// "kepemilikan_teknologi" => post('kepemilikan_teknologi', 'enum:individu:institusi'),
-			// "pemilik_teknologi" => post('pemilik_teknologi'),
-			// "teknologi_yang_dikembangkan" => post('teknologi_yang_dikembangkan'),
-			// "rencana_pengembangan" => post('rencana_pengembangan'),
-			// "tautan_video" => post('tautan_video'),
-			// "created_by" => AUTHORIZATION::User()->id,
-			// "updated_by" => AUTHORIZATION::User()->id,
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -62,6 +41,24 @@ class Produk extends CI_Controller
 			error("data gagal ditemukan");
 	}
 
+	public function upload()
+	{
+		$data = [
+			"logo_produk" => UPLOAD_FILE::img('logo_produk', 'logo'),
+		];
+		$where = array(
+			"id" => post('id', 'required'),
+		);
+		$product = DB_MODEL::find('produk', $where)->data;
+		$do = DB_MODEL::update($this->table, $where, $data);
+		if ($product->logo_produk != null)
+			unlink(getcwd() . '\uploads\logo' . str_replace(base_url('/uploads/logo/'), '/', $product->logo_produk));
+		if (!$do->error)
+			success("logo berhasil diupload", $do->data);
+		else
+			error("data gagal diubah");
+	}
+
 	public function update()
 	{
 		$data = array(
@@ -70,7 +67,6 @@ class Produk extends CI_Controller
 			"kategori" => json_encode($this->input->post('kategori')),
 			"jenis" => post('jenis', 'required', 'enum:digital&non digital'),
 			"produksi_barang_fisik" => post('produksi_barang_fisik', 'enum:ada&tidak'),
-			// "logo_produk" => post('logo_produk'),
 			"deskripsi_singkat" => post('deskripsi_singkat', 'required'),
 			"deskripsi_lengkap" => post('deskripsi_lengkap', 'allow_html'),
 			"latar_belakang" => post('latar_belakang', 'allow_html'),

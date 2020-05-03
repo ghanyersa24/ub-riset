@@ -7,7 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-	<title><?php echo $title; ?> &mdash; UB Riset</title>
+	<title><?= $title; ?> &mdash; UB Riset</title>
 
 	<!-- Global CSS -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.css">
@@ -90,6 +90,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				swal('Berhasil !', response.message, 'success')
 			else
 				swal('Gagal !', response.message, 'error')
+		}
+
+		function pad(n) {
+			var s = "000" + n;
+			return s.substr(s.length - 4);
 		}
 	</script>
 	<style>
