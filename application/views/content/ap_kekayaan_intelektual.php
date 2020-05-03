@@ -280,13 +280,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
-            $('#view-nama').val(data.nama)
-            $('#view-tahun').val(data.tahun)
-            $('#view-status').val(data.status)
             $('#view-jenis').val(data.jenis)
-            $('#view-lembaga').val(data.lembaga)
-            setEditor('view-tujuan', data.tujuan)
-            setEditor('view-hasil', data.hasil)
+            setEditor('view-deskripsi', data.deskripsi)
+            $('#view-tahun').val(data.tahun)
+            $('#view-status_perolehan').val(data.status_perolehan)
+            $('#view-no_pemohon').val(data.no_pemohon)
+            $('#view-no_sertifikat').val(data.no_sertifikat)
+            $('#view-pemegang').val(data.pemegang)
+            $('#view-tanggal_mulai').val(data.tanggal_mulai)
+            $('#view-tanggal_selesai').val(data.tanggal_selesai)
+
             $('#view').modal('show')
         })
 
@@ -311,7 +314,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     dataType: "json",
                     success: function(response) {
                         $('#table').dataTable().api().ajax.reload()
-                        $('#form-add').trigger('reset')
+                        if (!response.error) {
+                            $('#form-add').trigger('reset')
+                        }
                         response_alert(response)
                     }
                 })
@@ -323,27 +328,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 id: {
                     required: true,
                 },
-                nama: {
-                    required: true,
-                },
-                tahun: {
-                    required: true
-                },
-                status: {
-                    required: true
-                },
                 jenis: {
                     required: true,
                 },
-                lembaga: {
-                    required: true,
-                }
+                status_perolehan: {
+                    required: true
+                },
             },
             submitHandler: function(form) {
                 var data = $('#form-view').serialize()
                 $.ajax({
                     type: "POST",
-                    url: api + "service/pengujian/update",
+                    url: api + "service/kekayaan_intelektual/update",
                     data: data,
                     dataType: "json",
                     success: function(response) {

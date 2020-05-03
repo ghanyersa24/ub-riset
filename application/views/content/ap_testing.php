@@ -263,7 +263,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     dataType: "json",
                     success: function(response) {
                         $('#table').dataTable().api().ajax.reload()
-                        $('#form-add').trigger('reset')
+                        if (!response.error) {
+                            $('#form-add').trigger('reset')
+                        }
                         response_alert(response)
                     }
                 })
