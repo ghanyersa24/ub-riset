@@ -70,6 +70,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="view-akta_perusahaan">Upload Akta Perusahaan</label>
+                                                        <input type="file" class="form-control" name="akta_perusahaan" id="view-akta_perusahaan">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="view-ijin_perusahaan">Upload Surat-Surat Ijin Perusahaan</label>
+                                                        <input type="file" class="form-control" name="akta_perusahaan" id="view-ijin_perusahaan">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <label for="view-tahun_berdiri">Tahun Berdiri</label>
                                                         <input type="number" class="form-control" id="view-tahun_berdiri" name="telp">
                                                     </div>

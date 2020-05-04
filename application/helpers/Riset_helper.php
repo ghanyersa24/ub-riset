@@ -5,7 +5,8 @@ class riset
 	public static function slugs($slug = null)
 	{
 		$CI = &get_instance();
-		$produk = DB_MODEL::where('produk', ['created_by' => $CI->session->userdata('nim')]);
+		// success("", $CI->session->userdata());
+		$produk = DB_MODEL::where('produk', ['created_by' => $CI->session->userdata('id')]);
 		if ($produk->error)
 			redirect('admin');
 		$arr = [];
@@ -18,6 +19,7 @@ class riset
 		}
 
 		if (is_null($slug)) {
+			// success("", $arr);
 			return [
 				'produk' => $arr,
 				'slug' => null
