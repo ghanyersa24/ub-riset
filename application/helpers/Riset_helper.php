@@ -26,6 +26,12 @@ class riset
 			$title = str_replace('-', " ", $slug);
 			$id = (int) str_replace(' ', '', substr($title, 0, 5));
 			$title = substr($title, 5);
+			foreach ($arr as $value) {
+				if ($id == $value['id'])
+					$find = true;
+			}
+			if (!isset($find))
+				redirect('admin');
 			return [
 				'title' => $title,
 				'slug' => $slug,

@@ -11,7 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<p class="card-text">Sudah mempunyai <strong class="px-1">ide</strong> atau <strong class="px-1">produk</strong> inovasimu? <a href="#" class="ml-2 text-decoration-none" id="add-product"> klik disini</a></p>
+						<p class="card-text">Sudah mempunyai <strong class="px-1">ide</strong> atau <strong class="px-1">produk</strong> inovasimu? <a href="#" class="ml-2 text-decoration-none ripple" id="add-product"> klik disini</a></p>
 					</div>
 				</div>
 			</div>
@@ -88,7 +88,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="view-nama_produk">Nama Produk</label>
-								<input type="text" class="form-control" id="view-nama_produk" name="nama_produk" placeholder="Brain Apps">
+								<input type="text" class="form-control" id="view-nama_produk" name="nama_produk" placeholder="contoh : Brain Apps">
 							</div>
 							<div class="form-group">
 								<label for="view-jenis">Jenis Produk</label>
@@ -107,7 +107,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-sm-8">
 							<div class="form-group">
 								<label for="add-deskripsi">Deskripsi Singkat Produk</label>
-								<textarea name="deskripsi_singkat" id="add-deskripsi_singkat" class="form-control" placeholder="Sistem manajemen brawijaya dalam bidang riset dan inovasi"></textarea>
+								<textarea name="deskripsi_singkat" id="add-deskripsi_singkat" class="form-control" placeholder="contoh : Sistem manajemen brawijaya dalam bidang riset dan inovasi"></textarea>
 							</div>
 							<div class="form-group">
 								<label for="add-bidang">Bidang</label>
@@ -174,6 +174,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		});
 
 	});
-
-
 </script>

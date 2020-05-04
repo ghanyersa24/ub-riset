@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2020 at 07:47 PM
+-- Generation Time: May 04, 2020 at 02:56 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -70,6 +70,7 @@ CREATE TABLE `calon_perusahaan` (
 CREATE TABLE `foto_kegiatan` (
   `id` int(10) UNSIGNED NOT NULL,
   `produk_id` int(10) UNSIGNED NOT NULL,
+  `title` tinytext NOT NULL,
   `foto` tinytext DEFAULT NULL,
   `keterangan` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
@@ -87,6 +88,7 @@ CREATE TABLE `foto_kegiatan` (
 CREATE TABLE `foto_produk` (
   `id` int(10) UNSIGNED NOT NULL,
   `produk_id` int(10) UNSIGNED NOT NULL,
+  `title` tinytext NOT NULL,
   `foto` tinytext DEFAULT NULL,
   `keterangan` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
@@ -134,7 +136,7 @@ CREATE TABLE `izin_produk` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `nama` varchar(50) DEFAULT NULL,
   `deskripsi` text DEFAULT NULL,
-  `status` enum('belum diperoleh','permohonan','disetujui') DEFAULT NULL,
+  `status` enum('Belum Diperoleh','Permohonan','Disetujui') DEFAULT NULL,
   `tahun_perolehan` year(4) DEFAULT NULL,
   `no_izin` varchar(30) DEFAULT NULL,
   `tanggal_mulai` date DEFAULT NULL,
@@ -173,7 +175,7 @@ CREATE TABLE `kekayaan_intelektual` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `jenis` varchar(50) DEFAULT NULL,
   `deskripsi` tinytext DEFAULT NULL,
-  `status_perolehan` enum('belum diperoleh','permohonan','disetujui') DEFAULT NULL,
+  `status_perolehan` enum('Belum Diperoleh','Pengajuan Permohonan','Disetujui') DEFAULT NULL,
   `no_pemohon` varchar(40) DEFAULT NULL,
   `file_formulir` tinytext DEFAULT NULL,
   `no_sertifikat` varchar(40) DEFAULT NULL,
@@ -198,7 +200,7 @@ CREATE TABLE `pengujian` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
-  `status` enum('sedang dilakukan','belum dilakukan','sudah dilakukan') DEFAULT NULL,
+  `status` enum('Sedang Dilakukan','Belum Dilakukan','Sudah Dilakukan') DEFAULT NULL,
   `jenis` varchar(50) DEFAULT NULL,
   `lembaga` varchar(100) DEFAULT NULL,
   `tujuan` text DEFAULT NULL,
@@ -218,7 +220,7 @@ CREATE TABLE `pengujian` (
 CREATE TABLE `produk` (
   `id` int(10) UNSIGNED NOT NULL,
   `nama_produk` tinytext NOT NULL,
-  `bidang` enum('Kesehatan','Pertahanan Keamanan','Material Maju','Kemaritiman','Sosial Budaya') NOT NULL,
+  `bidang` enum('Pangan','Energi','Transportasi','Rekayasa Keteknikan','Kesehatan','Pertahanan Keamanan','Material Maju','Kemaritiman','Sosial Budaya') NOT NULL,
   `kategori` tinytext NOT NULL,
   `jenis` enum('digital','non digital') NOT NULL,
   `produksi_barang_fisik` enum('ada','tidak') DEFAULT NULL,
@@ -245,13 +247,6 @@ CREATE TABLE `produk` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`id`, `nama_produk`, `bidang`, `kategori`, `jenis`, `produksi_barang_fisik`, `logo_produk`, `deskripsi_singkat`, `deskripsi_lengkap`, `latar_belakang`, `keterbaruan_produk`, `masalah`, `solusi`, `spesifikasi_teknis`, `kegunaan_manfaat`, `keunggulan_keunikan`, `kesiapan_teknologi`, `kepemilikan_teknologi`, `pemilik_teknologi`, `teknologi_yang_dikembangkan`, `rencana_pengembangan`, `tautan_video`, `media_sosial`, `website`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Ipsum amet maiores', 'Kesehatan', 'Rekayasa Keteknikan', 'non digital', NULL, NULL, 'Molestiae adipisicin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2020-04-30 17:44:10', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -316,7 +311,7 @@ CREATE TABLE `sertifikasi` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `deskripsi` text DEFAULT NULL,
-  `status` enum('belum diperoleh','permohonan','disetujui') DEFAULT NULL,
+  `status` enum('Belum Diperoleh','Permohonan','Disetujui') DEFAULT NULL,
   `tahun_perolehan` year(4) DEFAULT NULL,
   `no_sertifikat` varchar(30) DEFAULT NULL,
   `tanggal_mulai` date DEFAULT NULL,
@@ -355,13 +350,16 @@ CREATE TABLE `ulasan` (
 CREATE TABLE `users` (
   `id` varchar(15) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
+  `fakultas` tinytext NOT NULL,
+  `kontak` varchar(15) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `nik` varchar(20) DEFAULT NULL,
   `jenis_kelamin` enum('laki-laki','perempuan') DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
   `foto_ktp` tinytext DEFAULT NULL,
   `cv` tinytext DEFAULT NULL,
-  `foto` tinytext DEFAULT NULL,
-  `pendidikan_terakhir` enum('SD','SMP/Sederajat','SMA/Sederajat','D1','D2','D3','S1','S2','S3') DEFAULT NULL,
+  `foto` text DEFAULT NULL,
+  `pendidikan_terakhir` enum('SMA/Sederajat','D1','D2','D3','S1','S2','S3') DEFAULT NULL,
   `status` enum('mahasiswa','dosen') DEFAULT NULL,
   `fcm` varchar(255) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
@@ -505,7 +503,7 @@ ALTER TABLE `calon_perusahaan`
 -- AUTO_INCREMENT for table `foto_kegiatan`
 --
 ALTER TABLE `foto_kegiatan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `foto_produk`
@@ -541,7 +539,7 @@ ALTER TABLE `pengujian`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `roadmap`

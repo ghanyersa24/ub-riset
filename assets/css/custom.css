@@ -382,3 +382,47 @@ body h1 {
 label.error {
     color: rgb(255, 42, 42);
 }
+
+
+/* Ripple magic */
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.ripple:after {
+    content: "";
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    width: 16px;
+    height: 16px;
+    background: #53a0e49c;
+    opacity: 0;
+    border-radius: 100%;
+    transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+    0%,
+    35% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(4);
+    }
+}
+
+.ripple::after {
+    animation: ripple 1.2s ease-out infinite;
+    animation-delay: 1s;
+}

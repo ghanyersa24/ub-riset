@@ -52,7 +52,9 @@ class DB_MODEL extends CI_Model
 		$data['created_by'] = $CI->session->userdata('id');
 		$query = $CI->db->insert($table, $data);
 		if ($query) {
-			$data['id'] = $CI->db->insert_id();
+			$id = $CI->db->insert_id();
+			if ($id != 0)
+				$data['id'] = $id;
 			return true($data);
 		} else
 			return false();

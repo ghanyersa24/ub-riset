@@ -10,6 +10,10 @@ class Admin extends CI_Controller
 		if (!$this->session->has_userdata('logged_in')) {
 			redirect('login');
 		}
+		$user = DB_MODEL::find('users', ['id' => $this->session->userdata('nim')]);
+		if ($user->error)
+			redirect('login');
+		$this->session->set_userdata((array)$user->data);
 		$this->load->helper('riset');
 	}
 

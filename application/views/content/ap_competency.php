@@ -25,25 +25,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<ul>
 										<li title="produk">
 											<label for="tab1" role="button" id="tabs-produk">
-											<i class="fas fa-brain"></i>
+												<i class="fas fa-brain"></i>
 												<br><span>Produk</span>
 											</label>
 										</li>
 										<li title="landasan">
 											<label for="tab2" role="button" id="tabs-landasan">
-											<i class="fab fa-react"></i>
+												<i class="fab fa-react"></i>
 												<br><span>Landasan</span>
 											</label>
 										</li>
 										<li title="rancangan">
 											<label for="tab3" role="button" id="tabs-rancangan">
-											<i class="fas fa-code-branch"></i>
+												<i class="fas fa-code-branch"></i>
 												<br><span>Rancangan</span>
 											</label>
 										</li>
 										<li title="kepemilikan">
 											<label for="tab4" role="button" id="tabs-kepemilikan">
-											<i class="fas fa-list-ul"></i>
+												<i class="fas fa-list-ul"></i>
 												<br><span>Kesiapan</span>
 											</label>
 										</li>
@@ -289,6 +289,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}
 	});
 	$(document).ready(function() {
+		triggerEditor('#form-view')
 		$.ajax({
 			type: "GET",
 			url: api + 'service/produk/get/<?= $id ?>',
@@ -299,35 +300,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}
 				$('#prev-view-logo_produk').attr('src', response.data.logo_produk)
 
-				editor('#view-latar_belakang')
-				$('#view-latar_belakang').html(data.latar_belakang)
-
-				editor('#view-deskripsi_lengkap')
-				$('#view-deskripsi_lengkap').html(data.deskripsi_lengkap)
-
-				editor('#view-masalah')
-				$('#view-masalah').html(data.masalah)
-
-				editor('#view-keunggulan_keunikan')
-				$('#view-keunggulan_keunikan').html(data.keunggulan_keunikan)
-
-				editor('#view-keterbaruan_produk')
-				$('#view-keterbaruan_produk').html(data.keterbaruan_produk)
-
-				editor('#view-solusi')
-				$('#view-solusi').html(data.solusi)
-
-				editor('#view-spesifikasi_teknis')
-				$('#view-spesifikasi_teknis').html(data.spesifikasi_teknis)
-
-				editor('#view-kegunaan_manfaat')
-				$('#view-kegunaan_manfaat').html(data.kegunaan_manfaat)
-
-				editor('#view-teknologi_yang_dikembangkan')
-				$('#view-teknologi_yang_dikembangkan').html(data.teknologi_yang_dikembangkan)
-
-				editor('#view-rencana_pengembangan')
-				$('#view-rencana_pengembangan').html(data.rencana_pengembangan)
+				setEditor('view-latar_belakang', data.latar_belakang)
+				setEditor('view-deskripsi_lengkap', data.deskripsi_lengkap)
+				setEditor('view-masalah', data.masalah)
+				setEditor('view-keunggulan_keunikan', data.keunggulan_keunikan)
+				setEditor('view-keterbaruan_produk', data.keterbaruan_produk)
+				setEditor('view-solusi', data.solusi)
+				setEditor('view-spesifikasi_teknis', data.spesifikasi_teknis)
+				setEditor('view-kegunaan_manfaat', data.kegunaan_manfaat)
+				setEditor('view-teknologi_yang_dikembangkan', data.teknologi_yang_dikembangkan)
+				setEditor('view-rencana_pengembangan', data.rencana_pengembangan)
 
 				let kategori = JSON.parse(data.kategori)
 				$(`#view-kategori`).val(kategori)
@@ -405,3 +387,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}
 	}
 </script>
+
