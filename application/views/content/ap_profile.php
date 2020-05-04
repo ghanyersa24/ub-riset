@@ -27,9 +27,9 @@
 
       								<div class="form-group">
       									<label for="view-tanggal_lahir">Tanggal Lahir </label>
-      									<input name="tanggal_lahir" id="view-tanggal_lahir" class="form-control datepicker" type="text" <?= $this->session->userdata('tanggal_lahir'); ?>>
+      									<input name="tanggal_lahir" id="view-tanggal_lahir" class="form-control datepicker" type="text" value="<?= $this->session->userdata('tanggal_lahir'); ?>">
       								</div>
-      								<div class="form-group">
+      								<div class=" form-group">
       									<label for="view-contact">Kontak</label>
       									<input type="number" class="form-control" id="view-kontak" name="kontak" value="<?= $this->session->userdata('kontak'); ?>">
       								</div>
