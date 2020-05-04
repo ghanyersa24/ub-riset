@@ -34,7 +34,7 @@
 			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Logo_Universitas_Brawijaya.svg/1200px-Logo_Universitas_Brawijaya.svg.png" alt="" id="icon-login" class="p-2 bg-white rounded-circle login-icon position-icon" />
 			<div class="shadow bg-white p-5 login-form m-3" id="card-login">
 				<p class="h3 mt-4 mb-4">Gapura UB - Authentication</p>
-				<form name="form-login" id="form-login" method="post">
+				<form name="form-login" id="form-login">
 					<div class="form-group">
 						<label class="form-label" for="username">Username</label>
 						<input id="username" class="form-control rounded-pill" type="text" name="username">
@@ -44,7 +44,7 @@
 						<input id="password" class="form-control rounded-pill" type="password" name="password">
 					</div>
 					<div class="text-center text-danger" id="msg"></div>
-					<button class="btn btn-primary rounded-pill form-control" id="btn-login" type="button">Login</button>
+					<button class="btn btn-primary rounded-pill form-control" id="btn-login" type="submit">Login</button>
 				</form>
 			</div>
 		</div>
@@ -62,7 +62,8 @@
 			}, 500);
 		}
 
-		$('#btn-login').click(async function(e) {
+		$('#form-login').submit(async function(e) {
+			e.preventDefault()
 			$('#card-login').hide()
 			$('#loader').delay(300).fadeIn()
 			await bounce(0)

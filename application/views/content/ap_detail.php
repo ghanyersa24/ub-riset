@@ -29,7 +29,7 @@
       									<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
       									<div class="alert-body">
       										<div class="alert-title">Petunjuk pengisian</div>
-      										Pengisian tidak harus dilakukan hingga tahap terakhir, kamu bisa mengajukan validasi produkmu setelah pengisian dari tahap berapapun agar produk dapat ditampilkan pada website utama BRAIN
+      										Pengisian tidak harus dilakukan hingga tahap terakhir, kamu bisa mengajukan validasi produkmu setelah pengisian dari tahap berapapun agar produk dapat ditampilkan pada website utama Brawijaya Research and Innovation.
       									</div>
       								</div>
 
