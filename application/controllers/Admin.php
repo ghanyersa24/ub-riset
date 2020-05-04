@@ -64,7 +64,7 @@ class Admin extends CI_Controller
 	public function ki($slug)
 	{
 		$data = riset::slugs($slug);
-		$data['title'] = 'Testing ' . $data['title'];
+		$data['title'] = 'Kekayaan Intelektual ' . $data['title'];
 		$data['content'] = 'ap_kekayaan_intelektual';
 		$this->load->view('template', $data);
 	}
@@ -72,7 +72,7 @@ class Admin extends CI_Controller
 	public function sertifikasi($slug)
 	{
 		$data = riset::slugs($slug);
-		$data['title'] = 'Testing ' . $data['title'];
+		$data['title'] = 'Sertifikasi ' . $data['title'];
 		$data['content'] = 'ap_sertifikasi';
 		$this->load->view('template', $data);
 	}
@@ -80,8 +80,23 @@ class Admin extends CI_Controller
 	public function izin($slug)
 	{
 		$data = riset::slugs($slug);
-		$data['title'] = 'Testing ' . $data['title'];
+		$data['title'] = 'Izin ' . $data['title'];
 		$data['content'] = 'ap_izin_produk';
+		$this->load->view('template', $data);
+	}
+	public function inventor($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Inventor ' . $data['title'];
+		$data['content'] = 'ap_inventor';
+		$this->load->view('template', $data);
+	}
+
+	public function perusahaan($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Profil Perusahaan ' . $data['title'];
+		$data['content'] = 'ap_data_perusahaan';
 		$this->load->view('template', $data);
 	}
 

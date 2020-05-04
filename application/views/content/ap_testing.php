@@ -138,6 +138,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="col-md-7">
                             <div class="form-group">
                                 <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
+                                <input id="view-id" class="form-control" type="text" name="id" hidden readonly>
                                 <label for="view-nama">Nama Pengujian</label>
                                 <input type="text" id="view-nama" name="nama" class="form-control">
                             </div>
@@ -223,11 +224,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
-            $('#view-nama').val(data.nama)
-            $('#view-tahun').val(data.tahun)
-            $('#view-status').val(data.status)
-            $('#view-jenis').val(data.jenis)
-            $('#view-lembaga').val(data.lembaga)
+            for (key in data) {
+                $(`#view-${key}`).val(data[key])
+            }
             setEditor('view-tujuan', data.tujuan)
             setEditor('view-hasil', data.hasil)
             $('#view').modal('show')

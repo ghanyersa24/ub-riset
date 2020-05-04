@@ -151,6 +151,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="col-md-4">
                             <div class="form-group">
                                 <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
+                                <input id="view-id" class="form-control" type="text" name="id" hidden readonly>
                                 <label for="view-nama">Nama / Jenis Izin <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Contoh jenis BPOM MD, BPOM NA, Halal, Penyelanggara Sistem Elektronik, dll">!</span></label>
                                 <input type="text" id="view-nama" class="form-control" name="nama">
 
@@ -249,14 +250,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
-            $('#view-nama').val(data.nama)
+            for (key in data) {
+                $(`#view-${key}`).val(data[key])
+            }
             setEditor('view-deskripsi', data.deskripsi)
-            $('#view-status').val(data.status)
-            $('#view-tahun_perolehan').val(data.tahun_perolehan)
-            $('#view-no_izin').val(data.no_izin)
-            $('#view-tanggal_mulai').val(data.tanggal_mulai)
-            $('#view-tanggal_selesai').val(data.tanggal_selesai)
-            $('#view-lembaga').val(data.lembaga)
             $('#view').modal('show')
         })
 

@@ -152,6 +152,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="col-md-4">
                             <div class="form-group">
                                 <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
+                                <input id="view-id" class="form-control" type="text" name="id" hidden readonly>
                                 <label for="view-nama">Nama / Jenis Sertifikasi</label>
                                 <input type="text" id="view-nama" name="nama" class="form-control">
 
@@ -250,14 +251,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
-            $('#view-nama').val(data.nama)
+            for (key in data) {
+                $(`#view-${key}`).val(data[key])
+            }
             setEditor('view-deskripsi', data.deskripsi)
-            $('#view-status').val(data.status)
-            $('#view-tahun_perolehan').val(data.tahun_perolehan)
-            $('#view-no_sertifikat').val(data.no_sertifikat)
-            $('#view-tanggal_mulai').val(data.tanggal_mulai)
-            $('#view-tanggal_selesai').val(data.tanggal_selesai)
-            $('#view-lembaga_penerbit').val(data.lembaga_penerbit)
+
             $('#view').modal('show')
         })
 

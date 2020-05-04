@@ -39,7 +39,7 @@ class Roadmap extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -61,7 +61,7 @@ class Roadmap extends CI_Controller
 			"aktivitas" => post('aktivitas'),
 			"tujuan" => post('tujuan'),
 			"hasil" => post('hasil'),
-			"updated_by" => AUTHORIZATION::User()->id,
+			// "updated_by" => AUTHORIZATION::User()->id,
 
 		);
 
