@@ -88,6 +88,21 @@ class Admin extends CI_Controller
 		$data['content'] = 'ap_izin_produk';
 		$this->load->view('template', $data);
 	}
+	public function inventor($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Inventor ' . $data['title'];
+		$data['content'] = 'ap_inventor';
+		$this->load->view('template', $data);
+	}
+
+	public function perusahaan($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Profil Perusahaan ' . $data['title'];
+		$data['content'] = 'ap_data_perusahaan';
+		$this->load->view('template', $data);
+	}
 
 	public function foto($slug)
 	{

@@ -228,7 +228,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		triggerEditor('#form-add')
 		triggerEditor('#form-view')
 		$('#table').DataTable({
-			"ajax": api + 'service/izin_produk/get',
+			"ajax": api + 'service/izin_produk/get/<?= $id ?>',
 			"columns": [{
 				"render": function(data, type, row, meta) {
 					return meta.row + meta.settings._iDisplayStart + 1;

@@ -139,7 +139,9 @@
       											</div>
 
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-users"></i></div>
+      												<a href="<?= base_url() . 'admin/inventor/' . $slug ?>">
+      													<div class="timeline-icon"><i class="fa fa-users"></i></div>
+      												</a>
       												<span class="year">Tahap 9</span>
       												<div class="timeline-content">
       													<h5 class="title">Inventor</h5>
@@ -149,12 +151,10 @@
       												</div>
       											</div>
 
-
-
-
-
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
+      												<a href="<?= base_url() . 'admin/perusahaan/' . $slug ?>">
+      													<div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
+      												</a>
       												<span class="year">Tahap 10</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Perusahaan</h5>
