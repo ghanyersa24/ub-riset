@@ -309,15 +309,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				no_pemohon: {
 					required: true
 				},
-				file_formulir: {
-					required: true
-				},
+				// file_formulir: {
+				// 	required: true
+				// },
 				no_sertifikat: {
 					required: true
 				},
-				file: {
-					required: true
-				},
+				// file: {
+				// 	required: true
+				// },
 				tanggal_mulai: {
 					required: true
 				},

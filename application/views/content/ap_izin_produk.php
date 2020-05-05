@@ -275,9 +275,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				status_perolehan: {
 					required: true
 				},
-				file: {
-					required: true
-				},
+				// file: {
+				// 	required: true
+				// },
 			},
 			submitHandler: function(form) {
 				let temp = $('#form-add').serialize()

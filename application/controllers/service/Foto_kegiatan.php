@@ -14,7 +14,7 @@ class Foto_kegiatan extends CI_Controller
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"title" => $title = post('title', 'required'),
-			"foto" => UPLOAD_FILE::img('foto', "foto/$produk", "$title-foto-$produk"),
+			"foto" => UPLOAD_FILE::img('foto', "inovasi/$produk/foto", "$title-foto-$produk"),
 			"keterangan" => post('keterangan', 'allow_html')
 		);
 
@@ -48,7 +48,7 @@ class Foto_kegiatan extends CI_Controller
 			"keterangan" => post('keterangan', 'allow_html')
 		);
 		if (isset($_FILES['foto']))
-			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "foto/$produk", "$title-foto-$produk");
+			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "inovasi/$produk/foto", "$title-foto-$produk");
 		$where = array(
 			"id" => post('id', 'required'),
 		);
