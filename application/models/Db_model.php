@@ -49,7 +49,7 @@ class DB_MODEL extends CI_Model
 	public static function insert($table, $data)
 	{
 		$CI = &get_instance();
-		if ($this->session->has_userdata('logged_in'))
+		if ($CI->session->has_userdata('id'))
 			$data['created_by'] = $CI->session->userdata('id');
 		$query = $CI->db->insert($table, $data);
 		if ($query) {
@@ -64,7 +64,6 @@ class DB_MODEL extends CI_Model
 	public static function insert_any($table, $data)
 	{
 		$CI = &get_instance();
-		$data['created_by'] = $CI->session->userdata('id');
 		$query = $CI->db->insert_batch($table, $data);
 		if ($query)
 			return true($query);

@@ -5,7 +5,7 @@ class riset
 	public static function slugs($slug = null)
 	{
 		$CI = &get_instance();
-		$produk = DB_MODEL::where('produk', ['created_by' => $CI->session->userdata('nim')]);
+		$produk = DB_MODEL::where('produk', ['created_by' => $CI->session->userdata('id')]);
 		if ($produk->error)
 			redirect('admin');
 		$arr = [];
