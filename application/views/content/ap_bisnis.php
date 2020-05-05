@@ -56,6 +56,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <div class="content">
                                         <section id="tab-profil">
                                             <form id="form-view-data">
+                                                <button class="btn btn-primary d-block mr-0 mb-4" type="submit">Simpan Data Dasar</button>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                 <div class="form-group">
@@ -69,45 +70,45 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-target_pasar">Target Pasar</label>
+                                                        <label for="view-target_pasar">Target Pasar <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan mengenai target pasar yang akan dituju">!</span></label>
                                                         <textarea  class="form-control" id="view-target_pasar" name="target_pasar"></textarea>
 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-kompetitor">Kompetitor</label>
+                                                        <label for="view-kompetitor">Kompetitor <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Identifikasi kompetitor serta perbandingan antara produk anda dengan kompetitor">!</span></label>
                                                         <textarea  class="form-control" id="view-kompetitor" name="kompetitor"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-jangkauan_pemasaran">Jangkauan Pemasaran<span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="(SIUP,NIB,NPWP,Ijin Domisili, Rekening Perusahaan, dan dokumen pendukung lainnya) jadikan satu file di pdf">!</span></label>
+                                                        <label for="view-jangkauan_pemasaran">Jangkauan Pemasaran<span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan jangkauan pemasaran">!</span></label>
                                                         <textarea  class="form-control" id="view-jangkauan_pemasaran" name="jangkauan_pemasaran"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-kanal_pemasaran">Kanal Pemasaran</label>
+                                                        <label for="view-kanal_pemasaran">Kanal Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Misal (public relation, social media, digital advertising, offline promo, dsb)">!</span></label>
                                                         <textarea type="number" class="form-control" id="view-kanal_pemasaran" name="kanal_pemasaran" ></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-dampak_sosial">Dampak Sosial</label>
-                                                        <textarea type="number" class="form-control" id="view-dampak_sosial" name="dampak_sosial"/>
+                                                        <label for="view-dampak_sosial">Dampak Sosial <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Dampak sosial yang dihasilkan oleh produk">!</span></label>
+                                                        <textarea type="number" class="form-control" id="view-dampak_sosial" name="dampak_sosial"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-pegawai_tidak_tetap">Skema Harga</label>
-                                                        <input type="number" class="form-control" id="view-pegawai_tidak_tetap" name="pegawai_tidak_tetap">
+                                                        <label for="view-skema_harga">Skema Harga <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Skema harga yang digunakan">!</span></label>
+                                                        <textarea type="number" class="form-control" id="view-skema_harga" name="skema_harga"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                 <div class="form-group">
-                                                        <label for="view-kota">Harga Pokok Produksi</label>
-                                                        <input type="text" class="form-control" id="view-kota" name="kota">
+                                                        <label for="view-harga_pokok">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
+                                                        <input type="number" class="form-control" id="view-harga_pokok" name="harga_pokok">
                                                     </div>
                                                 </div>
 
@@ -115,38 +116,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                             </form>
                                         </section>
 
-                                        <section id="tab-pengurus">
-                                            <div class="row" id="pengurus-wrap">
-                                                <div class="card col-md-3 ">
-                                                    <div class="card-body shadow rounded">
-                                                        <img src="../" alt="" class="w-100" style="height:200px">
-                                                        <hr>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="h5 card-title">Ini namanya</span>
-                                                            <span><button type="button" class="btn btn-default" onclick="del()"><i class="fas fa-trash"></i></button></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label for="view-pengurus">Pilih Pengurus</label>
-                                                <select name="pengurus" id="view-pengurus" class="select2 form-control">
-
-                                                </select>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label for="view-jabatan">Jabatan</label>
-                                                <input type="text" class="form-control" id="view-jabatan">
-                                            </div>
-
-
-
-                                        </section>
-                                        <section id="tab-kepemilikan">
+                                        <section id="tab-pemasaran">
+                                            <div id="pemasaran-wrap">
                                             <div class="table-responsive">
                                                 <table class="table table-striped" id="table-kepemilikian">
                                                     <thead>
@@ -154,11 +125,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                             <th class="text-center">
                                                                 No.
                                                             </th>
-                                                            <th>Nama Pemilik</th>
-                                                            <th>Tipe Pemegang Saham</th>
-                                                            <th>Tipe Kewarganegaraan</th>
-                                                            <th>Negara Asal</th>
-                                                            <th>Presentasi Kepemilikan</th>
+                                                            <th>Jenis jangkauan pemasaran</th>
+                                                            <th>Volume pemasaran</th>
+                                                            <th>Nilai pemasaran</th>
                                                             <th>Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -171,52 +140,46 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                             <th></th>
                                                             <th></th>
                                                             <th></th>
-                                                            <th></th>
+                                                            
                                                         </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
+                                            </div>
+                                            <form id="form-add-pemasaran">
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="view-pemilik_saham">Nama Pemilik Saham</label>
-                                                        <input type="text" id="view-pemilik_saham" name="pemilik_saham" class="form-control">
-                                                    </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jangkauan_pemasaran">Jenis Jangkauan Pemasaran</label>
+                                                <select name="jangkauan_pemasaran" id="add-jangkauan_pemasaran" class="form-control">
+                                                    <option value="Regional">Regional</option>
+                                                    <option value="Nasional">Nasional</option>
+                                                    <option value="Ekspor">Ekspor</option>
+                                                </select>
+                                                
+                                            </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-pemegang_saham">Tipe Pemegang Saham</label>
-                                                        <select name="pemegang-saham" id="add-pemegang_saham" class="form-control">
-                                                            <option value="Perseorangan">Perseorangan</option>
-                                                            <option value="Kelompok">Kelompok</option>
-                                                            <option value="Perusahaan">Perusahaan</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-tipe_kewarganegaraan">Tipe Kewarganegaraan Pemegang Saham</label>
-                                                        <select name="tipe_kewarganegaraan" id="add-tipe_kewarganegaraan" class="form-control">
-                                                            <option value="Dalam Negeri">Dalam Negeri</option>
-                                                            <option value="Luar Negeri">Luar Negeri</option>
-
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-negara_asal">Nama Negara Asal</label>
-                                                        <input type="text" id="add-negara_asal" name="negara_asal" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-presentase_kepemilikan">Presentasi Kepemilikan</label>
-                                                        <input type="number" id="add-presentase_kepemilikan" name="presentase_kepemilikan" class="form-control">
-                                                    </div>
-                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini">!</span></label>
+                                                <input type="text" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
                                             </div>
 
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-nilai_pemasaran">Nilai Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nilai penjualan produk yang dipasarkan hingga saat ini">!</span></label>
+                                                <input type="text" class="form-control" id="add-nilai_pemasaran" name="nilai_pemasaran">
+                                            </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="h-100 d-flex align-items-center">
+                                                <button class="btn btn-primary" type="submit">Tambah Data Pemasaran</button>
+                                                </div>
+                                                </div>
+                                            </div>   
+                                            </form>                                      
                                         </section>
                                         <section id="tab-aset">
                                             <div class="table-responsive">
@@ -226,10 +189,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                             <th class="text-center">
                                                                 No.
                                                             </th>
-                                                            <th>Nama</th>
-                                                            <th>Nama Pemilik</th>
-                                                            <th>Tanggal Perolehan</th>
-                                                            <th>Nilai Aset</th>
+                                                            <th>Jenis Periode</th>
+                                                            <th>Tahun Produksi</th>
+                                                            <th>Jumlah Produksi</th>
+                                                            
                                                             <th>Aksi</th>
                                                         </tr>
                                                     </thead>
@@ -246,46 +209,201 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                     </tfoot>
                                                 </table>
                                             </div>
+                                            <form id="form-add-produksi">
                                             <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-nama_aset">Nama Aset</label>
-                                                        <input type="text" id="add-nama_aset" name="nama_aset" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-pemilik_aset">Nama Pemilik Aset</label>
-                                                        <select name="pemilik_aset" id="add-pemilik_aset" class="form-control">
-                                                            <option value="Perseorangan">Perseorangan</option>
-                                                            <option value="Kelompok">Kelompok</option>
-                                                            <option value="Perusahaan">Perusahaan</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-tahun_perolehan_aset">Tahun Perolehan Aset</label>
-                                                        <input name="tahun_perolehan_aset" id="add-tahun_perolehan_aset" class="form-control" type="number" />
-
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="add-negara_asal">Nilai Aset Saat Ini</label>
-                                                        <input type="number" id="add-negara_asal" name="negara_asal" class="form-control">
-                                                    </div>
-                                                </div>
-
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jenis_periode_produksi">Jenis Periode</label>
+                                                <select name="jenis_periode_produksi" id="add-jenis_periode_produksi" class="form-control">
+                                                    <option value="Perolehan">Perolehan</option>
+                                                    <option value="Proyeksi">Proyeksi</option>
+                                                    
+                                                </select>
+                                                
                                             </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-tahun_produksi">Tahun Produksi</label>
+                                                <input type="text" class="form-control" id="add-tahun_produksi" name="tahun_produksi">
+                                            </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jumlah_produksi">Jumlah Produksi</label>
+                                                <input type="text" class="form-control" id="add-jumlah_produksi" name="jumlah_produksi">
+                                            </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="h-100 d-flex align-items-center">
+                                                <button class="btn btn-primary" type="submit">Tambah Data Produksi</button>
+                                                </div>
+                                                </div>
+                                            </div>  
+                                            </form>
                                         </section>
+                                        <section id="tab-penjualan">
+                                        <div id="penjualan-wrap">
+                                        <h4>Data Penjualan</h4>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped" id="table-kepemilikian">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">
+                                                                No.
+                                                            </th>
+                                                            <th>Jenis Periode</th>
+                                                            <th>Tahun Penjualan</th>
+                                                            <th>Jumlah Penjualan</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="text-center">
+
+                                                            </th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                            </div>
+                                            <form id="form-add-penjualan">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jenis_periode_penjualan">Jenis Periode</label>
+                                                <select name="jenis_periode_penjualan" id="add-jenis_periode_penjualan" class="form-control">
+                                                    <option value="Perolehan">Perolehan</option>
+                                                    <option value="Proyeksi">Proyeksi</option>
+                                                    
+                                                </select>
+                                                
+                                            </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-tahun_penjualan">Tahun Penjualan</label>
+                                                <input type="number" class="form-control" id="add-tahun_penjualan" name="tahun_penjualan">
+                                            </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jumlah_penjualan">Jumlah Penjualan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah unit produk yang terjual">!</span></label>
+                                                <input type="text" class="form-control" id="add-jumlah_penjualan" name="jumlah_penjualan">
+                                            </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="h-100 d-flex align-items-center">
+                                                <button class="btn btn-primary" type="submit">Tambah Data Penjualan</button>
+                                                </div>
+                                                </div>
+                                            </div>  
+                                            </form>
+                                            <div class="py-4"></div>
+                                            <div id="omset-wrap">
+                                                <h4>Data Omset/Profit</h4>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped" id="table-kepemilikian">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center">
+                                                                No.
+                                                            </th>
+                                                            <th>Jenis Periode</th>
+                                                            <th>Tipe</th>
+                                                            <th>Jenis omset / profit</th>
+                                                            <th>Tahun</th>
+                                                            <th>Nilai</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th class="text-center">
+
+                                                            </th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                            </div>
+                                            <form action="">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jenis_periode_omset">Jenis Periode</label>
+                                                <select name="jenis_periode_omset" id="add-jenis_periode_omset" class="form-control">
+                                                    <option value="Perolehan">Perolehan</option>
+                                                    <option value="Proyeksi">Proyeksi</option>
+                                                    
+                                                </select>
+                                                
+                                            </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-tipe_omset">Tipe Omset/Profit</label>
+                                                <select name="tipe_omset" id="add-tipe_omset" class="form-control">
+                                                    <option value="Omset">Omset</option>
+                                                    <option value="Profit">Profit</option>
+                                                    
+                                                </select>
+                                                
+                                            </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="add-jenis_omset">Jenis Omset/Profit</label>
+                                                <select name="jenis_omset" id="add-jenis_omset" class="form-control">
+                                                    <option value="Perusahaan">Perusahaan</option>
+                                                    <option value="Produk (yang diajukan)">Produk (yang diajukan)</option>
+                                                    
+                                                </select>
+                                                
+                                            </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="view-tahun_omset">Tahun Omset/Profit</label>
+                                                <input type="number" class="form-control" id="view-tahun_omset" name="tahun_omset">
+                                            </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                <label for="view-nilai_omset">Nilai Omset</label>
+                                                <input type="number" class="form-control" id="view-nilai_omset" name="nilai_omset">
+                                            </div>
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="h-100 d-flex align-items-center">
+                                                <button class="btn btn-primary" type="submit">Tambah Data Omset/Profit</button>
+                                                </div>
+                                                </div>
+                                            </div>  
+                                            </form>
+                                        </section>
+                                        
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer text-right">
-                                <button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
-                            </div>
+                            
                         
                     </div>
                 </div>
@@ -446,36 +564,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     $(`#view-${key}`).val(data[key])
                 }
                 $('#prev-view-logo_produk').attr('src', response.data.logo_produk)
-
-                editor('#view-latar_belakang')
-                $('#view-latar_belakang').html(data.latar_belakang)
-
-                editor('#view-deskripsi_lengkap')
-                $('#view-deskripsi_lengkap').html(data.deskripsi_lengkap)
-
-                editor('#view-masalah')
-                $('#view-masalah').html(data.masalah)
-
-                editor('#view-keunggulan_keunikan')
-                $('#view-keunggulan_keunikan').html(data.keunggulan_keunikan)
-
-                editor('#view-keterbaruan_produk')
-                $('#view-keterbaruan_produk').html(data.keterbaruan_produk)
-
-                editor('#view-solusi')
-                $('#view-solusi').html(data.solusi)
-
-                editor('#view-spesifikasi_teknis')
-                $('#view-spesifikasi_teknis').html(data.spesifikasi_teknis)
-
-                editor('#view-kegunaan_manfaat')
-                $('#view-kegunaan_manfaat').html(data.kegunaan_manfaat)
-
-                editor('#view-teknologi_yang_dikembangkan')
-                $('#view-teknologi_yang_dikembangkan').html(data.teknologi_yang_dikembangkan)
-
-                editor('#view-rencana_pengembangan')
-                $('#view-rencana_pengembangan').html(data.rencana_pengembangan)
 
                 let kategori = JSON.parse(data.kategori)
                 $(`#view-kategori`).val(kategori)
