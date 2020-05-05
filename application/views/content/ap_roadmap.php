@@ -28,8 +28,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											</th>
 											<th>Nama Riset / Pengembangan</th>
 											<th>Tahun Mulai</th>
-											<th>Skema</th>
-											<th>Aktivitas Riset dan Pengembangan</th>
+											<th>Sumber Pendanaan</th>
+											<th>Nilai</th>
 											<th>Aksi</th>
 										</tr>
 									</thead>
@@ -244,10 +244,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}, {
 					"data": "tahun_mulai"
 				}, {
-					"data": "skema"
+					"data": "sumber_pendanaan"
 				},
 				{
-					"data": "aktivitas"
+					"data": "nilai_pendanaan"
 				}, {
 					"render": function(data, type, JsonResultRow, meta) {
 						return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
