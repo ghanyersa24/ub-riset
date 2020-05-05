@@ -18,6 +18,7 @@ class riset
 		}
 
 		if (is_null($slug)) {
+			// success("", $arr);
 			return [
 				'produk' => $arr,
 				'slug' => null

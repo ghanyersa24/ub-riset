@@ -29,7 +29,7 @@
       									<div class="alert-icon"><i class="far fa-lightbulb"></i></div>
       									<div class="alert-body">
       										<div class="alert-title">Petunjuk pengisian</div>
-      										Pengisian tidak harus dilakukan hingga tahap terakhir, kamu bisa mengajukan validasi produkmu setelah pengisian dari tahap berapapun agar produk dapat ditampilkan pada website utama Brawijaya Research and Innovation.
+      										Pengisian tidak harus dilakukan hingga tahap terakhir, kamu bisa mengajukan validasi produkmu setelah pengisian dari tahap berapapun agar produk dapat ditampilkan pada website utama Brawijaya Riset dan Inovasi.
       									</div>
       								</div>
 
@@ -164,7 +164,9 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
+												  <a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
+													  <div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
+												  </a>
       												<span class="year">Tahap 11</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Bisnis</h5>
