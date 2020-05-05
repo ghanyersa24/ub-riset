@@ -16,31 +16,35 @@ class Inventor extends CI_Controller
 		foreach ($inventor as $value) {
 			$data[] = [
 				'produk_id' => $produk_id,
-				'user_id' => $value,
+				'users_id' => $value,
 				'created_by' => $this->session->userdata('id')
 			];
 		}
-		$do = DB_MODEL::delete($this->table, ['produk_id' => $produk_id]);
-		if (count($inventor) > 0)
-			$do = DB_MODEL::insert_any($this->table, $data);
-
+		$do = DB_MODEL::insert_any($this->table, $data);
 		if (!$do->error)
 			success("data berhasil diperbarui", $do->data);
 		else
 			error("data gagal diperbarui");
 	}
 
-	public function get($id = null)
+	public function get($id)
 	{
-		if (is_null($id)) {
-			$do = DB_MODEL::where('users', ['id !' => $this->session->userdata('id')]);
-		} else {
-			$do = DB_MODEL::where($this->table, ['produk_id' => $id]);
-		}
+		$data['inventor'] = $inventor = DB_MODEL::join('users', $this->table)->data;
+		$data['user'] = DB_CUSTOM::userNoInventor($inventor)->data;
+		success("data berhasil diterima", $data);
+	}
 
+	public function delete()
+	{
+		$where = array(
+			"users_id" => post('users_id', 'required'),
+			'produk_id' => post('produk_id', 'required')
+		);
+
+		$do = DB_MODEL::delete($this->table, $where);
 		if (!$do->error)
-			success("data berhasil ditemukan", $do->data);
+			success("data berhasil dihapus", $do->data);
 		else
-			error("data gagal ditemukan");
+			error("data gagal dihapus");
 	}
 }
