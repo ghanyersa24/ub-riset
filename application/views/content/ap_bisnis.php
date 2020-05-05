@@ -15,113 +15,104 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card ">
-                        <form id="form-view" name="form-view" method="post">
+                        
                             <div class="card-body">
                                 <div class="tabs">
                                     <input type="radio" id="tab1" name="tab-control" checked>
                                     <input type="radio" id="tab2" name="tab-control">
                                     <input type="radio" id="tab3" name="tab-control">
                                     <input type="radio" id="tab4" name="tab-control">
+                                    
                                     <ul>
-                                        <li title="profil">
+                                        <li title="data dasar">
                                             <label for="tab1" role="button" id="tabs-profil">
-                                                <i class="fas fa-brain"></i>
-                                                <br><span>Profil</span>
+                                                <i class="fas fa-stream"></i>
+                                                <br><span>Data Dasar</span>
                                             </label>
                                         </li>
-                                        <li title="pengurus">
+                                        <li title="pemasaran">
                                             <label for="tab2" role="button" id="tabs-pengurus">
-                                                <i class="fa fa-users"></i>
-                                                <br><span>Pengurus</span>
+                                                <i class="fa fa-bullhorn"></i>
+                                                <br><span>Pemasaran</span>
                                             </label>
                                         </li>
-                                        <li title="kepemilikan">
+                                        <li title="produksi">
                                             <label for="tab3" role="button" id="tabs-kepemilikan">
-                                                <i class="fas fa-code-branch"></i>
-                                                <br><span>Kepemilikan</span>
+                                                <i class="fas fa-dice-d6"></i>
+                                                <br><span>Produksi</span>
                                             </label>
                                         </li>
-                                        <li title="aset">
+                                        <li title="penjualan & omset">
                                             <label for="tab4" role="button" id="tabs-aset">
-                                                <i class="fas fa-list-ul"></i>
-                                                <br><span>Aset</span>
+                                                <i class="fas fa-poll"></i>
+                                                <br><span>Penjualan & Omset</span>
                                             </label>
                                         </li>
+                                        
                                     </ul>
                                     <div class="slider">
                                         <div class="indicator"></div>
                                     </div>
                                     <div class="content">
                                         <section id="tab-profil">
+                                            <form id="form-view-data">
                                             <div class="row">
-                                                <div class="col-md-4 px-3 border-right border-default">
-                                                    <div class="form-group">
+                                                <div class="col-md-6">
+                                                <div class="form-group">
                                                         <input id="view-id" class="form-control" type="text" name="id" hidden readonly>
-                                                        <label for="view-nama_perusahaan" class="">Nama Perusahaan </label>
-                                                        <input id="view-nama_perusahaan" class="form-control" type="text" name="nama_perusahaan">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="view-badan_usaha">Bentuk Usaha</label>
-                                                        <select name="badan_usaha" id="view-badan_usaha" class="form-control">
-                                                            <option value="PT">PT</option>
-                                                            <option value="CV">CV</option>
-                                                            <option value="Belum Memiliki Badan Usaha">Belum Memiliki Badan Usaha</option>
+                                                        <label for="view-status_usaha" class="">Status Usaha </label>
+                                                        <select id="view-status_usaha" class="form-control" name="status_usaha">
+                                                            <option value="Masih Berjalan">Masih Berjalan</option>
+                                                            <option value="Sudah Berhenti">Sudah Berhenti</option>
                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-target_pasar">Target Pasar</label>
+                                                        <textarea  class="form-control" id="view-target_pasar" name="target_pasar"></textarea>
 
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="view-akta_perusahaan">Upload Akta Perusahaan</label>
-                                                        <input type="file" class="form-control" name="akta_perusahaan" id="view-akta_perusahaan">
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-kompetitor">Kompetitor</label>
+                                                        <textarea  class="form-control" id="view-kompetitor" name="kompetitor"></textarea>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="view-ijin_perusahaan">Upload Surat-Surat Ijin Perusahaan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="(SIUP,NIB,NPWP,Ijin Domisili, Rekening Perusahaan, dan dokumen pendukung lainnya) jadikan satu file di pdf">!</span></label>
-                                                        <input type="file" class="form-control" name="akta_perusahaan" id="view-ijin_perusahaan">
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-jangkauan_pemasaran">Jangkauan Pemasaran<span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="(SIUP,NIB,NPWP,Ijin Domisili, Rekening Perusahaan, dan dokumen pendukung lainnya) jadikan satu file di pdf">!</span></label>
+                                                        <textarea  class="form-control" id="view-jangkauan_pemasaran" name="jangkauan_pemasaran"></textarea>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="view-tahun_berdiri">Tahun Berdiri</label>
-                                                        <input type="number" class="form-control" id="view-tahun_berdiri" name="telp">
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-kanal_pemasaran">Kanal Pemasaran</label>
+                                                        <textarea type="number" class="form-control" id="view-kanal_pemasaran" name="kanal_pemasaran" ></textarea>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="view-pegawai_tetap">Jumlah Pegawai Tetap</label>
-                                                        <input type="number" class="form-control" id="view-pegawai_tetap" name="pegawai_tetap">
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-dampak_sosial">Dampak Sosial</label>
+                                                        <textarea type="number" class="form-control" id="view-dampak_sosial" name="dampak_sosial"/>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="view-pegawai_tidak_tetap">Jumlah Pegawai Tidak Tetap</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-pegawai_tidak_tetap">Skema Harga</label>
                                                         <input type="number" class="form-control" id="view-pegawai_tidak_tetap" name="pegawai_tidak_tetap">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="view-kota">Kota / Kabupaten</label>
+                                                </div>
+                                                <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <label for="view-kota">Harga Pokok Produksi</label>
                                                         <input type="text" class="form-control" id="view-kota" name="kota">
                                                     </div>
+                                                </div>
 
-                                                </div>
-                                                <div class="col-md-8 px-3">
-                                                    <div class="form-group">
-                                                        <label for="view-email">Email</label>
-                                                        <input type="text" class="form-control" id="view-email" name="email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="view-telp">No. Telepon</label>
-                                                        <input type="number" class="form-control" id="view-telp" name="telp">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="view-alamat">Alamat Kantor</label>
-                                                        <input id="view-alamat" class="form-control" type="text" name="alamat">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="view-website">Alamat Produksi</label>
-                                                        <input id="view-website" class="form-control" type="text" name="website">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="view-website">Website</label>
-                                                        <input id="view-website" class="form-control" type="text" name="website">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="view-media_sosial">Sosial Media</label>
-                                                        <input id="view-media_sosial" class="form-control" type="text" name="media_sosial">
-                                                    </div>
-                                                </div>
                                             </div>
+                                            </form>
                                         </section>
 
                                         <section id="tab-pengurus">
@@ -295,7 +286,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="card-footer text-right">
                                 <button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
                             </div>
-                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -335,6 +326,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 </div>
 <script>
+    $(document).ready(function() {
+        triggerEditor('#form-view-data')
     $('#view-logo').change(function() {
         let filename = document.getElementById('view-logo').files[0].name
         $('label.custom-file-label').html(filename)
@@ -415,7 +408,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
             text: '175150400111035 - Ghany Abdillah Ersa'
         }
     ]
-    $(document).ready(function() {
+    
+        
         //table-kepemilikan
         $("#table-kepemilikan").DataTable({
             "ajax": api + 'service/kekayaan_intelektual/get/<?= $id ?>',

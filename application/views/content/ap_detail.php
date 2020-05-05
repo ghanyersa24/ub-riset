@@ -164,7 +164,9 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
+												  <a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
+													  <div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
+												  </a>
       												<span class="year">Tahap 11</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Bisnis</h5>
