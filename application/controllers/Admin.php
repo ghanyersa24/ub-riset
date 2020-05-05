@@ -10,10 +10,10 @@ class Admin extends CI_Controller
 		if (!$this->session->has_userdata('logged_in')) {
 			redirect('login');
 		}
-		$user = DB_MODEL::find('users', ['id' => $this->session->userdata('nim')]);
+		$user = DB_MODEL::find('users', ['id' => $this->session->userdata('id')]);
 		if ($user->error)
 			redirect('login');
-		$this->session->set_userdata((array)$user->data);
+		$this->session->set_userdata((array) $user->data);
 		$this->load->helper('riset');
 	}
 
@@ -86,6 +86,21 @@ class Admin extends CI_Controller
 		$data = riset::slugs($slug);
 		$data['title'] = 'Perizinan ' . $data['title'];
 		$data['content'] = 'ap_izin_produk';
+		$this->load->view('template', $data);
+	}
+	public function inventor($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Inventor ' . $data['title'];
+		$data['content'] = 'ap_inventor';
+		$this->load->view('template', $data);
+	}
+
+	public function perusahaan($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Profil Perusahaan ' . $data['title'];
+		$data['content'] = 'ap_data_perusahaan';
 		$this->load->view('template', $data);
 	}
 

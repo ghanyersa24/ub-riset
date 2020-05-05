@@ -153,6 +153,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
+                                <input id="view-id" class="form-control" type="text" name="id" hidden readonly>
                                 <label for="view-nama">Nama Riset/Pengembangan</label>
                                 <input type="text" id="view-nama" name="nama" class="form-control">
                             </div>
@@ -221,7 +222,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
-                    <button type="submit" class="btn btn-info" id="submit">Add</button>
+                    <button type="submit" class="btn btn-info" id="submit">Save</button>
                 </div>
             </form>
         </div>
@@ -257,13 +258,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
         var table = $('#table').DataTable()
         $('#table tbody').on('click', 'button', function() {
             var data = table.row($(this).parents('tr')).data()
-            $('#view-id').val(data.id)
-            $('#view-nama').val(data.nama)
-            $('#view-tahun_mulai').val(data.tahun_mulai)
-            $('#view-tahun_selesai').val(data.tahun_selesai)
-            $('#view-tahun_selesai').val(data.tahun_selesai)
-            $('#view-sumber_pendanaan').val(data.sumber_pendanaan)
-            $('#view-nilai_pendanaan').val(data.nilai_pendanaan)
+            for (key in data) {
+                $(`#view-${key}`).val(data[key])
+            }
             setEditor('view-skema', data.skema)
             setEditor('view-aktivitas', data.aktivitas)
             setEditor('view-tujuan', data.tujuan)

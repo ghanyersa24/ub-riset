@@ -18,14 +18,16 @@ class Auth extends CI_Controller
 				'jurusan' => $auth['jurusan'],
 				'prodi' => $auth['prodi'],
 				'foto' => "https://siakad.ub.ac.id/dirfoto/foto/foto_20$angkatan/" . $auth['nim'] . ".jpg",
+				// 'created_by' => $auth['nim']
 			];
 			$profile = DB_MODEL::find('users', ['id' => $username]);
+			$this->session->set_userdata('id', $auth['nim']);
 			if ($profile->error)
 				$profile = DB_MODEL::insert('users', $data);
 			$session_auth = (array) $profile->data;
 			$session_auth['logged_in'] = true;
-			success("Welcome to system", $session_auth);
 			$this->session->set_userdata($session_auth);
+			success("Welcome to system", $session_auth);
 		} else
 			error("username & password tidak cocok dengan akun UB");
 	}
