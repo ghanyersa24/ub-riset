@@ -41,6 +41,7 @@ class Perusahaan extends CI_Controller
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
+			DB_MODEL::insert('pengurus', ['perusahaan_id' => $do->data['id'], 'users_id' => $this->session->userdata('id')]);
 			success("data berhasil ditambahkan", $do->data);
 		} else {
 			error("data gagal ditambahkan");

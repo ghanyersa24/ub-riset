@@ -105,13 +105,13 @@ class DB_MODEL extends CI_Model
 			return false();
 	}
 
-	public static function join($table, $table_join, $type = 'inner', $on = null, $where = [], $select = '*')
+	public static function join($table_join, $to_table,  $on = null, $type = 'inner', $where = [], $select = '*')
 	{
 		$CI = &get_instance();
 		if (is_null($on))
-			$query = $CI->db->select($select)->from($table)->where($where)->join($table_join, $table . '.id =' . $table_join . '.' . $table . '_id', $type)->get();
+			$query = $CI->db->select($select)->from($to_table)->where($where)->join($table_join, $table_join . '.' . $to_table . '_id = ' . $to_table . '.id', $type)->get();
 		else
-			$query = $CI->db->select($select)->from($table)->where($where)->join($table_join, $on, $type)->get();
+			$query = $CI->db->select($select)->from($to_table)->where($where)->join($table_join, $on, $type)->get();
 		if ($query)
 			return true($query->result());
 		else

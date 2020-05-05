@@ -29,8 +29,8 @@ class Inventor extends CI_Controller
 
 	public function get($id)
 	{
-		$data['inventor'] = $inventor = DB_MODEL::join('users', $this->table)->data;
-		$data['user'] = DB_CUSTOM::userNoInventor($inventor)->data;
+		$data['inventor'] = $inventor = DB_MODEL::join($this->table, 'users',  null, 'inner',  ['produk_id' => $id])->data;
+		$data['user'] = DB_CUSTOM::userNo($inventor)->data;
 		success("data berhasil diterima", $data);
 	}
 
