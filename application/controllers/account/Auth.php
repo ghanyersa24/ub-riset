@@ -15,6 +15,8 @@ class Auth extends CI_Controller
 				'nama' => $auth['nama'],
 				'status' => 'mahasiswa',
 				'fakultas' => $auth['fak'],
+				'jurusan' => $auth['jurusan'],
+				'prodi' => $auth['prodi'],
 				'foto' => "https://siakad.ub.ac.id/dirfoto/foto/foto_20$angkatan/" . $auth['nim'] . ".jpg",
 			];
 			$profile = DB_MODEL::find('users', ['id' => $username]);
