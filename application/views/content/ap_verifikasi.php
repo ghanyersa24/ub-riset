@@ -49,7 +49,7 @@
 <script>
     const listPengajuan = [{
 
-        slug: '003-brain-apps',
+        slug: '0001-brain-apps',
         name: 'Brain Apps',
         inventor: 'Ghany Abdillah Ersa',
         time: '06, Mei 2020'
