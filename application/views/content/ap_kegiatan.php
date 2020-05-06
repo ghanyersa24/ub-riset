@@ -138,7 +138,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					res.forEach(element => {
 						card += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
-									<img src="${element.foto}" alt="" class="w-100 click" style="height:200px" onclick="view(${element.id})">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+									</div>
 									<hr>
 									<div class="d-flex justify-content-between">
 									<span class="h5 card-title click" onclick="view(${element.id})">${element.title.substring(0, 12)}</span>

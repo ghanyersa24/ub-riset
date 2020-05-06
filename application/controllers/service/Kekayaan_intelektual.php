@@ -13,17 +13,20 @@ class Kekayaan_intelektual extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => post('jenis'),
+			"jenis" => $jenis = post('jenis', 'required'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status_perolehan" => post('status_perolehan'),
 			"no_pemohon" => post('no_pemohon'),
-			"file_formulir" => UPLOAD_FILE::pdf('file_formulir', "ki/$produk", "formulir-$produk"),
-			"file " => UPLOAD_FILE::pdf('file', "ki/$produk", "file-$produk"),
 			"no_sertifikat" => post('no_sertifikat'),
 			"pemegang" => post('pemegang'),
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 		);
+		if (isset($_FILES['file_formulir']))
+			$data['file_formulir'] = UPLOAD_FILE::pdf('file_formulir', "inovasi/$produk/ki", "formulir-$jenis-$produk");
+		if (isset($_FILES['file']))
+			$data['file'] = UPLOAD_FILE::pdf('file', "inovasi/$produk/ki", "file-$jenis-$produk");
+
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
@@ -51,7 +54,7 @@ class Kekayaan_intelektual extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => post('jenis'),
+			"jenis" => $jenis = post('jenis', 'required'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status_perolehan" => post('status_perolehan'),
 			"no_pemohon" => post('no_pemohon'),
@@ -61,9 +64,9 @@ class Kekayaan_intelektual extends CI_Controller
 			"tanggal_selesai" => post('tanggal_selesai'),
 		);
 		if (isset($_FILES['file_formulir']))
-			$data['file_formulir'] = UPLOAD_FILE::update('pdf', 'file_formulir', "ki/$produk", "formulir-$produk");
+			$data['file_formulir'] = UPLOAD_FILE::update('pdf', 'file_formulir', "inovasi/$produk/ki", "formulir-$jenis-$produk");
 		if (isset($_FILES['file']))
-			$data['file_formulir'] = UPLOAD_FILE::update('pdf', 'file', "ki/$produk", "file-$produk");
+			$data['file'] = UPLOAD_FILE::update('pdf', 'file', "inovasi/$produk/ki", "file-$jenis-$produk");
 
 		$where = array(
 			"id" => post('id', 'required'),
@@ -79,7 +82,7 @@ class Kekayaan_intelektual extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id','required')
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

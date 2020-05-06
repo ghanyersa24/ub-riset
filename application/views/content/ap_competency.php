@@ -233,6 +233,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<label>Upload Logo Produk</label>
 					<div class="input-group">
 						<div class="custom-file">
+							<input type="text" class="custom-file-input" id="view-logo_produk" name="logo_produk_old" hidden readonly>
 							<input type="file" class="custom-file-input" id="view-logo" aria-describedby="btn-upload">
 							<label class="custom-file-label" for="view-logo">Cari file</label>
 						</div>
@@ -263,6 +264,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			$('body').addClass('overflow-hidden')
 			let formData = new FormData();
 			formData.append('logo_produk', document.getElementById('view-logo').files[0])
+			formData.append('logo_produk_old', $('#view-logo_produk').val())
 			formData.append('id', $('#view-id').val())
 			await setTimeout(async function() {
 				await $.ajax({
@@ -276,6 +278,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						setTimeout(function() {
 							response_alert(response)
 							if (!response.error) {
+								$('#view-logo_produk').val(response.data.logo_produk)
 								$('#prev-view-logo_produk').attr('src', response.data.logo_produk)
 								$('label.custom-file-label').html('<span class="text-primary">File berhasil diupload</span>')
 								$('#logo').modal('hide')
@@ -355,18 +358,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					data: data,
 					dataType: "json",
 					success: function(response) {
-						$.ajax({
-							type: "POST",
-							url: api + "service/produk/update",
-							data: data,
-							dataType: "json",
-							success: function(response) {
-								response_alert(response)
-								setTimeout(function() {
-									window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
-								}, 2000)
-							}
-						})
+						response_alert(response)
+						setTimeout(function() {
+							window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
+						}, 2000)
 					}
 				})
 			}
@@ -387,4 +382,3 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}
 	}
 </script>
-

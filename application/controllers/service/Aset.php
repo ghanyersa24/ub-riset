@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Foto_kegiatan extends CI_Controller
+class Aset extends CI_Controller
 {
-	protected $table = "foto_kegiatan";
+	protected $table = "aset";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,10 +12,10 @@ class Foto_kegiatan extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
-			"title" => $title = post('title', 'required'),
-			"foto" => UPLOAD_FILE::img('foto', "inovasi/$produk/foto", "$title-foto-$produk"),
-			"keterangan" => post('keterangan', 'allow_html')
+			"perusahaan_id" => post('perusahaan_id', 'required'),
+			"nama_aset" => post('nama_aset', 'required'),
+			"tahun_perolehan" => post('tahun_perolehan', 'numeric'),
+			"nilai_aset" => post('nilai_aset', 'numeric'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -28,11 +28,11 @@ class Foto_kegiatan extends CI_Controller
 
 	public function get($id = null)
 	{
-		if (is_null($id)) {
-			$do = DB_MODEL::all($this->table);
-		} else {
-			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
-		}
+		// if (is_null($id)) {
+		// 	$do = DB_MODEL::all($this->table);
+		// } else {
+		$do = DB_MODEL::where($this->table, array("perusahaan_id" => $id));
+		// }
 
 		if (!$do->error)
 			success("data berhasil ditemukan", $do->data);
@@ -43,12 +43,12 @@ class Foto_kegiatan extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
-			"title" => $title = post('title', 'required'),
-			"keterangan" => post('keterangan', 'allow_html')
+			"perusahaan_id" => post('perusahaan_id', 'required'),
+			"nama_aset" => post('nama_aset', 'required'),
+			"tahun_perolehan" => post('tahun_perolehan', 'numeric'),
+			"nilai_aset" => post('nilai_aset', 'numeric'),
 		);
-		if (isset($_FILES['foto']))
-			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "inovasi/$produk/foto", "$title-foto-$produk");
+
 		$where = array(
 			"id" => post('id', 'required'),
 		);
@@ -66,7 +66,6 @@ class Foto_kegiatan extends CI_Controller
 			"id" => post('id', 'required')
 		);
 
-		UPLOAD_FILE::delete('foto');
 		$do = DB_MODEL::delete($this->table, $where);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);

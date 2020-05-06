@@ -29,7 +29,7 @@
 		</div>
 		<div class="d-flex align-items-center" style="max-width:500px">
 			<div style="display: none" id="greating" class="alert alert-success alert-dismissible fade show" role="alert">
-				<strong>Hi, <span id="name"></span> !</strong> Selamat Datang di <strong>Brawijaya Research and Innovation</strong>, Sistem Informasi <br> Manajemen Inovasi Universitas Brawijaya.
+				<strong>Hi, <span id="name"></span> !</strong> Selamat Datang di <strong>Brawijaya Research and Innovation</strong>, Sistem Informasi Manajemen Inovasi Universitas Brawijaya.
 			</div>
 			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Logo_Universitas_Brawijaya.svg/1200px-Logo_Universitas_Brawijaya.svg.png" alt="" id="icon-login" class="p-2 bg-white rounded-circle login-icon position-icon" />
 			<div class="shadow bg-white p-5 login-form m-3" id="card-login">

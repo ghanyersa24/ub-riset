@@ -21,6 +21,7 @@ class Produk extends CI_Controller
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
+			DB_MODEL::insert('inventor', ['produk_id' => $do->data['id'], 'users_id' => $this->session->userdata('id')]);
 			success("data berhasil ditambahkan", $do->data);
 		} else {
 			error("data gagal ditambahkan");
@@ -43,16 +44,16 @@ class Produk extends CI_Controller
 
 	public function upload()
 	{
-		$data = [
-			"logo_produk" => UPLOAD_FILE::img('logo_produk', 'logo'),
-		];
+
 		$where = array(
-			"id" => post('id', 'required'),
+			"id" => $produk = post('id', 'required'),
 		);
-		$product = DB_MODEL::find('produk', $where)->data;
+		if (isset($_FILES['logo_produk']))
+			$data['logo_produk'] = UPLOAD_FILE::update('img', 'logo_produk', "inovasi/$produk/logo", "logo-$produk");
+		else
+			error('silahkan pilih logo produk terlebih dahulu');
+
 		$do = DB_MODEL::update($this->table, $where, $data);
-		if ($product->logo_produk != null)
-			unlink(getcwd() . '\uploads\logo' . str_replace(base_url('/uploads/logo/'), '/', $product->logo_produk));
 		if (!$do->error)
 			success("logo berhasil diupload", $do->data);
 		else
@@ -100,7 +101,7 @@ class Produk extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id','required')
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);
