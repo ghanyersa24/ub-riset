@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Foto_kegiatan extends CI_Controller
+class Produk_perusahaan extends CI_Controller
 {
-	protected $table = "foto_kegiatan";
+	protected $table = "produk_perusahaan";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,10 +12,8 @@ class Foto_kegiatan extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
-			"title" => $title = post('title', 'required'),
-			"foto" => UPLOAD_FILE::img('foto', "inovasi/$produk/foto", "$title-foto-$produk"),
-			"keterangan" => post('keterangan', 'allow_html')
+			"produk_id" => post('produk_id', 'required'),
+			"perusahaan_id" => post('perusahaan_id', 'required'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -31,7 +29,7 @@ class Foto_kegiatan extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
+			$do = DB_MODEL::find($this->table, array("id" => $id));
 		}
 
 		if (!$do->error)
@@ -43,14 +41,13 @@ class Foto_kegiatan extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
-			"title" => $title = post('title', 'required'),
-			"keterangan" => post('keterangan', 'allow_html')
+			"produk_id" => post('produk_id', 'required'),
+			"perusahaan_id" => post('perusahaan_id', 'required'),
 		);
-		if (isset($_FILES['foto']))
-			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "inovasi/$produk/foto", "$title-foto-$produk");
+
 		$where = array(
-			"id" => post('id', 'required'),
+			"produk_id" => post('produk_id', 'required'),
+			"perusahaan_id" => post('perusahaan_id_old', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -63,10 +60,10 @@ class Foto_kegiatan extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id', 'required')
+			"produk_id" => post('produk_id', 'required'),
+			"perusahaan_id" => post('perusahaan_id', 'required'),
 		);
 
-		UPLOAD_FILE::delete('foto');
 		$do = DB_MODEL::delete($this->table, $where);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);

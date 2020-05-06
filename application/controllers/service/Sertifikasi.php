@@ -13,7 +13,7 @@ class Sertifikasi extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"nama" => post('nama'),
+			"nama" => $nama = post('nama', 'required'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
@@ -21,8 +21,9 @@ class Sertifikasi extends CI_Controller
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 			"lembaga_penerbit" => post('lembaga_penerbit'),
-			"file_sertifikasi" => UPLOAD_FILE::pdf('file_sertifikasi', "sertifikasi/$produk", "sertifikasi-$produk"),
 		);
+		if (isset($_FILES['file']))
+			$data["file_sertifikasi"] = UPLOAD_FILE::pdf('file_sertifikasi', "inovasi/$produk/sertifikasi", "sertifikasi-$nama-$produk");
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
@@ -50,7 +51,7 @@ class Sertifikasi extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"nama" => post('nama'),
+			"nama" => $nama = post('nama', 'required'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
@@ -61,10 +62,10 @@ class Sertifikasi extends CI_Controller
 		);
 
 		if (isset($_FILES['file_sertifikasi']))
-			$data['file_sertifikasi'] = UPLOAD_FILE::update('pdf', 'file_sertifikasi', "sertifikasi/$produk", "sertifikasi-$produk");
+			$data['file_sertifikasi'] = UPLOAD_FILE::update('pdf', 'file_sertifikasi', "inovasi/$produk/sertifikasi", "sertifikasi-$nama-$produk");
 
 		$where = array(
-			"id" => post('id','required'),
+			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -77,7 +78,7 @@ class Sertifikasi extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id','required')
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

@@ -36,7 +36,8 @@ class UPLOAD_FILE
 		$location_old = post($input_name . '_old');
 		$location_old = str_replace('%2F', '/', $location_old);
 		$location_old = str_replace('%3A', ':', $location_old);
-		unlink(getcwd() . '\uploads' . str_replace(base_url('/uploads/'), '/', $location_old));
+		if ($location_old != "")
+			unlink(getcwd() . '\uploads' . str_replace(base_url('/uploads/'), '/', $location_old));
 	}
 
 	public static function update($type, $post_name, $location = null,  $file_name = null, $max_size = 2048)

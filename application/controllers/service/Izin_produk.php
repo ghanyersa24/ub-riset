@@ -13,7 +13,7 @@ class Izin_produk extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"nama" => post('nama'),
+			"nama" => $nama = post('nama'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
@@ -21,8 +21,9 @@ class Izin_produk extends CI_Controller
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 			"lembaga" => post('lembaga'),
-			"file " => UPLOAD_FILE::pdf('file', "izin/$produk", "izin-$produk")
 		);
+		if (isset($_FILES['file']))
+			$data["file"] = UPLOAD_FILE::pdf('file', "inovasi/$produk/izin", "izin-$nama-$produk");
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
@@ -37,7 +38,7 @@ class Izin_produk extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -50,7 +51,7 @@ class Izin_produk extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"nama" => post('nama'),
+			"nama" => $nama = post('nama'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status " => post('status'),
 			"tahun_perolehan" => post('tahun_perolehan'),
@@ -60,10 +61,10 @@ class Izin_produk extends CI_Controller
 			"lembaga" => post('lembaga')
 		);
 		if (isset($_FILES['file']))
-			$data['file'] = UPLOAD_FILE::update('pdf', 'file', "izin/$produk", "izin-$produk");
+			$data['file'] = UPLOAD_FILE::update('pdf', 'file', "inovasi/$produk/izin", "izin-$nama-$produk");
 
 		$where = array(
-			"id" => post('id','required'),
+			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -76,7 +77,7 @@ class Izin_produk extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id','required')
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);
