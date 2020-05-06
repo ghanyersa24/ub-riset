@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2020 at 01:33 AM
+-- Generation Time: May 06, 2020 at 04:34 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -79,6 +79,13 @@ CREATE TABLE `foto_kegiatan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `foto_kegiatan`
+--
+
+INSERT INTO `foto_kegiatan` (`id`, `produk_id`, `title`, `foto`, `keterangan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'yuuuuh', 'http://localhost/ub-riset/uploads/inovasi/1/foto/yuuuuh-foto-1_2020-05-06_07_25.jpg', '', '165150401111060', '2020-05-06 00:25:58', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -96,6 +103,15 @@ CREATE TABLE `foto_produk` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foto_produk`
+--
+
+INSERT INTO `foto_produk` (`id`, `produk_id`, `title`, `foto`, `keterangan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'qwerty', 'http://localhost/ub-riset/uploads/inovasi/1/foto/qwerty-foto-1_2020-05-06_07_25.jpg', '<p>hellow</p>', '165150401111060', '2020-05-06 00:25:03', NULL, NULL),
+(2, 1, 'shinichi', 'http://localhost/ub-riset/uploads/inovasi/1/foto/shinichi-foto-1_2020-05-06_07_25.jpg', '<blockquote><p>assssss</p></blockquote>', '165150401111060', '2020-05-06 00:25:18', NULL, NULL),
+(3, 1, 'late post', 'http://localhost/ub-riset/uploads/inovasi/1/foto/late_post-foto-1_2020-05-06_07_25.jpg', '<ol><li>some times</li></ol>', '165150401111060', '2020-05-06 00:25:38', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -127,6 +143,16 @@ CREATE TABLE `inventor` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `inventor`
+--
+
+INSERT INTO `inventor` (`produk_id`, `users_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, '165060207111022', '165150401111060', '2020-05-06 00:27:27', NULL, NULL),
+(1, '165060300111006', '165150401111060', '2020-05-06 00:27:27', NULL, NULL),
+(1, '165080401111030', '165150401111060', '2020-05-06 00:27:55', NULL, NULL),
+(1, '165150401111060', '165150401111060', '2020-05-06 00:21:05', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -150,6 +176,13 @@ CREATE TABLE `izin_produk` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `izin_produk`
+--
+
+INSERT INTO `izin_produk` (`id`, `produk_id`, `nama`, `deskripsi`, `status`, `tahun_perolehan`, `no_izin`, `tanggal_mulai`, `tanggal_selesai`, `lembaga`, `file`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Dignissimos exceptur', '', 'Pengajuan Permohonan', 2004, 'Sit et ut elit omni', '2020-05-26', '2020-05-22', 'Sunt sint et vero li', 'http://localhost/ub-riset/uploads/inovasi/1/izin/izin-Dignissimos_exceptur-1_2020-05-06_07_24.pdf', '165150401111060', '2020-05-06 00:24:37', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -191,6 +224,14 @@ CREATE TABLE `kekayaan_intelektual` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kekayaan_intelektual`
+--
+
+INSERT INTO `kekayaan_intelektual` (`id`, `produk_id`, `jenis`, `deskripsi`, `status_perolehan`, `no_pemohon`, `file_formulir`, `no_sertifikat`, `file`, `pemegang`, `tanggal_mulai`, `tanggal_selesai`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Merk', '<p>asd asd asddd</p>', 'Pengajuan Permohonan', 'Praesentium veritati', 'http://localhost/ub-riset/uploads/inovasi/1/ki/formulir-Merk-1_2020-05-06_07_23.pdf', 'Accusamus dolore omn', 'http://localhost/ub-riset/uploads/inovasi/1/ki/file-Merk-1_2020-05-06_07_23.pdf', 'Quasi pariatur Dolo', '2020-05-21', '2020-05-19', '165150401111060', '2020-05-06 00:23:26', NULL, NULL),
+(2, 1, 'Indikasi Geografis', '<p>asd asd asddd</p>', 'Pengajuan Permohonan', 'Mollitia voluptatem', 'http://localhost/ub-riset/uploads/inovasi/1/ki/formulir-Indikasi_Geografis-1_2020-05-06_07_23.pdf', 'Adipisci in corrupti', NULL, 'Quod commodo nisi eo', '2020-05-11', '2020-05-17', '165150401111060', '2020-05-06 00:23:39', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -214,6 +255,35 @@ CREATE TABLE `kepemilikan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pengajuan`
+--
+
+CREATE TABLE `pengajuan` (
+  `id` int(11) NOT NULL,
+  `produk_id` int(10) UNSIGNED NOT NULL,
+  `inventor` varchar(100) NOT NULL,
+  `nama_produk` tinytext NOT NULL,
+  `bidang` enum('Kesehatan','Pertahanan Keamanan','Material Maju','Kemaritiman','Sosial Budaya') NOT NULL,
+  `kategori` tinytext NOT NULL,
+  `katsinov` enum('0','1','2','3','4','5','6') NOT NULL DEFAULT '0',
+  `tkt` enum('0','1','2','3','4','5','6','7','8','9') NOT NULL DEFAULT '0',
+  `status` enum('diajukan','diperiksa','dinilai','') NOT NULL,
+  `created_by` varchar(15) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_by` varchar(15) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengajuan`
+--
+
+INSERT INTO `pengajuan` (`id`, `produk_id`, `inventor`, `nama_produk`, `bidang`, `kategori`, `katsinov`, `tkt`, `status`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, '', 'Kebub', 'Kesehatan', '[\"Energi\",\"Transportasi\",\"Material Maju\"]', '0', '0', 'diajukan', '165150401111060', '2020-05-06 02:27:19', '', '2020-05-06 02:27:19');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pengujian`
 --
 
@@ -232,6 +302,14 @@ CREATE TABLE `pengujian` (
   `updated_by` char(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengujian`
+--
+
+INSERT INTO `pengujian` (`id`, `produk_id`, `nama`, `tahun`, `status`, `jenis`, `lembaga`, `tujuan`, `hasil`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Non saepe dolorum eo', 2007, 'Sedang Dilakukan', 'Consequuntur rerum i', 'Ipsum est deleniti i', '<blockquote><p>asdsadasd</p></blockquote>', '<p>asddsdadsa&nbsp;</p>', '165150401111060', '2020-05-06 00:22:35', NULL, NULL),
+(2, 1, 'Incidunt obcaecati ', 1988, 'Sedang Dilakukan', 'Dolor odio deleniti ', 'Rerum velit iste si', '<blockquote><p>asdsadasdasd</p></blockquote>', '<p>asddsdadsa &nbsp;asdd</p>', '165150401111060', '2020-05-06 00:22:43', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -283,6 +361,13 @@ CREATE TABLE `perusahaan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `perusahaan`
+--
+
+INSERT INTO `perusahaan` (`id`, `nama`, `nama_pendiri`, `tahun_berdiri`, `bentuk_usaha`, `status_kantor`, `alamat_kantor`, `kota_kabupaten`, `struktur_organisasi`, `luas_ruang_produksi`, `logo`, `alamat_produksi`, `pegawai_tetap`, `pegawai_tidak_tetap`, `akta`, `email`, `telepon`, `website`, `sosmed`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Letto de pascito', 'hiruka senato', 2020, 'PT', 'Milik sendiri', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, '', '2020-05-06 00:27:13', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -320,6 +405,13 @@ CREATE TABLE `produk` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id`, `nama_produk`, `bidang`, `kategori`, `jenis`, `produksi_barang_fisik`, `logo_produk`, `deskripsi_singkat`, `deskripsi_lengkap`, `latar_belakang`, `keterbaruan_produk`, `masalah`, `solusi`, `spesifikasi_teknis`, `kegunaan_manfaat`, `keunggulan_keunikan`, `kesiapan_teknologi`, `kepemilikan_teknologi`, `pemilik_teknologi`, `teknologi_yang_dikembangkan`, `rencana_pengembangan`, `tautan_video`, `media_sosial`, `website`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Kebub', 'Kesehatan', '[\"Energi\",\"Transportasi\",\"Material Maju\"]', 'non digital', NULL, NULL, 'Nisi et quidem tempo', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '165150401111060', '2020-05-06 01:55:08', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -334,6 +426,13 @@ CREATE TABLE `produk_perusahaan` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk_perusahaan`
+--
+
+INSERT INTO `produk_perusahaan` (`produk_id`, `perusahaan_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, '', '2020-05-06 00:28:12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -375,6 +474,15 @@ CREATE TABLE `roadmap` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `roadmap`
+--
+
+INSERT INTO `roadmap` (`id`, `produk_id`, `nama`, `tahun_mulai`, `tahun_selesai`, `sumber_pendanaan`, `skema`, `nilai_pendanaan`, `aktivitas`, `tujuan`, `hasil`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Et esse in nihil atq', 2057, 1974, 'Consequatur eligend', '', 88000000, '', '', '', '165150401111060', '2020-05-06 00:21:55', NULL, NULL),
+(2, 1, 'Qui deserunt cupidat', 1980, 2006, 'Odit earum ut verita', '', 74000000, '', '', '', '165150401111060', '2020-05-06 00:22:05', NULL, NULL),
+(3, 1, 'Est accusantium dolo', 2069, 1972, 'Dolorem quod sunt c', '', 150000000, '', '', '', '165150401111060', '2020-05-06 00:22:16', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -412,6 +520,14 @@ CREATE TABLE `sertifikasi` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sertifikasi`
+--
+
+INSERT INTO `sertifikasi` (`id`, `produk_id`, `nama`, `deskripsi`, `status`, `tahun_perolehan`, `no_sertifikat`, `tanggal_mulai`, `tanggal_selesai`, `lembaga_penerbit`, `file_sertifikasi`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Iusto accusantium ex', '', 'Pengajuan Permohonan', 2046, 'Iure minima id qui a', '2020-05-18', '2020-05-15', 'Veniam sed nihil la', NULL, '165150401111060', '2020-05-06 00:24:07', NULL, NULL),
+(2, 1, 'Sunt repudiandae dig', '', 'Pengajuan Permohonan', 1977, 'Ipsam voluptatum inc', '2020-05-06', '2020-05-06', 'Voluptas illo distin', NULL, '165150401111060', '2020-05-06 00:24:17', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1042,6 +1158,13 @@ ALTER TABLE `kepemilikan`
   ADD KEY `kepemilikan_FKIndex1` (`perusahaan_id`);
 
 --
+-- Indexes for table `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produk` (`produk_id`);
+
+--
 -- Indexes for table `pengujian`
 --
 ALTER TABLE `pengujian`
@@ -1132,13 +1255,13 @@ ALTER TABLE `aset`
 -- AUTO_INCREMENT for table `foto_kegiatan`
 --
 ALTER TABLE `foto_kegiatan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `foto_produk`
 --
 ALTER TABLE `foto_produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `guest`
@@ -1150,13 +1273,13 @@ ALTER TABLE `guest`
 -- AUTO_INCREMENT for table `izin_produk`
 --
 ALTER TABLE `izin_produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kekayaan_intelektual`
 --
 ALTER TABLE `kekayaan_intelektual`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `kepemilikan`
@@ -1165,34 +1288,40 @@ ALTER TABLE `kepemilikan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `pengujian`
 --
 ALTER TABLE `pengujian`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sertifikasi`
 --
 ALTER TABLE `sertifikasi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ulasan`
@@ -1252,6 +1381,12 @@ ALTER TABLE `kekayaan_intelektual`
 --
 ALTER TABLE `kepemilikan`
   ADD CONSTRAINT `kepemilikan_ibfk_1` FOREIGN KEY (`perusahaan_id`) REFERENCES `perusahaan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `pengajuan`
+--
+ALTER TABLE `pengajuan`
+  ADD CONSTRAINT `produk` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `pengujian`

@@ -25,6 +25,7 @@ class Pengajuan extends CI_Controller
 			$data = array(
 				"produk_id" => $slug->data['id'],
 				"nama_produk" => $slug->data['title'],
+				"inventor" => $this->session->userdata('nama'),
 				"bidang" => $slug->data['produk']->bidang,
 				"kategori" => $slug->data['produk']->kategori,
 				"status" => 'diajukan'
