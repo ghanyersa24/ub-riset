@@ -126,6 +126,19 @@ class Admin extends CI_Controller
 		$data['content'] = 'ap_bisnis';
 		$this->load->view('template', $data);
 	}
+	public function verifikasi($slug = null)
+	{
+		$data = riset::slugs($slug);
+		if ($slug == null) {
+			$data['title'] = 'Halaman Verifikasi KATSINOV dan TKT';
+			$data['content'] = 'ap_verifikasi';
+			$this->load->view('template', $data);
+		} else {
+			$data['title'] = 'Halaman Verifikasi KATSINOV dan TKT ' . $data['title'];
+			$data['content'] = 'ap_verifikasi_detail';
+			$this->load->view('template', $data);
+		}
+	}
 
 	public function logout()
 	{
