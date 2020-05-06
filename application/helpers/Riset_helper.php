@@ -41,4 +41,23 @@ class riset
 			];
 		}
 	}
+	public static function slug_public($slug)
+	{
+		$title = str_replace('-', " ", $slug);
+		$id = (int) str_replace(' ', '', substr($title, 0, 5));
+		$title = substr($title, 5);
+		$produk = DB_MODEL::find('produk', ['id' => $id, 'nama_produk' => $title]);
+		if ($produk->error)
+			return (object) ['error' => true];
+		else
+			return (object) [
+				'error' => false,
+				'data' => [
+					'title' => $title,
+					'slug' => $slug,
+					'id' => $id,
+					'produk' => $produk->data
+				]
+			];
+	}
 }

@@ -20,7 +20,7 @@
       										<h4>Roadmap Pengisian Produk</h4>
       									</div>
       									<div class="col-md-6">
-      										<button class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
+      										<button id="btn-ajukan" class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
       											<i class="fa fa-save"></i>
       											Ajukan validasi produk</button>
       									</div>
@@ -164,9 +164,9 @@
       												</div>
       											</div>
       											<div class="timeline">
-												  <a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
-													  <div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
-												  </a>
+      												<a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
+      													<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
+      												</a>
       												<span class="year">Tahap 11</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Bisnis</h5>
@@ -175,67 +175,73 @@
       													</p>
       												</div>
       											</div>
-
-
-
       										</div>
       									</div>
       								</div>
       							</div>
       						</div>
       					</div>
-
       				</div>
       			</div>
-
       		</div>
       	</section>
       </div>
-
-      <div class="modal fade" id="view">
-      	<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-      		<div class="modal-content">
-      			<div class="modal-header">
-      				<h5 class="modal-title" id="exampleModalLabel">Detail <?= $title ?></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-      			</div>
-      			<!-- <form id="form-password" name="form-password" method="post"> -->
-      			<input type="text" class="form-control" id="view-id" name="view-id" hidden readonly>
-      			<div class="modal-body row" id="form-data">
-      				<div class="col-sm-4 border-right">
-      				</div>
-      				<div class="col-sm-8">
-      					<div class="form-group">
-      						<label for="old_password">Password lama</label>
-      						<input type="password" class="form-control" id="old_password" name="old_password">
-      					</div>
-      					<div class="form-group">
-      						<label for="new_password">Password baru</label>
-      						<input type="password" class="form-control" id="new_password" name="new_password">
-      					</div>
-      					<div class="form-group">
-      						<label for="password_confirmation">Konfirmasi password baru</label>
-      						<input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
-      					</div>
-      				</div>
-      			</div>
-      			<div class="modal-footer">
-      				<button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-      				<button type="submit" class="btn btn-info" id="btn-change">Simpan</button>
-      			</div>
-      			<!-- </form> -->
-      		</div>
-
-      	</div>
-      </div>
       <script>
-      	$('#btn-change_password').click(function(e) {
-      		$('#view').modal('show');
-      	});
-      	$('#btn-save').click(function(e) {
-      		swal('Success !', 'data berhasil diperbarui', 'success');
-      	});
-      	$('#btn-change').click(function(e) {
-      		swal('Success !', 'password berhasil diperbarui', 'success');
-      		$('#view').modal('hide');
+      	$(document).ready(function() {
+
+      		$('#btn-ajukan').click(function(e) {
+      			e.preventDefault();
+      			swal({
+      					title: "Apakah kamu yakin?",
+      					icon: "info",
+      					text: 'mengajukan produk untuk divalidasi!',
+      					content: {
+      						element: "input",
+      						attributes: {
+      							placeholder: "ketikan id UB kamu!",
+      							type: "number",
+      							className: "text-center form-control",
+      						},
+      					},
+      					buttons: true,
+      				})
+      				.then(pass => {
+      					if (!pass) throw null;
+      					$.ajax({
+      						type: "POST",
+      						url: api + 'service/pengajuan/create',
+      						data: {
+      							slug: '<?= $slug ?>',
+      							auth: pass
+      						},
+      						success: function(response) {
+      							response_alert(response)
+      						}
+      					});
+      				})
+      			// swal({
+      			// 		title: "Apakah kamu yakin?",
+      			// 		text: "akan mengajukan validasi dalam produk ini!",
+      			// 		icon: "info",
+      			// 		buttons: true,
+      			// 	})
+      			// 	.then((willSave) => {
+      			// 		if (willSave) {
+      			// 			$.ajax({
+      			// 				type: "POST",
+      			// 				url: api + 'service/inventor/create',
+      			// 				data: {
+      			// 					slug: <?= $slug ?>,
+      			// 				},
+      			// 				success: function(response) {
+      			// 					response_alert(response)
+      			// 					if (!response.error)
+      			// 						getList()
+      			// 				}
+      			// 			})
+      			// 		}
+      			// 	})
+
+      		});
       	});
       </script>
