@@ -19,7 +19,7 @@ class UPLOAD_FILE
 
 	public static function excel($post_name, $location = null, $file_name = null, $max_size = 10000)
 	{
-		return self::uploads('xlx|xlxs', $post_name, $location, $file_name, $max_size);
+		return self::uploads('xlx|xlsx', $post_name, $location, $file_name, $max_size);
 	}
 
 	public static function ppt($post_name, $location = null, $file_name = null, $max_size = 10000)
