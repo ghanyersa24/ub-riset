@@ -107,6 +107,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<input id="view-tautan_video" class="form-control" type="text" name="tautan_video">
 													</div>
 													<div class="form-group">
+														<label for="view-kesiapan_teknologi">Kesiapan Teknologi</label>
+														<select class="custom-select" name="kesiapan_teknologi" id="view-kesiapan_teknologi">
+															<option selected disabled>Pilih salah satu</option>
+															<option value="masih riset">Masih Riset</option>
+															<option value="prototype">Prototype</option>
+															<option value="siap komersil">Siap Komersil</option>
+														</select>
+													</div>
+													<div class="form-group">
 														<label for="view-kategori">Kategori</label>
 														<select id="view-kategori" class="select2" multiple="multiple" data-placeholder="Kategori" style="width: 100%;" name="kategori[]">
 															<option value="Pangan">Pangan</option>
@@ -165,12 +174,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<label for="view-spesifikasi_teknis">Spesifikasi Teknis</label>
 												<textarea name="spesifikasi_teknis" id="view-spesifikasi_teknis" class="form-control"></textarea>
 											</div>
+										</section>
+										<section id="tab-kepemilikan">
+
 											<div class="form-group">
 												<label for="view-keterbaruan_produk">Keterbaharuan Produk</label>
 												<textarea id="view-keterbaruan_produk" name="keterbaruan_produk" class="form-control"></textarea>
 											</div>
-										</section>
-										<section id="tab-kepemilikan">
 											<div class="form-group">
 												<label for="view-teknologi_yang_dikembangkan">Teknologi yang Dikembangkan</label>
 												<textarea id="view-teknologi_yang_dikembangkan" name="teknologi_yang_dikembangkan" class="form-control"></textarea>
@@ -180,16 +190,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<textarea id="view-rencana_pengembangan" name="rencana_pengembangan" class="form-control"></textarea>
 											</div>
 											<!-- CK EDITOR GROUP END -->
-											<div class="form-group">
-												<label for="view-kesiapan_teknologi">Kesiapan Teknologi</label>
-												<select class="custom-select" name="kesiapan_teknologi" id="view-kesiapan_teknologi">
-													<option selected disabled>Pilih salah satu</option>
-													<option value="masih riset">Masih Riset</option>
-													<option value="prototype">Prototype</option>
-													<option value="siap komersil">Siap Komersil</option>
-												</select>
-											</div>
-											<div class="form-group">
+
+											<!-- <div class="form-group">
 												<label for="view-kepemilikan_teknologi">Kepemilikan Teknologi</label>
 												<select class="custom-select" name="kepemilikan_teknologi" id="view-kepemilikan_teknologi">
 													<option selected disabled>Pilih salah satu</option>
@@ -201,7 +203,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="form-group">
 												<label for="view-pemilik_teknologi">Nama Pemilik Teknologi</label>
 												<input id="view-pemilik_teknologi" class="form-control" type="text" name="pemilik_teknologi">
-											</div>
+											</div> -->
 										</section>
 									</div>
 								</div>

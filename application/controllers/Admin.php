@@ -33,6 +33,14 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function myproduct()
+	{
+		$data = riset::slugs();
+		$data['title'] = 'My List Product';
+		$data['content'] = 'ap_myproduct';
+		$this->load->view('template', $data);
+	}
+
 	public function detail($slug)
 	{
 		$data = riset::slugs($slug);
@@ -40,6 +48,7 @@ class Admin extends CI_Controller
 		$data['content'] = 'ap_detail';
 		$this->load->view('template', $data);
 	}
+
 
 	public function produk($slug)
 	{

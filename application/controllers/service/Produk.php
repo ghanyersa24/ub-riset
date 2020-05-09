@@ -31,9 +31,9 @@ class Produk extends CI_Controller
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::all($this->table);
+			$do = DB_MODEL::join('inventor', 'produk', 'produk.id =inventor.produk_id', 'inner', ['users_id' => $this->session->userdata('id')]);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::find($this->table, ['id' => $id]);
 		}
 
 		if (!$do->error)
@@ -78,8 +78,8 @@ class Produk extends CI_Controller
 			"kegunaan_manfaat" => post('kegunaan_manfaat', 'allow_html'),
 			"keunggulan_keunikan" => post('keunggulan_keunikan', 'allow_html'),
 			"kesiapan_teknologi" => post('kesiapan_teknologi', 'enum:masih riset&prototype&siap komersil'),
-			"kepemilikan_teknologi" => post('kepemilikan_teknologi', 'enum:sendiri&instansi'),
-			"pemilik_teknologi" => post('pemilik_teknologi'),
+			// "kepemilikan_teknologi" => post('kepemilikan_teknologi', 'enum:sendiri&instansi'),
+			// "pemilik_teknologi" => post('pemilik_teknologi'),
 			"teknologi_yang_dikembangkan" => post('teknologi_yang_dikembangkan', 'allow_html'),
 			"rencana_pengembangan" => post('rencana_pengembangan', 'allow_html'),
 			"tautan_video" => post('tautan_video'),

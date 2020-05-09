@@ -17,8 +17,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<!-- Power Go -->
 
 			<!-- account -->
-
-			<li class="dropdown <?php echo (is_null($slug) ? '' : $this->uri->segment(3) == $slug) ? 'active' : '' ?>">
+			<!-- Product -->
+			<li class="<?php echo $this->uri->segment(2) == 'myproduct' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/myproduct"><i class="fas fa-fire"></i> <span>My Product</span></a></li>
+			</li>
+			<!-- <li class="dropdown <?php echo (is_null($slug) ? '' : $this->uri->segment(3) == $slug) ? 'active' : '' ?>">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Product</span></a>
 				<ul class="dropdown-menu">
 					<?php
@@ -29,8 +31,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					}
 					?>
 				</ul>
-			
-				<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/verifikasi"><i class="fas fa-user-check"></i> <span>verifikasi</span></a></li></li>
+			</li> -->
+
+			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/verifikasi"><i class="fas fa-user-check"></i> <span>verifikasi</span></a></li>
+			</li>
 			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>profile</span></a></li>
 			<li class="<?php echo $this->uri->segment(2) == 'logout' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>login"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
 		</ul>

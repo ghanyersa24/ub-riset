@@ -28,7 +28,7 @@ class riset
 			$id = (int) str_replace(' ', '', substr($title, 0, 5));
 			$title = substr($title, 5);
 			foreach ($arr as $value) {
-				if ($id == $value['id'])
+				if ($id == $value['id'] && $title == $value['nama_produk'])
 					$find = true;
 			}
 			if (!isset($find))
