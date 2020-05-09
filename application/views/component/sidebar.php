@@ -18,7 +18,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<!-- account -->
 			<!-- Product -->
-			<li class="<?php echo $this->uri->segment(2) == 'myproduct' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/myproduct"><i class="fas fa-fire"></i> <span>My Product</span></a></li>
+			<li class="<?php echo $this->uri->segment(2) == 'myproduct' || $this->uri->segment(2) == 'detail' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/myproduct"><i class="fas fa-fire"></i> <span>My Product</span></a></li>
 			</li>
 			<!-- <li class="dropdown <?php echo (is_null($slug) ? '' : $this->uri->segment(3) == $slug) ? 'active' : '' ?>">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Product</span></a>
@@ -33,8 +33,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				</ul>
 			</li> -->
 
-			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/verifikasi"><i class="fas fa-user-check"></i> <span>verifikasi</span></a></li>
-			</li>
+			<?php
+			if ($this->session->userdata('is_admin') == 'admin' || $this->session->userdata('is_admin') == 'verifikator') {
+			?>
+				<li class="<?php echo $this->uri->segment(2) == 'verifikasi' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/verifikasi"><i class="fas fa-check-circle"></i><span>verifikasi</span></a></li>
+				</li>
+			<?php
+			} ?>
+			<?php
+			if ($this->session->userdata('is_admin') == 'admin') {
+			?>
+				<li class="<?php echo $this->uri->segment(2) == 'plotting' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/plotting"><i class="fas fa-at"></i><span>Plotting</span></a></li>
+				</li>
+				<li class="<?php echo $this->uri->segment(2) == 'manage' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/manage"><i class="fas fa-users"></i> <span>Management User</span></a></li>
+			<?php
+			} ?>
 			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>profile</span></a></li>
 			<li class="<?php echo $this->uri->segment(2) == 'logout' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>login"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
 		</ul>

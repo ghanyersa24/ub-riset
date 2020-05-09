@@ -5,12 +5,10 @@
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
-
 		<div class="section-body">
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-12">
 					<div class="card">
-
 						<div class="card-body">
 							<ul class="nav nav-pills" id="myTab3" role="tablist">
 								<li class="nav-item">
@@ -52,12 +50,13 @@
 									<p>foto</p>
 								</div>
 								<div class="tab-pane fade" id="verifikasi3" role="tabpanel" aria-labelledby="tim-tab3">
-									<div class="row">
-										<div class="col-md-4">
-											<form id="form-add-verifikasi">
+									<form class="form-add-verifikasi" id="form-add-verifikasi">
+										<div class="row">
+											<div class="col-md-4">
 												<div class="form-group">
 													<label for="add-katsinov">Pilih tingkat katsinov</label>
-													<select name="katsinov" id="add-katsinov" class="form-control">
+													<select name="katsinov" id="add-katsinov" class="form-control" required>
+														<option selected disabled>silahkan pilih Katsinov</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
@@ -66,35 +65,34 @@
 														<option value="6">6</option>
 													</select>
 												</div>
-										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												<label for="add-tkt">Pilih tingkat TKT</label>
-												<select name="tkt" id="add-tkt" class="form-control">
-													<option value="1">1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="4">4</option>
-													<option value="5">5</option>
-													<option value="6">6</option>
-													<option value="7">7</option>
-													<option value="8">8</option>
-													<option value="9">9</option>
-												</select>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="add-tkt">Pilih tingkat TKT</label>
+													<select name="tkt" id="add-tkt" class="form-control" required>
+														<option selected disabled>silahkan pilih TKT</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+														<option value="6">6</option>
+														<option value="7">7</option>
+														<option value="8">8</option>
+														<option value="9">9</option>
+													</select>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="form-group">
+													<label for="add-file">File Evaluasi</label>
+													<input type="file" name="file_evaluasi" id="add-file_evaluasi" class="form-control" required>
+												</div>
 											</div>
 										</div>
-										<div class="col-md-4">
-											<div class="form-group">
-												<label for="add-file">File Evaluasi</label>
-												<input type="file" name="add-file" id="add-file" class="form-control">
-											</div>
-										</div>
-									</div>
-
-									<button class="btn btn-primary d-block mr-0 ml-auto" type="submit">Verifikasi</button>
-
+										<button class="btn btn-primary d-block mr-0 ml-auto" type="submit">Verifikasi</button>
+									</form>
 								</div>
-								</form>
 							</div>
 						</div>
 					</div>
@@ -105,11 +103,6 @@
 </div>
 
 <script>
-	const res = {
-		error: false,
-		message: 'Validasi berhasil dilakukan',
-		data: []
-	}
 	$(document).ready(function() {
 		$.ajax({
 			method: 'get',
@@ -120,17 +113,43 @@
 			}
 		})
 
-		$("#form-add-verifikasi").submit(function() {
-			event.preventDefault()
-			console.log('masuk submit')
-			$.ajax({
-				success: () => {
-					response_alert(res)
-					setTimeout(function() {
-						window.location.replace(`<?= base_url() ?>admin/verifikasi`)
-					}, 2000)
-				}
-			})
+		$('#form-add-verifikasi').validate({
+			rules: {
+				tkt: {
+					required: true
+				},
+				katsinov: {
+					required: true
+				},
+				file_evaluasi: {
+					required: true
+				},
+			},
+			submitHandler: function(form) {
+				let formData = new FormData()
+				formData.append('file_evaluasi', document.getElementById('add-file_evaluasi').files[0])
+				formData.append('tkt', $('#add-tkt').val())
+				formData.append('katsinov', $('#add-katsinov').val())
+				formData.append('produk_id', <?= $id ?>)
+				formData.append('id', sessionStorage.getItem("verifikasi_id"))
+				$.ajax({
+					type: "POST",
+					url: api + "service/pengajuan/update",
+					data: formData,
+					async: false,
+					processData: false,
+					contentType: false,
+					success: (response) => {
+						response_alert(response)
+						if (!response.error) {
+							sessionStorage.clear()
+							setTimeout(function() {
+								window.location.replace(`<?= base_url() ?>admin/verifikasi`)
+							}, 1500)
+						}
+					}
+				})
+			}
 		})
 	})
 </script>

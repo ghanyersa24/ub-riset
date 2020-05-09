@@ -5,9 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="main-content">
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
-
 			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
-
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
@@ -121,11 +119,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						card += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
-										<img src="${element.logo_produk==null?'https://i.imgur.com/QE3UIgf.png':element.logo_produk}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+										<img src="${element.logo_produk==null?'https://i.imgur.com/QE3UIgf.png':element.logo_produk}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
 									</div>
 									<hr>
 									<div class="d-flex justify-content-between">
-									<span class="h5 card-title click" onclick="view('<?= base_url() ?>admin/detail/${pad(element.id)+'-'+element.nama_produk.replace(/ /gi,"-")}')">${element.nama_produk.substring(0, 12)}</span>
+									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama_produk.substring(0, 12)}</span>
 									<span><button type="button" class="btn btn-default" onclick="del(${element.id})"><i class="fas fa-trash"></i></button></span>
 									</div>
 								</div>
@@ -165,7 +163,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	}
 
 	function view(link) {
-		window.location.replace(link)
+		window.location.replace(api + 'admin/detail/' + link)
 	}
 	$(document).ready(function() {
 		get()

@@ -21,6 +21,9 @@ class Produk extends CI_Controller
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
+			$slug = str_pad($do->data['id'], 4, '0', STR_PAD_LEFT) . '-' . str_replace(" ", "-", $do->data['nama_produk']);
+			$do->data['slug'] = $slug;
+			DB_MODEL::update($this->table, ['id' => $do->data['id']], ['slug' => $slug]);
 			DB_MODEL::insert('inventor', ['produk_id' => $do->data['id'], 'users_id' => $this->session->userdata('id')]);
 			success("data berhasil ditambahkan", $do->data);
 		} else {

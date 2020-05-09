@@ -12,7 +12,7 @@ class Pengajuan extends CI_Controller
 	public function create()
 	{
 		if ($this->session->userdata('id') != post('auth', 'required'))
-			error('id UB kamu salah.');
+			error('konfirmasi kamu salah, silahkan masukkan kembali.');
 		$slug = riset::slug_public(post('slug', 'required'));
 		if ($slug->error)
 			error("maaf data inovasi bermasalah");
@@ -25,6 +25,7 @@ class Pengajuan extends CI_Controller
 			$data = array(
 				"produk_id" => $slug->data['id'],
 				"nama_produk" => $slug->data['title'],
+				"slug" => $slug->data['slug'],
 				"inventor" => $this->session->userdata('nama'),
 				"bidang" => $slug->data['produk']->bidang,
 				"kategori" => $slug->data['produk']->kategori,
@@ -44,7 +45,7 @@ class Pengajuan extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, ['verifikator' => $this->session->userdata('id')]);
 		}
 
 		if (!$do->error)
@@ -55,14 +56,15 @@ class Pengajuan extends CI_Controller
 
 	public function update()
 	{
+		$where = array(
+			"id" => post('id', 'required'),
+		);
+		$produk = post('produk_id', 'required');
 		$data = array(
 			"katsinov" => post('katsinov', 'required|numeric|min_value:0|max_value:6'),
 			"tkt" => post('tkt', 'required|numeric|min_value:0|max_value:9'),
+			"file_evaluasi" => UPLOAD_FILE::excel('file_evaluasi', "inovasi/$produk/evaluasi"),
 			"status" => 'dinilai',
-		);
-
-		$where = array(
-			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);

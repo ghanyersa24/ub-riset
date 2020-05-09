@@ -176,7 +176,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						if (!response.error) {
 							$('#add').modal('hide')
 							setTimeout(function() {
-								window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
+								window.location.replace(`<?= base_url() ?>admin/detail/${response.data.slug}`)
 							}, 2000)
 						}
 						response_alert(response)

@@ -148,6 +148,20 @@ class Admin extends CI_Controller
 			$this->load->view('template', $data);
 		}
 	}
+	public function plotting()
+	{
+		$data = riset::slugs();
+		$data['title'] = 'Halaman Plotting Verifikator';
+		$data['content'] = 'ap_plotting';
+		$this->load->view('template', $data);
+	}
+	public function manage()
+	{
+		$data = riset::slugs();
+		$data['title'] = 'Halaman Management User';
+		$data['content'] = 'ap_users';
+		$this->load->view('template', $data);
+	}
 
 	public function logout()
 	{

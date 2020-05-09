@@ -193,12 +193,11 @@
       			e.preventDefault();
       			swal({
       					title: "Apakah kamu yakin?",
-      					icon: "info",
-      					text: 'mengajukan produk untuk divalidasi!',
+      					icon: "warning",
+      					text: 'silahkan tulis "<?= $this->session->userdata('id') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!',
       					content: {
       						element: "input",
       						attributes: {
-      							placeholder: "ketikan id UB kamu!",
       							type: "number",
       							className: "text-center form-control",
       						},

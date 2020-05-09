@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Customer extends CI_Controller
+class Users extends CI_Controller
 {
-	protected $table = "customer";
+	protected $table = "users";
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::where($this->table, array('status' => 'activated'));
+			$do = DB_MODEL::where($this->table, ['is_admin !=' => 'verifikator', 'is_admin !=' => 'admin']);
 		} else {
 			$do = DB_MODEL::find($this->table, array("id" => $id));
 		}
