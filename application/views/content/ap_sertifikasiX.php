@@ -4,7 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <!-- Main Content -->
 <div class="main-content">
 	<section class="section">
-
 		<div class="section-header d-block justify-content-start align-items-center">
 
 			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
@@ -29,11 +28,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<th class="text-center">
 												No.
 											</th>
-											<th>Nama / Jenis</th>
-											<th>Tanggal Mulai</th>
-											<th>Tanggal Selesai</th>
-											<th>Status Perolehan</th>
-											<th>Aksi</th>
+											<th>Nama Sertifikasi</th>
+											<th>Tahun Perolehan</th>
+											<th>Lembaga Penerbit</th>
+											<th>Status</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tfoot>
@@ -69,71 +68,56 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-4">
 							<div class="form-group">
 								<input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
-								<label for="add-nama">Jenis Kekayaan Intelektual</label>
-								<select name="jenis" id="add-jenis" class="form-control">
-									<option value="Paten">Paten</option>
-									<option value="Merk">Merk</option>
-									<option value="Hak Cipta">Hak Cipta</option>
-									<option value="Tata Letak Sirkuit Terpadu">Tata Letak Sirkuit Terpadu</option>
-									<option value="Rahasia Dagang">Rahasia Dagang</option>
-									<option value="Desain Industri">Desain Industri</option>
-									<option value="Indikasi Geografis">Indikasi Geografis</option>
-									<option value="Perlindungan Varietas tanaman (PVT)">Perlindungan Varietas Tanaman (PVT)</option>
-								</select>
+								<label for="add-nama">Nama / Jenis Sertifikasi</label>
+								<input type="text" id="add-nama" name="nama" class="form-control">
 
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-status_perolehan">Status Perolehan</label>
-								<select name="status_perolehan" id="add-status_perolehan" class="form-control">
+								<label for="add-lembaga_penerbit">Lembaga Penerbit Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat sudah diperoleh">!</span></label>
+								<input type="text" id="add-lembaga_penerbit" name="lembaga_penerbit" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="add-status">Status Perolehan</label>
+								<select name="status" id="add-status" class="form-control">
 									<option value="Belum Diperoleh">Belum Diperoleh</option>
 									<option value="Pengajuan Permohonan">Pengajuan Permohonan</option>
 									<option value="Disetujui">Disetujui</option>
 								</select>
-
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-no_pemohon">Nomor Permohonan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sudah diajukan permohonan, misal: S0020190xxxx, P002019xxxx">!</span></label>
-								<input type="text" id="add-no_pemohon" class="form-control" name="no_pemohon">
+								<label for="add-tahun_perolehan">Tahun Perolehan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat telah diperoleh">!</span></label>
+								<input name="tahun_perolehan" id="add-tahun_perolehan" class="form-control" type="number"></input>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-file_formulir">File Formulir Permohonan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file_formulir" id="add-file_formulir" class="form-control" type="file"></input>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="add-no_sertifikat">Nomor Sertifikat KI<span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nomor Sertifikat KI (misal: IDP0000xxxxx, IDM0000xxxxxx)">!</span></label>
+								<label for="add-no_sertifikat">Nomor Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nomor Sertifikat KI (misal: IDP0000xxxxx, IDM0000xxxxxx)">!</span></label>
 								<input name="no_sertifikat" id="add-no_sertifikat" class="form-control" type="text"></input>
 							</div>
 						</div>
+
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-file">File Kekayaan Intelektual <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file" id="add-file" class="form-control" type="file"></input>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="add-tanggal_mulai">Tanggal Sertifikat Mulai Berlaku</label>
+								<label for="add-tanggal_mulai">Tanggal Sertifikat Mulai Berlaku <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat telah diperoleh">!</span></label>
 								<input name="tanggal_mulai" id="add-tanggal_mulai" class="form-control datepicker" type="text"></input>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-tanggal_selesai">Tanggal Sertifikat Berakhir</label>
+								<label for="add-tanggal_selesai">Tanggal Sertifikat Berakhir <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat telah diperoleh">!</span></label>
 								<input name="tanggal_selesai" id="add-tanggal_selesai" class="form-control datepicker" type="text">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-pemegang">Pemilik Kekayaan Intelektual</label>
-								<input name="pemegang" id="add-pemegang" class="form-control" type="text"></input>
+								<label for="add-file_sertifikasi">File Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
+								<input name="file_sertifikasi" id="add-file_sertifikasi" class="form-control" type="file"></input>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -155,6 +139,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 </div>
 
+
 <div class="modal fade" id="view">
 	<div class="modal-dialog modal-xl" role="document">
 		<div class="modal-content">
@@ -166,44 +151,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="row">
 						<div class="col-md-4">
 							<div class="form-group">
-								<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
-								<input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
-								<label for="view-nama">Jenis Kekayaan Intelektual</label>
-								<select name="jenis" id="view-jenis" class="form-control">
-									<option value="Paten">Paten</option>
-									<option value="Merk">Merk</option>
-									<option value="Hak Cipta">Hak Cipta</option>
-									<option value="Tata Letak Sirkuit Terpadu">Tata Letak Sirkuit Terpadu</option>
-									<option value="Rahasia Dagang">Rahasia Dagang</option>
-									<option value="Desain Industri">Desain Industri</option>
-									<option value="Indikasi Geografis">Indikasi Geografis</option>
-									<option value="Perlindungan Varietas tanaman (PVT)">Perlindungan Varietas Tanaman (PVT)</option>
-								</select>
+								<input id="view-id" class="form-control" type="number" name="id" hidden readonly>
+								<input id="view-produk_id" class="form-control" type="number" name="produk_id" hidden readonly value="<?= $id ?>">
+								<label for="view-nama">Nama / Jenis Sertifikasi</label>
+								<input type="text" id="view-nama" name="nama" class="form-control">
 
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="view-status_perolehan">Status Perolehan</label>
-								<select name="status_perolehan" id="view-status_perolehan" class="form-control">
+								<label for="view-lembaga_penerbit">Lembaga Penerbit Sertifikasi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat sudah diperoleh">!</span></label>
+								<input type="text" id="view-lembaga_penerbit" name="lembaga_penerbit" class="form-control">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="view-status">Status Perolehan</label>
+								<select name="status" id="view-status" class="form-control">
 									<option value="Belum Diperoleh">Belum Diperoleh</option>
 									<option value="Pengajuan Permohonan">Pengajuan Permohonan</option>
 									<option value="Disetujui">Disetujui</option>
 								</select>
-
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="view-no_pemohon">Nomor Permohonan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sudah diajukan permohonan, misal: S0020190xxxx, P002019xxxx">!</span></label>
-								<input type="text" id="view-no_pemohon" name="no_pemohon" class="form-control">
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="view-file_formulir">File Formulir Permohonan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file_formulir_old" id="view-file_formulir_old" class="form-control" type="text" hidden></input>
-								<input name="file_formulir" id="view-file_formulir" class="form-control" type="file"></input>
+								<label for="view-tahun_perolehan">Tahun Perolehan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat telah diperoleh">!</span></label>
+								<input name="tahun_perolehan" id="view-tahun_perolehan" class="form-control" type="number"></input>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -212,29 +186,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<input name="no_sertifikat" id="view-no_sertifikat" class="form-control" type="text"></input>
 							</div>
 						</div>
+
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="view-file">File Kekayaan Intelektual <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file_old" id="view-file_old" class="form-control" type="text" hidden></input>
-								<input name="file" id="view-file" class="form-control" type="file"></input>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group">
-								<label for="view-tanggal_mulai">Tanggal Sertifikat Mulai Berlaku</label>
+								<label for="view-tanggal_mulai">Tanggal Sertifikat Mulai Berlaku <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat telah diperoleh">!</span></label>
 								<input name="tanggal_mulai" id="view-tanggal_mulai" class="form-control datepicker" type="text"></input>
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="view-tanggal_selesai">Tanggal Sertifikat Berakhir</label>
+								<label for="view-tanggal_selesai">Tanggal Sertifikat Berakhir <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika sertifikat telah diperoleh">!</span></label>
 								<input name="tanggal_selesai" id="view-tanggal_selesai" class="form-control datepicker" type="text">
 							</div>
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="view-pemegang">Pemilik Kekayaan Intelektual</label>
-								<input name="pemegang" id="view-pemegang" class="form-control" type="text"></input>
+								<label for="view-file_sertifikasi">File Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
+								<input name="file_sertifikasi_old" id="view-file_sertifikasi_old" class="form-control" type="text" hidden></input>
+								<input name="file_sertifikasi" id="view-file_sertifikasi" class="form-control" type="file"></input>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -260,20 +229,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		triggerEditor('#form-add')
 		triggerEditor('#form-view')
 		$('#table').DataTable({
-			"ajax": api + 'service/kekayaan_intelektual/get/<?= $id ?>',
+			"ajax": api + 'service/sertifikasi/get/<?= $id ?>',
 			"columns": [{
 				"render": function(data, type, row, meta) {
 					return meta.row + meta.settings._iDisplayStart + 1;
 				},
 				className: "text-center"
 			}, {
-				"data": "jenis"
+				"data": "nama"
 			}, {
-				"data": "tanggal_mulai"
+				"data": "tahun_perolehan"
 			}, {
-				"data": "tanggal_selesai"
+				"data": "lembaga_penerbit"
 			}, {
-				"data": "status_perolehan"
+				"data": "status"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
 					return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
@@ -283,56 +252,38 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		var table = $('#table').DataTable()
 		$('#table tbody').on('click', 'button', function() {
 			var data = table.row($(this).parents('tr')).data()
-			$('#view-jenis').val(data.jenis)
-			setEditor('view-deskripsi', data.deskripsi)
 			$('#view-id').val(data.id)
-			$('#view-tahun').val(data.tahun)
-			$('#view-file_old').val(data.file)
-			$('#view-file_formulir_old').val(data.file_formulir)
-			$('#view-status_perolehan').val(data.status_perolehan)
-			$('#view-no_pemohon').val(data.no_pemohon)
+			$('#view-nama').val(data.nama)
+			setEditor('view-deskripsi', data.deskripsi)
+			$('#view-file_sertifikasi_old').val(data.file_sertifikasi)
+			$('#view-status').val(data.status)
+			$('#view-tahun_perolehan').val(data.tahun_perolehan)
 			$('#view-no_sertifikat').val(data.no_sertifikat)
-			$('#view-pemegang').val(data.pemegang)
 			$('#view-tanggal_mulai').val(data.tanggal_mulai)
 			$('#view-tanggal_selesai').val(data.tanggal_selesai)
+			$('#view-lembaga_penerbit').val(data.lembaga_penerbit)
 			$('#view').modal('show')
 		})
 
 		$('#form-add').validate({
 			rules: {
-				jenis: {
+				id: {
+					required: true,
+				},
+				nama: {
 					required: true,
 				},
 				status_perolehan: {
 					required: true
 				},
-				no_pemohon: {
-					required: true
-				},
-				// file_formulir: {
-				// 	required: true
-				// },
-				no_sertifikat: {
-					required: true
-				},
-				// file: {
-				// 	required: true
-				// },
-				tanggal_mulai: {
-					required: true
-				},
-				tanggal_selesai: {
-					required: true
-				},
-				pemegang: {
+				sertifikasi: {
 					required: true
 				},
 			},
 			submitHandler: function(form) {
 				let temp = $('#form-add').serialize()
 				let formData = new FormData()
-				formData.append('file_formulir', document.getElementById('add-file_formulir').files[0])
-				formData.append('file', document.getElementById('add-file').files[0])
+				formData.append('file_sertifikasi', document.getElementById('add-file_sertifikasi').files[0])
 				temp = temp.split('&')
 				temp.forEach(value => {
 					let temp_value = value.split('=')
@@ -341,7 +292,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				formData.append('deskripsi', $('#add-deskripsi').val())
 				$.ajax({
 					type: "POST",
-					url: api + "service/kekayaan_intelektual/create",
+					url: api + "service/sertifikasi/create",
 					data: formData,
 					async: false,
 					processData: false,
@@ -363,18 +314,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				id: {
 					required: true,
 				},
+				nama: {
+					required: true,
+				},
+				tahun: {
+					required: true
+				},
+				status: {
+					required: true
+				},
 				jenis: {
 					required: true,
 				},
-				status_perolehan: {
-					required: true
-				},
+				lembaga: {
+					required: true,
+				}
 			},
 			submitHandler: function(form) {
 				let temp = $('#form-view').serialize()
 				let formData = new FormData()
-				formData.append('file_formulir', document.getElementById('view-file_formulir').files[0])
-				formData.append('file', document.getElementById('view-file').files[0])
+				formData.append('file_sertifikasi', document.getElementById('view-file_sertifikasi').files[0])
 				temp = temp.split('&')
 				temp.forEach(value => {
 					let temp_value = value.split('=')
@@ -383,7 +342,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				formData.append('deskripsi', $('#view-deskripsi').val())
 				$.ajax({
 					type: "POST",
-					url: api + "service/kekayaan_intelektual/update",
+					url: api + "service/sertifikasi/update",
 					data: formData,
 					async: false,
 					processData: false,

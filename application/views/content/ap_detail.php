@@ -73,51 +73,23 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="<?= base_url() . 'admin/ki/' . $slug ?>">
-      													<div class="timeline-icon"><i class="fa fa-lightbulb"></i></div>
-      												</a>
-      												<span class="year">Tahap 4</span>
-      												<div class="timeline-content">
-      													<h5 class="title">Kekayaan Intelektual</h5>
-      													<p class="description">
-      														Apa saja kekayaan intelektual produk kamu?
-      													</p>
-      												</div>
-      											</div>
-
-      											<div class="timeline">
       												<a href="<?= base_url() . 'admin/sertifikasi/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-certificate"></i></div>
       												</a>
-      												<span class="year">Tahap 5</span>
+      												<span class="year">Tahap 4</span>
       												<div class="timeline-content">
-      													<h5 class="title">Sertifikasi</h5>
+      													<h5 class="title">Sertifikasi dan Perijinan Produk</h5>
       													<p class="description">
-      														Hayoo sertifikasinya jangan lupa
+      														Apa saja sertifikasi dan perijinan produkmu?
       													</p>
       												</div>
       											</div>
-
-      											<div class="timeline">
-      												<a href="<?= base_url() . 'admin/izin/' . $slug ?>">
-      													<div class="timeline-icon"><i class="fa fa-check-circle"></i></div>
-      												</a>
-      												<span class="year">Tahap 6</span>
-      												<div class="timeline-content">
-      													<h5 class="title">Izin</h5>
-      													<p class="description">
-      														Udah punya izin belum?
-      													</p>
-      												</div>
-
-      											</div>
-
 
       											<div class="timeline">
       												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       												</a>
-      												<span class="year">Tahap 7</span>
+      												<span class="year">Tahap 5</span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Produk</h5>
       													<p class="description">
@@ -129,7 +101,7 @@
       												<a href="<?= base_url() . 'admin/kegiatan/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       												</a>
-      												<span class="year">Tahap 8</span>
+      												<span class="year">Tahap 6</span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Kegiatan</h5>
       													<p class="description">
@@ -142,7 +114,7 @@
       												<a href="<?= base_url() . 'admin/inventor/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-users"></i></div>
       												</a>
-      												<span class="year">Tahap 9</span>
+      												<span class="year">Tahap 7</span>
       												<div class="timeline-content">
       													<h5 class="title">Inventor</h5>
       													<p class="description">
@@ -152,10 +124,10 @@
       											</div>
 
       											<div class="timeline">
-      												<a href="<?= base_url() . 'admin/perusahaan/' . $slug ?>">
+      												<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
       												</a>
-      												<span class="year">Tahap 10</span>
+      												<span class="year">Tahap 8</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Perusahaan</h5>
       													<p class="description">
@@ -167,7 +139,7 @@
       												<a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
       												</a>
-      												<span class="year">Tahap 11</span>
+      												<span class="year">Tahap 9</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Bisnis</h5>
       													<p class="description">

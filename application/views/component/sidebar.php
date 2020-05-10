@@ -36,7 +36,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<?php
 			if ($this->session->userdata('is_admin') == 'admin' || $this->session->userdata('is_admin') == 'verifikator') {
 			?>
-				<li class="<?php echo $this->uri->segment(2) == 'verifikasi' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/verifikasi"><i class="fas fa-check-circle"></i><span>verifikasi</span></a></li>
+				<li class="<?php echo $this->uri->segment(2) == 'verifikasi' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/verifikasi"><i class="fas fa-check-circle"></i><span>Verifikasi</span></a></li>
 				</li>
 			<?php
 			} ?>
@@ -48,7 +48,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<li class="<?php echo $this->uri->segment(2) == 'manage' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/manage"><i class="fas fa-users"></i> <span>Management User</span></a></li>
 			<?php
 			} ?>
-			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>profile</span></a></li>
+			<li class="<?php echo $this->uri->segment(2) == 'perusahaan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/perusahaan"><i class="fas fa-briefcase"></i> <span>Perusahaan</span></a></li>
+			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>Profile</span></a></li>
 			<li class="<?php echo $this->uri->segment(2) == 'logout' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>login"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
 		</ul>
 	</aside>

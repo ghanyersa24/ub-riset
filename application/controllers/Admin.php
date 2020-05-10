@@ -85,7 +85,7 @@ class Admin extends CI_Controller
 	public function sertifikasi($slug)
 	{
 		$data = riset::slugs($slug);
-		$data['title'] = 'Sertifikasi ' . $data['title'];
+		$data['title'] = 'Sertifikasi / Perijinan ' . $data['title'];
 		$data['content'] = 'ap_sertifikasi';
 		$this->load->view('template', $data);
 	}
@@ -105,11 +105,26 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
-	public function perusahaan($slug)
+	public function perusahaan($slug = null)
+	{
+		if ($slug == null) {
+			$data = riset::slugs($slug);
+			$data['title'] = 'Daftar Perusahaan';
+			$data['content'] = 'ap_perusahaan';
+			$this->load->view('template', $data);
+		} else {
+			$data = riset::slugs($slug);
+			$data['title'] = 'Profil Perusahaan ' . $data['title'];
+			$data['content'] = 'ap_perusahaan_detail';
+			$this->load->view('template', $data);
+		}
+	}
+
+	public function perusahaan_select($slug)
 	{
 		$data = riset::slugs($slug);
-		$data['title'] = 'Profil Perusahaan ' . $data['title'];
-		$data['content'] = 'ap_data_perusahaan';
+		$data['title'] = 'Pilih Perusahaan ' . $data['title'];
+		$data['content'] = 'ap_perusahaan_pilih';
 		$this->load->view('template', $data);
 	}
 

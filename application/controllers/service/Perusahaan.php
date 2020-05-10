@@ -17,27 +17,27 @@ class Perusahaan extends CI_Controller
 			"tahun_berdiri" => post('tahun_berdiri', 'required|numeric'),
 			"bentuk_usaha" => post('bentuk_usaha', 'enum:PT&CV&Belum memiliki badan usaha'),
 			"status_kantor" => post('status_kantor', 'enum:Milik sendiri&Sewa&Berbagi dengan perusahaan lain'),
-			"alamat_kantor" => post('alamat_kantor'),
-			"kota_kabupaten" => post('kota_kabupaten'),
-			"luas_ruang_produksi" => post('luas_ruang_produksi', 'numeric|max_value:2021'),
-			"alamat_produksi" => post('alamat_produksi'),
-			"pegawai_tetap" => post('pegawai_tetap', 'numeric'),
-			"pegawai_tidak_tetap" => post('pegawai_tidak_tetap', 'numeric'),
-			"email" => post('email', 'email'),
-			"telepon" => post('telepon', 'numeric|max_char:13'),
-			"website" => post('website'),
-			"sosmed" => post('sosmed'),
+			// "alamat_kantor" => post('alamat_kantor'),
+			// "kota_kabupaten" => post('kota_kabupaten'),
+			// "luas_ruang_produksi" => post('luas_ruang_produksi', 'numeric|max_value:2021'),
+			// "alamat_produksi" => post('alamat_produksi'),
+			// "pegawai_tetap" => post('pegawai_tetap', 'numeric'),
+			// "pegawai_tidak_tetap" => post('pegawai_tidak_tetap', 'numeric'),
+			// "email" => post('email', 'email'),
+			// "telepon" => post('telepon', 'numeric|max_char:13'),
+			// "website" => post('website'),
+			// "sosmed" => post('sosmed'),
 			// "aset_yang_dimiliki" => post('aset_yang_dimiliki'),
 		);
 
-		if (isset($_FILES['akta']))
-			$data['akta'] = UPLOAD_FILE::pdf('akta', "perusahaan/$nama", "akta-$nama");
+		// if (isset($_FILES['akta']))
+		// 	$data['akta'] = UPLOAD_FILE::pdf('akta', "perusahaan/$nama", "akta-$nama");
 
-		if (isset($_FILES['struktur_organisasi']))
-			$data['struktur_organisasi'] = UPLOAD_FILE::pdf('struktur_organisasi', "perusahaan/$nama", "struktur_organisasi-$nama");
+		// if (isset($_FILES['struktur_organisasi']))
+		// 	$data['struktur_organisasi'] = UPLOAD_FILE::pdf('struktur_organisasi', "perusahaan/$nama", "struktur_organisasi-$nama");
 
-		if (isset($_FILES['logo']))
-			$data['logo'] = UPLOAD_FILE::img('logo', "perusahaan/$nama", "logo-$nama");
+		// if (isset($_FILES['logo']))
+		// 	$data['logo'] = UPLOAD_FILE::img('logo', "perusahaan/$nama", "logo-$nama");
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
