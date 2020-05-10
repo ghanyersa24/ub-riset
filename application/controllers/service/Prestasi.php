@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Produk_perusahaan extends CI_Controller
+class Prestasi extends CI_Controller
 {
-	protected $table = "produk_perusahaan";
+	protected $table = "prestasi";
 	public function __construct()
 	{
 		parent::__construct();
@@ -12,8 +12,8 @@ class Produk_perusahaan extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id', 'required'),
-			"perusahaan_id" => post('perusahaan_id', 'required'),
+			"nama_kegiatan" => post('nama_kegiatan', 'required'),
+			"juara" => post('juara', 'required'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -26,11 +26,11 @@ class Produk_perusahaan extends CI_Controller
 
 	public function get($id = null)
 	{
-		// if (is_null($id)) {
-		// $do = DB_MODEL::all($this->table);
-		// } else {
-		$do = DB_MODEL::join('produk_perusahaan', 'perusahaan', null, null, ['produk_id' => $id]);
-		// }
+		if (is_null($id)) {
+			$do = DB_MODEL::all($this->table);
+		} else {
+			$do = DB_MODEL::find($this->table, array("id" => $id));
+		}
 
 		if (!$do->error)
 			success("data berhasil ditemukan", $do->data);
@@ -41,13 +41,12 @@ class Produk_perusahaan extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => post('produk_id', 'required'),
-			"perusahaan_id" => post('perusahaan_id', 'required'),
+			"nama_kegiatan" => post('nama_kegiatan', 'required'),
+			"juara" => post('juara', 'required'),
 		);
 
 		$where = array(
-			"produk_id" => post('produk_id', 'required'),
-			"perusahaan_id" => post('perusahaan_id_old', 'required'),
+			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -60,8 +59,7 @@ class Produk_perusahaan extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"produk_id" => post('produk_id', 'required'),
-			"perusahaan_id" => post('perusahaan_id', 'required'),
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

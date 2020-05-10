@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 12:42 AM
+-- Generation Time: May 10, 2020 at 08:50 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -291,6 +291,15 @@ CREATE TABLE `pengurus` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pengurus`
+--
+
+INSERT INTO `pengurus` (`perusahaan_id`, `users_id`, `jabatan`, `status_sdm`, `jenis_pengurus`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, '165150401111060', NULL, NULL, NULL, '165150401111060', '2020-05-10 08:10:10', NULL, NULL),
+(2, '165150401111060', NULL, NULL, NULL, '165150401111060', '2020-05-10 17:55:31', NULL, NULL),
+(3, '165150401111060', NULL, NULL, NULL, '165150401111060', '2020-05-10 18:29:50', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -300,6 +309,7 @@ CREATE TABLE `pengurus` (
 CREATE TABLE `perusahaan` (
   `id` int(10) UNSIGNED NOT NULL,
   `nama` varchar(100) NOT NULL,
+  `slug` tinytext NOT NULL,
   `nama_pendiri` varchar(100) DEFAULT NULL,
   `tahun_berdiri` year(4) DEFAULT NULL,
   `bentuk_usaha` enum('PT','CV','Belum memiliki badan usaha') NOT NULL,
@@ -322,6 +332,13 @@ CREATE TABLE `perusahaan` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `perusahaan`
+--
+
+INSERT INTO `perusahaan` (`id`, `nama`, `slug`, `nama_pendiri`, `tahun_berdiri`, `bentuk_usaha`, `status_kantor`, `alamat_kantor`, `kota_kabupaten`, `struktur_organisasi`, `luas_ruang_produksi`, `logo`, `alamat_produksi`, `pegawai_tetap`, `pegawai_tidak_tetap`, `akta`, `email`, `telepon`, `website`, `sosmed`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(3, 'Nam velit dolor veli', '0003-Nam-velit-dolor-veli', 'Ex qui cillum enim e', 2033, 'Belum memiliki badan usaha', 'Berbagi dengan perusahaan lain', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, '165150401111060', '2020-05-10 18:29:50', '165150401111060', NULL);
 
 -- --------------------------------------------------------
 
@@ -382,6 +399,13 @@ CREATE TABLE `produk_perusahaan` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `produk_perusahaan`
+--
+
+INSERT INTO `produk_perusahaan` (`produk_id`, `perusahaan_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, '165150401111060', '2020-05-10 18:15:11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1015,7 +1039,7 @@ INSERT INTO `users` (`id`, `nama`, `fakultas`, `jurusan`, `prodi`, `status`, `is
 ('165110200111018', 'ZASQIA RISKY SETIAWAN', 'Fak Ilmu Budaya', 'Bahasa dan Sastra', 'Sastra Jepang', 'mahasiswa', 'no', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165110200111018.jpg', NULL, NULL, '', '2020-05-05 23:30:50', NULL, NULL),
 ('165110201111024', 'Ruth Putri Octavia Dewi', 'Fak Ilmu Budaya', 'Bahasa dan Sastra', 'Sastra Jepang', 'mahasiswa', 'no', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165110201111024.jpg', NULL, NULL, '', '2020-05-05 23:30:50', NULL, NULL),
 ('165110307111003', 'Tri Supriansyah', 'Fak Ilmu Budaya', 'Bahasa dan Sastra', 'Bahasa dan Sastra Perancis', 'mahasiswa', 'no', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165110307111003.jpg', NULL, NULL, '', '2020-05-05 23:30:50', NULL, NULL),
-('165150401111060', 'Ghany Abdillah Ersa', 'Fakultas Ilmu Komputer', 'Sistem Informasi', 'Sistem Informasi', 'mahasiswa', 'no', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150401111060.jpg', NULL, NULL, '165150401111060', '2020-05-09 22:40:32', '165150401111060', NULL);
+('165150401111060', 'Ghany Abdillah Ersa', 'Fakultas Ilmu Komputer', 'Sistem Informasi', 'Sistem Informasi', 'mahasiswa', 'verifikator', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150401111060.jpg', NULL, NULL, '165150401111060', '2020-05-10 12:52:23', '165150401111060', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1236,7 +1260,7 @@ ALTER TABLE `pengujian`
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `produk`

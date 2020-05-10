@@ -334,162 +334,32 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </div>
 </div>
 <script>
-    $('#view-logo').change(function() {
-        let filename = document.getElementById('view-logo').files[0].name
-        $('label.custom-file-label').html(filename)
-        $('#prev-view-logo').show()
-    })
-
-    $('#btn-upload').click(async function(e) {
-        if (document.getElementById('view-logo').files[0] == undefined) {
-            $('label.custom-file-label').html('<span class="text-danger">Pilih file terlebih dahulu</span>');
-        } else {
-            await $('#progress-upload').fadeIn().delay(500)
-            $('body').addClass('overflow-hidden')
-            let formData = new FormData();
-            formData.append('logo_produk', document.getElementById('view-logo').files[0])
-            formData.append('id', $('#view-id').val())
-            await setTimeout(async function() {
-                await $.ajax({
-                    type: "POST",
-                    url: api + 'service/produk/upload',
-                    data: formData,
-                    async: false,
-                    processData: false,
-                    contentType: false,
-                    success: function(response) {
-                        setTimeout(function() {
-                            response_alert(response)
-                            if (!response.error) {
-                                $('#prev-view-logo_produk').attr('src', response.data.logo_produk)
-                                $('label.custom-file-label').html('<span class="text-primary">File berhasil diupload</span>')
-                                $('#logo').modal('hide')
-                            }
-                        }, 500)
-                    }
-                })
-                await $('body').removeClass('overflow-hidden')
-                await $('#progress-upload').fadeOut()
-            }, 1500)
-        }
-    });
-
-    function del(id, link) {
-        swal({
-                title: "Apakah Kamu yakin?",
-                text: "untuk menghapus pengurus ini dari perusahaan",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        type: "POST",
-                        url: api + 'service/foto_produk/delete',
-                        data: {
-                            id: id,
-                            foto_old: link
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            response_alert(response)
-                            if (!response.error)
-                                get()
-                        }
-                    })
-                }
-            });
-    }
-    const pengurusList = [{
-            id: 1,
-            text: '175150400111035 - Fawwaz Daffa Muhammad'
-        },
-        {
-            id: 2,
-            text: '175150400111034 - Reyhan Ivandi'
-        },
-        {
-            id: 3,
-            text: '175150400111035 - Ghany Abdillah Ersa'
-        }
-    ]
     $(document).ready(function() {
-        //table-kepemilikan
-        $("#table-kepemilikan").DataTable({
-            "ajax": api + 'service/kekayaan_intelektual/get/<?= $id ?>',
-            "columns": [{
-                "render": function(data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                },
-                className: "text-center"
-            }, {
-                "data": "jenis"
-            }, {
-                "data": "tanggal_mulai"
-            }, {
-                "data": "tanggal_selesai"
-            }, {
-                "data": "status_perolehan"
-            }, {
-                "render": function(data, type, JsonResultRow, meta) {
-                    return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
-                }
-            }]
+
+
+
+        editor('#view-solusi')
+        $('#view-solusi').html(data.solusi)
+
+        editor('#view-spesifikasi_teknis')
+        $('#view-spesifikasi_teknis').html(data.spesifikasi_teknis)
+
+        editor('#view-kegunaan_manfaat')
+        $('#view-kegunaan_manfaat').html(data.kegunaan_manfaat)
+
+        editor('#view-teknologi_yang_dikembangkan')
+        $('#view-teknologi_yang_dikembangkan').html(data.teknologi_yang_dikembangkan)
+
+        editor('#view-rencana_pengembangan')
+        $('#view-rencana_pengembangan').html(data.rencana_pengembangan)
+
+        let kategori = JSON.parse(data.kategori)
+        $(`#view-kategori`).val(kategori)
+        $("#view-kategori").select2({
+            tags: true,
+            tokenSeparators: kategori
         })
-        //end of table-kepemilikan
-        $("#view-pengurus").select2({
-            data: pengurusList,
-            tags: true
-        })
-        $.ajax({
-            type: "GET",
-            url: api + 'service/produk/get/<?= $id ?>',
-            success: function(response) {
-                let data = response.data
-                for (key in data) {
-                    $(`#view-${key}`).val(data[key])
-                }
-                $('#prev-view-logo_produk').attr('src', response.data.logo_produk)
 
-                editor('#view-latar_belakang')
-                $('#view-latar_belakang').html(data.latar_belakang)
-
-                editor('#view-deskripsi_lengkap')
-                $('#view-deskripsi_lengkap').html(data.deskripsi_lengkap)
-
-                editor('#view-masalah')
-                $('#view-masalah').html(data.masalah)
-
-                editor('#view-keunggulan_keunikan')
-                $('#view-keunggulan_keunikan').html(data.keunggulan_keunikan)
-
-                editor('#view-keterbaruan_produk')
-                $('#view-keterbaruan_produk').html(data.keterbaruan_produk)
-
-                editor('#view-solusi')
-                $('#view-solusi').html(data.solusi)
-
-                editor('#view-spesifikasi_teknis')
-                $('#view-spesifikasi_teknis').html(data.spesifikasi_teknis)
-
-                editor('#view-kegunaan_manfaat')
-                $('#view-kegunaan_manfaat').html(data.kegunaan_manfaat)
-
-                editor('#view-teknologi_yang_dikembangkan')
-                $('#view-teknologi_yang_dikembangkan').html(data.teknologi_yang_dikembangkan)
-
-                editor('#view-rencana_pengembangan')
-                $('#view-rencana_pengembangan').html(data.rencana_pengembangan)
-
-                let kategori = JSON.parse(data.kategori)
-                $(`#view-kategori`).val(kategori)
-                $("#view-kategori").select2({
-                    tags: true,
-                    tokenSeparators: kategori
-                })
-            }
-        })
 
         $('#form-view-profil').validate({
             submitHandler: function(form) {
@@ -533,7 +403,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 })
             }
         })
-    });
+
+    })
 
     function getPengurus() {
         $.ajax({

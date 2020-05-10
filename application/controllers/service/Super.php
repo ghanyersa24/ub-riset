@@ -18,6 +18,7 @@ class Super extends CI_Controller
 		$where = ['produk_id' => $slugs->data['id']];
 		$data = [
 			'produk' => $slugs->data['produk'],
+			'pengajuan' => DB_MODEL::find('pengajuan', $where),
 			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
