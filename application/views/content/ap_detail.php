@@ -20,9 +20,20 @@
       										<h4>Roadmap Pengisian Produk</h4>
       									</div>
       									<div class="col-md-6">
-      										<button id="btn-ajukan" class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
-      											<i class="fa fa-save"></i>
-      											Ajukan validasi produk</button>
+      										<div class="d-flex flex-wrap justify-content-end align-items-center mr-0">
+      											<a href="<?= base_url() . 'admin/tambahan/' . $slug ?>">
+      												<button class="btn btn-icon icon-left btn-primary mr-md-2 mb-2 ml-0 mr-auto">
+      													<i class="fa fa-plus"></i>
+      													Data Tambahan</button>
+      											</a>
+
+
+      											<button id="btn-ajukan" class="btn btn-icon icon-left btn-primary mr-md-0 mb-2 ml-0 mr-auto">
+      												<i class="fa fa-save"></i>
+      												Ajukan validasi produk</button>
+
+      										</div>
+
       									</div>
       								</div>
       								<div class="alert alert-light alert-has-icon">
@@ -30,6 +41,18 @@
       									<div class="alert-body">
       										<div class="alert-title">Petunjuk pengisian</div>
       										Pengisian tidak harus dilakukan hingga tahap terakhir, kamu bisa mengajukan validasi produkmu setelah pengisian dari tahap berapapun agar produk dapat ditampilkan pada website utama Brawijaya Riset dan Inovasi.
+      									</div>
+      								</div>
+
+      								<div class="d-flex flex-wrap justify-content-between mb-4">
+      									<div>
+      										<p class="mb-0">Validasi Terakhir: <strong>14 Juni 2020</strong></p>
+      										<p class="mb-0">Oleh:<strong>Prof. Bagus Fahmi</strong></p>
+      										<button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
+      									</div>
+      									<div class="text-md-right">
+      										<p class="mb-0">Status TKT: <strong>6</strong></p>
+      										<p>Tingkat KATSINOV: <strong>9</strong></p>
       									</div>
       								</div>
 
@@ -101,7 +124,7 @@
       												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       												</a>
-      												<span class="year">Tahap 5</span>
+      												<span class="year">Tahap 6</span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Produk</h5>
       													<p class="description">
@@ -113,7 +136,7 @@
       												<a href="<?= base_url() . 'admin/kegiatan/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       												</a>
-      												<span class="year">Tahap 6</span>
+      												<span class="year">Tahap 7</span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Kegiatan</h5>
       													<p class="description">
@@ -126,7 +149,7 @@
       												<a href="<?= base_url() . 'admin/inventor/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-users"></i></div>
       												</a>
-      												<span class="year">Tahap 7</span>
+      												<span class="year">Tahap 8</span>
       												<div class="timeline-content">
       													<h5 class="title">Inventor</h5>
       													<p class="description">
@@ -139,7 +162,7 @@
       												<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
       												</a>
-      												<span class="year">Tahap 8</span>
+      												<span class="year">Tahap 9</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Perusahaan</h5>
       													<p class="description">
@@ -151,7 +174,7 @@
       												<a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
       												</a>
-      												<span class="year">Tahap 9</span>
+      												<span class="year">Tahap 10</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Bisnis</h5>
       													<p class="description">

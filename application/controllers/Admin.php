@@ -178,6 +178,14 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function tambahan($slug)
+	{
+		$data = riset::slugs($slug);
+		$data['title'] = 'Data Tambahan ' . $data['title'];;
+		$data['content'] = 'ap_tambahan';
+		$this->load->view('template', $data);
+	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();
