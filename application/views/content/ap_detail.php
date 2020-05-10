@@ -84,6 +84,18 @@
       													</p>
       												</div>
       											</div>
+      											<div class="timeline">
+      												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
+      													<div class="timeline-icon"><i class="fa fa-handshake"></i></div>
+      												</a>
+      												<span class="year">Tahap 5</span>
+      												<div class="timeline-content">
+      													<h5 class="title">Mitra dan Kerjsama</h5>
+      													<p class="description">
+      														Tunjukkan kekecean produkmu
+      													</p>
+      												</div>
+      											</div>
 
       											<div class="timeline">
       												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
