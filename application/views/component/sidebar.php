@@ -50,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			} ?>
 			<li class="<?php echo $this->uri->segment(2) == 'perusahaan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/perusahaan"><i class="fas fa-briefcase"></i> <span>Perusahaan</span></a></li>
 			<li class="<?php echo $this->uri->segment(2) == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>Profile</span></a></li>
-			<li class="<?php echo $this->uri->segment(2) == 'logout' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>login"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+			<li class="<?php echo $this->uri->segment(2) == 'logout' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/logout"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
 		</ul>
 	</aside>
 </div>
