@@ -15,44 +15,44 @@ defined('BASEPATH') or exit('No direct script access allowed');
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card ">
-                        <form id="form-view" name="form-view" method="post">
-                            <div class="card-body">
-                                <div class="tabs">
-                                    <input type="radio" id="tab1" name="tab-control" checked>
-                                    <input type="radio" id="tab2" name="tab-control">
-                                    <input type="radio" id="tab3" name="tab-control">
-                                    <input type="radio" id="tab4" name="tab-control">
-                                    <ul>
-                                        <li title="profil">
-                                            <label for="tab1" role="button" id="tabs-profil">
-                                                <i class="fas fa-brain"></i>
-                                                <br><span>Profil</span>
-                                            </label>
-                                        </li>
-                                        <li title="pengurus">
-                                            <label for="tab2" role="button" id="tabs-pengurus">
-                                                <i class="fa fa-users"></i>
-                                                <br><span>Pengurus</span>
-                                            </label>
-                                        </li>
-                                        <li title="kepemilikan">
-                                            <label for="tab3" role="button" id="tabs-kepemilikan">
-                                                <i class="fas fa-code-branch"></i>
-                                                <br><span>Kepemilikan</span>
-                                            </label>
-                                        </li>
-                                        <li title="aset">
-                                            <label for="tab4" role="button" id="tabs-aset">
-                                                <i class="fas fa-list-ul"></i>
-                                                <br><span>Aset</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                    <div class="slider">
-                                        <div class="indicator"></div>
-                                    </div>
-                                    <div class="content">
-                                        <section id="tab-profil">
+                        <div class="card-body">
+                            <div class="tabs">
+                                <input type="radio" id="tab1" name="tab-control" checked>
+                                <input type="radio" id="tab2" name="tab-control">
+                                <input type="radio" id="tab3" name="tab-control">
+                                <input type="radio" id="tab4" name="tab-control">
+                                <ul>
+                                    <li title="profil">
+                                        <label for="tab1" role="button" id="tabs-profil">
+                                            <i class="fas fa-brain"></i>
+                                            <br><span>Profil</span>
+                                        </label>
+                                    </li>
+                                    <li title="pengurus">
+                                        <label for="tab2" role="button" id="tabs-pengurus">
+                                            <i class="fa fa-users"></i>
+                                            <br><span>Pengurus</span>
+                                        </label>
+                                    </li>
+                                    <li title="kepemilikan">
+                                        <label for="tab3" role="button" id="tabs-kepemilikan">
+                                            <i class="fas fa-code-branch"></i>
+                                            <br><span>Kepemilikan</span>
+                                        </label>
+                                    </li>
+                                    <li title="aset">
+                                        <label for="tab4" role="button" id="tabs-aset">
+                                            <i class="fas fa-list-ul"></i>
+                                            <br><span>Aset</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                                <div class="slider">
+                                    <div class="indicator"></div>
+                                </div>
+                                <div class="content">
+                                    <section id="tab-profil">
+                                        <form id="form-view-profil">
                                             <div class="row">
                                                 <div class="col-md-4 px-3 border-right border-default">
                                                     <div class="form-group">
@@ -120,28 +120,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                         <label for="view-media_sosial">Sosial Media</label>
                                                         <input id="view-media_sosial" class="form-control" type="text" name="media_sosial">
                                                     </div>
+                                                    <button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Profil</button>
                                                 </div>
                                             </div>
-                                        </section>
+                                        </form>
+                                    </section>
 
-                                        <section id="tab-pengurus">
+                                    <section id="tab-pengurus">
+                                        <form id="form-view-pengurus">
                                             <div class="row" id="pengurus-wrap">
-                                                <div class="card col-md-3 ">
-                                                    <div class="card-body shadow rounded">
-                                                        <img src="../" alt="" class="w-100" style="height:200px">
-                                                        <hr>
-                                                        <div class="d-flex justify-content-between">
-                                                            <span class="h5 card-title">Ini namanya</span>
-                                                            <span><button type="button" class="btn btn-default" onclick="del()"><i class="fas fa-trash"></i></button></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
 
 
                                             <div class="form-group">
-                                                <label for="view-pengurus">Pilih Pengurus</label>
-                                                <select name="pengurus" id="view-pengurus" class="select2 form-control">
+                                                <label for="view-pengurus" class="d-block">Pilih Pengurus</label>
+                                                <select name="pengurus" id="view-pengurus" class="select2 form-control ">
 
                                                 </select>
                                             </div>
@@ -151,11 +145,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 <label for="view-jabatan">Jabatan</label>
                                                 <input type="text" class="form-control" id="view-jabatan">
                                             </div>
+                                            <button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Pengurus</button>
 
 
-
-                                        </section>
-                                        <section id="tab-kepemilikan">
+                                        </form>
+                                    </section>
+                                    <section id="tab-kepemilikan">
+                                        <form id="form-view-kepemilikan">
                                             <div class="table-responsive">
                                                 <table class="table table-striped" id="table-kepemilikian">
                                                     <thead>
@@ -224,10 +220,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                         <input type="number" id="add-presentase_kepemilikan" name="presentase_kepemilikan" class="form-control">
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                        </section>
-                                        <section id="tab-aset">
+                                            </div>
+                                            <button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Kepemilikan</button>
+                                        </form>
+                                    </section>
+                                    <section id="tab-aset">
+                                        <form id="form-view-aset">
                                             <div class="table-responsive">
                                                 <table class="table table-striped" id="table-kepemilikian">
                                                     <thead>
@@ -288,14 +287,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                                 </div>
 
                                             </div>
-                                        </section>
-                                    </div>
+                                            <button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Aset</button>
+                                        </form>
+                                    </section>
                                 </div>
                             </div>
-                            <div class="card-footer text-right">
-                                <button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
-                            </div>
-                        </form>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -492,41 +491,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
             }
         })
 
-        $('#form-view').validate({
-            rules: {
-                id: {
-                    required: true,
-                },
-                nama_produk: {
-                    required: true,
-                },
-                jenis: {
-                    required: true
-                },
-                deskripsi_singkat: {
-                    required: true
-                },
-                bidang: {
-                    required: true,
-                },
-                kesiapan_teknologi: {
-                    required: true
-                },
-                kepemilikan_teknologi: {
-                    required: true
-                },
-                pemilik_teknologi: {
-                    required: true
-                }
-            },
+        $('#form-view-profil').validate({
             submitHandler: function(form) {
-                var data = $('#form-view').serialize()
+                var data = $('#form-view-profil').serialize()
                 $.ajax({
                     type: "POST",
-                    url: api + "service/produk/update",
+                    url: api + "service/perusahaan/update",
                     data: data,
                     dataType: "json",
                     success: function(response) {
+                        response_alert(response)
                         $.ajax({
                             type: "POST",
                             url: api + "service/produk/update",
@@ -543,7 +517,41 @@ defined('BASEPATH') or exit('No direct script access allowed');
                 })
             }
         })
+
+        $('#form-view-profil').validate({
+            submitHandler: function(form) {
+                var data = $('#form-view-profil').serialize()
+                $.ajax({
+                    type: "POST",
+                    url: api + "service/perusahaan/update",
+                    data: data,
+                    dataType: "json",
+                    success: function(response) {
+                        response_alert(response)
+                        getPengurus()
+                    }
+                })
+            }
+        })
     });
+
+    function getPengurus() {
+        $.ajax({
+            type: "POST",
+            url: api + "service/pengurus/get",
+            data: data,
+            dataType: "json",
+            success: function(response) {
+                let stringPengurus = ""
+                if (response.data.length != 0) {
+                    response.data.forEach(element => {
+                        stringPengurus += '<div class="card col-md-3 "><div class="card-body shadow rounded"> <img src = "../" alt = "" class = "w-100" style = "height:200px" ><hr ><div class = "d-flex justify-content-between" ><span class = "h5 card-title" > Ini namanya < /span> <span > < button type = "button"class = "btn btn-default"onclick = "del()" > < i class = "fas fa-trash" > < /i></button > < /span> </div> </div> </div>'
+                    });
+                    $("#pengurus-wrap").append(stringPengurus);
+                }
+            }
+        })
+    }
 
     $("#view-logo").change(function() {
         readURL(this)
