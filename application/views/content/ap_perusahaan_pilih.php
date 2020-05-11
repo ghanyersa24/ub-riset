@@ -39,7 +39,7 @@
 	function getList() {
 		$.ajax({
 			type: "GET",
-			url: api + 'service/perusahaan/get/<?= $id ?>',
+			url: api + 'service/produk_perusahaan/listPerusahaan',
 			success: function(response) {
 				let dataPerusahaan = response.data
 				let listPerusahaan = ""
@@ -89,6 +89,7 @@
 				if (response.data.length == 0) {
 					$('#status').text('belum')
 					$('#form-add').show()
+					$('#perusahaan').text("")
 					$('#action').hide()
 				} else {
 					perusahaan = response.data[0].id

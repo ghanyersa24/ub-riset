@@ -97,7 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         card += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
-										<img src="${element.logo==null?'https://i.imgur.com/QE3UIgf.png':element.logo_produk}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
+										<img src="${element.logo==null?'https://i.imgur.com/QE3UIgf.png':element.logo}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
 									</div>
 									<hr>
 									<div class="d-flex justify-content-between">

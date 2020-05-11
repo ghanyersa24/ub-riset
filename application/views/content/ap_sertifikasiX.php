@@ -202,7 +202,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="view-file_sertifikasi">File Sertifikat <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file_sertifikasi_old" id="view-file_sertifikasi_old" class="form-control" type="text" hidden></input>
+								<input name="file_sertifikasi" id="view-file_sertifikasi_old" class="form-control" type="text" hidden></input>
 								<input name="file_sertifikasi" id="view-file_sertifikasi" class="form-control" type="file"></input>
 							</div>
 						</div>
@@ -283,7 +283,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			submitHandler: function(form) {
 				let temp = $('#form-add').serialize()
 				let formData = new FormData()
-				formData.append('file_sertifikasi', document.getElementById('add-file_sertifikasi').files[0])
+				formData.append('file_sertifikasi_new', document.getElementById('add-file_sertifikasi').files[0])
 				temp = temp.split('&')
 				temp.forEach(value => {
 					let temp_value = value.split('=')

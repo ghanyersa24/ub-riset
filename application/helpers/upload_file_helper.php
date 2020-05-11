@@ -33,17 +33,17 @@ class UPLOAD_FILE
 	}
 	public static function delete($input_name)
 	{
-		$location_old = post($input_name . '_old');
+		$location_old = post($input_name);
 		$location_old = str_replace('%2F', '/', $location_old);
 		$location_old = str_replace('%3A', ':', $location_old);
-		if ($location_old != "")
+		if ($location_old != "" && !is_null($location_old))
 			unlink(getcwd() . '\uploads' . str_replace(base_url('/uploads/'), '/', $location_old));
 	}
 
 	public static function update($type, $post_name, $location = null,  $file_name = null, $max_size = 2048)
 	{
 		self::delete($post_name, 'required');
-		return self::$type($post_name, $location,  $file_name);
+		return self::$type($post_name . '_new', $location,  $file_name);
 	}
 
 	private static function uploads($type, $post_name, $location = null,  $file_name = null, $max_size = 2048)

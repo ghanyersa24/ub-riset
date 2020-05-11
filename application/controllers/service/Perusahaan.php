@@ -44,8 +44,29 @@ class Perusahaan extends CI_Controller
 			error("data gagal ditemukan");
 	}
 
+	public function upload()
+	{
+
+		$where = array(
+			"id" => $produk = post('id', 'required'),
+		);
+		$nama = post('nama', 'required');
+		if (isset($_FILES['logo_new']))
+			$data['logo'] = UPLOAD_FILE::update('img', 'logo', "perusahaan/$nama", "logo-$nama");
+		else
+			error('silahkan pilih logo produk terlebih dahulu');
+
+		$do = DB_MODEL::update($this->table, $where, $data);
+		if (!$do->error)
+			success("logo berhasil diupload", $do->data);
+		else
+			error("data gagal diubah");
+	}
+
 	public function update()
 	{
+		$email = str_replace('%40', '@', post('email'));
+		$website = str_replace('%2F', '/', str_replace('%3A', ':', post('website')));
 		$data = array(
 			"nama" => $nama = post('nama', 'required'),
 			"nama_pendiri" => post('nama_pendiri', 'required'),
@@ -58,29 +79,29 @@ class Perusahaan extends CI_Controller
 			"alamat_produksi" => post('alamat_produksi'),
 			"pegawai_tetap" => post('pegawai_tetap', 'numeric'),
 			"pegawai_tidak_tetap" => post('pegawai_tidak_tetap', 'numeric'),
-			"email" => post('email', 'email'),
+			"email" => $email,
 			"telepon" => post('telepon', 'numeric|max_char:13'),
-			"website" => post('website'),
+			"website" => $website,
 			"sosmed" => post('sosmed'),
 		);
 
-		if (isset($_FILES['akta']))
+		if (isset($_FILES['akta_new']))
 			$data['akta'] = UPLOAD_FILE::update('pdf', 'akta', "perusahaan/$nama", "akta-$nama");
 
-		if (isset($_FILES['struktur_organisasi']))
-			$data['struktur_organisasi'] = UPLOAD_FILE::update('pdf', 'struktur_organisasi', "perusahaan/$nama", "struktur_organisasi-$nama");
-
-		if (isset($_FILES['logo']))
-			$data['logo'] = UPLOAD_FILE::update('img', 'logo', "perusahaan/$nama", "logo-$nama");
+		if (isset($_FILES['izin_new']))
+			$data['izin'] = UPLOAD_FILE::update('pdf', 'izin', "perusahaan/$nama", "izin-$nama");
 
 		$where = array(
-			"id" => post('id', 'required'),
+			"id" => $id = post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
-		if (!$do->error)
+		if (!$do->error) {
+			$slug = str_pad($id, 4, '0', STR_PAD_LEFT) . '-' . str_replace(" ", "-", $nama);
+			$do->data['slug'] = $slug;
+			DB_MODEL::update($this->table, ['id' => $id], ['slug' => $slug]);
 			success("data berhasil diubah", $do->data);
-		else
+		} else
 			error("data gagal diubah");
 	}
 

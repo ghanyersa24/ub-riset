@@ -501,7 +501,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             url: api + 'service/foto_produk/delete',
                             data: {
                                 id: id,
-                                foto_old: link
+                                foto: link
                             },
                             dataType: "json",
                             success: function(response) {

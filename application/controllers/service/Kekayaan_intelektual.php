@@ -63,9 +63,9 @@ class Kekayaan_intelektual extends CI_Controller
 			"tanggal_mulai" => post('tanggal_mulai'),
 			"tanggal_selesai" => post('tanggal_selesai'),
 		);
-		if (isset($_FILES['file_formulir']))
+		if (isset($_FILES['file_formulir_new']))
 			$data['file_formulir'] = UPLOAD_FILE::update('pdf', 'file_formulir', "inovasi/$produk/ki", "formulir-$jenis-$produk");
-		if (isset($_FILES['file']))
+		if (isset($_FILES['file_new']))
 			$data['file'] = UPLOAD_FILE::update('pdf', 'file', "inovasi/$produk/ki", "file-$jenis-$produk");
 
 		$where = array(

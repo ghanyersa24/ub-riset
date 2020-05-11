@@ -61,16 +61,17 @@ class Pengajuan extends CI_Controller
 		);
 		$produk = post('produk_id', 'required');
 		$data = array(
-			"katsinov" => post('katsinov', 'required|numeric|min_value:0|max_value:6'),
-			"tkt" => post('tkt', 'required|numeric|min_value:0|max_value:9'),
+			"katsinov" => $katsinov = post('katsinov', 'required|numeric|min_value:0|max_value:6'),
+			"tkt" => $tkt = post('tkt', 'required|numeric|min_value:0|max_value:9'),
 			"file_evaluasi" => UPLOAD_FILE::excel('file_evaluasi', "inovasi/$produk/evaluasi"),
 			"status" => 'dinilai',
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
-		if (!$do->error)
+		if (!$do->error) {
+			DB_MODEL::update('produk', ['id' => $produk], ['katsinov' => $katsinov, 'tkt' => $tkt]);
 			success("data berhasil diubah", $do->data);
-		else
+		} else
 			error("data gagal diubah");
 	}
 

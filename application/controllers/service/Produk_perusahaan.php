@@ -24,6 +24,11 @@ class Produk_perusahaan extends CI_Controller
 		}
 	}
 
+	public function listPerusahaan()
+	{
+		$do = DB_MODEL::all('perusahaan');
+		success("data perusahaan berhasil diterima", $do->data);
+	}
 	public function get($id = null)
 	{
 		// if (is_null($id)) {

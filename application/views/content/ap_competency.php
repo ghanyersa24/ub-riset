@@ -136,7 +136,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<button class="btn btn-secondary form-control" type="button" data-toggle="modal" data-target="#logo">pilih logo</button>
 														</div>
 														<div class="col-8">
-															<img src="" alt="foto content" id="prev-view-logo_produk" class="w-50">
+															<img src="" alt="logo produk" id="prev-view-logo_produk" class="w-50">
 														</div>
 													</div>
 												</div>
@@ -235,7 +235,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<label>Upload Logo Produk</label>
 					<div class="input-group">
 						<div class="custom-file">
-							<input type="text" class="custom-file-input" id="view-logo_produk" name="logo_produk_old" hidden readonly>
+							<input type="text" class="custom-file-input" id="view-logo_produk" name="logo_produk" hidden readonly>
 							<input type="file" class="custom-file-input" id="view-logo" aria-describedby="btn-upload">
 							<label class="custom-file-label" for="view-logo">Cari file</label>
 						</div>
@@ -265,8 +265,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			await $('#progress-upload').fadeIn().delay(500)
 			$('body').addClass('overflow-hidden')
 			let formData = new FormData();
-			formData.append('logo_produk', document.getElementById('view-logo').files[0])
-			formData.append('logo_produk_old', $('#view-logo_produk').val())
+			formData.append('logo_produk_new', document.getElementById('view-logo').files[0])
+			formData.append('logo_produk', $('#view-logo_produk').val())
 			formData.append('id', $('#view-id').val())
 			await setTimeout(async function() {
 				await $.ajax({
@@ -293,6 +293,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}, 1500)
 		}
 	});
+
 	$(document).ready(function() {
 		triggerEditor('#form-view')
 		$.ajax({

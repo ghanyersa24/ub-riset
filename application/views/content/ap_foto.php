@@ -89,8 +89,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<label>Foto Produk</label>
 								<div class="input-group">
 									<div class="custom-file">
-										<input type="text" class="custom-file-input" id="view-foto_old" name="foto_old" readonly>
-										<input type="file" class="custom-file-input" id="view-foto" aria-describedby="btn-upload">
+										<input type="text" class="custom-file-input" id="view-foto" name="foto" readonly>
+										<input type="file" class="custom-file-input" id="view-foto-new" aria-describedby="btn-upload">
 										<label class="custom-file-label" for="view-foto">Cari file</label>
 									</div>
 								</div>
@@ -159,7 +159,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			if (id == element.id) {
 				$('#view-id').val(element.id)
 				$('#view-title').val(element.title)
-				$('#view-foto_old').val(element.foto)
+				$('#view-foto').val(element.foto)
 				$('#prev-view-foto').attr('src', element.foto)
 				setEditor('view-keterangan', element.keterangan)
 			}
@@ -182,7 +182,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						url: api + 'service/foto_produk/delete',
 						data: {
 							id: id,
-							foto_old: link
+							foto: link
 						},
 						dataType: "json",
 						success: function(response) {
@@ -246,10 +246,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			},
 			submitHandler: function(form) {
 				let formData = new FormData()
-				formData.append('foto', document.getElementById('view-foto').files[0])
+				formData.append('foto_new', document.getElementById('view-foto_new').files[0])
 				formData.append('keterangan', $('#view-keterangan').val())
 				formData.append('title', $('#view-title').val())
-				formData.append('foto_old', $('#view-foto_old').val())
+				formData.append('foto', $('#view-foto').val())
 				formData.append('produk_id', $('#view-produk_id').val())
 				formData.append('id', $('#view-id').val())
 				$.ajax({

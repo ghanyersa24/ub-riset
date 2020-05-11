@@ -152,6 +152,8 @@ class Admin extends CI_Controller
 	}
 	public function verifikasi($slug = null)
 	{
+		if ($this->session->is_admin == 'no')
+			redirect('admin');
 		$data = riset::slugs_produk($slug);
 		if ($slug == null) {
 			$data['title'] = 'Halaman Verifikasi KATSINOV dan TKT';
@@ -165,6 +167,8 @@ class Admin extends CI_Controller
 	}
 	public function plotting()
 	{
+		if ($this->session->is_admin != 'admin')
+			redirect('admin');
 		$data = riset::slugs_produk();
 		$data['title'] = 'Halaman Plotting Verifikator';
 		$data['content'] = 'ap_plotting';
@@ -172,6 +176,8 @@ class Admin extends CI_Controller
 	}
 	public function manage()
 	{
+		if ($this->session->is_admin != 'admin')
+			redirect('admin');
 		$data = riset::slugs_produk();
 		$data['title'] = 'Halaman Management User';
 		$data['content'] = 'ap_users';

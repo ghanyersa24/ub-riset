@@ -202,7 +202,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="view-file_formulir">File Formulir Permohonan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file_formulir_old" id="view-file_formulir_old" class="form-control" type="text" hidden></input>
+								<input name="file_formulir" id="view-file_formulir_old" class="form-control" type="text" hidden></input>
 								<input name="file_formulir" id="view-file_formulir" class="form-control" type="file"></input>
 							</div>
 						</div>
@@ -215,7 +215,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="view-file">File Kekayaan Intelektual <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file_old" id="view-file_old" class="form-control" type="text" hidden></input>
+								<input name="file" id="view-file_old" class="form-control" type="text" hidden></input>
 								<input name="file" id="view-file" class="form-control" type="file"></input>
 							</div>
 						</div>
@@ -373,8 +373,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			submitHandler: function(form) {
 				let temp = $('#form-view').serialize()
 				let formData = new FormData()
-				formData.append('file_formulir', document.getElementById('view-file_formulir').files[0])
-				formData.append('file', document.getElementById('view-file').files[0])
+				formData.append('file_formulir_new', document.getElementById('view-file_formulir').files[0])
+				formData.append('file_new', document.getElementById('view-file').files[0])
 				temp = temp.split('&')
 				temp.forEach(value => {
 					let temp_value = value.split('=')

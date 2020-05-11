@@ -47,7 +47,7 @@ class Foto_produk extends CI_Controller
 			"title" => $title = post('title', 'required'),
 			"keterangan" => post('keterangan', 'allow_html')
 		);
-		if (isset($_FILES['foto']))
+		if (isset($_FILES['foto_new']))
 			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "inovasi/$produk/foto", "$title-foto-$produk");
 		$where = array(
 			"id" => post('id', 'required'),

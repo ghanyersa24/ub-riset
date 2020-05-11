@@ -51,7 +51,7 @@ class Produk extends CI_Controller
 		$where = array(
 			"id" => $produk = post('id', 'required'),
 		);
-		if (isset($_FILES['logo_produk']))
+		if (isset($_FILES['logo_produk_new']))
 			$data['logo_produk'] = UPLOAD_FILE::update('img', 'logo_produk', "inovasi/$produk/logo", "logo-$produk");
 		else
 			error('silahkan pilih logo produk terlebih dahulu');
