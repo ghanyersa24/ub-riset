@@ -23,7 +23,7 @@ class Perusahaan extends CI_Controller
 			$slug = str_pad($do->data['id'], 4, '0', STR_PAD_LEFT) . '-' . str_replace(" ", "-", $do->data['nama']);
 			$do->data['slug'] = $slug;
 			DB_MODEL::update($this->table, ['id' => $do->data['id']], ['slug' => $slug]);
-			DB_MODEL::insert('pengurus', ['perusahaan_id' => $do->data['id'], 'users_id' => $this->session->userdata('id')]);
+			DB_MODEL::insert('pengurus', ['perusahaan_id' => $do->data['id'], 'jabatan' => "CEO", 'users_id' => $this->session->userdata('id')]);
 			success("data berhasil ditambahkan", $do->data);
 		} else {
 			error("data gagal ditambahkan");

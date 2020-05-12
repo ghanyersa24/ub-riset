@@ -158,70 +158,58 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 									<section id="tab-pengurus">
 										<form id="form-view-pengurus">
-											<div class="row" id="pengurus-wrap">
-
-											</div>
-
-
+											<input type="text" name="perusahaan_id" value="<?= $id ?>" hidden readonly class="form-control">
 											<div class="form-group">
-												<label for="view-pengurus" class="d-block">Pilih Pengurus</label>
-												<select name="pengurus" id="view-pengurus" class="select2 form-control ">
+												<label for="view-user" class="d-block">Pilih Pengurus</label>
+												<select name="users_id" id="view-user" class="select2 form-control" style="width:100%">
 
 												</select>
 											</div>
-
-
 											<div class="form-group">
 												<label for="view-jabatan">Jabatan</label>
-												<input type="text" class="form-control" id="view-jabatan">
+												<input type="text" class="form-control" id="view-jabatan" name="jabatan">
 											</div>
 											<button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Pengurus</button>
-
-
 										</form>
-									</section>
-									<section id="tab-kepemilikan">
-										<form id="form-view-kepemilikan">
-											<div class="table-responsive">
-												<table class="table table-striped" id="table-kepemilikian">
-													<thead>
-														<tr>
-															<th class="text-center">
-																No.
-															</th>
-															<th>Nama Pemilik</th>
-															<th>Tipe Pemegang Saham</th>
-															<th>Tipe Kewarganegaraan</th>
-															<th>Negara Asal</th>
-															<th>Presentasi Kepemilikan</th>
-															<th>Aksi</th>
-														</tr>
-													</thead>
-													<tfoot>
-														<tr>
-															<th class="text-center">
+										<div class="row" id="listPengurus">
 
-															</th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-														</tr>
-													</tfoot>
-												</table>
-											</div>
+										</div>
+									</section>
+
+									<section id="tab-kepemilikan">
+										<div class="table-responsive">
+											<table class="table table-striped w-100" id="table-kepemilikan">
+												<thead>
+													<tr>
+														<th class="text-center">
+															No.
+														</th>
+														<th>Nama Pemilik</th>
+														<th>Tipe Pemegang Saham</th>
+														<th>Tipe Kewarganegaraan</th>
+														<th>Negara Asal</th>
+														<th class="text-center">Presentasi Kepemilikan</th>
+														<th>Aksi</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
+										<br>
+										<span class="h4">Tambah Pemilik Saham</span>
+										<hr>
+										<form id="form-view-kepemilikan">
 											<div class="row">
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="view-pemilik_saham">Nama Pemilik Saham</label>
-														<input type="text" id="view-pemilik_saham" name="pemilik_saham" class="form-control">
+														<input type="text" name="perusahaan_id" value="<?= $id ?>" hidden readonly class="form-control">
+														<input type="text" id="view-pemilik_saham" name="nama" class="form-control">
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-pemegang_saham">Tipe Pemegang Saham</label>
-														<select name="pemegang-saham" id="add-pemegang_saham" class="form-control">
+														<select name="tipe" id="add-pemegang_saham" class="form-control">
 															<option value="Perseorangan">Perseorangan</option>
 															<option value="Kelompok">Kelompok</option>
 															<option value="Perusahaan">Perusahaan</option>
@@ -231,7 +219,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-tipe_kewarganegaraan">Tipe Kewarganegaraan Pemegang Saham</label>
-														<select name="tipe_kewarganegaraan" id="add-tipe_kewarganegaraan" class="form-control">
+														<select name="kewarganegaraan" id="add-tipe_kewarganegaraan" class="form-control">
 															<option value="Dalam Negeri">Dalam Negeri</option>
 															<option value="Luar Negeri">Luar Negeri</option>
 
@@ -241,13 +229,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-negara_asal">Nama Negara Asal</label>
-														<input type="text" id="add-negara_asal" name="negara_asal" class="form-control">
+														<input type="text" id="add-negara_asal" name="asal_negara" class="form-control">
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-presentase_kepemilikan">Presentasi Kepemilikan</label>
-														<input type="number" id="add-presentase_kepemilikan" name="presentase_kepemilikan" class="form-control">
+														<input type="number" id="add-presentase_kepemilikan" name="presentase" class="form-control" max="100" min="0">
 													</div>
 												</div>
 
@@ -255,43 +243,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Kepemilikan</button>
 										</form>
 									</section>
+
 									<section id="tab-aset">
+										<div class="table-responsive">
+											<table class="table table-striped w-100" id="table-aset">
+												<thead>
+													<tr>
+														<th class="text-center">
+															No.
+														</th>
+														<th>Nama</th>
+														<!-- <th>Nama Pemilik</th> -->
+														<th>Tanggal Perolehan</th>
+														<th>Nilai Aset</th>
+														<th>Aksi</th>
+													</tr>
+												</thead>
+											</table>
+										</div>
 										<form id="form-view-aset">
-											<div class="table-responsive">
-												<table class="table table-striped" id="table-kepemilikian">
-													<thead>
-														<tr>
-															<th class="text-center">
-																No.
-															</th>
-															<th>Nama</th>
-															<th>Nama Pemilik</th>
-															<th>Tanggal Perolehan</th>
-															<th>Nilai Aset</th>
-															<th>Aksi</th>
-														</tr>
-													</thead>
-													<tfoot>
-														<tr>
-															<th class="text-center">
-
-															</th>
-															<th></th>
-															<th></th>
-															<th></th>
-
-														</tr>
-													</tfoot>
-												</table>
-											</div>
 											<div class="row">
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-nama_aset">Nama Aset</label>
+														<input type="text" name="perusahaan_id" value="<?= $id ?>" hidden readonly class="form-control">
 														<input type="text" id="add-nama_aset" name="nama_aset" class="form-control">
 													</div>
 												</div>
-												<div class="col-md-4">
+												<!-- <div class="col-md-4">
 													<div class="form-group">
 														<label for="add-pemilik_aset">Nama Pemilik Aset</label>
 														<select name="pemilik_aset" id="add-pemilik_aset" class="form-control">
@@ -300,20 +279,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<option value="Perusahaan">Perusahaan</option>
 														</select>
 													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<label for="add-tahun_perolehan_aset">Tahun Perolehan Aset</label>
-														<input name="tahun_perolehan_aset" id="add-tahun_perolehan_aset" class="form-control" type="number" />
-													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<label for="add-negara_asal">Nilai Aset Saat Ini</label>
-														<input type="number" id="add-negara_asal" name="negara_asal" class="form-control">
-													</div>
-												</div>
+												</div> -->
 
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="add-nilai_aset">Nilai Aset Saat Ini</label>
+														<input type="number" id="add-nilai_aset" name="nilai_aset" class="form-control">
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label for="add-tahun_perolehan">Tahun Perolehan Aset</label>
+														<input name="tahun_perolehan" id="add-tahun_perolehan" class="form-control" type="number" max="2020" />
+													</div>
+												</div>
 											</div>
 											<button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Aset</button>
 										</form>
@@ -329,6 +308,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</section>
 </div>
+
 <div id="progress-upload" class="position-fixed row bg-trans h-100" tabindex="-1" style="display:none; top:0; left:0; right:0;z-index:999999;background: rgba(137, 191, 202, 0.48)">
 	<div class="d-flex justify-content-center vw-100">
 		<div class="d-flex align-items-center" style="width: 15%;top:50vh">
@@ -417,7 +397,41 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			reader.readAsDataURL(input.files[0])
 		}
 	}
+
+	function getList() {
+		$.ajax({
+			type: "GET",
+			url: api + 'service/pengurus/get/<?= $id ?>',
+			success: function(response) {
+				let dataUser = response.data.user
+				let dataPengurus = response.data.pengurus
+				let listPengurus = listUser = ""
+				dataUser.forEach(element => {
+					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
+				})
+				dataPengurus.forEach(element => {
+					listPengurus += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view(${element.id})">${element.nama} (${element.jabatan})</span>
+									<span><button type="button" class="btn btn-default" onclick="del(${element.id},${element.perusahaan_id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+				})
+				$('#listPengurus').html(listPengurus)
+				$('#view-user').html(listUser)
+			}
+		})
+	}
+
 	$(document).ready(function() {
+		getList()
+
 		$.ajax({
 			type: "GET",
 			url: api + 'service/perusahaan/get/<?= $id ?>',
@@ -457,45 +471,184 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}
 		})
 
-		// $('#form-view-profil').validate({
-		// 	submitHandler: function(form) {
-		// 		var data = $('#form-view-profil').serialize()
-		// 		$.ajax({
-		// 			type: "POST",
-		// 			url: api + "service/perusahaan/update",
-		// 			data: data,
-		// 			dataType: "json",
-		// 			success: function(response) {
-		// 				response_alert(response)
-		// 				getPengurus()
-		// 			}
-		// 		})
-		// 	}
-		// })
-
-	})
-
-	function getPengurus() {
-		$.ajax({
-			type: "POST",
-			url: api + "service/pengurus/get",
-			data: data,
-			dataType: "json",
-			success: function(response) {
-				let stringPengurus = ""
-				if (response.data.length != 0) {
-					response.data.forEach(element => {
-						stringPengurus += '<div class="card col-md-3 "><div class="card-body shadow rounded"> <img src = "../" alt = "" class = "w-100" style = "height:200px" ><hr ><div class = "d-flex justify-content-between" ><span class = "h5 card-title" > Ini namanya < /span> <span > < button type = "button"class = "btn btn-default"onclick = "del()" > < i class = "fas fa-trash" > < /i></button > < /span> </div> </div> </div>'
-					});
-					$("#pengurus-wrap").append(stringPengurus);
-				}
+		$('#form-view-kepemilikan').validate({
+			submitHandler: function(form) {
+				$.ajax({
+					type: "POST",
+					url: api + "service/kepemilikan/create",
+					data: $("#form-view-kepemilikan").serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error) {
+							$('#table-kepemilikan').dataTable().api().ajax.reload()
+							$('#form-view-kepemilikan').trigger('reset')
+						}
+					}
+				});
 			}
 		})
-	}
+
+		$('#form-view-aset').validate({
+			submitHandler: function(form) {
+				$.ajax({
+					type: "POST",
+					url: api + "service/aset/create",
+					data: $("#form-view-aset").serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error) {
+							$('#table-aset').dataTable().api().ajax.reload()
+							$('#form-view-aset').trigger('reset')
+						}
+					}
+				});
+			}
+		})
+
+		$('#form-view-pengurus').validate({
+			submitHandler: function(form) {
+				$.ajax({
+					type: "POST",
+					url: api + "service/pengurus/create",
+					data: $('#form-view-pengurus').serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error)
+							getList()
+					}
+				});
+			}
+		})
+
+		$('#table-kepemilikan').DataTable({
+			"ajax": api + 'service/kepemilikan/get/<?= $id ?>',
+			"columns": [{
+				"render": function(data, type, row, meta) {
+					return meta.row + meta.settings._iDisplayStart + 1;
+				},
+				className: "text-center"
+			}, {
+				"data": "nama"
+			}, {
+				"data": "tipe"
+			}, {
+				"data": "kewarganegaraan"
+			}, {
+				"data": "asal_negara"
+			}, {
+				"data": "presentase"
+			}, {
+				"render": function(data, type, JsonResultRow, meta) {
+					return '<button class="btn btn-light"><i class="fas fa-trash"></i>Hapus </button>';
+				}
+			}]
+		})
+
+		$('#table-aset').DataTable({
+			"ajax": api + 'service/aset/get/<?= $id ?>',
+			"columns": [{
+				"render": function(data, type, row, meta) {
+					return meta.row + meta.settings._iDisplayStart + 1;
+				},
+				className: "text-center"
+			}, {
+				"data": "nama_aset"
+			}, {
+				"data": "tahun_perolehan"
+			}, {
+				"data": "nilai_aset"
+			}, {
+				"render": function(data, type, JsonResultRow, meta) {
+					return '<button class="btn btn-light"><i class="fas fa-trash"></i>Hapus </button>';
+				}
+			}]
+		})
+
+		$('#table-kepemilikan tbody').on('click', 'button', function() {
+			var data = $('#table-kepemilikan').DataTable().row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: `menghapus data ${data.nama} sebagai pemilik modal ini!`,
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/kepemilikan/delete',
+							data: {
+								id: data.id,
+							},
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table-kepemilikan').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
+		})
+
+		$('#table-aset tbody').on('click', 'button', function() {
+			var data = $('#table-aset').DataTable().row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: `menghapus data ${data.nama_aset} sebagai pemilik modal ini!`,
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/aset/delete',
+							data: {
+								id: data.id,
+							},
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table-aset').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
+		})
+	})
 
 	$("#view-logo").change(function() {
 		readURL(this)
 	})
+
+	function del(id, perusahaan, nama) {
+		swal({
+				title: "Apakah Kamu yakin?",
+				text: `menghapus data ${nama} sebagai pengurus perusahaan ini!`,
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willDelete) => {
+				if (willDelete) {
+					$.ajax({
+						type: "POST",
+						url: api + 'service/pengurus/delete',
+						data: {
+							users_id: id,
+							perusahaan_id: perusahaan,
+						},
+						success: function(response) {
+							response_alert(response)
+							if (!response.error)
+								getList()
+						}
+					})
+				}
+			})
+	}
 
 	function readURL(input) {
 		if (input.files && input.files[0]) {
