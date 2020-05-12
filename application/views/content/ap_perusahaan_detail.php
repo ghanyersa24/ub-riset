@@ -172,7 +172,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<button class="btn btn-primary btn-icon icon-left d-block mr-0 ml-auto" type="submit"><i class="fa fa-save mr-2"></i>Simpan Pengurus</button>
 										</form>
 										<div class="row" id="listPengurus">
-
 										</div>
 									</section>
 

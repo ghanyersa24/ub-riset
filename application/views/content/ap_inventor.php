@@ -12,9 +12,6 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="container">
-						<p>Nama Inventor Yang Terdaftar</p>
-						<ul id="listInventor">
-						</ul>
 
 						<form id="form-inventor">
 							<div class="form-group">
@@ -27,7 +24,9 @@
 								<i class="fa fa-save"></i>
 								Simpan Perubahan</button>
 						</form>
-
+						<!-- <p>Nama Inventor Yang Terdaftar</p> -->
+						<div class="row" id="listInventor">
+						</div>
 					</div>
 				</div>
 			</div>
@@ -48,15 +47,26 @@
 					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
 				})
 				dataInventor.forEach(element => {
-					listInventor += `<li><span class="mr-3">${element.nama} (${element.id})</span> <i class="fas fa-trash click" onclick="del('${element.nama}',${element.id})"></i></li>`
-				});
+					listInventor += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view(${element.id})">${element.nama} (${element.fakultas})</span>
+									<span><button type="button" class="btn btn-default" onclick="del(${element.id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+				})
 				$('#listInventor').html(listInventor)
 				$('#add-inventor').html(listUser)
 			}
 		})
 	}
 
-	function del(nama, user_id) {
+	function del(user_id, nama) {
 		swal({
 				title: "Apakah kamu yakin?",
 				text: `akan menghapus ${nama} sebagai inventor!`,
