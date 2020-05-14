@@ -81,6 +81,8 @@ class Kekayaan_intelektual extends CI_Controller
 
 	public function delete()
 	{
+		UPLOAD_FILE::delete('file_formulir');
+		UPLOAD_FILE::delete('file');
 		$where = array(
 			"id" => post('id', 'required')
 		);
