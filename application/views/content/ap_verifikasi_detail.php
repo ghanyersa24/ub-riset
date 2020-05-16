@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?= base_url() . 'assets/css/viewer.min.css' ?>">
 <div class="main-content">
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
@@ -10,7 +11,7 @@
 				<div class="col-12 col-md-12 col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<ul class="nav nav-pills" id="myTab3" role="tablist">
+							<ul class="nav nav-pills sticky-top bg-white py-3 px-3 shadow-light" id="myTab3" role="tablist">
 								<li class="nav-item">
 									<a class="nav-link active" id="ringkasan-tab3" data-toggle="tab" href="#ringkasan3" role="tab" aria-controls="ringkasan" aria-selected="true">Ringkasan</a>
 								</li>
@@ -33,21 +34,157 @@
 									<a class="nav-link" id="verifikasi-tab3" data-toggle="tab" href="#verifikasi3" role="tab" aria-controls="verifikasi" aria-selected="false">Verifikasi</a>
 								</li>
 							</ul>
-							<div class="tab-content" id="myTabContent2">
+							<div class="tab-content py-4" id="myTabContent2">
 								<div class="tab-pane fade show active" id="ringkasan3" role="tabpanel" aria-labelledby="ringkasan-tab3">
-									<p>ringkasan</p>
+									<div class="row pb-4 border-bottom border-light mb-4">
+										<div class="col-md-4 text-center">
+											<img src="" alt="" id="logo_produk" class="img-fluid">
+											<h5 id="nama_produk"></h5>
+											<p>Jenis: <strong id="jenis"></strong></p>
+											<p>Bidang: <strong id="bidang"></strong></p>
+											<p>Kategori: <strong id="kategori"></strong></p>
+											<p>produksi barang fisik: <strong id="produksi_barang_fisik"></strong></p>
+										</div>
+										<div class="col-md-8">
+											<h5>Deskripsi</h5>
+											<p id="deskripsi_singkat"></p>
+											<div class="row">
+												<div class="col-md-3">
+													<h5>Website</h5>
+													<p id="website"></p>
+												</div>
+												<div class="col-md-3">
+													<h5>Sosial Media</h5>
+													<p id="sosial_media"></p>
+												</div>
+												<div class="col-md-3">
+													<h5>Tautan Video</h5>
+													<p id="tautan_video"></p>
+												</div>
+												<div class="col-md-3">
+													<h5>Kesiapan Teknologi</h5>
+													<p id="kesiapan_teknologi"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<h5>Deskripsi Lengkap</h5>
+									<p id="deskripsi_lengkap"></p>
+									<h5>Latar Belakang</h5>
+									<p id="latar_belakang"></p>
+									<h5>Masalah</h5>
+									<p id="masalah"></p>
+									<h5>Solusi</h5>
+									<p id="solusi"></p>
+									<h5>Keunggulan & Keunikan</h5>
+									<p id="keunggulan_keunikan"></p>
+									<h5>Kegunaan & Manfaat</h5>
+									<p id="kegunaan_manfaat"></p>
+									<h5>Spesifikasi Teknis</h5>
+									<p id="spesifikasi_teknis"></p>
+									<h5>Keterbaharuan Produk</h5>
+									<p id="keterbaharuan_produk"></p>
+									<h5>Teknologi yang Dikembangkan</h5>
+									<p id="teknologi_yang_dikembangkan"></p>
+									<h5>Rencana Pengembangan</h5>
+									<p id="rencana_pengembangan"></p>
 								</div>
 								<div class="tab-pane fade" id="produk3" role="tabpanel" aria-labelledby="produk-tab3">
-									<p>produk</p>
+									<h5>Roadmap Riset & Pengembangan Produk</h5>
+									<div class="table-responsive">
+										<table class="table table-striped" id="table-roadmap">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Nama Riset / Pengembangan</th>
+													<th>Tahun Mulai</th>
+													<th>Tahun Selesai</th>
+													<th>Aktivitas</th>
+													<th>Skema</th>
+													<th>Sumber Pendanaan</th>
+													<th>Nilai</th>
+													<th>Tujuan</th>
+													<th>Hasil</th>
+
+												</tr>
+											</thead>
+
+										</table>
+									</div>
+									<h5 class="mt-4">Pengujian</h5>
+									<div class="table-responsive">
+										<table class="table table-striped" id="table-pengujian">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Nama</th>
+													<th>Tahun</th>
+													<th>Status</th>
+													<th>Jenis</th>
+													<th>Lembaga</th>
+													<th>Tujuan</th>
+													<th>Hasil</th>
+
+												</tr>
+											</thead>
+
+										</table>
+									</div>
+									<h5 class="mt-4">Sertifikasi / Perijinan</h5>
+									<div class="table-responsive">
+										<table class="table table-striped" id="table-pengujian">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Nama / Jenis</th>
+													<th>Status</th>
+													<th>Nomor Permohonan</th>
+													<th>File Permohonan</th>
+													<th>Nomor Sertifikat</th>
+													<th>File Sertifikat</th>
+													<th>Tanggal Sertifikat Mulai Berlaku</th>
+													<th>Tanggal Sertifikat Berakhir</th>
+													<th>Pemilik Sertifikasi</th>
+													<th>Deskripsi</th>
+												</tr>
+											</thead>
+
+										</table>
+									</div>
+									<h5 class="mt-4">Mitra dan Kerjasama</h5>
+									<div class="table-responsive">
+										<table class="table table-striped" id="table-pengujian">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Nama</th>
+													<th>Isi Kerjasama</th>
+													<th>MoU</th>
+												</tr>
+											</thead>
+
+										</table>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="tim3" role="tabpanel" aria-labelledby="tim-tab3">
-									<p>Tim</p>
+									<div id="list-inventor" class="row"></div>
 								</div>
 								<div class="tab-pane fade" id="bisnis3" role="tabpanel" aria-labelledby="tim-tab3">
 									<p>bisnis</p>
 								</div>
 								<div class="tab-pane fade" id="foto3" role="tabpanel" aria-labelledby="tim-tab3">
-									<p>foto</p>
+									<h5>Foto Produk</h5>
+									<div id="foto-produk" class="row"></div>
+									<h5>Foto Kegiatan</h5>
+									<div id="foto-kegiatan" class="row"></div>
 								</div>
 								<div class="tab-pane fade" id="verifikasi3" role="tabpanel" aria-labelledby="tim-tab3">
 									<form class="form-add-verifikasi" id="form-add-verifikasi">
@@ -102,14 +239,251 @@
 	</section>
 </div>
 
+<style>
+	p {
+		margin-bottom: 0.25rem
+	}
+
+	h5 {
+		font-weight: bold
+	}
+</style>
+
 <script>
+	function insertText(id, text) {
+		let newText = text;
+		if (text == null || text == '') {
+			newText = '-'
+		}
+		$(id).append(newText)
+	}
+
+	function insertTextArray(id, textArray) {
+		textArray.forEach(element => {
+			$(id).insertText(element + ' ')
+		})
+	}
+
+	function insertImage(id, image) {
+		let newImage = image;
+		if (image == null) {
+			newImage = ''
+		}
+		$(id).attr('src', newImage)
+	}
+
+	function showProductGallery() {
+		const gallery = new Viewer(document.getElementById('foto-produk'));
+	}
+
+	function showActivityGallery() {
+		const gallery = new Viewer(document.getElementById('foto-kegiatan'));
+	}
+
 	$(document).ready(function() {
+
 		$.ajax({
 			method: 'get',
 			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
 			dataType: 'json',
 			success: (r) => {
 				console.log(r)
+				const produk = r.data.produk
+				//produk
+				insertImage('#logo_produk', produk.logo_produk)
+				insertText('#nama_produk', produk.nama_produk)
+				insertText('#jenis', produk.jenis)
+				insertText('#kategori', produk.kategori)
+				insertText('#bidang', produk.bidang)
+				insertText('#produksi_barang_fisik', produk.produksi_barang_fisik)
+				insertText('#deskripsi_singkat', produk.deskripsi_singkat)
+				insertText('#website', produk.website)
+				insertText('#sosial_media', produk.sosial_media)
+				insertText('#tautan_video', produk.tautan_video)
+				insertText('#kesiapan_teknologi', produk.kesiapan_teknologi)
+				//landasan
+				insertText('#deskripsi_lengkap', produk.deskripsi_lengkap)
+				insertText('#latar_belakang', produk.latar_belakang)
+				insertText('#masalah', produk.masalah)
+				insertText('#solusi', produk.solusi)
+				//rancangan
+				insertText('#keunggulan_keunikan', produk.keunggulan_keunikan)
+				insertText('#kegunaan_manfaat', produk.kegunaan_manfaat)
+				insertText('#spesifikasi_teknis', produk.spesifikasi_teknis)
+				insertText('#keterbaharuan_produk', produk.keterbaharuan_produk)
+				insertText('#teknologi_yang_dikembangkan', produk.teknologi_yang_dikembangkan)
+				insertText('#rencana_pengembangan', produk.rencana_pengembangan)
+				//table-roadmap
+				const roadmap = r.data.roadmap
+				$('#table-roadmap').DataTable({
+					"data": roadmap,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "nama"
+						},
+						{
+							data: "tahun_mulai"
+						},
+						{
+							data: "tahun_selesai"
+						},
+						{
+							data: "aktivitas"
+						},
+						{
+							data: "skema"
+						},
+						{
+							data: "sumber_pendanaan"
+						},
+						{
+							data: "nilai_pendanaan"
+						},
+						{
+							data: "tujuan"
+						},
+						{
+							data: "hasil"
+						},
+					]
+
+				});
+				//table-pengujian
+				const pengujian = r.data.pengujian
+
+				$('#table-pengujian').DataTable({
+					"data": pengujian,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "nama"
+						},
+						{
+							data: "tahun"
+						},
+						{
+							data: "status"
+						},
+						{
+							data: "jenis"
+						},
+						{
+							data: "lembaga"
+						},
+						{
+							data: "tujuan"
+						},
+						{
+							data: "hasil"
+						},
+					]
+
+				});
+				//sertifikat dan perijinan
+				const sertifikasi = r.data.sertifikasi
+
+				$('#table-pengujian').DataTable({
+					"data": sertifikasi,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "nama"
+						},
+						{
+							data: "tahun"
+						},
+						{
+							data: "status"
+						},
+						{
+							data: "jenis"
+						},
+						{
+							data: "lembaga"
+						},
+						{
+							data: "tujuan"
+						},
+						{
+							data: "hasil"
+						},
+						{
+							data: "lembaga"
+						},
+						{
+							data: "tujuan"
+						},
+						{
+							data: "hasil"
+						},
+					]
+
+				});
+
+				//inventor
+				let listInventor = '';
+				const dataInventor = r.data.inventor
+				dataInventor.forEach(element => {
+					listInventor += `<div class="card col-md-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<p class="card-title" >${element.nama}<br />(${element.fakultas})</p>
+									</div>
+								</div>
+							</div>`
+				})
+				$('#list-inventor').append(listInventor)
+
+				//foto produk
+				let listFotoProduk = '';
+				const dataFotoProduk = r.data.foto_produk
+				dataFotoProduk.forEach(element => {
+					listFotoProduk += `<li class="card col-md-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="showProductGallery()">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<p class="card-title" >${element.title}<br /></p>
+									</div>
+								</div>
+							</li>`
+				})
+
+				$('#foto-produk').append(listFotoProduk)
+
+				//foto kegiatan
+				let listFotoKegiatan = '';
+				const dataFotoKegiatan = r.data.foto_kegiatan
+				dataFotoKegiatan.forEach(element => {
+					listFotoKegiatan += `<div class="card col-md-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="showActivityGallery()">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<p class="card-title" >${element.title}<br /></p>
+									</div>
+								</div>
+							</div>`
+				})
+				$('#foto-kegiatan').append(listFotoKegiatan)
 			}
 		})
 

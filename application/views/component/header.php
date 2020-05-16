@@ -39,6 +39,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script src="<?php echo base_url(); ?>assets/modules/datatables/datatables.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/modules/select2/dist/js/select2.min.js"></script>
 	<script src="<?= base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+	<script type="module" src="<?= base_url() . 'assets/js/viewer.min.js' ?>"></script>
 
 	<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js">
 	</script>
