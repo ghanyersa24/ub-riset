@@ -22,10 +22,12 @@ class Super extends CI_Controller
 			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
-			'izin' => DB_MODEL::where('izin_produk', $where)->data,
+			'mitra' => DB_MODEL::where('mitra', $where)->data,
 			'foto_produk' => DB_MODEL::where('foto_produk', $where)->data,
 			'foto_kegiatan' => DB_MODEL::where('foto_kegiatan', $where)->data,
 			'inventor' => DB_MODEL::join('inventor', 'users', null, 'inner', $where)->data,
+			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,
+			'data_bisnis' => DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data,
 		];
 		success("data berhasil ditemukan", $data);
 	}

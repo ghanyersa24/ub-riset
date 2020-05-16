@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Datadasar extends CI_Controller
 {
-	protected $table = "datadasar";
+	protected $table = "data_dasar";
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,13 +14,13 @@ class Datadasar extends CI_Controller
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"status_usaha" => post('status_usaha', 'required|enum:Masih Berjalan&Sudah Berhenti'),
-			"target_pasar" => post('target_pasar', 'required'),
-			"kompetitor" => post('kompetitor', 'required'),
-			"jangkauan" => post('jangkauan', 'required'),
-			"kanal_pemasaran" => post('kanal_pemasaran', 'required'),
-			"dampak_sosial" => post('dampak_sosial', 'required'),
-			"skema_harga" => post('skema_harga', 'required'),
-			"harga_produksi" => post('harga_produksi', 'required'),
+			"target_pasar" => post('target_pasar'),
+			"kompetitor" => post('kompetitor'),
+			"jangkauan" => post('jangkauan'),
+			"kanal_pemasaran" => post('kanal_pemasaran'),
+			"dampak_sosial" => post('dampak_sosial'),
+			"skema_harga" => post('skema_harga'),
+			"harga_produksi" => post('harga_produksi', 'required|numeric'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -36,7 +36,7 @@ class Datadasar extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::find($this->table, array("produk_id	" => $id));
 		}
 
 		if (!$do->error)
@@ -50,13 +50,13 @@ class Datadasar extends CI_Controller
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"status_usaha" => post('status_usaha', 'required|enum:Masih Berjalan&Sudah Berhenti'),
-			"target_pasar" => post('target_pasar', 'allow_html'),
-			"kompetitor" => post('kompetitor', 'allow_html'),
-			"jangkauan" => post('jangkauan', 'allow_html'),
-			"kanal_pemasaran" => post('kanal_pemasaran', 'allow_html'),
-			"dampak_sosial" => post('dampak_sosial', 'allow_html'),
-			"skema_harga" => post('skema_harga', 'allow_html'),
-			"harga_produksi" => post('harga_produksi', 'required'),
+			"target_pasar" => post('target_pasar'),
+			"kompetitor" => post('kompetitor'),
+			"jangkauan" => post('jangkauan'),
+			"kanal_pemasaran" => post('kanal_pemasaran'),
+			"dampak_sosial" => post('dampak_sosial'),
+			"skema_harga" => post('skema_harga'),
+			"harga_produksi" => post('harga_produksi', 'required|numeric'),
 		);
 
 		$where = array(
