@@ -108,7 +108,7 @@
       												</div>
       											</div>
       											<div class="timeline">
-      												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
+      												<a href="<?= base_url() . 'admin/mitra/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-handshake"></i></div>
       												</a>
       												<span class="year">Tahap 5</span>

@@ -136,6 +136,14 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function mitra($slug)
+	{
+		$data = riset::slugs_produk($slug);
+		$data['title'] = 'Mitra dan Kerjasama ' . $data['title'];
+		$data['content'] = 'ap_mitra';
+		$this->load->view('template', $data);
+	}
+
 	public function kegiatan($slug)
 	{
 		$data = riset::slugs_produk($slug);

@@ -22,7 +22,6 @@ class Super extends CI_Controller
 			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
-			'sertifikasi' => DB_MODEL::where('sertifikasi', $where)->data,
 			'izin' => DB_MODEL::where('izin_produk', $where)->data,
 			'foto_produk' => DB_MODEL::where('foto_produk', $where)->data,
 			'foto_kegiatan' => DB_MODEL::where('foto_kegiatan', $where)->data,

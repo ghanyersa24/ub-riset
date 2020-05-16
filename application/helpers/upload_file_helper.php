@@ -74,7 +74,19 @@ class UPLOAD_FILE
 		$upload_location = base_url() . "uploads/$location/" . $CI->upload->data("file_name");
 		if ($upload_status)
 			return $upload_location;
-		else
-			error(str_replace("_", " ", $post_name) . ' ' . $upload_message);
+		else {
+			$name = str_replace("_", " ", str_replace("new", "", $post_name));
+			switch ($upload_message) {
+				case 'The filetype you are attempting to upload is not allowed.':
+					error($name . " hanya bisa menerima format " . str_replace("|", " .", $type));
+					break;
+				case 'The file you are attempting to upload is larger than the permitted size.':
+					error($name . " hanya bisa menerima file dengan ukuran " . number_format($max_size / 1000) . ' MB');
+					break;
+				default:
+					error("File yang kamu kirim tidak sesuai dengan ketentuan.");
+					break;
+			}
+		}
 	}
 }

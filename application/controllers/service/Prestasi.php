@@ -12,8 +12,12 @@ class Prestasi extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"nama_kegiatan" => post('nama_kegiatan', 'required'),
-			"juara" => post('juara', 'required'),
+			"produk_id" => post('produk_id', 'required'),
+			"nama_acara" => post('nama_acara', 'required'),
+			"penyelenggara" => post('penyelenggara', 'required'),
+			"tahun" => post('tahun', 'required'),
+			"tingkat" => post('tingkat', 'required'),
+			"pencapaian" => post('pencapaian', 'required'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -29,7 +33,7 @@ class Prestasi extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
 		}
 
 		if (!$do->error)
@@ -41,8 +45,12 @@ class Prestasi extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"nama_kegiatan" => post('nama_kegiatan', 'required'),
-			"juara" => post('juara', 'required'),
+			"produk_id" => post('produk_id', 'required'),
+			"nama_acara" => post('nama_acara', 'required'),
+			"penyelenggara" => post('penyelenggara', 'required'),
+			"tahun" => post('tahun', 'required'),
+			"tingkat" => post('tingkat', 'required'),
+			"pencapaian" => post('pencapaian', 'required'),
 		);
 
 		$where = array(

@@ -276,12 +276,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				"data": "status_perolehan"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
-					return '<button class="btn btn-primary"><i class="fa fa-eye"></i> Detail </button>';
+					return `<button class="btn btn-light btn-delete mr-1"><i class="fas fa-trash"></i></button>
+						<button class="btn btn-primary btn-view"><i class="fa fa-eye"></i> Detail </button>`
 				}
 			}]
 		});
 		var table = $('#table').DataTable()
-		$('#table tbody').on('click', 'button', function() {
+		$('#table tbody').on('click', '.btn-view', function() {
 			var data = table.row($(this).parents('tr')).data()
 			$('#view-jenis').val(data.jenis)
 			setEditor('view-deskripsi', data.deskripsi)
@@ -296,6 +297,35 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			$('#view-tanggal_mulai').val(data.tanggal_mulai)
 			$('#view-tanggal_selesai').val(data.tanggal_selesai)
 			$('#view').modal('show')
+		})
+		$('#table tbody').on('click', '.btn-delete', function() {
+			var data = table.row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: "menghapus <?= $title ?> ini secara permanen!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/kekayaan_intelektual/delete',
+							data: {
+								id: data.id,
+								file_formulir: data.file_formulir,
+								file: data.file,
+							},
+							dataType: "json",
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
 		})
 
 		$('#form-add').validate({

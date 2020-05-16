@@ -76,6 +76,7 @@ class Izin_produk extends CI_Controller
 
 	public function delete()
 	{
+		UPLOAD_FILE::delete('file');
 		$where = array(
 			"id" => post('id', 'required')
 		);
