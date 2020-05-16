@@ -136,7 +136,7 @@
 									</div>
 									<h5 class="mt-4">Sertifikasi / Perijinan</h5>
 									<div class="table-responsive">
-										<table class="table table-striped" id="table-pengujian">
+										<table class="table table-striped" id="table-sertifikasi">
 											<thead>
 												<tr>
 													<th class="text-center">
@@ -387,9 +387,9 @@
 
 				});
 				//sertifikat dan perijinan
-				const sertifikasi = r.data.sertifikasi
-
-				$('#table-pengujian').DataTable({
+				const sertifikasi = r.data.ki
+				console.log(sertifikasi)
+				$('#table-sertifikasi').DataTable({
 					"data": sertifikasi,
 					columns: [{
 							"render": function(data, type, row, meta) {
@@ -397,7 +397,7 @@
 							},
 							// className: "text-center"
 						}, {
-							data: "nama"
+							data: "jenis"
 						},
 						{
 							data: "tahun"
@@ -406,13 +406,17 @@
 							data: "status"
 						},
 						{
-							data: "jenis"
+							"render": function(data, type, row, meta) {
+								return `<a target="_blank" href="${row.file_formulir}">${row.file_formulir.split('/').pop()}</a>`
+							}
 						},
 						{
 							data: "lembaga"
 						},
 						{
-							data: "tujuan"
+							"render": function(data, type, row, meta) {
+								return `<a target="_blank" href="${row.file}">${row.file.split('/').pop()}</a>`
+							}
 						},
 						{
 							data: "hasil"
