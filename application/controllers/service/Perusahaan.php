@@ -33,7 +33,7 @@ class Perusahaan extends CI_Controller
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::where($this->table, ['created_by' => $this->session->userdata('id')]);
+			$do = DB_MODEL::join('pengurus', 'perusahaan', null, 'inner', ['users_id' => $this->session->userdata('id')]);
 		} else {
 			$do = DB_MODEL::find($this->table, array("id" => $id));
 		}

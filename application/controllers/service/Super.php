@@ -29,6 +29,7 @@ class Super extends CI_Controller
 			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,
 			'data_bisnis' => DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data,
 		];
+		$data['produk']->kategori = json_decode($data['produk']->kategori);
 		success("data berhasil ditemukan", $data);
 	}
 }

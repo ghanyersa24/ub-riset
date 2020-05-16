@@ -124,9 +124,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				if (willDelete) {
 					$.ajax({
 						type: "POST",
-						url: api + 'service/perusahaan/delete',
+						url: api + 'service/pengurus/delete',
 						data: {
-							id: id,
+							perusahaan_id: id,
 							users_id: <?= $this->session->userdata('id') ?>
 						},
 						dataType: "json",

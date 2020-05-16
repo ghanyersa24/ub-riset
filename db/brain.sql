@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2020 at 07:22 PM
+-- Generation Time: May 16, 2020 at 07:57 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -306,10 +306,10 @@ CREATE TABLE `pengajuan` (
   `nama_produk` varchar(100) NOT NULL,
   `bidang` varchar(30) NOT NULL,
   `kategori` tinytext DEFAULT NULL,
-  `kasinov` tinyint(3) UNSIGNED DEFAULT NULL,
+  `katsinov` tinyint(3) UNSIGNED DEFAULT NULL,
   `tkt` tinyint(3) UNSIGNED DEFAULT NULL,
   `file_evaluasi` tinytext DEFAULT NULL,
-  `status` enum('diajukan','diperiksa','selesai') NOT NULL,
+  `status` enum('diajukan','diperiksa','dinilai') NOT NULL,
   `verifikator` varchar(15) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -1110,7 +1110,7 @@ INSERT INTO `users` (`id`, `nama`, `fakultas`, `jurusan`, `prodi`, `status`, `is
 ('165110200111018', 'ZASQIA RISKY SETIAWAN', 'Fak Ilmu Budaya', 'Bahasa dan Sastra', 'Sastra Jepang', NULL, NULL, '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165110200111018.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '2020-05-16 17:18:29', NULL, NULL),
 ('165110201111024', 'Ruth Putri Octavia Dewi', 'Fak Ilmu Budaya', 'Bahasa dan Sastra', 'Sastra Jepang', NULL, NULL, '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165110201111024.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '2020-05-16 17:18:29', NULL, NULL),
 ('165110307111003', 'Tri Supriansyah', 'Fak Ilmu Budaya', 'Bahasa dan Sastra', 'Bahasa dan Sastra Perancis', NULL, NULL, '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165110307111003.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '2020-05-16 17:18:29', NULL, NULL),
-('165150401111060', 'Ghany Abdillah Ersa', 'Fakultas Ilmu Komputer', 'Sistem Informasi', 'Sistem Informasi', 'mahasiswa', NULL, '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150401111060.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '165150401111060', '2020-05-16 17:17:52', NULL, NULL);
+('165150401111060', 'Ghany Abdillah Ersa', 'Fakultas Ilmu Komputer', 'Sistem Informasi', 'Sistem Informasi', 'mahasiswa', 'admin', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150401111060.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '165150401111060', '2020-05-16 17:44:41', NULL, NULL);
 
 --
 -- Indexes for dumped tables
