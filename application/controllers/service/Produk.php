@@ -30,6 +30,36 @@ class Produk extends CI_Controller
 			error("data gagal ditambahkan");
 		}
 	}
+	public function tambahan()
+	{
+		$where = array(
+			"id" => $produk = post('id', 'required'),
+		);
+		if (isset($_FILES['file_tambahan_new']))
+			$data['file_tambahan'] = UPLOAD_FILE::update('rar', 'file_tambahan', "inovasi/$produk/tambahan", "file-$produk");
+		else
+			error('silahkan pilih logo file tambahan inovasi terlebih dahulu');
+
+		$do = DB_MODEL::update($this->table, $where, $data);
+		if (!$do->error)
+			success("logo berhasil diupload", $do->data);
+		else
+			error("data gagal diubah");
+	}
+	public function kerjasama()
+	{
+		$where = array(
+			"id" => post('id', 'required'),
+		);
+		$data = array(
+			"kerjasama" => post('kerjasama', 'allow_html')
+		);
+		$do = DB_MODEL::update($this->table, $where, $data);
+		if (!$do->error)
+			success("data berhasil diubah", $do->data);
+		else
+			error("data gagal diubah");
+	}
 
 	public function get($id = null)
 	{

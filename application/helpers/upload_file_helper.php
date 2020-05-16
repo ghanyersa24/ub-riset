@@ -31,6 +31,11 @@ class UPLOAD_FILE
 	{
 		return self::uploads('pdf|doc|docx|xlx|xlxs|ppt|pptx', $post_name, $location, $file_name, $max_size);
 	}
+
+	public static function rar($post_name, $location = null, $file_name = null, $max_size = 10000)
+	{
+		return self::uploads('rar|zip', $post_name, $location, $file_name, $max_size);
+	}
 	public static function delete($input_name)
 	{
 		$location_old = post($input_name);

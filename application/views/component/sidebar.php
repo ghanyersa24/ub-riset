@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<!-- account -->
 			<!-- Product -->
-			<li class="<?php echo $segment == 'myproduct' || $segment == 'detail' || $segment == 'produk' || $segment == 'roadmap' || $segment == 'testing' || $segment == 'sertifikasi' || $segment == 'foto' || $segment == 'kegiatan' || $segment == 'inventor'|| $segment == 'bisnis'|| $segment == 'mitra' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/myproduct"><i class="fas fa-fire"></i> <span>My Product</span></a></li>
+			<li class="<?php echo $segment == 'myproduct' || $segment == 'detail' || $segment == 'produk' || $segment == 'roadmap' || $segment == 'testing' || $segment == 'sertifikasi' || $segment == 'foto' || $segment == 'kegiatan' || $segment == 'inventor'|| $segment == 'bisnis'|| $segment == 'mitra'|| $segment == 'tambahan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/myproduct"><i class="fas fa-fire"></i> <span>My Product</span></a></li>
 			</li>
 			<!-- <li class="dropdown <?php echo (is_null($slug) ? '' : $this->uri->segment(3) == $slug) ? 'active' : '' ?>">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Product</span></a>
