@@ -96,7 +96,7 @@ class Produk extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"nama_produk" => post('nama_produk', 'required'),
+			"nama_produk" => $nama = post('nama_produk', 'required'),
 			"bidang" => post('bidang', 'required|enum:Pangan&Energi&Transportasi&Rekayasa Keteknikan&Kesehatan&Pertahanan Keamanan&Material Maju&Kemaritiman&Sosial Budaya'),
 			"kategori" => json_encode($this->input->post('kategori')),
 			"jenis" => post('jenis', 'required', 'enum:digital&non digital'),
@@ -121,13 +121,16 @@ class Produk extends CI_Controller
 		);
 
 		$where = array(
-			"id" => post('id', 'required'),
+			"id" => $id = post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
-		if (!$do->error)
+		if (!$do->error) {
+			$slug = str_pad($id, 4, '0', STR_PAD_LEFT) . '-' . str_replace(" ", "-", $nama);
+			$do->data['slug'] = $slug;
+			DB_MODEL::update($this->table, ['id' => $id], ['slug' => $slug]);
 			success("data berhasil diubah", $do->data);
-		else
+		} else
 			error("data gagal diubah");
 	}
 

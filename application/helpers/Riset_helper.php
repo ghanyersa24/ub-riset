@@ -97,4 +97,28 @@ class riset
 				]
 			];
 	}
+	public static function riwayat($nama_produk, $informasi, $pengajuan, $prestasi)
+	{
+		$data = [];
+		foreach ($informasi as $value) {
+			$data[] = [
+				"type" => "informasi",
+				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk . strip_tags($value->informasi),
+			];
+		}
+		foreach ($pengajuan as $value) {
+			if ($value->status == 'dinilai')
+				$data[] = [
+					"type" => "pengajuan",
+					"riwayat" => "pada " . date('d F Y', strtotime($value->updated_at)) . " produk " . $nama_produk . " telah diverifikasi dengan mendapat TKT " . $value->tkt . " dan KATSINOV " . $value->katsinov,
+				];
+		}
+		foreach ($prestasi as $value) {
+			$data[] = [
+				"type" => "prestasi",
+				"riwayat" => "pada tahun " . $value->tahun . " produk " . $nama_produk . " mengikuti " . $value->nama_acara . " yang diselenggarakan oleh " . $value->penyelenggara . " dengan mendapat pencapaian " . $value->pencapaian,
+			];
+		}
+		return $data;
+	}
 }
