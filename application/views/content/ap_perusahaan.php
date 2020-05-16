@@ -126,7 +126,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						type: "POST",
 						url: api + 'service/perusahaan/delete',
 						data: {
-							produk_id: id,
+							id: id,
 							users_id: <?= $this->session->userdata('id') ?>
 						},
 						dataType: "json",
