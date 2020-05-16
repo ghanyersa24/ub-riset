@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2020 at 09:58 PM
+-- Generation Time: May 16, 2020 at 10:57 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -79,13 +79,6 @@ CREATE TABLE `foto_kegiatan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `foto_kegiatan`
---
-
-INSERT INTO `foto_kegiatan` (`id`, `produk_id`, `title`, `foto`, `keterangan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(2, 1, 'Officia tempora temp', 'http://localhost/ub-riset/uploads/inovasi/1/foto/Officia_tempora_temp-foto-1_2020-05-12_02_16.png', '', '165150401111060', '2020-05-11 19:16:15', '165150401111060', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -146,7 +139,10 @@ CREATE TABLE `inventor` (
 --
 
 INSERT INTO `inventor` (`produk_id`, `users_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, '165150401111060', '165150401111060', '2020-05-09 17:34:37', NULL, NULL);
+(1, '165060301111015', '165150401111060', '2020-05-12 20:24:55', NULL, NULL),
+(1, '165150401111060', '165150401111060', '2020-05-09 17:34:37', NULL, NULL),
+(2, '165060300111002', '165150401111060', '2020-05-14 17:07:41', NULL, NULL),
+(2, '165150401111060', '165150401111060', '2020-05-14 12:50:06', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -242,6 +238,39 @@ CREATE TABLE `kepemilikan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `kepemilikan`
+--
+
+INSERT INTO `kepemilikan` (`id`, `perusahaan_id`, `nama`, `tipe`, `kewarganegaraan`, `asal_negara`, `presentase`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(9, 3, ' eqwe 2 eew qe', 'Perseorangan', 'Dalam Negeri', ' qweqwe', 21, '165150401111060', '2020-05-12 19:40:41', NULL, NULL),
+(12, 3, 'Ipsa laborum Nemo ', 'Perusahaan', 'Luar Negeri', 'Minim ratione consec', 86, '165150401111060', '2020-05-12 19:49:54', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mitra`
+--
+
+CREATE TABLE `mitra` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `produk_id` int(10) UNSIGNED NOT NULL,
+  `nama_mitra` varchar(100) DEFAULT NULL,
+  `mou` tinytext DEFAULT NULL,
+  `tujuan` tinytext DEFAULT NULL,
+  `created_by` varchar(15) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` varchar(15) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mitra`
+--
+
+INSERT INTO `mitra` (`id`, `produk_id`, `nama_mitra`, `mou`, `tujuan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(8, 2, 'Enim ea quos eum vol', NULL, 'Aliquam aut qui sint', '165150401111060', '2020-05-14 17:35:54', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -272,7 +301,8 @@ CREATE TABLE `pengajuan` (
 --
 
 INSERT INTO `pengajuan` (`id`, `produk_id`, `inventor`, `nama_produk`, `slug`, `bidang`, `kategori`, `katsinov`, `tkt`, `file_evaluasi`, `status`, `verifikator`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 1, 'Ghany Abdillah Ersa', 'MY PRODUCT INIFINITE', '0001-MY-PRODUCT-INIFINITE', '', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', '4', '2', 'http://localhost/ub-riset/uploads/inovasi/1/evaluasi/3a41090fc727d535731df5ad52e1bd0a.xlsx', 'dinilai', '165150401111060', '165150401111060', '2020-05-11 19:54:34', '165150401111060', '2020-05-11 19:54:34');
+(1, 1, 'Ghany Abdillah Ersa', 'MY PRODUCT INIFINITE', '0001-MY-PRODUCT-INIFINITE', '', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', '4', '2', 'http://localhost/ub-riset/uploads/inovasi/1/evaluasi/3a41090fc727d535731df5ad52e1bd0a.xlsx', 'dinilai', '165150401111060', '165150401111060', '2020-05-11 19:54:34', '165150401111060', '2020-05-11 19:54:34'),
+(2, 1, 'Ghany Abdillah Ersa', 'MY PRODUCT INIFINITE', '0001-MY-PRODUCT-INIFINITE', '', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', '0', '0', '', 'diajukan', '', '165150401111060', '2020-05-14 12:55:41', '', '2020-05-14 12:55:41');
 
 -- --------------------------------------------------------
 
@@ -319,9 +349,10 @@ CREATE TABLE `pengurus` (
 --
 
 INSERT INTO `pengurus` (`perusahaan_id`, `users_id`, `jabatan`, `status_sdm`, `jenis_pengurus`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, '165150401111060', NULL, NULL, NULL, '165150401111060', '2020-05-10 08:10:10', NULL, NULL),
+(1, '165150401111060', 'CEO', NULL, NULL, '165150401111060', '2020-05-12 20:09:08', NULL, NULL),
 (2, '165150401111060', NULL, NULL, NULL, '165150401111060', '2020-05-10 17:55:31', NULL, NULL),
-(3, '165150401111060', NULL, NULL, NULL, '165150401111060', '2020-05-10 18:29:50', NULL, NULL);
+(3, '165060300111005', 'tesss', NULL, NULL, '165150401111060', '2020-05-12 20:21:36', NULL, NULL),
+(3, '165150401111060', 'CEO', NULL, NULL, '165150401111060', '2020-05-12 20:09:22', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -361,7 +392,27 @@ CREATE TABLE `perusahaan` (
 --
 
 INSERT INTO `perusahaan` (`id`, `nama`, `slug`, `nama_pendiri`, `tahun_berdiri`, `bentuk_usaha`, `status_kantor`, `alamat_kantor`, `kota_kabupaten`, `logo`, `izin`, `akta`, `luas_ruang_produksi`, `alamat_produksi`, `pegawai_tetap`, `pegawai_tidak_tetap`, `email`, `telepon`, `website`, `sosmed`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(3, 'Amet quia voluptate', '0003-Amet-quia-voluptate', 'Esse qui irure fugi', 2010, 'CV', 'Sewa', 'Laudantium exercita', 'Culpa rerum excepteu', 'http://localhost/ub-riset/uploads/perusahaan/Amet quia voluptate/logo-Amet_quia_voluptate_2020-05-12_02_38.png', 'http://localhost/ub-riset/uploads/perusahaan/Amet quia voluptate/izin-Amet_quia_voluptate_2020-05-12_02_20.pdf', 'http://localhost/ub-riset/uploads/perusahaan/Amet quia voluptate/akta-Amet_quia_voluptate_2020-05-12_02_19.pdf', 24, 'Tempor et qui cumque', 58, 92, 'dagynasecu@mailinator.com', '96', 'https://www.sihicuwytoc.co.uk', 'Pariatur Alias saep', '165150401111060', '2020-05-11 19:38:16', '165150401111060', NULL);
+(3, 'Amet quia voluptate', '0003-Amet-quia-voluptate', 'Esse qui irure fugi', 2010, 'CV', 'Sewa', 'Laudantium exercita', 'Culpa rerum excepteu', 'http://localhost/ub-riset/uploads/perusahaan/Amet quia voluptate/logo-Amet_quia_voluptate_2020-05-13_02_08.png', 'http://localhost/ub-riset/uploads/perusahaan/Amet quia voluptate/izin-Amet_quia_voluptate_2020-05-12_02_20.pdf', 'http://localhost/ub-riset/uploads/perusahaan/Amet quia voluptate/akta-Amet_quia_voluptate_2020-05-12_02_19.pdf', 24, 'Tempor et qui cumque', 58, 92, 'dagynasecu@mailinator.com', '96', 'https://www.sihicuwytoc.co.uk', 'Pariatur Alias saep', '165150401111060', '2020-05-12 19:08:08', '165150401111060', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prestasi`
+--
+
+CREATE TABLE `prestasi` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `produk_id` int(10) UNSIGNED NOT NULL,
+  `nama_acara` varchar(100) NOT NULL,
+  `pencapaian` varchar(30) NOT NULL,
+  `penyelenggara` varchar(30) DEFAULT NULL,
+  `tingkat` varchar(20) DEFAULT NULL,
+  `tahun` year(4) DEFAULT NULL,
+  `created_by` varchar(15) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_by` varchar(15) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -408,7 +459,8 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id`, `nama_produk`, `tkt`, `katsinov`, `slug`, `bidang`, `kategori`, `jenis`, `produksi_barang_fisik`, `logo_produk`, `deskripsi_singkat`, `deskripsi_lengkap`, `latar_belakang`, `keterbaruan_produk`, `masalah`, `solusi`, `spesifikasi_teknis`, `kegunaan_manfaat`, `keunggulan_keunikan`, `kesiapan_teknologi`, `kepemilikan_teknologi`, `pemilik_teknologi`, `teknologi_yang_dikembangkan`, `rencana_pengembangan`, `tautan_video`, `media_sosial`, `website`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'MY PRODUCT INIFINITE', '2', '4', '0001-MY-PRODUCT-INIFINITE', '', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', 'digital', NULL, 'http://localhost/ub-riset/uploads/inovasi/1/logo/logo-1_2020-05-12_02_04.png', 'baiklah ini adalah kunci', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '165150401111060', '2020-05-11 19:55:23', '165150401111060', NULL);
+(1, 'MY PRODUCT INIFINITE', '2', '4', '0001-MY-PRODUCT-INIFINITE', '', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', 'digital', NULL, 'http://localhost/ub-riset/uploads/inovasi/1/logo/logo-1_2020-05-12_02_04.png', 'baiklah ini adalah kunci', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '165150401111060', '2020-05-11 19:55:23', '165150401111060', NULL),
+(2, 'Qui vel veniam aut ', '0', '0', '0002-Qui-vel-veniam-aut-', 'Pertahanan Keamanan', '[\"Energi\",\"Transportasi\",\"Rekayasa Keteknikan\",\"Pertahanan Keamanan\",\"Material Maju\",\"Sosial Budaya\"]', 'digital', NULL, NULL, 'asdsa asdas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '165150401111060', '2020-05-14 12:50:06', '165150401111060', NULL);
 
 -- --------------------------------------------------------
 
@@ -431,7 +483,8 @@ CREATE TABLE `produk_perusahaan` (
 
 INSERT INTO `produk_perusahaan` (`produk_id`, `perusahaan_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (1, 1, '165150401111060', '2020-05-10 18:15:11', NULL, NULL),
-(1, 3, '165150401111060', '2020-05-11 19:47:04', NULL, NULL);
+(1, 3, '165150401111060', '2020-05-11 19:47:04', NULL, NULL),
+(2, 3, '165150401111060', '2020-05-14 16:48:46', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -472,6 +525,13 @@ CREATE TABLE `roadmap` (
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `roadmap`
+--
+
+INSERT INTO `roadmap` (`id`, `produk_id`, `nama`, `tahun_mulai`, `tahun_selesai`, `sumber_pendanaan`, `skema`, `nilai_pendanaan`, `aktivitas`, `tujuan`, `hasil`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 1, 'Sed aspernatur modi ', 2003, 2033, 'Non accusantium eaqu', '', 90, '', '', '', '165150401111060', '2020-05-14 16:47:05', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1141,6 +1201,13 @@ ALTER TABLE `kepemilikan`
   ADD KEY `kepemilikan_FKIndex1` (`perusahaan_id`);
 
 --
+-- Indexes for table `mitra`
+--
+ALTER TABLE `mitra`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `mitra_FKIndex1` (`produk_id`);
+
+--
 -- Indexes for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
@@ -1167,6 +1234,13 @@ ALTER TABLE `pengurus`
 --
 ALTER TABLE `perusahaan`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `prestasi`
+--
+ALTER TABLE `prestasi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prestasi_FKIndex1` (`produk_id`);
 
 --
 -- Indexes for table `produk`
@@ -1232,19 +1306,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `aset`
 --
 ALTER TABLE `aset`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `foto_kegiatan`
 --
 ALTER TABLE `foto_kegiatan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `foto_produk`
 --
 ALTER TABLE `foto_produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `guest`
@@ -1262,25 +1336,31 @@ ALTER TABLE `izin_produk`
 -- AUTO_INCREMENT for table `kekayaan_intelektual`
 --
 ALTER TABLE `kekayaan_intelektual`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `kepemilikan`
 --
 ALTER TABLE `kepemilikan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `mitra`
+--
+ALTER TABLE `mitra`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengujian`
 --
 ALTER TABLE `pengujian`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `perusahaan`
@@ -1289,16 +1369,22 @@ ALTER TABLE `perusahaan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `prestasi`
+--
+ALTER TABLE `prestasi`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roadmap`
 --
 ALTER TABLE `roadmap`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sertifikasi`
