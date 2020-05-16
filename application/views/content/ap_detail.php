@@ -44,17 +44,7 @@
       									</div>
       								</div>
 
-      								<div class="d-flex flex-wrap justify-content-between mb-4">
-      									<div>
-      										<p class="mb-0">Validasi Terakhir: <strong>14 Juni 2020</strong></p>
-      										<p class="mb-0">Oleh:<strong>Prof. Bagus Fahmi</strong></p>
-      										<button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
-      									</div>
-      									<div class="text-md-right">
-      										<p class="mb-0">Status TKT: <strong>6</strong></p>
-      										<p>Tingkat KATSINOV: <strong>9</strong></p>
-      									</div>
-      								</div>
+      								<div id="verifikasi-wrap"></div>
 
       								<div class="row">
       									<div class="col-md-12">
@@ -63,7 +53,7 @@
       												<a href="<?= base_url() . 'admin/produk/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-box"></i></div>
       												</a>
-      												<span class="year">Tahap 1 <i class="fa fa-check"></i> </span>
+      												<span class="year" id="data-produk-check">Tahap 1 </span>
       												<div class="timeline-content">
       													<h5 class="title">Data dasar produk</h5>
       													<p class="description">
@@ -75,7 +65,7 @@
       												<a href="<?= base_url() . 'admin/roadmap/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-bolt"></i></div>
       												</a>
-      												<span class="year">Tahap 2 <i class="fa fa-check"></i></span>
+      												<span class="year" id="roadmap-check">Tahap 2 </span>
       												<div class="timeline-content">
       													<h5 class="title">Roadmap Riset dan Pengembangan Produk</h5>
       													<p class="description">
@@ -87,7 +77,7 @@
       												<a href="<?= base_url() . 'admin/testing/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-vial"></i></div>
       												</a>
-      												<span class="year">Tahap 3</span>
+      												<span class="year" id="pengujian-check">Tahap 3 </span>
       												<div class="timeline-content">
       													<h5 class="title">Pengujian Produk</h5>
       													<p class="description">
@@ -99,7 +89,7 @@
       												<a href="<?= base_url() . 'admin/sertifikasi/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-certificate"></i></div>
       												</a>
-      												<span class="year">Tahap 4</span>
+      												<span class="year" id="sertifikasi-check">Tahap 4 </span>
       												<div class="timeline-content">
       													<h5 class="title">Sertifikasi dan Perijinan Produk</h5>
       													<p class="description">
@@ -111,7 +101,7 @@
       												<a href="<?= base_url() . 'admin/mitra/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-handshake"></i></div>
       												</a>
-      												<span class="year">Tahap 5</span>
+      												<span class="year" id="mitra-check">Tahap 5 </span>
       												<div class="timeline-content">
       													<h5 class="title">Mitra dan Kerjsama</h5>
       													<p class="description">
@@ -124,7 +114,7 @@
       												<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       												</a>
-      												<span class="year">Tahap 6</span>
+      												<span class="year" id="foto-produk-check">Tahap 6 </span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Produk</h5>
       													<p class="description">
@@ -136,7 +126,7 @@
       												<a href="<?= base_url() . 'admin/kegiatan/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       												</a>
-      												<span class="year">Tahap 7</span>
+      												<span class="year" id="foto-kegiatan-check">Tahap 7 </span>
       												<div class="timeline-content">
       													<h5 class="title">Foto Kegiatan</h5>
       													<p class="description">
@@ -149,7 +139,7 @@
       												<a href="<?= base_url() . 'admin/inventor/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-users"></i></div>
       												</a>
-      												<span class="year">Tahap 8</span>
+      												<span class="year" id="inventor-check">Tahap 8 </span>
       												<div class="timeline-content">
       													<h5 class="title">Inventor</h5>
       													<p class="description">
@@ -162,7 +152,7 @@
       												<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
       												</a>
-      												<span class="year">Tahap 9</span>
+      												<span class="year" id="perusahaan-check">Tahap 9 </span>
       												<div class="timeline-content">
       													<h5 class="title">Data Perusahaan</h5>
       													<p class="description">
@@ -174,7 +164,7 @@
       												<a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
       													<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
       												</a>
-      												<span class="year">Tahap 10</span>
+      												<span class="year" id="bisnis-check">Tahap 10</span>
       												<div class="timeline-content">
       													<h5 class="title">Data Bisnis</h5>
       													<p class="description">
@@ -194,7 +184,64 @@
       	</section>
       </div>
       <script>
+      	function addCheck(id) {
+      		$(id).append(`<i class="fa fa-check"></i>`)
+      	}
       	$(document).ready(function() {
+      		$.ajax({
+      			method: 'get',
+      			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
+      			dataType: 'json',
+      			success: (r) => {
+      				console.log(r)
+      				const produk = r.data
+      				if (produk.produk != null) {
+      					addCheck('#data-produk-check')
+      				}
+      				if (produk.roadmap.length != 0) {
+      					addCheck('#roadmap-check')
+      				}
+      				if (produk.pengujian.length != 0) {
+      					addCheck('#pengujian-check')
+      				}
+      				if (produk.ki.length != 0) {
+      					addCheck('#sertifikasi-check')
+      				}
+      				// if (produk.mitra.length != 0) {
+      				// 	addCheck('#mitra-check')
+      				// }
+      				if (produk.foto_produk.length != 0) {
+      					addCheck('#foto-produk-check')
+      				}
+      				if (produk.foto_kegiatan.length != 0) {
+      					addCheck('#foto-kegiatan-check')
+      				}
+      				if (produk.inventor.length != 0) {
+      					addCheck('#inventor-check')
+      				}
+      				// if (produk.perusahaan.length != 0) {
+      				// 	addCheck('#perusahaan-check')
+      				// }
+      				// if (produk.bisnis.length != 0) {
+      				// 	addCheck('#bisnis-check')
+      				// }
+      				if (produk.pengajuan.data.tkt != null) {
+      					$('#verifikasi-wrap').append(`<div class="d-flex flex-wrap justify-content-between mb-4">
+											  <div>
+												  <p class="mb-0">Validasi Terakhir: <strong>14 Juni 2020</strong></p>
+												  <p class="mb-0">Oleh:<strong>Prof. Bagus Fahmi</strong></p>
+												  <button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
+											  </div>
+											  <div class="text-md-right">
+												  <p class="mb-0">Status TKT: <strong>6</strong></p>
+												  <p>Tingkat KATSINOV: <strong>9</strong></p>
+											  </div>
+										  </div>`)
+      				} else {
+      					$('#verifikasi-wrap').append(`<p>Kamu sedang mengajukan verifikasi, tunggu proses verifikasi selesai untuk dapat mengubah data lagi</p>`)
+      				}
+      			}
+      		})
 
       		$('#btn-ajukan').click(function(e) {
       			e.preventDefault();
