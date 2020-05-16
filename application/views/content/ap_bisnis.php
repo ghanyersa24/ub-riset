@@ -61,6 +61,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
+														<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 														<label for="view-status_usaha" class="">Status Usaha </label>
 														<select id="view-status_usaha" class="form-control" name="status_usaha">
 															<option value="Masih Berjalan">Masih Berjalan</option>
@@ -83,8 +84,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="view-jangkauan_pemasaran">Jangkauan Pemasaran<span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan jangkauan pemasaran">!</span></label>
-														<textarea class="form-control" id="view-jangkauan_pemasaran" name="jangkauan_pemasaran"></textarea>
+														<label for="view-jangkauan">Jangkauan Pemasaran<span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan jangkauan pemasaran">!</span></label>
+														<textarea class="form-control" id="view-jangkauan" name="jangkauan"></textarea>
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -107,15 +108,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="view-harga_pokok">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
-														<input type="number" class="form-control" id="view-harga_pokok" name="harga_pokok">
+														<label for="view-harga_produksi">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
+														<input type="number" class="form-control" id="view-harga_produksi" name="harga_produksi">
 													</div>
 												</div>
 
 											</div>
 										</form>
 									</section>
-
 									<section id="tab-pemasaran">
 										<div id="pemasaran-wrap">
 											<div class="table-responsive">
@@ -146,12 +146,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</table>
 											</div>
 										</div>
-										<form id="form-add-pemasaran">
+										<form id="form-pemasaran">
+											<input class="form-control" type="number" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jangkauan_pemasaran">Jenis Jangkauan Pemasaran</label>
-														<select name="jangkauan_pemasaran" id="add-jangkauan_pemasaran" class="form-control">
+														<label for="add-jangkauan">Jenis Jangkauan Pemasaran</label>
+														<select name="jangkauan" id="add-jangkauan" class="form-control">
 															<option value="Regional">Regional</option>
 															<option value="Nasional">Nasional</option>
 															<option value="Ekspor">Ekspor</option>
@@ -162,14 +163,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini">!</span></label>
-														<input type="text" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
+														<input type="number" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
 													</div>
 
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-nilai_pemasaran">Nilai Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nilai penjualan produk yang dipasarkan hingga saat ini">!</span></label>
-														<input type="text" class="form-control" id="add-nilai_pemasaran" name="nilai_pemasaran">
+														<input type="number" class="form-control" id="add-nilai_pemasaran" name="nilai_pemasaran">
 													</div>
 
 												</div>
@@ -209,12 +210,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</tfoot>
 											</table>
 										</div>
-										<form id="form-add-produksi">
+										<form id="form-produksi">
+											<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jenis_periode_produksi">Jenis Periode</label>
-														<select name="jenis_periode_produksi" id="add-jenis_periode_produksi" class="form-control">
+														<label for="add-jenis">Jenis Periode</label>
+														<select name="jenis" id="add-jenis" class="form-control">
 															<option value="Perolehan">Perolehan</option>
 															<option value="Proyeksi">Proyeksi</option>
 
@@ -224,15 +226,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-tahun_produksi">Tahun Produksi</label>
-														<input type="text" class="form-control" id="add-tahun_produksi" name="tahun_produksi">
+														<label for="add-tahun">Tahun Produksi</label>
+														<input type="number" class="form-control" id="add-tahun" name="tahun">
 													</div>
 
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jumlah_produksi">Jumlah Produksi</label>
-														<input type="text" class="form-control" id="add-jumlah_produksi" name="jumlah_produksi">
+														<label for="add-jumlah">Jumlah Produksi</label>
+														<input type="number" class="form-control" id="add-jumlah" name="jumlah">
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -274,12 +276,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</table>
 											</div>
 										</div>
-										<form id="form-add-penjualan">
+										<form id="form-penjualan">
+											<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jenis_periode_penjualan">Jenis Periode</label>
-														<select name="jenis_periode_penjualan" id="add-jenis_periode_penjualan" class="form-control">
+														<label for="add-jenis">Jenis Periode</label>
+														<select name="jenis" id="add-jenis" class="form-control">
 															<option value="Perolehan">Perolehan</option>
 															<option value="Proyeksi">Proyeksi</option>
 														</select>
@@ -287,15 +290,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-tahun_penjualan">Tahun Penjualan</label>
-														<input type="number" class="form-control" id="add-tahun_penjualan" name="tahun_penjualan">
+														<label for="add-tahun">Tahun Penjualan</label>
+														<input type="number" class="form-control" id="add-tahun" name="tahun">
 													</div>
 
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jumlah_penjualan">Jumlah Penjualan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah unit produk yang terjual">!</span></label>
-														<input type="text" class="form-control" id="add-jumlah_penjualan" name="jumlah_penjualan">
+														<label for="add-jumlah">Jumlah Penjualan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah unit produk yang terjual">!</span></label>
+														<input type="number" class="form-control" id="add-jumlah" name="jumlah">
 													</div>
 
 												</div>
@@ -340,23 +343,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</table>
 											</div>
 										</div>
-										<form action="">
+										<form id="form-omset">
+											<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jenis_periode_omset">Jenis Periode</label>
-														<select name="jenis_periode_omset" id="add-jenis_periode_omset" class="form-control">
+														<label for="add-jenis">Jenis Periode</label>
+														<select name="jenis" id="add-jenis" class="form-control">
 															<option value="Perolehan">Perolehan</option>
 															<option value="Proyeksi">Proyeksi</option>
-
 														</select>
-
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-tipe_omset">Tipe Omset/Profit</label>
-														<select name="tipe_omset" id="add-tipe_omset" class="form-control">
+														<label for="add-tipe">Tipe Omset/Profit</label>
+														<select name="tipe" id="add-tipe" class="form-control">
 															<option value="Omset">Omset</option>
 															<option value="Profit">Profit</option>
 
@@ -369,25 +371,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<label for="add-jenis_omset">Jenis Omset/Profit</label>
 														<select name="jenis_omset" id="add-jenis_omset" class="form-control">
 															<option value="Perusahaan">Perusahaan</option>
-															<option value="Produk (yang diajukan)">Produk (yang diajukan)</option>
-
+															<option value="Produk">Produk (yang diajukan)</option>
 														</select>
-
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="view-tahun_omset">Tahun Omset/Profit</label>
-														<input type="number" class="form-control" id="view-tahun_omset" name="tahun_omset">
+														<label for="view-tahun">Tahun Omset/Profit</label>
+														<input type="number" class="form-control" id="view-tahun" name="tahun">
 													</div>
 
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="view-nilai_omset">Nilai Omset</label>
-														<input type="number" class="form-control" id="view-nilai_omset" name="nilai_omset">
+														<label for="view-nilai">Nilai Omset</label>
+														<input type="number" class="form-control" id="view-nilai" name="nilai">
 													</div>
-
 												</div>
 												<div class="col-md-6">
 													<div class="h-100 d-flex align-items-center">
@@ -410,6 +409,36 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <script>
 	$(document).ready(function() {
+		triggerEditor('#form-view-data')
+		// Data dasar
+		$.ajax({
+			type: "GET",
+			url: api + "service/datadasar/get/<?= $id ?>",
+			success: function(response) {
+				let data = response.data
+				$('#view-id').val(data.id)
+				$('#view-status_usaha').val(data.status_usaha)
+				$('#view-harga_produksi').val(data.harga_produksi)
+				setEditor('view-target_pasar', data.target_pasar)
+				setEditor('view-kompetitor', data.kompetitor)
+				setEditor('view-jangkauan', data.jangkauan)
+				setEditor('view-kanal_pemasaran', data.kanal_pemasaran)
+				setEditor('view-dampak_sosial', data.dampak_sosial)
+				setEditor('view-skema_harga', data.skema_harga)
+			}
+		});
+		$('#form-view-data').validate({
+			submitHandler: (form) => {
+				$.ajax({
+					type: "POST",
+					url: api + "service/datadasar/create",
+					data: $('#form-view-data').serialize(),
+					success: function(response) {
+						response_alert(response)
+					}
+				});
+			}
+		})
 		// pemasaran
 		$('#table-pemasaran').DataTable({
 			"ajax": api + 'service/pemasaran/get/<?= $id ?>',
@@ -426,10 +455,52 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				"data": "nilai_pemasaran"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
-					return `<button class="btn btn-primary btn-view"><i class="fa fa-eye"></i> Detail </button>`
+					return `<button class="btn btn-light btn-delete mr-1"><i class="fas fa-trash"></i></button>`
 				}
 			}]
 		});
+		$('#form-pemasaran').validate({
+			submitHandler: (form) => {
+				$.ajax({
+					type: "POST",
+					url: api + "service/pemasaran/create",
+					data: $("#form-pemasaran").serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error) {
+							$('#form-pemasaran').trigger('reset')
+							$('#table-pemasaran').dataTable().api().ajax.reload()
+						}
+					}
+				});
+			}
+		})
+		$('#table-pemasaran tbody').on('click', '.btn-delete', function() {
+			var data = $('#table-pemasaran').DataTable().row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: "menghapus data pemasaran <?= $title ?> ini secara permanen!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/pemasaran/delete',
+							data: {
+								id: data.id,
+							},
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table-pemasaran').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
+		})
 		// produksi
 		$('#table-produksi').DataTable({
 			"ajax": api + 'service/produksi/get/<?= $id ?>',
@@ -447,10 +518,53 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
 					return `
-						<button class="btn btn-primary btn-view"><i class="fa fa-eye"></i> Detail </button>`
+						<button class="btn btn-light btn-delete mr-1"><i class="fas fa-trash"></i></button>`
 				}
 			}]
 		});
+		$('#form-produksi').validate({
+			submitHandler: (form) => {
+				$.ajax({
+					type: "POST",
+					url: api + "service/produksi/create",
+					data: $("#form-produksi").serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error) {
+							$('#form-produksi').trigger('reset')
+							$('#table-produksi').dataTable().api().ajax.reload()
+						}
+					}
+				});
+			}
+		})
+		$('#table-produksi tbody').on('click', '.btn-delete', function() {
+			var data = $('#table-produksi').DataTable().row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: "menghapus data produksi<?= $title ?> ini secara permanen!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/produksi/delete',
+							data: {
+								id: data.id,
+							},
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table-produksi').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
+		})
+
 		// penjualan
 		$('#table-penjualan').DataTable({
 			"ajax": api + 'service/penjualan/get/<?= $id ?>',
@@ -467,10 +581,53 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				"data": "jumlah"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
-					return `<button class="btn btn-primary btn-view"><i class="fa fa-eye"></i> Detail </button>`
+					return `<button class="btn btn-light btn-delete mr-1"><i class="fas fa-trash"></i></button>`
 				}
 			}]
 		});
+		$('#form-penjualan').validate({
+			submitHandler: (form) => {
+				$.ajax({
+					type: "POST",
+					url: api + "service/penjualan/create",
+					data: $("#form-penjualan").serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error) {
+							$('#form-penjualan').trigger('reset')
+							$('#table-penjualan').dataTable().api().ajax.reload()
+						}
+					}
+				});
+			}
+		})
+		$('#table-penjualan tbody').on('click', '.btn-delete', function() {
+			var data = $('#table-penjualan').DataTable().row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: "menghapus data penjualan <?= $title ?> ini secara permanen!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/penjualan/delete',
+							data: {
+								id: data.id,
+							},
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table-penjualan').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
+		})
+
 		// omset
 		$('#table-omset').DataTable({
 			"ajax": api + 'service/omset/get/<?= $id ?>',
@@ -491,9 +648,51 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				"data": "nilai"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
-					return `<button class="btn btn-primary btn-view"><i class="fa fa-eye"></i> Detail </button>`
+					return `<button class="btn btn-light btn-delete mr-1"><i class="fas fa-trash"></i></button>`
 				}
 			}]
 		});
+		$('#form-omset').validate({
+			submitHandler: (form) => {
+				$.ajax({
+					type: "POST",
+					url: api + "service/omset/create",
+					data: $("#form-omset").serialize(),
+					success: function(response) {
+						response_alert(response)
+						if (!response.error) {
+							$('#form-omset').trigger('reset')
+							$('#table-omset').dataTable().api().ajax.reload()
+						}
+					}
+				});
+			}
+		})
+		$('#table-omset tbody').on('click', '.btn-delete', function() {
+			var data = $('#table-omset').DataTable().row($(this).parents('tr')).data()
+			swal({
+					title: "Apakah Kamu yakin?",
+					text: "menghapus data omset <?= $title ?> ini secara permanen!",
+					icon: "warning",
+					buttons: true,
+					dangerMode: true,
+				})
+				.then((willDelete) => {
+					if (willDelete) {
+						$.ajax({
+							type: "POST",
+							url: api + 'service/omset/delete',
+							data: {
+								id: data.id,
+							},
+							success: function(response) {
+								response_alert(response)
+								if (!response.error)
+									$('#table-omset').dataTable().api().ajax.reload()
+							}
+						})
+					}
+				})
+		})
 	})
 </script>

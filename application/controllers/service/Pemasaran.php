@@ -61,7 +61,6 @@ class Pemasaran extends CI_Controller
 
 	public function delete()
 	{
-		UPLOAD_FILE::delete('mou');
 		$where = array(
 			"id" => post('id', 'required')
 		);

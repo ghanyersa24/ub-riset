@@ -22,11 +22,23 @@ class Super extends CI_Controller
 			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
-			'izin' => DB_MODEL::where('izin_produk', $where)->data,
+			'mitra' => DB_MODEL::where('mitra', $where)->data,
 			'foto_produk' => DB_MODEL::where('foto_produk', $where)->data,
+			'riwayat' => $this->riwayat($slugs->data['produk']->nama_produk, $where),
 			'foto_kegiatan' => DB_MODEL::where('foto_kegiatan', $where)->data,
 			'inventor' => DB_MODEL::join('inventor', 'users', null, 'inner', $where)->data,
+			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,
+			'data_bisnis' => DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data,
 		];
+		$data['produk']->kategori = json_decode($data['produk']->kategori);
 		success("data berhasil ditemukan", $data);
+	}
+	private function riwayat($nama_produk, $where)
+	{
+		$informasi = DB_MODEL::where('informasi', $where)->data;
+		$pengajuan = DB_MODEL::where('pengajuan', $where)->data;
+		$prestasi = DB_MODEL::where('prestasi', $where)->data;
+		$data = riset::riwayat($nama_produk, $informasi, $pengajuan, $prestasi);
+		return $data;
 	}
 }
