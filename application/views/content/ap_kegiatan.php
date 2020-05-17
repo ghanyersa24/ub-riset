@@ -133,7 +133,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				res = response.data
 				let card = ""
 				if (res.length == 0)
-					card = `<div class="col-12 text-center"> <p class="h5">silahkan tambahkan foto kegiatan anda !!!</p></div>`
+					card = `<div class="col-12 text-center"> <p class="h5">Silahkan tambahkan foto kegiatan anda</p></div>`
 				else
 					res.forEach(element => {
 						card += `<div class="card col-sm-3 ">

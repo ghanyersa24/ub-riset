@@ -12,7 +12,7 @@
 			<div class="card">
 				<div class="card-body">
 					<div class="container">
-						<p>Saat ini Produk <strong id="status"></strong> terdaftar pada perusahaan <strong id="perusahaan"></strong>. <br><span id="action" style="display: none" class="ml-1"><a href="#" class="text-decoration-none" onclick="showForm()">klik disini</a> untuk hapus dari perusahaan</span></p>
+						<p>Saat ini Produk <strong id="status"></strong> terdaftar pada perusahaan <strong id="perusahaan"></strong>. <br><span id="action" style="display: none" class="ml-1"><a href="#" class="text-decoration-none" onclick="showForm()">klik disini</a> untuk hapus produk dari perusahaan</span></p>
 						<form id="form-add">
 							<div class="form-group">
 								<label for="add-perusahaan">Pilih Perusahaan</label>

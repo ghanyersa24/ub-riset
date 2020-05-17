@@ -84,12 +84,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<!-- <div class="col-md-12">
 							<div class="form-group">
 								<label for="add-tim_pelaksana">Tim Pelaksana</label>
 								<textarea name="tim_pelaksana" id="add-tim_pelaksana" class="form-control"></textarea>
 							</div>
-						</div>
+						</div> -->
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="add-skema">Skema</label>
@@ -172,12 +172,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<!-- <div class="col-md-12">
 							<div class="form-group">
 								<label for="view-tim_pelaksana">Tim Pelaksana</label>
 								<textarea name="tim_pelaksana" id="view-tim_pelaksana" class="form-control"></textarea>
 							</div>
-						</div>
+						</div> -->
 						<div class="col-md-12">
 							<div class="form-group">
 								<label for="view-skema">Skema <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="misal: penelitian dasar, penelitian terapan, PKM-K, PMW dsb">!</span></label>

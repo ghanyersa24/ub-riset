@@ -56,7 +56,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<div class="content">
 									<section id="tab-profil">
 										<form id="form-view-data">
-											<button class="btn btn-primary d-block mr-0 mb-4" type="submit">Simpan Data Dasar</button>
+
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
@@ -111,6 +111,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<label for="view-harga_produksi">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
 														<input type="number" class="form-control" id="view-harga_produksi" name="harga_produksi">
 													</div>
+													<button class="btn btn-primary d-block mr-0 mb-4 ml-auto" type="submit">Simpan Data Dasar</button>
 												</div>
 
 											</div>
@@ -163,7 +164,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini">!</span></label>
-														<input type="number" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
+														<input type="text" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
 													</div>
 
 												</div>
@@ -234,7 +235,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-jumlah">Jumlah Produksi</label>
-														<input type="number" class="form-control" id="add-jumlah" name="jumlah">
+														<input type="text" class="form-control" id="add-jumlah" name="jumlah">
 													</div>
 												</div>
 												<div class="col-md-6">

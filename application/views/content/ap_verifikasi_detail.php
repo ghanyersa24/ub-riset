@@ -159,7 +159,7 @@
 									</div>
 									<h5 class="mt-4">Mitra dan Kerjasama</h5>
 									<div class="table-responsive">
-										<table class="table table-striped" id="table-pengujian">
+										<table class="table table-striped" id="table-mitra">
 											<thead>
 												<tr>
 													<th class="text-center">
@@ -178,13 +178,84 @@
 									<div id="list-inventor" class="row"></div>
 								</div>
 								<div class="tab-pane fade" id="bisnis3" role="tabpanel" aria-labelledby="tim-tab3">
-									<p>bisnis</p>
+									<p>Status Usaha: <strong id="status-usaha"></strong></p>
+									<h5>Target Pasar</h5>
+									<p id="target-pasar"></p>
+									<h5>Kompetitor</h5>
+									<p id="kompetitor"></p>
+									<h5>Jangkauan Pemasaran</h5>
+									<p id="jangkauan-pemasaran"></p>
+									<h5>Kanal Pemasaran</h5>
+									<p id="kanal-pemasaran"></p>
+									<h5>Dampak Sosial</h5>
+									<p id="dampak-sosial"></p>
+									<h5>Skema Harga</h5>
+									<p id="skema-harga"></p>
+									<p>Harga Pokok Produksi: <strong id="hpp"></strong></p>
+									<h5>Pemasaran</h5>
+									<div class="table-responsive">
+										<table class="table table-striped w-100" id="table-pemasaran">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Jenis jangkauan pemasaran</th>
+													<th>Volume pemasaran</th>
+													<th>Nilai pemasaran</th>
+
+												</tr>
+											</thead>
+
+										</table>
+									</div>
+
+									<h5>Produksi</h5>
+									<div class="table-responsive">
+										<table class="table table-striped w-100" id="table-produksi">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Jenis Periode</th>
+													<th>Tahun Produksi</th>
+													<th>Jumlah Produksi</th>
+
+
+												</tr>
+											</thead>
+
+										</table>
+									</div>
+
+									<h5>Penjualan & Omset</h5>
+									<div class="table-responsive">
+										<table class="table table-striped w-100" id="table-penjualan">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Jenis Periode</th>
+													<th>Tahun Penjualan</th>
+													<th>Jumlah Penjualan</th>
+
+												</tr>
+											</thead>
+
+										</table>
+									</div>
+
 								</div>
 								<div class="tab-pane fade" id="foto3" role="tabpanel" aria-labelledby="tim-tab3">
 									<h5>Foto Produk</h5>
 									<div id="foto-produk" class="row"></div>
 									<h5>Foto Kegiatan</h5>
 									<div id="foto-kegiatan" class="row"></div>
+								</div>
+								<div class="tab-pane fade show active" id="riwayat3" role="tabpanel" aria-labelledby="riwayat-tab3">
+									<p>Ini Riwayat</p>
 								</div>
 								<div class="tab-pane fade" id="verifikasi3" role="tabpanel" aria-labelledby="tim-tab3">
 									<form class="form-add-verifikasi" id="form-add-verifikasi">
@@ -388,7 +459,6 @@
 				});
 				//sertifikat dan perijinan
 				const sertifikasi = r.data.ki
-				console.log(sertifikasi)
 				$('#table-sertifikasi').DataTable({
 					"data": sertifikasi,
 					columns: [{
@@ -400,39 +470,85 @@
 							data: "jenis"
 						},
 						{
-							data: "tahun"
+							data: "status_perolehan"
 						},
 						{
-							data: "status"
-						},
-						{
-							"render": function(data, type, row, meta) {
-								return `<a target="_blank" href="${row.file_formulir}">${row.file_formulir.split('/').pop()}</a>`
-							}
-						},
-						{
-							data: "lembaga"
+							data: "no_pemohon"
 						},
 						{
 							"render": function(data, type, row, meta) {
-								return `<a target="_blank" href="${row.file}">${row.file.split('/').pop()}</a>`
+								if (row.file_formulir != null) {
+
+									return `<a target="_blank" href="${row.file_formulir}">${row.file_formulir.split('/').pop()}</a>`
+								} else {
+									return '<p>-</p>'
+								}
 							}
 						},
 						{
-							data: "hasil"
+							data: "no_sertifikat"
 						},
 						{
-							data: "lembaga"
+							"render": function(data, type, row, meta) {
+								if (row.file != null) {
+
+									return `<a target="_blank" href="${row.file}">${row.file.split('/').pop()}</a>`
+								} else {
+									return '<p>-</p>'
+								}
+							}
+						},
+						{
+							data: "tanggal_mulai"
+						},
+						{
+							data: "tanggal_selesai"
+						},
+						{
+							data: "pemegang"
+						},
+						{
+							data: "deskripsi"
+						},
+					]
+
+				});
+
+				//mitra
+				const mitra = r.data.mitra
+				$('#table-mitra').DataTable({
+					"data": mitra,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "nama_mitra"
 						},
 						{
 							data: "tujuan"
 						},
 						{
-							data: "hasil"
+							"render": function(data, type, row, meta) {
+								return `<a target="_blank" href="${row.mou}">${row.mou.split('/').pop()}</a>`
+							}
 						},
+
 					]
 
 				});
+
+				//data bisnis
+				const bisnis = r.data.data_bisnis[0]
+				insertText('#status-usaha', bisnis.status_usaha)
+				insertText('#target-pasar', bisnis.target_pasar)
+				insertText('#kompetitor', bisnis.kompetitor)
+				insertText('#jangkauan-pemasaran', bisnis.jangkauan)
+				insertText('#kanal-pemasaran', bisnis.kanal_pemasaran)
+				insertText('#dampak-sosial', bisnis.dampak_sosial)
+				insertText('#skema-harga', bisnis.skema_harga)
+				insertText('#hpp', bisnis.harga_produksi)
 
 				//inventor
 				let listInventor = '';
