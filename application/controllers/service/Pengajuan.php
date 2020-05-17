@@ -7,7 +7,7 @@ class Pengajuan extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(['riset', 'auth']);
+		$this->load->helper(['riset']);
 	}
 	public function create()
 	{
@@ -17,18 +17,18 @@ class Pengajuan extends CI_Controller
 		if ($slug->error)
 			error("maaf data inovasi bermasalah");
 		else {
-			$last = DB_MODEL::find('pengajuan', ['produk_id' => $slug->data['id']]);
+			$last = DB_MODEL::find('pengajuan', ['produk_id' => $slug['data']['id']]);
 			if (!$last->error) {
 				if ($last->data->status != 'dinilai')
 					error("data sudah diajukan, tunggu konfirmasi dari admin.");
 			}
 			$data = array(
-				"produk_id" => $slug->data['id'],
-				"nama_produk" => $slug->data['title'],
-				"slug" => $slug->data['slug'],
+				"produk_id" => $slug['data']['id'],
+				"nama_produk" => $slug['data']['title'],
+				"slug" => $slug['data']['slug'],
 				"inventor" => $this->session->userdata('nama'),
-				"bidang" => $slug->data['produk']->bidang,
-				"kategori" => $slug->data['produk']->kategori,
+				"bidang" => $slug['data']['produk']->bidang,
+				"kategori" => $slug['data']['produk']->kategori,
 				"status" => 'diajukan'
 			);
 		}
@@ -43,9 +43,9 @@ class Pengajuan extends CI_Controller
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::all($this->table);
+			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", 'right');
 		} else {
-			$do = DB_MODEL::where($this->table, ['verifikator' => $this->session->userdata('id')]);
+			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", "right",['verifikator' => $this->session->userdata('id')]);
 		}
 
 		if (!$do->error)

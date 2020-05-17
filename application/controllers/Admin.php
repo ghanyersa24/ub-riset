@@ -164,12 +164,13 @@ class Admin extends CI_Controller
 	{
 		if ($this->session->is_admin == 'no')
 			redirect('admin');
-		$data = riset::slugs_produk($slug);
 		if ($slug == null) {
 			$data['title'] = 'Halaman Verifikasi KATSINOV dan TKT';
 			$data['content'] = 'ap_verifikasi';
 			$this->load->view('template', $data);
 		} else {
+			$temp = riset::slug_public($slug);
+			$data = $temp['data'];
 			$data['title'] = 'Halaman Verifikasi KATSINOV dan TKT ' . $data['title'];
 			$data['content'] = 'ap_verifikasi_detail';
 			$this->load->view('template', $data);

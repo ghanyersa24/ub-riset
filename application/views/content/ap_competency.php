@@ -304,7 +304,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				for (key in data) {
 					$(`#view-${key}`).val(data[key])
 				}
+
 				$('#prev-view-logo_produk').attr('src', response.data.logo_produk)
+				let kategori = JSON.parse(data.kategori)
+				$(`#view-kategori`).val(kategori)
+				$("#view-kategori").select2({
+					tags: true,
+					tokenSeparators: kategori
+				})
 
 				setEditor('view-latar_belakang', data.latar_belakang)
 				setEditor('view-deskripsi_lengkap', data.deskripsi_lengkap)
@@ -317,12 +324,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				setEditor('view-teknologi_yang_dikembangkan', data.teknologi_yang_dikembangkan)
 				setEditor('view-rencana_pengembangan', data.rencana_pengembangan)
 
-				let kategori = JSON.parse(data.kategori)
-				$(`#view-kategori`).val(kategori)
-				$("#view-kategori").select2({
-					tags: true,
-					tokenSeparators: kategori
-				})
+
 			}
 		})
 
@@ -354,19 +356,23 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}
 			},
 			submitHandler: function(form) {
-				var data = $('#form-view').serialize()
-				$.ajax({
-					type: "POST",
-					url: api + "service/produk/update",
-					data: data,
-					dataType: "json",
-					success: function(response) {
-						response_alert(response)
-						setTimeout(function() {
-							window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
-						}, 2000)
+				konfirmasi("telah mengisi semua data dasar produk.").then((is_save) => {
+					if (is_save) {
+						let data = $('#form-view').serialize()
+						$.ajax({
+							type: "POST",
+							url: api + "service/produk/update",
+							data: data,
+							dataType: "json",
+							success: function(response) {
+								response_alert(response)
+								setTimeout(function() {
+									window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
+								}, 2000)
+							}
+						})
 					}
-				})
+				});
 			}
 		})
 	});

@@ -15,18 +15,18 @@ class Super extends CI_Controller
 		$slugs = riset::slug_public($slug);
 		if ($slugs->error)
 			redirect('admin');
-		$where = ['produk_id' => $slugs->data['id']];
+		$where = ['produk_id' => $slug['data']['id']];
 		$dataDasar = DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data;
 		$pengajuan = DB_MODEL::join('pengajuan', 'users', 'pengajuan.verifikator=users.id', 'right', $where, 'pengajuan.*,users.nama nama_verifikator')->data;
 		$data = [
-			'produk' => $slugs->data['produk'],
+			'produk' => $slug['data']['produk'],
 			'pengajuan' => count($pengajuan) > 0 ? $pengajuan[(count($pengajuan) - 1)] : null,
 			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
 			'mitra' => DB_MODEL::where('mitra', $where)->data,
 			'foto_produk' => DB_MODEL::where('foto_produk', $where)->data,
-			'riwayat' => $this->riwayat($slugs->data['produk']->nama_produk, $where),
+			'riwayat' => $this->riwayat($slug['data']['produk']->nama_produk, $where),
 			'foto_kegiatan' => DB_MODEL::where('foto_kegiatan', $where)->data,
 			'inventor' => DB_MODEL::join('inventor', 'users', null, 'inner', $where)->data,
 			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,

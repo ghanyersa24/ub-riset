@@ -28,7 +28,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											</th>
 											<th witdh="35%">Nama Mitra</th>
 											<th witdh="25%">Tujuan</th>
-											<th witdh="20%">MOU</th>
+											<th witdh="20%">MOU/SPK</th>
 											<th width="20%" class="text-center">Aksi</th>
 										</tr>
 									</thead>
@@ -66,7 +66,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-4">
 							<div class="form-group">
 								<label for="add-file">MOU <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
-								<input name="file" id="add-mou" class="form-control" type="file"></input>
+								<input name="mou_new" id="add-mou" class="form-control" type="file"></input>
 							</div>
 						</div>
 					</div>
@@ -193,6 +193,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tujuan: {
 					required: true
 				},
+				mou_new: {
+					required: true
+				}
 			},
 			submitHandler: function(form) {
 				let formData = new FormData()
@@ -227,6 +230,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tujuan: {
 					required: true
 				},
+				mou_new: {
+					required: true
+				}
 			},
 			submitHandler: function(form) {
 				let formData = new FormData()

@@ -245,7 +245,7 @@
       						$('#verifikasi-wrap').append(`<p>Kamu sedang mengajukan <strong>verifikasi</strong>, tunggu proses verifikasi selesai untuk dapat mengubah data lagi</p>`)
       					}
       				}
-      				if (produk.produk.deskripsi_lengkap != "") {
+      				if (produk.produk.deskripsi_lengkap != null && produk.produk.deskripsi_lengkap != "") {
       					addCheck('#data-produk-check')
       				}
       				if (produk.roadmap.length != 0) {

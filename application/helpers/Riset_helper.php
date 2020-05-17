@@ -18,7 +18,6 @@ class riset
 		}
 
 		if (is_null($slug)) {
-			// success("", $arr);
 			return [
 				'produk' => $arr,
 				'slug' => null
@@ -85,9 +84,9 @@ class riset
 		$title = substr($title, 5);
 		$produk = DB_MODEL::find('produk', ['id' => $id, 'nama_produk' => $title]);
 		if ($produk->error)
-			return (object) ['error' => true];
+			return ['error' => true];
 		else
-			return (object) [
+			return [
 				'error' => false,
 				'data' => [
 					'title' => $title,

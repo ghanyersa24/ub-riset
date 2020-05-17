@@ -82,7 +82,6 @@
 		})
 		var table = $('#table').DataTable()
 		$('#table tbody').on('click', 'button', function() {
-
 			let data = table.row($(this).parents('tr')).data()
 			sessionStorage.setItem("verifikasi_id", data.id)
 			let baseUrl = "<?= base_url() . 'admin/verifikasi/' ?>"

@@ -29,24 +29,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<th class="text-center">
 												No.
 											</th>
-											<th>Nama / Jenis</th>
-											<th>Tanggal Mulai</th>
-											<th>Tanggal Selesai</th>
-											<th>Status Perolehan</th>
+											<th width="20%">Nama / Jenis</th>
+											<th width="20%">Tanggal Mulai</th>
+											<th width="20%">Tanggal Selesai</th>
+											<th width="15%">Status Perolehan</th>
 											<th>Aksi</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th class="text-center">
-
-											</th>
-											<th></th>
-											<th></th>
-											<th></th>
-											<th></th>
-										</tr>
-									</tfoot>
 								</table>
 							</div>
 						</div>
@@ -336,15 +325,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				status_perolehan: {
 					required: true
 				},
-				no_pemohon: {
-					required: true
-				},
+				// no_pemohon: {
+				// 	required: true
+				// },
 				// file_formulir: {
 				// 	required: true
 				// },
-				no_sertifikat: {
-					required: true
-				},
+				// no_sertifikat: {
+				// 	required: true
+				// },
 				// file: {
 				// 	required: true
 				// },
@@ -354,9 +343,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tanggal_selesai: {
 					required: true
 				},
-				pemegang: {
-					required: true
-				},
+				// pemegang: {
+				// 	required: true
+				// },
 			},
 			submitHandler: function(form) {
 				let temp = $('#form-add').serialize()
