@@ -124,14 +124,13 @@
       					addCheck('#bisnis-check')
       				}
       				if (!produk.pengajuan.error) {
-      					console.log(produk)
-      					if (produk.pengajuan.status != 'dinilai') {
+      					if (produk.pengajuan.status == 'dinilai') {
       						const pengajuan = r.data.pengajuan
 
       						$('#verifikasi-wrap').html(`<div class="d-flex flex-wrap justify-content-between mb-4">
 												  <div>
 													  <p class="mb-0">Validasi Terakhir: <strong>${dateConvert(pengajuan.created_at)}</strong></p>
-													  <p class="mb-0">Oleh: <strong>${pengajuan.verifikator}</strong></p>
+													  <p class="mb-0">Oleh: <strong>${pengajuan.nama_verifikator}</strong></p>
 													  <a target="_blank" href="${pengajuan.file_evaluasi}">
 													  <button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
 													  </a>
