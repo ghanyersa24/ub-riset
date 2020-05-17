@@ -46,7 +46,102 @@
 
       								<div id="verifikasi-wrap"></div>
       								<div id="roadmap-pengisian">
-      									<div class="row">
+
+      								</div>
+      							</div>
+      						</div>
+      					</div>
+      				</div>
+      			</div>
+      		</div>
+      	</section>
+      </div>
+      <script>
+      	function dateConvert(date) {
+      		const months = [
+      			'Januari',
+      			'Februari',
+      			'Maret',
+      			'April',
+      			'Mei',
+      			'Juni',
+      			'Juli',
+      			'Agustus',
+      			'September',
+      			'Oktober',
+      			'November',
+      			'Desember'
+      		];
+      		let newDate = new Date(date)
+
+      		let day = newDate.getDate()
+      		let month = months[newDate.getMonth()]
+      		let year = newDate.getFullYear()
+      		if (newDate.day < 10) {
+      			day = '0' + newDate.getDay()
+      		}
+      		return day + ' ' + month + ' ' + year
+      	}
+
+      	function addCheck(id) {
+      		$(id).append(`<i class="fa fa-check"></i>`)
+      	}
+      	$(document).ready(function() {
+      		$.ajax({
+      			method: 'get',
+      			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
+      			dataType: 'json',
+      			success: (r) => {
+      				const produk = r.data
+      				if (produk.produk != null) {
+      					addCheck('#data-produk-check')
+      				}
+      				if (produk.roadmap.length != 0) {
+      					addCheck('#roadmap-check')
+      				}
+      				if (produk.pengujian.length != 0) {
+      					addCheck('#pengujian-check')
+      				}
+      				if (produk.ki.length != 0) {
+      					addCheck('#sertifikasi-check')
+      				}
+      				if (produk.mitra.length != 0) {
+      					addCheck('#mitra-check')
+      				}
+      				if (produk.foto_produk.length != 0) {
+      					addCheck('#foto-produk-check')
+      				}
+      				if (produk.foto_kegiatan.length != 0) {
+      					addCheck('#foto-kegiatan-check')
+      				}
+      				if (produk.inventor.length != 0) {
+      					addCheck('#inventor-check')
+      				}
+      				if (produk.perusahaan.length != 0) {
+      					addCheck('#perusahaan-check')
+      				}
+      				if (produk.data_bisnis.length != 0) {
+      					addCheck('#bisnis-check')
+      				}
+      				if (!produk.pengajuan.error) {
+
+      					if (produk.pengajuan.data.tkt != null) {
+      						const pengajuan = r.data.pengajuan.data
+
+      						$('#verifikasi-wrap').html(`<div class="d-flex flex-wrap justify-content-between mb-4">
+												  <div>
+													  <p class="mb-0">Validasi Terakhir: <strong>${dateConvert(pengajuan.created_at)}</strong></p>
+													  <p class="mb-0">Oleh: <strong>${pengajuan.verifikator}</strong></p>
+													  <a target="_blank" href="${pengajuan.file_evaluasi}">
+													  <button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
+													  </a>
+												  </div>
+												  <div class="text-md-right">
+													  <p class="mb-0">Status TKT: <strong>${pengajuan.tkt}</strong></p>
+													  <p>Tingkat KATSINOV: <strong>${pengajuan.katsinov}</strong></p>
+												  </div>
+											  </div>`)
+      						$('#roadmap-pengisian').html(`<div class="row">
       										<div class="col-md-12">
       											<div class="main-timeline7">
       												<div class="timeline">
@@ -174,104 +269,10 @@
       												</div>
       											</div>
       										</div>
-      									</div>
-      								</div>
-      							</div>
-      						</div>
-      					</div>
-      				</div>
-      			</div>
-      		</div>
-      	</section>
-      </div>
-      <script>
-      	function dateConvert(date) {
-      		const months = [
-      			'Januari',
-      			'Februari',
-      			'Maret',
-      			'April',
-      			'Mei',
-      			'Juni',
-      			'Juli',
-      			'Agustus',
-      			'September',
-      			'Oktober',
-      			'November',
-      			'Desember'
-      		];
-      		let newDate = new Date(date)
-
-      		let day = newDate.getDate()
-      		let month = months[newDate.getMonth()]
-      		let year = newDate.getFullYear()
-      		if (newDate.day < 10) {
-      			day = '0' + newDate.getDay()
-      		}
-      		return day + ' ' + month + ' ' + year
-      	}
-
-      	function addCheck(id) {
-      		$(id).append(`<i class="fa fa-check"></i>`)
-      	}
-      	$(document).ready(function() {
-      		$.ajax({
-      			method: 'get',
-      			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
-      			dataType: 'json',
-      			success: (r) => {
-      				const produk = r.data
-      				if (produk.produk != null) {
-      					addCheck('#data-produk-check')
-      				}
-      				if (produk.roadmap.length != 0) {
-      					addCheck('#roadmap-check')
-      				}
-      				if (produk.pengujian.length != 0) {
-      					addCheck('#pengujian-check')
-      				}
-      				if (produk.ki.length != 0) {
-      					addCheck('#sertifikasi-check')
-      				}
-      				if (produk.mitra.length != 0) {
-      					addCheck('#mitra-check')
-      				}
-      				if (produk.foto_produk.length != 0) {
-      					addCheck('#foto-produk-check')
-      				}
-      				if (produk.foto_kegiatan.length != 0) {
-      					addCheck('#foto-kegiatan-check')
-      				}
-      				if (produk.inventor.length != 0) {
-      					addCheck('#inventor-check')
-      				}
-      				if (produk.perusahaan.length != 0) {
-      					addCheck('#perusahaan-check')
-      				}
-      				if (produk.data_bisnis.length != 0) {
-      					addCheck('#bisnis-check')
-      				}
-      				if (!produk.pengajuan.error) {
-
-      					if (produk.pengajuan.data.tkt != null) {
-      						const pengajuan = r.data.pengajuan.data
-
-      						$('#verifikasi-wrap').append(`<div class="d-flex flex-wrap justify-content-between mb-4">
-												  <div>
-													  <p class="mb-0">Validasi Terakhir: <strong>${dateConvert(pengajuan.created_at)}</strong></p>
-													  <p class="mb-0">Oleh: <strong>${pengajuan.verifikator}</strong></p>
-													  <a target="_blank" href="${pengajuan.file_evaluasi}">
-													  <button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
-													  </a>
-												  </div>
-												  <div class="text-md-right">
-													  <p class="mb-0">Status TKT: <strong>${pengajuan.tkt}</strong></p>
-													  <p>Tingkat KATSINOV: <strong>${pengajuan.katsinov}</strong></p>
-												  </div>
-											  </div>`)
+      									</div>`)
       					} else {
       						$('#verifikasi-wrap').append(`<p>Kamu sedang mengajukan <strong>verifikasi</strong>, tunggu proses verifikasi selesai untuk dapat mengubah data lagi</p>`)
-      						$('#roadmap-pengisian').css('display', 'none')
+
       					}
       				}
       			}
@@ -303,6 +304,12 @@
       						},
       						success: function(response) {
       							response_alert(response)
+      							if (!response.error) {
+      								setTimeout(() => {
+      									window.location.reload()
+      								}, 2000);
+      							}
+
       						}
       					});
       				})

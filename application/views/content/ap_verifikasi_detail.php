@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="<?= base_url() . 'assets/css/viewer.min.css' ?>">
+<link rel="stylesheet" href="<?= base_url() . 'assets/css/verifikasi-timeline.css' ?>">
 <div class="main-content">
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
@@ -12,25 +13,25 @@
 					<div class="card">
 						<div class="card-body">
 							<ul class="nav nav-pills sticky-top bg-white py-3 px-3 shadow-light" id="myTab3" role="tablist">
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link active" id="ringkasan-tab3" data-toggle="tab" href="#ringkasan3" role="tab" aria-controls="ringkasan" aria-selected="true">Ringkasan</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link" id="produk-tab3" data-toggle="tab" href="#produk3" role="tab" aria-controls="produk" aria-selected="false">Produk</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link" id="tim-tab3" data-toggle="tab" href="#tim3" role="tab" aria-controls="tim" aria-selected="false">Tim</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link" id="bisnis-tab3" data-toggle="tab" href="#bisnis3" role="tab" aria-controls="bisnis" aria-selected="false">Bisnis</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link" id="foto-tab3" data-toggle="tab" href="#foto3" role="tab" aria-controls="foto" aria-selected="false">Foto</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link" id="riwayat-tab3" data-toggle="tab" href="#riwayat3" role="tab" aria-controls="riwayat" aria-selected="false">Riwayat</a>
 								</li>
-								<li class="nav-item">
+								<li class="nav-item" style="line-height: 28px">
 									<a class="nav-link" id="verifikasi-tab3" data-toggle="tab" href="#verifikasi3" role="tab" aria-controls="verifikasi" aria-selected="false">Verifikasi</a>
 								</li>
 							</ul>
@@ -254,8 +255,17 @@
 									<h5>Foto Kegiatan</h5>
 									<div id="foto-kegiatan" class="row"></div>
 								</div>
-								<div class="tab-pane fade show active" id="riwayat3" role="tabpanel" aria-labelledby="riwayat-tab3">
-									<p>Ini Riwayat</p>
+								<div class="tab-pane fade show" id="riwayat3" role="tabpanel" aria-labelledby="riwayat-tab3">
+
+									<button class="btn btn-primary btn-icon icon-left mb-4"><i class="fa fa-download"></i> Download File Tambahan</button>
+									<div class="row">
+										<div class="col-md-12">
+											<div id="timeline-wrap" class="main-timeline4">
+
+
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="verifikasi3" role="tabpanel" aria-labelledby="tim-tab3">
 									<form class="form-add-verifikasi" id="form-add-verifikasi">
@@ -317,6 +327,11 @@
 
 	h5 {
 		font-weight: bold
+	}
+
+	ul:not(.list-unstyled),
+	ol {
+		line-height: 0px
 	}
 </style>
 
@@ -540,7 +555,7 @@
 				});
 
 				//data bisnis
-				const bisnis = r.data.data_bisnis[0]
+				const bisnis = r.data.data_bisnis
 				insertText('#status-usaha', bisnis.status_usaha)
 				insertText('#target-pasar', bisnis.target_pasar)
 				insertText('#kompetitor', bisnis.kompetitor)
@@ -550,6 +565,71 @@
 				insertText('#skema-harga', bisnis.skema_harga)
 				insertText('#hpp', bisnis.harga_produksi)
 
+				const pemasaran = bisnis.pemasaran
+				$('#table-pemasaran').DataTable({
+					"data": pemasaran,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "jenis_jangkauan"
+						},
+						{
+							data: "volume"
+						},
+						{
+							data: "nilai"
+						},
+					]
+
+				});
+
+				const produksi = bisnis.produksi
+				$('#table-produksi').DataTable({
+					"data": produksi,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "jenis_periode"
+						},
+						{
+							data: "tahun"
+						},
+						{
+							data: "jumlah"
+						},
+
+					]
+
+				});
+
+				const penjualan = bisnis.penjualan
+				$('#table-penjualan').DataTable({
+					"data": penjualan,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						}, {
+							data: "jenis_periode"
+						},
+						{
+							data: "tahun"
+						},
+						{
+							data: "jumlah"
+						},
+
+					]
+
+				});
+
 				//inventor
 				let listInventor = '';
 				const dataInventor = r.data.inventor
@@ -557,7 +637,7 @@
 					listInventor += `<div class="card col-md-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
-										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+										<img src="${element.foto}" alt="" class="w-100 h-100" style="object-fit:cover; object-position: center">
 									</div>
 									<hr>
 									<div class="d-flex justify-content-between">
@@ -604,6 +684,23 @@
 							</div>`
 				})
 				$('#foto-kegiatan').append(listFotoKegiatan)
+
+				//riwayat
+				const riwayat = r.data.riwayat
+				riwayat.forEach(element => {
+					$('#timeline-wrap').append(`<div class="timeline">
+													<div class="timeline-content">
+														<span class="year">${element.tahun}</span>
+														<div class="inner-content">
+															<h3 class="title">${element.type}</h3>
+															<p class="description">
+																${element.riwayat}
+															</p>
+														</div>
+													</div>
+												</div>`)
+				});
+
 			}
 		})
 
