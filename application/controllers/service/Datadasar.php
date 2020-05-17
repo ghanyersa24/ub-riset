@@ -14,12 +14,12 @@ class Datadasar extends CI_Controller
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"status_usaha" => post('status_usaha', 'required|enum:Masih Berjalan&Sudah Berhenti'),
-			"target_pasar" => post('target_pasar'),
-			"kompetitor" => post('kompetitor'),
-			"jangkauan" => post('jangkauan'),
-			"kanal_pemasaran" => post('kanal_pemasaran'),
-			"dampak_sosial" => post('dampak_sosial'),
-			"skema_harga" => post('skema_harga'),
+			"target_pasar" => post('target_pasar', 'allow_html'),
+			"kompetitor" => post('kompetitor', 'allow_html'),
+			"jangkauan" => post('jangkauan', 'allow_html'),
+			"kanal_pemasaran" => post('kanal_pemasaran', 'allow_html'),
+			"dampak_sosial" => post('dampak_sosial', 'allow_html'),
+			"skema_harga" => post('skema_harga', 'allow_html'),
 			"harga_produksi" => post('harga_produksi', 'required|numeric'),
 		);
 
@@ -50,12 +50,12 @@ class Datadasar extends CI_Controller
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"status_usaha" => post('status_usaha', 'required|enum:Masih Berjalan&Sudah Berhenti'),
-			"target_pasar" => post('target_pasar'),
-			"kompetitor" => post('kompetitor'),
-			"jangkauan" => post('jangkauan'),
-			"kanal_pemasaran" => post('kanal_pemasaran'),
-			"dampak_sosial" => post('dampak_sosial'),
-			"skema_harga" => post('skema_harga'),
+			"target_pasar" => post('target_pasar', 'allow_html'),
+			"kompetitor" => post('kompetitor', 'allow_html'),
+			"jangkauan" => post('jangkauan', 'allow_html'),
+			"kanal_pemasaran" => post('kanal_pemasaran', 'allow_html'),
+			"dampak_sosial" => post('dampak_sosial', 'allow_html'),
+			"skema_harga" => post('skema_harga', 'allow_html'),
 			"harga_produksi" => post('harga_produksi', 'required|numeric'),
 		);
 

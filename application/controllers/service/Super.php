@@ -18,7 +18,7 @@ class Super extends CI_Controller
 		$where = ['produk_id' => $slugs->data['id']];
 		$data = [
 			'produk' => $slugs->data['produk'],
-			'pengajuan' => DB_MODEL::find('pengajuan', $where),
+			'pengajuan' => DB_MODEL::join('pengajuan', 'users', 'pengajuan.verifikator=users.id', 'right', $where, 'pengajuan.*,users.nama nama_verifikator')->data,
 			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
@@ -28,7 +28,13 @@ class Super extends CI_Controller
 			'foto_kegiatan' => DB_MODEL::where('foto_kegiatan', $where)->data,
 			'inventor' => DB_MODEL::join('inventor', 'users', null, 'inner', $where)->data,
 			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,
-			'data_bisnis' => DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data,
+			'data_bisnis' => [
+				'data_dasar' => DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data,
+				'pemasaran' => DB_MODEL::where('pemasaran', $where)->data,
+				'produksi' => DB_MODEL::where('produksi', $where)->data,
+				'penjualan' => DB_MODEL::where('penjualan', $where)->data,
+				'omset' => DB_MODEL::where('omset_profit', $where)->data,
+			],
 		];
 		$data['produk']->kategori = json_decode($data['produk']->kategori);
 		success("data berhasil ditemukan", $data);
