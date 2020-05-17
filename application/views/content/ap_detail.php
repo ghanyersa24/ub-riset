@@ -124,9 +124,9 @@
       					addCheck('#bisnis-check')
       				}
       				if (!produk.pengajuan.error) {
-
-      					if (produk.pengajuan.data.tkt != null) {
-      						const pengajuan = r.data.pengajuan.data
+      					console.log(produk)
+      					if (produk.pengajuan.status != 'dinilai') {
+      						const pengajuan = r.data.pengajuan
 
       						$('#verifikasi-wrap').html(`<div class="d-flex flex-wrap justify-content-between mb-4">
 												  <div>

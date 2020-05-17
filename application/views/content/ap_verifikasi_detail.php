@@ -555,7 +555,7 @@
 				});
 
 				//data bisnis
-				const bisnis = r.data.data_bisnis
+				const bisnis = r.data.data_bisnis.data_dasar[0]
 				insertText('#status-usaha', bisnis.status_usaha)
 				insertText('#target-pasar', bisnis.target_pasar)
 				insertText('#kompetitor', bisnis.kompetitor)
@@ -574,13 +574,13 @@
 							},
 							// className: "text-center"
 						}, {
-							data: "jenis_jangkauan"
+							data: "jangkauan"
 						},
 						{
-							data: "volume"
+							data: "volume_pemasaran"
 						},
 						{
-							data: "nilai"
+							data: "nilai_pemasaran"
 						},
 					]
 
@@ -595,7 +595,7 @@
 							},
 							// className: "text-center"
 						}, {
-							data: "jenis_periode"
+							data: "jenis"
 						},
 						{
 							data: "tahun"
@@ -617,7 +617,7 @@
 							},
 							// className: "text-center"
 						}, {
-							data: "jenis_periode"
+							data: "jenis"
 						},
 						{
 							data: "tahun"
