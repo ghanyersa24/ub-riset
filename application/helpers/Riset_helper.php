@@ -103,6 +103,7 @@ class riset
 		foreach ($informasi as $value) {
 			$data[] = [
 				"type" => "informasi",
+				"tahun" => date('Y', strtotime($value->tanggal)),
 				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk . strip_tags($value->informasi),
 			];
 		}
@@ -110,12 +111,14 @@ class riset
 			if ($value->status == 'dinilai')
 				$data[] = [
 					"type" => "pengajuan",
+					"tahun" => date('Y', strtotime($value->updated_at)),
 					"riwayat" => "pada " . date('d F Y', strtotime($value->updated_at)) . " produk " . $nama_produk . " telah diverifikasi dengan mendapat TKT " . $value->tkt . " dan KATSINOV " . $value->katsinov,
 				];
 		}
 		foreach ($prestasi as $value) {
 			$data[] = [
 				"type" => "prestasi",
+				"tahun" => $value->tahun,
 				"riwayat" => "pada tahun " . $value->tahun . " produk " . $nama_produk . " mengikuti " . $value->nama_acara . " yang diselenggarakan oleh " . $value->penyelenggara . " dengan mendapat pencapaian " . $value->pencapaian,
 			];
 		}

@@ -74,6 +74,7 @@ class DB_MODEL extends CI_Model
 	{
 		$CI = &get_instance();
 		$data['updated_by'] = $CI->session->userdata('id');
+		$data['updated_at'] = date('Y-m-d H:i:s');
 		$CI->db->where($where)->update($table, $data);
 		if (is_array($where))
 			return true(array_merge($where, $data));
@@ -85,6 +86,7 @@ class DB_MODEL extends CI_Model
 	{
 		$CI = &get_instance();
 		$data['updated_by'] = $CI->session->userdata('id');
+		$data['updated_at'] = date('Y-m-d H:i:s');
 		$query = $CI->db->where($where)->update($table, $data);
 		if ($CI->db->affected_rows() !== 0)
 			if (is_array($where))
