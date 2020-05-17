@@ -436,6 +436,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					data: $('#form-view-data').serialize(),
 					success: function(response) {
 						response_alert(response)
+						if (!response.error)
+							$('#view-id').val(response.data.id)
 					}
 				});
 			}

@@ -93,7 +93,7 @@
 								<div class="tab-pane fade" id="produk3" role="tabpanel" aria-labelledby="produk-tab3">
 									<h5>Roadmap Riset & Pengembangan Produk</h5>
 									<div class="table-responsive">
-										<table class="table table-striped" id="table-roadmap">
+										<table class="table table-striped w-100" id="table-roadmap">
 											<thead>
 												<tr>
 													<th class="text-center">
@@ -116,7 +116,7 @@
 									</div>
 									<h5 class="mt-4">Pengujian</h5>
 									<div class="table-responsive">
-										<table class="table table-striped" id="table-pengujian">
+										<table class="table table-striped w-100" id="table-pengujian">
 											<thead>
 												<tr>
 													<th class="text-center">
@@ -137,7 +137,7 @@
 									</div>
 									<h5 class="mt-4">Sertifikasi / Perijinan</h5>
 									<div class="table-responsive">
-										<table class="table table-striped" id="table-sertifikasi">
+										<table class="table table-striped w-100" id="table-sertifikasi">
 											<thead>
 												<tr>
 													<th class="text-center">
@@ -160,7 +160,7 @@
 									</div>
 									<h5 class="mt-4">Mitra dan Kerjasama</h5>
 									<div class="table-responsive">
-										<table class="table table-striped" id="table-mitra">
+										<table class="table table-striped w-100" id="table-mitra">
 											<thead>
 												<tr>
 													<th class="text-center">
@@ -373,7 +373,6 @@
 			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
 			dataType: 'json',
 			success: (r) => {
-				console.log(r)
 				const produk = r.data.produk
 				//produk
 				insertImage('#logo_produk', produk.logo_produk)
@@ -555,7 +554,7 @@
 				});
 
 				//data bisnis
-				const bisnis = r.data.data_bisnis.data_dasar[0]
+				const bisnis = r.data.data_bisnis.data_dasar
 				insertText('#status-usaha', bisnis.status_usaha)
 				insertText('#target-pasar', bisnis.target_pasar)
 				insertText('#kompetitor', bisnis.kompetitor)

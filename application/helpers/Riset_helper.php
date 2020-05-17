@@ -103,7 +103,7 @@ class riset
 		foreach ($informasi as $value) {
 			$data[] = [
 				"type" => "informasi",
-				"tahun" => date('Y', strtotime($value->tanggal)),
+				"tahun" => (int) date('Y', strtotime($value->tanggal)),
 				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk . strip_tags($value->informasi),
 			];
 		}
@@ -111,16 +111,29 @@ class riset
 			if ($value->status == 'dinilai')
 				$data[] = [
 					"type" => "pengajuan",
-					"tahun" => date('Y', strtotime($value->updated_at)),
+					"tahun" => (int) date('Y', strtotime($value->updated_at)),
 					"riwayat" => "pada " . date('d F Y', strtotime($value->updated_at)) . " produk " . $nama_produk . " telah diverifikasi dengan mendapat TKT " . $value->tkt . " dan KATSINOV " . $value->katsinov,
 				];
 		}
 		foreach ($prestasi as $value) {
 			$data[] = [
 				"type" => "prestasi",
-				"tahun" => $value->tahun,
+				"tahun" => (int) $value->tahun,
 				"riwayat" => "pada tahun " . $value->tahun . " produk " . $nama_produk . " mengikuti " . $value->nama_acara . " yang diselenggarakan oleh " . $value->penyelenggara . " dengan mendapat pencapaian " . $value->pencapaian,
 			];
+		}
+		return self::sorting($data);
+	}
+	public static function sorting($data)
+	{
+		for ($i = 0; $i < count($data); $i++) {
+			for ($j = 0; $j < count($data); $j++) {
+				if ($data[$i]['tahun'] > $data[$j]['tahun']) {
+					$temp = $data[$i];
+					$data[$i] = $data[$j];
+					$data[$j] = $temp;
+				}
+			}
 		}
 		return $data;
 	}

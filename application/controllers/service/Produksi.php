@@ -12,10 +12,10 @@ class Produksi extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
+			"produk_id" => post('produk_id', 'required'),
 			"jenis" => post('jenis', 'required|enum:Perolehan&Proyeksi'),
 			"tahun" => post('tahun', 'required|numeric'),
-			"jumlah" => post('jumlah', 'required|numeric'),
+			"jumlah" => post('jumlah', 'required'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);

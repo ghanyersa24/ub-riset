@@ -12,7 +12,7 @@ class Datadasar extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
+			"produk_id" => post('produk_id', 'required'),
 			"status_usaha" => post('status_usaha', 'required|enum:Masih Berjalan&Sudah Berhenti'),
 			"target_pasar" => post('target_pasar', 'allow_html'),
 			"kompetitor" => post('kompetitor', 'allow_html'),
@@ -22,8 +22,15 @@ class Datadasar extends CI_Controller
 			"skema_harga" => post('skema_harga', 'allow_html'),
 			"harga_produksi" => post('harga_produksi', 'required|numeric'),
 		);
+		if (post('id') != 0) {
+			$where = array(
+				"id" => post('id', 'required'),
+			);
+			$do = DB_MODEL::update($this->table, $where, $data);
+		} else {
+			$do = DB_MODEL::insert($this->table, $data);
+		}
 
-		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
 			success("data berhasil ditambahkan", $do->data);
 		} else {

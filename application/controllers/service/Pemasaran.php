@@ -14,7 +14,7 @@ class Pemasaran extends CI_Controller
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"jangkauan" => post('jangkauan', 'required|enum:Regional&Nasional&Ekspor'),
-			"volume_pemasaran" => post('volume_pemasaran', 'required|numeric'),
+			"volume_pemasaran" => post('volume_pemasaran', 'required'),
 			"nilai_pemasaran" => post('nilai_pemasaran', 'required|numeric'),
 		);
 
