@@ -13,9 +13,9 @@ class Produksi extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => post('produk_id', 'required'),
-			"jenis" => post('jenis', 'required|enum:Perolehan&Proyeksi'),
+			"satuan" => post('jenis', 'required|max_char:10'),
 			"tahun" => post('tahun', 'required|numeric'),
-			"jumlah" => post('jumlah', 'required'),
+			"jumlah" => post('jumlah', 'required|numeric'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -44,7 +44,7 @@ class Produksi extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => post('jenis', 'required|enum:Perolehan|Proyeksi'),
+			"satuan" => post('jenis', 'required|max_char:10'),
 			"tahun" => post('tahun', 'required|numeric'),
 			"jumlah" => post('jumlah', 'required|numeric'),
 		);

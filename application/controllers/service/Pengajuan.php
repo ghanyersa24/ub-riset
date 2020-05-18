@@ -14,7 +14,7 @@ class Pengajuan extends CI_Controller
 		if ($this->session->userdata('id') != post('auth', 'required'))
 			error('konfirmasi kamu salah, silahkan masukkan kembali.');
 		$slug = riset::slug_public(post('slug', 'required'));
-		if ($slug->error)
+		if ($slug['error'])
 			error("maaf data inovasi bermasalah");
 		else {
 			$last = DB_MODEL::find('pengajuan', ['produk_id' => $slug['data']['id']]);

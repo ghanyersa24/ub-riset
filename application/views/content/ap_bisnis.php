@@ -63,7 +63,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
 														<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 														<label for="view-status_usaha" class="">Status Usaha </label>
-														<select id="view-status_usaha" class="form-control" name="status_usaha">
+														<select id="view-status_usaha" class="form-control" name="status_usaha" required>
+															<option value="" disabled selected>Pilih status satu</option>
 															<option value="Masih Berjalan">Masih Berjalan</option>
 															<option value="Sudah Berhenti">Sudah Berhenti</option>
 														</select>
@@ -109,11 +110,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="view-harga_produksi">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
-														<input type="number" class="form-control" id="view-harga_produksi" name="harga_produksi">
+														<textarea type="number" class="form-control" id="view-harga_produksi" name="harga_produksi"></textarea>
 													</div>
-													<button class="btn btn-primary d-block mr-0 mb-4 ml-auto" type="submit">Simpan Data Dasar</button>
 												</div>
-
+												<div class="col-md-12 row">
+													<div class="col form-group">
+														<label for="view-bmc">BMC/Business Plan</label>
+														<input id="view-bmc" class="form-control" type="text" hidden readonly>
+														<input id="view-bmc_new" class="form-control" type="file">
+													</div>
+													<div class="col form-group">
+														<label for="view-keuangan">Catatan Keuangan</label>
+														<input id="view-keuangan" class="form-control" type="text" hidden readonly>
+														<input id="view-keuangan_new" class="form-control" type="file">
+													</div>
+												</div>
+												<button class="btn btn-primary d-block mr-0 mb-4 ml-auto" type="submit">Simpan Data Dasar</button>
 											</div>
 										</form>
 									</section>
@@ -419,6 +431,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				let data = response.data
 				$('#view-id').val(data.id)
 				$('#view-status_usaha').val(data.status_usaha)
+				$('#view-bmc').val(data.bmc)
+				$('#view-keuangan').val(data.keuangan)
 				$('#view-harga_produksi').val(data.harga_produksi)
 				setEditor('view-target_pasar', data.target_pasar)
 				setEditor('view-kompetitor', data.kompetitor)

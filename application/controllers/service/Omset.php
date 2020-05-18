@@ -13,14 +13,10 @@ class Omset extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => $nama = post('jenis', 'required|enum:Perolehan&Proyeksi'),
 			"tipe" => post('tipe', 'required|enum:Omset&Profit'),
-			"jenis_omset" => post('jenis_omset', 'required|enum:Perusahaan&Produk'),
 			"tahun" => post('tahun', 'required|numeric'),
 			"nilai" => post('nilai', 'required|numeric'),
 		);
-		if (isset($_FILES['mou']))
-			$data['mou'] = UPLOAD_FILE::pdf('mou', "inovasi/$produk/mitra", "$nama");
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
@@ -48,9 +44,7 @@ class Omset extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => $nama = post('jenis', 'required|enum:Perolehan&Proyeksi'),
 			"tipe" => post('tipe', 'required|enum:Omset&Profit'),
-			"jenis_omset" => post('jenis_omset', 'required|enum:Perusahaan:Produk'),
 			"tahun" => post('tahun', 'required|numeric'),
 			"nilai" => post('nilai', 'required|numeric'),
 		);

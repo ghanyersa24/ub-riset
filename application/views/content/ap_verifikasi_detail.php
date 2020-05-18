@@ -554,16 +554,18 @@
 				});
 
 				//data bisnis
-				const bisnis = r.data.data_bisnis.data_dasar
-				insertText('#status-usaha', bisnis.status_usaha)
-				insertText('#target-pasar', bisnis.target_pasar)
-				insertText('#kompetitor', bisnis.kompetitor)
-				insertText('#jangkauan-pemasaran', bisnis.jangkauan)
-				insertText('#kanal-pemasaran', bisnis.kanal_pemasaran)
-				insertText('#dampak-sosial', bisnis.dampak_sosial)
-				insertText('#skema-harga', bisnis.skema_harga)
-				insertText('#hpp', bisnis.harga_produksi)
-
+				const bisnis = r.data.data_bisnis
+				if (bisnis.data_dasar != null) {
+					const data_dasar = bisnis.data_dasar
+					insertText('#status-usaha', data_dasar.status_usaha)
+					insertText('#target-pasar', data_dasar.target_pasar)
+					insertText('#kompetitor', data_dasar.kompetitor)
+					insertText('#jangkauan-pemasaran', data_dasar.jangkauan)
+					insertText('#kanal-pemasaran', data_dasar.kanal_pemasaran)
+					insertText('#dampak-sosial', data_dasar.dampak_sosial)
+					insertText('#skema-harga', data_dasar.skema_harga)
+					insertText('#hpp', data_dasar.harga_produksi)
+				}
 				const pemasaran = bisnis.pemasaran
 				$('#table-pemasaran').DataTable({
 					"data": pemasaran,
