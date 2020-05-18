@@ -7,8 +7,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<div class="section-header d-block justify-content-start align-items-center">
 
-			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
-
+			<a href="<?= base_url('admin/detail/' . $slug) ?>" class="h5"><i class="fa fa-chevron-left"></i>
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
@@ -38,6 +37,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									</thead>
 								</table>
 							</div>
+						</div>
+						<div class="card-footer d-flex justify-content-end">
+							<a href="<?= base_url() . 'admin/testing/' . $slug ?>">
+								<button class="btn btn-icon icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+							</a>
+							<a href="<?= base_url() . 'admin/mitra/' . $slug ?>">
+								<button class="btn btn-primary btn-icon icon-right ">Lanjutkan Pengisian <i class="fa fa-arrow-right"></i></button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -369,6 +376,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						if (!response.error) {
 							$('#table').dataTable().api().ajax.reload()
 							$('#form-add').trigger('reset')
+							triggerSetEditor('#form-add', '')
 							$('#add').modal('hide')
 						}
 						response_alert(response)

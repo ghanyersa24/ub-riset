@@ -128,15 +128,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="form-group">
 								<label for="view-kategori">Kategori</label>
 								<select id="view-kategori" class="select2" multiple="multiple" data-placeholder="Kategori" style="width: 100%;" name="kategori[]">
-									<option value="Pangan">Pangan</option>
-									<option value="Energi">Energi</option>
-									<option value="Transportasi">Transportasi</option>
-									<option value="Rekayasa Keteknikan">Rekayasa Keteknikan</option>
-									<option value="Kesehatan">Kesehatan</option>
-									<option value="Pertahanan Keamanan">Pertahanan Keamanan</option>
-									<option value="Material Maju">Material Maju</option>
-									<option value="Kemaritiman">Kemaritiman</option>
-									<option value="Sosial Budaya">Sosial Budaya</option>
+
 								</select>
 							</div>
 						</div>
@@ -155,6 +147,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		$('#add').modal('show')
 	});
 	$(document).ready(function() {
+		const kategori = [
+			'Alat dan Mesin Pertanian', 'Alat Kesehatan', 'Alat Pendukung Industri Material Maju', 'Alumunium Silikat', 'Artificial Intellengence (AI)', 'Augmented/Virtual Reality', '6', 'B2B', '7', 'Bahan Bakar', '8', 'Benih/Bibit dan Varietas Unggul', 'Blockchain', 'Bungkil Sawit', 'Cloud Infrastructure', 'Content Management System', 'Crowdfunding', 'Desain', 'E-commerce', 'Fintech', 'Games/Permainan', 'Getah Karet dan Getah Pinus', 'Green Energy', 'Hardware', 'Internet of Things (IoT)', 'Karbon', '23', 'Kebencanaan', '24', 'Kelautan', '25', 'Kerak Gaharu', 'Keramik', 'Keramik Struktural', 'Kesehatan Masyarakat', 'Kolagen', 'Komponen Transportasi', 'Komposit', 'Komunikasi', 'Konstruksi', 'Kosmetika dan Produk Kecantikan', 'Lampu DC', 'Limbah Ikan dan Sayur', 'Limbah Kotoran Hewan', ' Buah dan Sayur', 'Limbah Plastik', 'Limbah Potongan Kayu', 'Logam Tanah Jarang', 'Logistik', 'Management Tools', 'Marketplace', 'Material Bio-Katalis', 'Material Pendukung Industri', 'Material untuk Bahan Bangunan', 'Media Publishing', 'Membran', 'Mesin Pengolahan Pangan', 'Mesin Pres dan Pemotongan Karet', 'Modifikasi Kendaraan', 'Obat', 'Obat Kuasi', 'Obat Tradisional', 'Organik', 'Pakan Ternak', 'Pangan Fungsional', 'Pangan Olahan', 'Pangan Segar', 'Pemanfaatan Listrik', 'Pembangkit Listrik', 'Pendidikan', 'Penghasil Listrik', 'Penghemat BBM', 'Penghemat Listrik', 'Perbekalan Kesehatan Rumah Tangga', 'Perikanan', 'Peternakan', 'Pewarna', 'Polimer', 'POS (Point of Sales)', 'Pupuk dan Pestisida', 'Robotik', 'Rumput Laut', 'Silase Sorgum', 'Sosial Media', 'Suplemen Kesehatan', 'Teknologi Budidaya', 'Teknologi Pedukung Daya Gerak', 'Teknologi Pendukung Daya Gempur', 'Teknologi Pendukung Pertahanan', 'Tekstil', 'Transportasi Industri', 'Travel', 'Turisme', 'Unmanned Aerial Vehicle (UAV)'
+		]
+		let listKategori = ''
+		kategori.forEach(element => {
+			listKategori += `<option value="${element}">${element}</option>`
+		})
+		$('#view-kategori').append(listKategori)
 		$('#form-add').validate({
 			rules: {
 				nama_produk: {
