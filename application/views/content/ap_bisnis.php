@@ -199,7 +199,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
 											<div class="alert-body">
 												<div class="alert-title">Petunjuk Pengisian Produksi</div>
-												Isikan data produksi 2 tahun kebelakang dan 3 tahun kedepan
+												Isikan data produksi 2 tahun kebelakang (jika ada) dan rencana 3 tahun kedepan
 												<div>
 													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 												</div>
