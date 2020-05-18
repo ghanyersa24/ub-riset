@@ -180,6 +180,13 @@ function required($params, $value)
 	}
 	return $value;
 }
+function rupiah($params, $value)
+{
+	if (substr($value, 0, 3) == "Rp.") {
+		return str_replace(["Rp. ", "."], "", $value);
+	} else
+		error("data input $params harus berupa nilai rupiah.");
+}
 
 function numeric($params, $value)
 {
