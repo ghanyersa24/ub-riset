@@ -50,7 +50,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<div class="slider">
 									<div class="indicator"></div>
 								</div>
+								<div class="alert alert-dark alert-has-icon mt-4 alert-dismissible" role="alert">
+									<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
+									<div class="alert-body">
+										<div class="alert-title">Petunjuk pengisian</div>
+										Pastikan kamu mengisi data perusahaanmu dengan lengkap
+										<div>
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+									</div>
+								</div>
 								<div class="content">
+
 									<section id="tab-profil">
 										<form id="form-view-profil">
 											<div class="row">
@@ -283,7 +294,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-nilai_aset">Nilai Aset Saat Ini</label>
-														<input type="number" id="add-nilai_aset" name="nilai_aset" class="form-control">
+														<input type="text" id="add-nilai_aset" name="nilai_aset" class="form-control" data-type="currency">
 													</div>
 												</div>
 												<div class="col-md-4">

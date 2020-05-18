@@ -92,6 +92,7 @@
       			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
       			dataType: 'json',
       			success: (r) => {
+      				console.log(r)
       				const produk = r.data
       				let roadmapDetail = `<div class="row">
       										<div class="col-md-12">

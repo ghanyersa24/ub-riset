@@ -144,7 +144,7 @@
 											<form id="form-file_tambahan" class="form-file_tambahan">
 												<input id="add-id" class="form-control" type="number" name="id" hidden readonly value="<?= $id ?>">
 												<div class="form-group">
-													<label for="add-file_tambahan">File Tambahan</label>
+													<label for="add-file_tambahan">File Tambahan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File PDF Maksimal 10mb">!</span></label>
 													<input type="text" id="add-file_tambahan" class="form-control" hidden readonly>
 													<input type="file" name="file_tambahan" id="add-file_tambahan_new" class="form-control">
 												</div>

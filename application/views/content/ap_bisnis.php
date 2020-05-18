@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="main-content">
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
-			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
+			<a href="<?= base_url('admin/detail/' . $slug) ?>" class="h5"><i class="fa fa-chevron-left"></i>
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
@@ -52,6 +52,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</ul>
 								<div class="slider">
 									<div class="indicator"></div>
+								</div>
+								<div class="alert alert-dark alert-has-icon mt-4 alert-dismissible" role="alert">
+									<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
+									<div class="alert-body">
+										<div class="alert-title">Petunjuk pengisian</div>
+										Pastikan kamu mengisi data bisnis produkmu dengan lengkap
+										<div>
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										</div>
+									</div>
 								</div>
 								<div class="content">
 									<section id="tab-profil">
@@ -110,7 +120,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="view-harga_produksi">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
-														<textarea type="number" class="form-control" id="view-harga_produksi" name="harga_produksi"></textarea>
+														<textarea name="harga_produksi" id="view_harga_produksi"></textarea>
+
 													</div>
 												</div>
 												<div class="col-md-12 row">
@@ -183,7 +194,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-nilai_pemasaran">Nilai Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nilai penjualan produk yang dipasarkan hingga saat ini">!</span></label>
-														<input type="number" class="form-control" id="add-nilai_pemasaran" name="nilai_pemasaran">
+														<input type="text" data-type="currency" class="form-control" id="add-nilai_pemasaran" name="nilai_pemasaran">
 													</div>
 
 												</div>
@@ -196,6 +207,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</form>
 									</section>
 									<section id="tab-aset">
+										<div class="alert alert-dark alert-has-icon mt-2 alert-dismissible" role="alert">
+											<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
+											<div class="alert-body">
+												<div class="alert-title">Petunjuk Pengisian Produksi</div>
+												Isikan data produksi 2 tahun kebelakang (jika ada) dan rencana 3 tahun kedepan
+												<div>
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												</div>
+											</div>
+										</div>
 										<div class="table-responsive">
 											<table class="table table-striped w-100" id="table-produksi">
 												<thead>
@@ -203,9 +224,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<th class="text-center">
 															No.
 														</th>
-														<th>Jenis Periode</th>
 														<th>Tahun Produksi</th>
 														<th>Jumlah Produksi</th>
+														<th>Satuan</th>
 
 														<th>Aksi</th>
 													</tr>
@@ -226,17 +247,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										<form id="form-produksi">
 											<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label for="add-jenis">Jenis Periode</label>
-														<select name="jenis" id="add-jenis" class="form-control">
-															<option value="Perolehan">Perolehan</option>
-															<option value="Proyeksi">Proyeksi</option>
 
-														</select>
-
-													</div>
-												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-tahun">Tahun Produksi</label>
@@ -247,7 +258,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-jumlah">Jumlah Produksi</label>
-														<input type="text" class="form-control" id="add-jumlah" name="jumlah">
+														<input type="text" data-type="without-currency" class="form-control" id="add-jumlah" name="jumlah">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="add-satuan">Satuan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Contoh: Kilogram, Meter, dll">!</span></label>
+														<input type="text" name="satuan" id="add-satuan" class="form-control">
+
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -259,6 +277,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</form>
 									</section>
 									<section id="tab-penjualan">
+										<div class="alert alert-dark alert-has-icon mt-2 alert-dismissible" role="alert">
+											<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
+											<div class="alert-body">
+												<div class="alert-title">Petunjuk Pengisian Penjualan & omset</div>
+												Isikan data penjualan & omset 2 tahun kebelakang dan proyeksi 3 tahun kedepan
+												<div>
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												</div>
+											</div>
+										</div>
 										<div id="penjualan-wrap">
 											<h4>Data Penjualan</h4>
 											<div class="table-responsive">
@@ -311,7 +339,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-jumlah">Jumlah Penjualan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah unit produk yang terjual">!</span></label>
-														<input type="number" class="form-control" id="add-jumlah" name="jumlah">
+														<input type="text" data-type="without-currency" class="form-control" id="add-jumlah" name="jumlah">
 													</div>
 
 												</div>
@@ -332,42 +360,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<th class="text-center">
 																No.
 															</th>
-															<th>Jenis Periode</th>
+
 															<th>Tipe</th>
-															<th>Jenis omset / profit</th>
+
 															<th>Tahun</th>
 															<th>Nilai</th>
 															<th>Aksi</th>
 														</tr>
 													</thead>
-													<tfoot>
-														<tr>
-															<th class="text-center">
 
-															</th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-
-														</tr>
-													</tfoot>
 												</table>
 											</div>
 										</div>
 										<form id="form-omset">
 											<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group">
-														<label for="add-jenis">Jenis Periode</label>
-														<select name="jenis" id="add-jenis" class="form-control">
-															<option value="Perolehan">Perolehan</option>
-															<option value="Proyeksi">Proyeksi</option>
-														</select>
-													</div>
-												</div>
+
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-tipe">Tipe Omset/Profit</label>
@@ -379,15 +387,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 													</div>
 												</div>
-												<div class="col-md-6">
-													<div class="form-group">
-														<label for="add-jenis_omset">Jenis Omset/Profit</label>
-														<select name="jenis_omset" id="add-jenis_omset" class="form-control">
-															<option value="Perusahaan">Perusahaan</option>
-															<option value="Produk">Produk (yang diajukan)</option>
-														</select>
-													</div>
-												</div>
+
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="view-tahun">Tahun Omset/Profit</label>
@@ -398,7 +398,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="view-nilai">Nilai Omset</label>
-														<input type="number" class="form-control" id="view-nilai" name="nilai">
+														<input type="text" data-type="currency" class="form-control" id="view-nilai" name="nilai">
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -411,6 +411,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									</section>
 								</div>
 							</div>
+						</div>
+						<div class="card-footer d-flex justify-content-end">
+							<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
+								<button class="btn btn-icon icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+							</a>
+
 						</div>
 					</div>
 				</div>
@@ -527,11 +533,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				},
 				className: "text-center"
 			}, {
-				"data": "jenis"
-			}, {
 				"data": "tahun"
 			}, {
 				"data": "jumlah"
+			}, {
+				"data": "satuan"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
 					return `
@@ -654,11 +660,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				},
 				className: "text-center"
 			}, {
-				"data": "jenis"
-			}, {
 				"data": "tipe"
-			}, {
-				"data": "jenis_omset"
 			}, {
 				"data": "tahun"
 			}, {

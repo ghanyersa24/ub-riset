@@ -2,8 +2,7 @@
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
 
-			<a href="<?= base_url('admin/detail/' . $slug) ?>"><i class="fa fa-chevron-left h5"></i>
-
+			<a href="<?= base_url('admin/detail/' . $slug) ?>" class="h5"><i class="fa fa-chevron-left"></i>
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
@@ -27,6 +26,14 @@
 						<hr>
 						<p>Perusahaan yang anda inginkan belum terdaftar? daftar <a href="<?= base_url() . 'admin/perusahaan' ?>">di sini</a></p>
 					</div>
+				</div>
+				<div class="card-footer d-flex justify-content-end">
+					<a href="<?= base_url() . 'admin/inventor/' . $slug ?>">
+						<button class="btn btn-icon icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+					</a>
+					<a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
+						<button class="btn btn-primary btn-icon icon-right ">Lanjutkan Pengisian <i class="fa fa-arrow-right"></i></button>
+					</a>
 				</div>
 			</div>
 		</div>

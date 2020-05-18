@@ -17,8 +17,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-12">
 					<div class="card">
-						<div class="card-body row" id="perusahaan">
 
+						<div class="card-body">
+							<div class="alert alert-dark alert-has-icon mt-4 alert-dismissible" role="alert">
+								<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
+								<div class="alert-body">
+									<div class="alert-title">Petunjuk pengisian</div>
+									Jangan lupa untuk melengkapi data perusahaanmu
+									<div>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									</div>
+								</div>
+							</div>
+							<div class="row" id="perusahaan">
+
+							</div>
 						</div>
 					</div>
 				</div>
