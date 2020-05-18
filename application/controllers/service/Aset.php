@@ -15,7 +15,7 @@ class Aset extends CI_Controller
 			"perusahaan_id" => post('perusahaan_id', 'required'),
 			"nama_aset" => post('nama_aset', 'required'),
 			"tahun_perolehan" => post('tahun_perolehan', 'numeric'),
-			"nilai_aset" => post('nilai_aset', 'numeric'),
+			"nilai_aset" => post('nilai_aset', 'rupiah'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -32,6 +32,9 @@ class Aset extends CI_Controller
 		// 	$do = DB_MODEL::all($this->table);
 		// } else {
 		$do = DB_MODEL::where($this->table, array("perusahaan_id" => $id));
+		foreach ($do->data as $value) {
+			$value->nilai_aset = set_rupiah($value->nilai_aset);
+		}
 		// }
 
 		if (!$do->error)
@@ -46,7 +49,7 @@ class Aset extends CI_Controller
 			"perusahaan_id" => post('perusahaan_id', 'required'),
 			"nama_aset" => post('nama_aset', 'required'),
 			"tahun_perolehan" => post('tahun_perolehan', 'numeric'),
-			"nilai_aset" => post('nilai_aset', 'numeric'),
+			"nilai_aset" => post('nilai_aset', 'rupiah'),
 		);
 
 		$where = array(

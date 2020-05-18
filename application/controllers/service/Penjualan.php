@@ -13,7 +13,7 @@ class Penjualan extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"satuan" => post('jenis', 'required|max_char:10'),
+			"satuan" => post('satuan', 'required|max_char:10'),
 			"tahun" => post('tahun', 'required|numeric'),
 			"jumlah" => post('jumlah', 'required|numeric'),
 		);
@@ -44,7 +44,7 @@ class Penjualan extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"satuan" => post('jenis', 'required|max_char:10'),
+			"satuan" => post('satuan', 'required|max_char:10'),
 			"tahun" => post('tahun', 'required|numeric'),
 			"jumlah" => post('jumlah', 'required|numeric'),
 		);

@@ -24,7 +24,7 @@
 								Simpan Perubahan</button>
 						</form>
 						<hr>
-						<p>Perusahaan yang anda inginkan belum terdaftar? daftar <a href="<?= base_url() . 'admin/perusahaan' ?>">di sini</a></p>
+						<p>Perusahaan yang anda inginkan belum terdaftar? daftar <a href="#" onclick="addPerusahaan()" class="ripple">di sini</a></p>
 					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end">
@@ -42,6 +42,10 @@
 
 <script>
 	let perusahaan
+	let addPerusahaan = () => {
+		sessionStorage.setItem("lastProduk", window.location.href);
+		window.location.replace("<?= base_url() . 'admin/perusahaan' ?>")
+	}
 
 	function getList() {
 		$.ajax({

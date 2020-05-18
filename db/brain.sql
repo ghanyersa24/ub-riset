@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2020 at 04:36 PM
+-- Generation Time: May 19, 2020 at 01:46 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -35,7 +35,7 @@ CREATE TABLE `aset` (
   `tahun_perolehan` year(4) DEFAULT NULL,
   `nilai_aset` int(10) UNSIGNED DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -56,7 +56,7 @@ CREATE TABLE `aspek_bisnis` (
   `rencana_pemasaran` text DEFAULT NULL,
   `bmc` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,18 +81,10 @@ CREATE TABLE `data_dasar` (
   `bmc` tinytext NOT NULL,
   `keuangan` tinytext NOT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `data_dasar`
---
-
-INSERT INTO `data_dasar` (`id`, `produk_id`, `status_usaha`, `target_pasar`, `kompetitor`, `jangkauan`, `kanal_pemasaran`, `dampak_sosial`, `skema_harga`, `harga_produksi`, `bmc`, `keuangan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 2, 'Sudah Berhenti', '', '', '', '', '', '', '8', '', '', '165150401111060', '2020-05-18 12:46:03', NULL, NULL),
-(2, 1, 'Masih Berjalan', '', '<p>sdfs dfsdf sdf</p>', '', '', '', '', '', '', '', '165150401111060', '2020-05-18 13:46:22', '165150401111060', '2020-05-18 13:46:22');
 
 -- --------------------------------------------------------
 
@@ -107,7 +99,7 @@ CREATE TABLE `foto_kegiatan` (
   `foto` tinytext DEFAULT NULL,
   `keterangan` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -125,7 +117,7 @@ CREATE TABLE `foto_produk` (
   `foto` tinytext DEFAULT NULL,
   `keterangan` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -140,7 +132,7 @@ CREATE TABLE `guest` (
   `id` int(10) UNSIGNED NOT NULL,
   `fcm` varchar(255) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -157,7 +149,7 @@ CREATE TABLE `informasi` (
   `informasi` text DEFAULT NULL,
   `tanggal` date DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -172,19 +164,10 @@ CREATE TABLE `inventor` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `users_id` varchar(15) NOT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `inventor`
---
-
-INSERT INTO `inventor` (`produk_id`, `users_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, '165150401111060', '165150401111060', '2020-05-17 15:10:55', NULL, NULL),
-(2, '165150401111060', '165150401111060', '2020-05-17 15:19:32', NULL, NULL),
-(3, '165150401111060', '165150401111060', '2020-05-17 15:25:18', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -205,7 +188,7 @@ CREATE TABLE `izin_produk` (
   `lembaga` varchar(100) DEFAULT NULL,
   `file` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -230,7 +213,7 @@ CREATE TABLE `kekayaan_intelektual` (
   `tanggal_mulai` date DEFAULT NULL,
   `tanggal_selesai` date DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -250,7 +233,7 @@ CREATE TABLE `kepemilikan` (
   `asal_negara` varchar(40) DEFAULT NULL,
   `presentase` float DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -268,7 +251,7 @@ CREATE TABLE `mitra` (
   `mou` tinytext DEFAULT NULL,
   `tujuan` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -286,7 +269,7 @@ CREATE TABLE `omset_profit` (
   `tahun` year(4) DEFAULT NULL,
   `nilai` int(10) UNSIGNED DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -304,7 +287,7 @@ CREATE TABLE `pemasaran` (
   `volume_pemasaran` varchar(15) DEFAULT NULL,
   `nilai_pemasaran` varchar(15) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -329,20 +312,10 @@ CREATE TABLE `pengajuan` (
   `status` enum('diajukan','diperiksa','dinilai') NOT NULL,
   `verifikator` varchar(15) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pengajuan`
---
-
-INSERT INTO `pengajuan` (`id`, `produk_id`, `inventor`, `slug`, `nama_produk`, `bidang`, `kategori`, `katsinov`, `tkt`, `file_evaluasi`, `status`, `verifikator`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 1, 'Ghany Abdillah Ersa', '0001-Accusantium-eum-a-ul', 'Accusantium eum a ul', 'Pangan', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', 6, 3, 'http://localhost/ub-riset/uploads/inovasi/1/evaluasi/9ccb61b6b9fc90f453e3f41b8d21c3cc.xlsx', 'dinilai', '165150401111060', '165150401111060', '2020-05-18 13:25:04', '165150401111060', '2020-05-18 13:25:04'),
-(2, 2, 'Ghany Abdillah Ersa', '0002-Qui-Nam-ut-obcaecati', 'Qui Nam ut obcaecati', 'Transportasi', '[\"Pangan\",\"Energi\",\"Rekayasa Keteknikan\"]', NULL, NULL, NULL, 'diperiksa', 'verifikator', '165150401111060', '2020-05-18 13:23:09', '165150401111060', '2020-05-18 13:23:09'),
-(3, 3, 'Ghany Abdillah Ersa', '0003-Eligendi-vitae-dolor', 'Eligendi vitae dolor', 'Pangan', '[\"Pangan\",\"Energi\",\"Rekayasa Keteknikan\"]', NULL, NULL, NULL, 'diperiksa', 'admin super', '165150401111060', '2020-05-18 13:22:01', '165150401111060', '2020-05-18 13:22:01'),
-(4, 1, 'Ghany Abdillah Ersa', '0001-Accusantium-eum-a-ul', 'Accusantium eum a ul', 'Pangan', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', 5, 9, 'http://localhost/ub-riset/uploads/inovasi/1/evaluasi/4a1624d434555db676e88eb6591a242c.xlsx', 'dinilai', '165150401111060', '165150401111060', '2020-05-18 13:34:43', '165150401111060', '2020-05-18 13:34:43');
 
 -- --------------------------------------------------------
 
@@ -361,7 +334,7 @@ CREATE TABLE `pengujian` (
   `tujuan` text DEFAULT NULL,
   `hasil` text DEFAULT NULL,
   `created_by` char(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` char(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -382,14 +355,6 @@ CREATE TABLE `pengurus` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `pengurus`
---
-
-INSERT INTO `pengurus` (`users_id`, `perusahaan_id`, `jabatan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-('165060300111002', 1, 'asdasd', '165150401111060', NULL, NULL, NULL),
-('165150401111060', 1, 'CEO', '165150401111060', NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -403,7 +368,7 @@ CREATE TABLE `penjualan` (
   `tahun` year(4) DEFAULT NULL,
   `jumlah` varchar(15) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -437,17 +402,10 @@ CREATE TABLE `perusahaan` (
   `website` varchar(30) DEFAULT NULL,
   `sosmed` tinytext DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `perusahaan`
---
-
-INSERT INTO `perusahaan` (`id`, `nama`, `slug`, `alamat`, `nama_pendiri`, `tahun_berdiri`, `bentuk_usaha`, `status_kantor`, `alamat_kantor`, `kota_kabupaten`, `logo`, `izin`, `akta`, `luas_ruang_produksi`, `alamat_produksi`, `pegawai_tetap`, `pegawai_tidak_tetap`, `email`, `telepon`, `website`, `sosmed`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Explicabo Eaque qui', '0001-Explicabo-Eaque-qui', NULL, 'Nemo voluptas eum mo', 2010, 'CV', 'Berbagi dengan perusahaan lain', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '165150401111060', '2020-05-18 12:43:50', '165150401111060', '2020-05-18 12:43:50');
 
 -- --------------------------------------------------------
 
@@ -464,7 +422,7 @@ CREATE TABLE `prestasi` (
   `tingkat` varchar(20) DEFAULT NULL,
   `tahun` year(4) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -482,7 +440,7 @@ CREATE TABLE `produk` (
   `tkt` tinyint(3) UNSIGNED DEFAULT NULL,
   `slug` tinytext DEFAULT NULL,
   `bidang` tinytext NOT NULL,
-  `kategori` tinytext NOT NULL,
+  `kategori` text NOT NULL,
   `jenis` enum('digital','non digital') NOT NULL,
   `produksi_barang_fisik` enum('ada','tidak') DEFAULT NULL,
   `logo_produk` tinytext DEFAULT NULL,
@@ -506,19 +464,10 @@ CREATE TABLE `produk` (
   `media_sosial` tinytext DEFAULT NULL,
   `website` varchar(30) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `produk`
---
-
-INSERT INTO `produk` (`id`, `nama_produk`, `katsinov`, `tkt`, `slug`, `bidang`, `kategori`, `jenis`, `produksi_barang_fisik`, `logo_produk`, `deskripsi_singkat`, `deskripsi_lengkap`, `latar_belakang`, `keterbaruan_produk`, `kerjasama`, `masalah`, `file_tambahan`, `solusi`, `spesifikasi_teknis`, `kegunaan_manfaat`, `keunggulan_keunikan`, `kesiapan_teknologi`, `kepemilikan_teknologi`, `pemilik_teknologi`, `teknologi_yang_dikembangkan`, `rencana_pengembangan`, `tautan_video`, `media_sosial`, `website`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 'Accusantium eum a ul', 5, 9, '0001-Accusantium-eum-a-ul', 'Pangan', '[\"Energi\",\"Rekayasa Keteknikan\",\"Kesehatan\"]', 'digital', 'ada', NULL, 'Est id reiciendis a', '<p>sddfdfsdf</p>', '', '', NULL, '', NULL, '', '', '', '', 'masih riset', NULL, NULL, '', '', '', '', '', '165150401111060', '2020-05-18 13:34:43', '165150401111060', '2020-05-18 13:34:43'),
-(2, 'Qui Nam ut obcaecati', NULL, NULL, '0002-Qui-Nam-ut-obcaecati', 'Transportasi', '[\"Pangan\",\"Energi\",\"Rekayasa Keteknikan\"]', 'non digital', 'ada', NULL, 'sdaasd', '', '', '', NULL, '', NULL, '', '', '', '', 'prototype', NULL, NULL, '', '', '', '', '', '165150401111060', '2020-05-17 15:24:32', '165150401111060', '2020-05-17 15:24:32'),
-(3, 'Eligendi vitae dolor', NULL, NULL, '0003-Eligendi-vitae-dolor', 'Pangan', '[\"Pangan\",\"Energi\",\"Rekayasa Keteknikan\"]', 'non digital', 'ada', NULL, 'qwe qwe eqwe qe', '', '', '', NULL, '', NULL, '', '', '', '', 'siap komersil', NULL, NULL, '', '', '', '', '', '165150401111060', '2020-05-17 15:53:29', '165150401111060', '2020-05-17 15:53:29');
 
 -- --------------------------------------------------------
 
@@ -529,11 +478,11 @@ INSERT INTO `produk` (`id`, `nama_produk`, `katsinov`, `tkt`, `slug`, `bidang`, 
 CREATE TABLE `produksi` (
   `id` int(10) UNSIGNED NOT NULL,
   `produk_id` int(10) UNSIGNED NOT NULL,
-  `jenis` enum('Perolehan','Proyeksi') NOT NULL,
+  `satuan` varchar(10) NOT NULL,
   `tahun` year(4) DEFAULT NULL,
   `jumlah` varchar(15) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -548,17 +497,10 @@ CREATE TABLE `produk_perusahaan` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `perusahaan_id` int(10) UNSIGNED NOT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `produk_perusahaan`
---
-
-INSERT INTO `produk_perusahaan` (`produk_id`, `perusahaan_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-(1, 1, '165150401111060', '2020-05-18 13:25:21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -571,7 +513,7 @@ CREATE TABLE `rating` (
   `users_id` varchar(15) NOT NULL,
   `rating` tinyint(3) UNSIGNED NOT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -595,7 +537,7 @@ CREATE TABLE `roadmap` (
   `tujuan` text DEFAULT NULL,
   `hasil` text DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -609,7 +551,7 @@ CREATE TABLE `roadmap` (
 CREATE TABLE `seen` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -626,7 +568,7 @@ CREATE TABLE `ulasan` (
   `produk_id` int(10) UNSIGNED NOT NULL,
   `ulasan` text NOT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -656,7 +598,7 @@ CREATE TABLE `users` (
   `pendidikan_terakhir` enum('SMA/Sederajat','D1','D2','D3','S1','S2','S3') NOT NULL,
   `fcm` varchar(255) DEFAULT NULL,
   `created_by` varchar(15) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_by` varchar(15) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -1386,7 +1328,7 @@ ALTER TABLE `aset`
 -- AUTO_INCREMENT for table `data_dasar`
 --
 ALTER TABLE `data_dasar`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `foto_kegiatan`
@@ -1422,7 +1364,7 @@ ALTER TABLE `izin_produk`
 -- AUTO_INCREMENT for table `kekayaan_intelektual`
 --
 ALTER TABLE `kekayaan_intelektual`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kepemilikan`
@@ -1446,13 +1388,13 @@ ALTER TABLE `omset_profit`
 -- AUTO_INCREMENT for table `pemasaran`
 --
 ALTER TABLE `pemasaran`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengujian`
@@ -1470,7 +1412,7 @@ ALTER TABLE `penjualan`
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `prestasi`
@@ -1482,7 +1424,7 @@ ALTER TABLE `prestasi`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `produksi`

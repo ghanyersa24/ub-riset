@@ -196,12 +196,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<label for="view-pemilik_teknologi">Nama Pemilik Teknologi</label>
 												<input id="view-pemilik_teknologi" class="form-control" type="text" name="pemilik_teknologi">
 											</div> -->
+
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
+											</div>
 										</section>
 									</div>
 								</div>
-							</div>
-							<div class="card-footer text-right">
-								<button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
 							</div>
 						</form>
 					</div>

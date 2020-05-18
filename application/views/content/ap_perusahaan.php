@@ -5,7 +5,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="main-content">
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
-
+			<a href="#" class="h5" onclick="lastProduk()" class="ripple"><i class="fa fa-chevron-left"></i>
+			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
 		<button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
@@ -17,7 +18,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-12">
 					<div class="card">
-
 						<div class="card-body">
 							<div class="alert alert-dark alert-has-icon mt-4 alert-dismissible" role="alert">
 								<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
@@ -32,6 +32,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="row" id="perusahaan">
 
 							</div>
+						</div>
+						<div class="card-footer d-flex justify-content-end">
+							<a href="#" onclick="lastProduk()" class="">
+								<button class="btn btn-icon icon-left ripple"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -95,7 +100,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 <script>
 	let res = []
-
+	let lastProduk = () => window.location.replace(sessionStorage.getItem('lastProduk'))
 	function get() {
 		$.ajax({
 			type: "GET",
@@ -161,15 +166,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		triggerEditor('#form-add')
 		$('#form-add').validate({
 			rules: {
-				nama_produk: {
+				nama: {
 					required: true
 				},
-				bidang: {
+				bentuk_usaha: {
 					required: true
 				},
 				jenis: {
 					required: true
 				},
+				tahun_berdiri: {
+					required: true,
+					min: 2000,
+					max: 2020
+				}
 			},
 			submitHandler: function(form) {
 				$.ajax({

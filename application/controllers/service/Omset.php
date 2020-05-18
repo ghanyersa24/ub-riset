@@ -15,7 +15,7 @@ class Omset extends CI_Controller
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"tipe" => post('tipe', 'required|enum:Omset&Profit'),
 			"tahun" => post('tahun', 'required|numeric'),
-			"nilai" => post('nilai', 'required|numeric'),
+			"nilai" => post('nilai', 'rupiah'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -32,6 +32,9 @@ class Omset extends CI_Controller
 			$do = DB_MODEL::all($this->table);
 		} else {
 			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
+			foreach ($do->data as $value) {
+				$value->nilai = set_rupiah($value->nilai);
+			}
 		}
 
 		if (!$do->error)
@@ -46,7 +49,7 @@ class Omset extends CI_Controller
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"tipe" => post('tipe', 'required|enum:Omset&Profit'),
 			"tahun" => post('tahun', 'required|numeric'),
-			"nilai" => post('nilai', 'required|numeric'),
+			"nilai" => post('nilai', 'rupiah'),
 		);
 
 		$where = array(

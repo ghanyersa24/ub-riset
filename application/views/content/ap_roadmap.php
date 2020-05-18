@@ -314,10 +314,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					required: true,
 				},
 				tahun_mulai: {
-					required: true
+					required: true,
+					min: 2000,
+					max: 2020
 				},
 				tahun_selesai: {
-					required: true
+					required: true,
+					min: 2000,
+					max: 2020
 				},
 				sumber_pendanaan: {
 					required: true,

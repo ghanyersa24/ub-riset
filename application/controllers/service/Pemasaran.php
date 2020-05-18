@@ -15,7 +15,7 @@ class Pemasaran extends CI_Controller
 			"produk_id" => $produk = post('produk_id', 'required'),
 			"jangkauan" => post('jangkauan', 'required|enum:Regional&Nasional&Ekspor'),
 			"volume_pemasaran" => post('volume_pemasaran', 'required'),
-			"nilai_pemasaran" => post('nilai_pemasaran', 'required|numeric'),
+			"nilai_pemasaran" => post('nilai_pemasaran', 'rupiah'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -32,6 +32,9 @@ class Pemasaran extends CI_Controller
 			$do = DB_MODEL::all($this->table);
 		} else {
 			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
+			foreach ($do->data as $value) {
+				$value->nilai_pemasaran = set_rupiah($value->nilai_pemasaran);
+			}
 		}
 
 		if (!$do->error)
@@ -44,9 +47,9 @@ class Pemasaran extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => post('jenis', 'required|enum:Perolehan|Proyeksi'),
-			"tahun" => post('tahun', 'required|numeric'),
-			"jumlah" => post('jumlah', 'required|numeric'),
+			"jangkauan" => post('jangkauan', 'required|enum:Regional&Nasional&Ekspor'),
+			"volume_pemasaran" => post('volume_pemasaran', 'required'),
+			"nilai_pemasaran" => post('nilai_pemasaran', 'rupiah'),
 		);
 		$where = array(
 			"id" => post('id', 'required'),

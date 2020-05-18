@@ -144,7 +144,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}, {
 					"render": function(data, type, row, meta) {
 						if (row.mou != null)
-							return `<a class="text-decoration-none" href="${row.mou}"> klik disini</a>`;
+							return `<a class="text-decoration-none" target="_blank" href="${row.mou}"> klik disini</a>`;
 					}
 				},
 				{

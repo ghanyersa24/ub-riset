@@ -18,7 +18,7 @@ class Roadmap extends CI_Controller
 			"tahun_selesai" => post('tahun_selesai', 'numeric'),
 			"sumber_pendanaan" => post('sumber_pendanaan', 'required'),
 			"skema" => post('skema', 'allow_html'),
-			"nilai_pendanaan" => post('nilai_pendanaan', 'numeric'),
+			"nilai_pendanaan" => post('nilai_pendanaan', 'rupiah'),
 			"aktivitas" => post('aktivitas', 'allow_html'),
 			"tujuan" => post('tujuan', 'allow_html'),
 			"hasil" => post('hasil', 'allow_html'),
@@ -38,6 +38,9 @@ class Roadmap extends CI_Controller
 			$do = DB_MODEL::all($this->table);
 		} else {
 			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
+			foreach ($do->data as $value) {
+				$value->nilai_pendanaan = set_rupiah($value->nilai_pendanaan);
+			}
 		}
 
 		if (!$do->error)
@@ -55,7 +58,7 @@ class Roadmap extends CI_Controller
 			"tahun_selesai" => post('tahun_selesai', 'numeric'),
 			"sumber_pendanaan" => post('sumber_pendanaan', 'required'),
 			"skema" => post('skema', 'allow_html'),
-			"nilai_pendanaan" => post('nilai_pendanaan', 'numeric'),
+			"nilai_pendanaan" => post('nilai_pendanaan', 'rupiah'),
 			"aktivitas" => post('aktivitas', 'allow_html'),
 			"tujuan" => post('tujuan', 'allow_html'),
 			"hasil" => post('hasil', 'allow_html'),

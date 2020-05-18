@@ -65,18 +65,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="col-md-4">
 							<div class="form-group">
 								<input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
-								<label for="add-nama">Jenis Sertifikasi / Perijinan</label>
-								<select name="jenis" id="add-jenis" class="form-control">
-									<option value="Paten">Paten</option>
-									<option value="Merk">Merk</option>
-									<option value="Hak Cipta">Hak Cipta</option>
-									<option value="Tata Letak Sirkuit Terpadu">Tata Letak Sirkuit Terpadu</option>
-									<option value="Rahasia Dagang">Rahasia Dagang</option>
-									<option value="Desain Industri">Desain Industri</option>
-									<option value="Indikasi Geografis">Indikasi Geografis</option>
-									<option value="Perlindungan Varietas tanaman (PVT)">Perlindungan Varietas Tanaman (PVT)</option>
-								</select>
-
+								<label for="add-nama">Jenis Sertifikasi / Perijinan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nama sertifikasi/pengujian, misal : Paten, BPOM, Halal, SNI, dst">!</span></label>
+								<input type="text" class="form-control" name="jenis" id="add-jenis" placeholder="jenis sertifikasi">
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -164,18 +154,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="form-group">
 								<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
 								<input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
-								<label for="view-nama">Jenis Kekayaan Intelektual</label>
-								<select name="jenis" id="view-jenis" class="form-control">
-									<option value="Paten">Paten</option>
-									<option value="Merk">Merk</option>
-									<option value="Hak Cipta">Hak Cipta</option>
-									<option value="Tata Letak Sirkuit Terpadu">Tata Letak Sirkuit Terpadu</option>
-									<option value="Rahasia Dagang">Rahasia Dagang</option>
-									<option value="Desain Industri">Desain Industri</option>
-									<option value="Indikasi Geografis">Indikasi Geografis</option>
-									<option value="Perlindungan Varietas tanaman (PVT)">Perlindungan Varietas Tanaman (PVT)</option>
-								</select>
-
+								<label for="view-nama">Jenis Kekayaan Intelektual <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nama sertifikasi/pengujian, misal : Paten, BPOM, Halal, SNI, dst">!</span></label>
+								<input type="text" class="form-control" name="jenis" id="view-jenis">
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -332,27 +312,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				status_perolehan: {
 					required: true
 				},
-				// no_pemohon: {
-				// 	required: true
-				// },
-				// file_formulir: {
-				// 	required: true
-				// },
-				// no_sertifikat: {
-				// 	required: true
-				// },
-				// file: {
-				// 	required: true
-				// },
 				tanggal_mulai: {
 					required: true
 				},
 				tanggal_selesai: {
 					required: true
 				},
-				// pemegang: {
-				// 	required: true
-				// },
 			},
 			submitHandler: function(form) {
 				let temp = $('#form-add').serialize()
