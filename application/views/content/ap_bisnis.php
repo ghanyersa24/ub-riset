@@ -119,18 +119,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="view-harga_produksi">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
-														<textarea name="harga_produksi" id="view_harga_produksi"></textarea>
+														<textarea name="harga_produksi" id="view-harga_produksi"></textarea>
 													</div>
 												</div>
 												<div class="col-md-12 row">
 													<div class="col form-group ">
-														<label for="view-bmc">BMC/Business Plan</label>
+														<label for="view-bmc">BMC/Business Plan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="berisi BMC/Business Plan dalam format .pdf maks 10mb">!</span></label>
 														<input id="view-bmc" class="form-control" type="text" hidden readonly>
 														<input id="view-bmc_new" class="form-control mb-2" type="file">
 														<span class="bmc"></span>
 													</div>
 													<div class="col form-group">
-														<label for="view-keuangan">Catatan Keuangan</label>
+														<label for="view-keuangan">Catatan Keuangan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="dapat berisi Cashflow/Laporan Laba Rugi/ROI/Neraca keuangan dalam format .pdf maks 10mb">!</span></label>
 														<input id="view-keuangan" class="form-control" type="text" hidden readonly>
 														<input id="view-keuangan_new" class="form-control" type="file">
 														<span class="keuangan"></span>
@@ -173,7 +173,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini">!</span></label>
+														<label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini, misal: 24 unit, 12 kg, 97 pack">!</span></label>
 														<input type="text" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
 													</div>
 												</div>
@@ -367,15 +367,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 											</div>
 										</form>
+										<div class="mt-3 card-footer d-flex justify-content-end">
+											<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
+												<button class="btn btn-primary icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+											</a>
+											<a href="<?= base_url() . 'admin/detail/' . $slug ?>">
+												<button class="btn btn-icon btn-icon icon-right" data-toggle="tooltip" data-placement="bottom" title="Silahkan kembali ke Roadmap pengisian untuk mengajukan verifikasi produk inovasi.">Pengisian Selesai <i class="fa fa-save"></i></button>
+											</a>
+										</div>
 									</section>
 								</div>
 							</div>
-						</div>
-						<div class="card-footer d-flex justify-content-end">
-							<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
-								<button class="btn btn-icon icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
-							</a>
-
 						</div>
 					</div>
 				</div>
@@ -398,10 +400,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				$('#view-status_usaha').val(data.status_usaha)
 				$('#view-bmc').val(data.bmc)
 				$('#view-keuangan').val(data.keuangan)
-				if (data.bmc != null)
+				if (data.bmc != null && data.bmc != "")
 					$(".bmc").html(`<a href="${data.bmc}" target="_blank" rel="noopener noreferrer" >lihat disini</a>`)
-				if (data.keuangan != null)
+				else
+					$(".bmc").html("")
+				if (data.keuangan != null && data.keuangan != "")
 					$(".keuangan").html(`<a href="${data.keuangan}" target="_blank" rel="noopener noreferrer" >lihat disini</a>`)
+				else
+					$(".keuangan").html("")
+
 				setEditor('view-target_pasar', data.target_pasar)
 				setEditor('view-kompetitor', data.kompetitor)
 				setEditor('view-jangkauan', data.jangkauan)

@@ -100,7 +100,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 <script>
 	let res = []
-	let lastProduk = () => window.location.replace(sessionStorage.getItem('lastProduk'))
+	let lastProduk = () => {
+		if (sessionStorage.getItem('lastProduk') == null)
+			window.history.back()
+		else
+			window.location.replace(sessionStorage.getItem('lastProduk'))
+	}
+
 	function get() {
 		$.ajax({
 			type: "GET",

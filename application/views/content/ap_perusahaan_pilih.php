@@ -21,7 +21,7 @@
 							</div>
 							<button id="btn-save" class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
 								<i class="fa fa-save"></i>
-								Simpan Perubahan</button>
+								Pilih Perusahaan</button>
 						</form>
 						<hr>
 						<p>Perusahaan yang anda inginkan belum terdaftar? daftar <a href="#" onclick="addPerusahaan()" class="ripple">di sini</a></p>

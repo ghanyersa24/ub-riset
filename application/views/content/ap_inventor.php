@@ -20,8 +20,8 @@
 								</select>
 							</div>
 							<button id="btn-save" class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
-								<i class="fa fa-save"></i>
-								Simpan Perubahan</button>
+								<i class="fa fa-plus"></i>
+								Tambahkan Inventor</button>
 						</form>
 						<!-- <p>Nama Inventor Yang Terdaftar</p> -->
 						<div class="row" id="listInventor">

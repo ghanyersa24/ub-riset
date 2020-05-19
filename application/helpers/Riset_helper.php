@@ -103,7 +103,7 @@ class riset
 			$data[] = [
 				"type" => "informasi",
 				"tahun" => (int) date('Y', strtotime($value->tanggal)),
-				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk . strip_tags($value->informasi),
+				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk .' '. strip_tags($value->informasi),
 			];
 		}
 		foreach ($pengajuan as $value) {

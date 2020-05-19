@@ -367,9 +367,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							dataType: "json",
 							success: function(response) {
 								response_alert(response)
-								setTimeout(function() {
-									window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
-								}, 2000)
+								if (!response.error)
+									setTimeout(function() {
+										window.location.replace(`<?= base_url() ?>admin/roadmap/${response.data.slug}`)
+									}, 2000)
 							}
 						})
 					}

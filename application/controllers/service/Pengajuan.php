@@ -45,7 +45,7 @@ class Pengajuan extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", 'right');
 		} else {
-			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", "right",['verifikator' => $this->session->userdata('id')]);
+			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", "right", ['verifikator' => $this->session->userdata('id')]);
 		}
 
 		if (!$do->error)
@@ -63,7 +63,8 @@ class Pengajuan extends CI_Controller
 		$data = array(
 			"katsinov" => $katsinov = post('katsinov', 'required|numeric|min_value:0|max_value:6'),
 			"tkt" => $tkt = post('tkt', 'required|numeric|min_value:0|max_value:9'),
-			"file_evaluasi" => UPLOAD_FILE::excel('file_evaluasi', "inovasi/$produk/evaluasi"),
+			"file_tkt" => UPLOAD_FILE::excel('file_tkt', "inovasi/$produk/evaluasi", 'evaluasi_tkt'),
+			"file_katsinov" => UPLOAD_FILE::excel('file_katsinov', "inovasi/$produk/evaluasi", 'evaluasi_katsinov'),
 			"status" => 'dinilai',
 		);
 
