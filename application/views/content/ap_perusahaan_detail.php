@@ -345,7 +345,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<form id="form-view-jabatan" class="form-view">
 				<div class="modal-body" id="form-data">
 					<div class="form-group">
-						<input id="jabatan-users_id" class="form-control" type="number" name="users_id" hidden readonly>
+						<input id="jabatan-users_id" class="form-control" type="text" name="users_id" hidden readonly>
 						<input id="jabatan-perusahaan_id" class="form-control" type="number" name="perusahaan_id" hidden readonly value="<?= $id ?>">
 						<label for="jabatan-view">Jabatan</label>
 						<input type="text" id="jabatan-view" name="jabatan" class="form-control">
@@ -431,11 +431,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					listPengurus += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
-										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id},'${element.jabatan}','${element.nama}')">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
 									</div>
 									<hr>
 									<div class="d-flex justify-content-between">
-									<span class="h5 card-title click" onclick="view(${element.id},'${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
+									<span class="h5 card-title click" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
 									<span><button type="button" class="btn btn-default" onclick="del(${element.id},${element.perusahaan_id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
 									</div>
 								</div>

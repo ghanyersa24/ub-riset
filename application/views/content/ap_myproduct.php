@@ -138,7 +138,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						url: api + 'service/inventor/delete',
 						data: {
 							produk_id: id,
-							users_id: <?= $this->session->userdata('id') ?>
+							users_id: '<?= $this->session->userdata('id') ?>'
 						},
 						dataType: "json",
 						success: function(response) {
