@@ -36,7 +36,6 @@ class Auth extends CI_Controller
 			$username = str_replace(" ", "", $username);
 			$password = str_replace(" ", "", $password);
 			$auth = json_decode(file_get_contents("https://em.ub.ac.id/redirect/login/loginApps/?nim=$username&password=$password"), true);
-			var_dump($auth);
 			if ($auth['status']) {
 				$angkatan = substr($auth['nim'], 0, 2);
 				$data = [
