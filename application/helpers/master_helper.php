@@ -91,11 +91,12 @@ function post($params, $constrains = null)
 // --------------- constrains inputan
 function enum($params, $value, $check)
 {
+	$message = underline($params);
 	$check = explode("&", $check);
 	if (in_array($value, $check))
 		return $value;
 	else
-		error("data $params tidak sesuai ketentuan");
+		error("data $message tidak sesuai ketentuan");
 }
 
 function same($params, $value, $check)
@@ -109,6 +110,7 @@ function same($params, $value, $check)
 }
 function greater($params, $value, $check)
 {
+	$message = underline($params);
 	$a = post($check);
 	$b = $value;
 	if (strtotime($a) != false || strtotime($b) != false) {
@@ -116,82 +118,96 @@ function greater($params, $value, $check)
 		$b = strtotime($b);
 	}
 	if ($b <= $a) {
-		$params = underline($params);
 		$check = underline($check);
-		error("$params harus lebih besar dari $check");
+		error("$message harus lebih besar dari $check");
 	}
 	return $value;
 }
 
 function max_char($params, $value, $check)
 {
+	$message = underline($params);
 	if (strlen($value) > $check)
-		error("$params tidak boleh lebih dari $check karakter");
+		error("$message tidak boleh lebih dari $check karakter");
 	return $value;
 }
 
 function min_char($params, $value, $check)
 {
+	$message = underline($params);
 	if (strlen($value) < $check)
-		error("$params tidak boleh kurang dari $check karakter");
+		error("$message tidak boleh kurang dari $check karakter");
 	return $value;
 }
 
 function max_value($params, $value, $check)
 {
+	$message = underline($params);
 	if (is_numeric($value) && is_numeric($check)) {
 		if ($value > $check)
-			error("$params tidak boleh lebih dari $check");
+			error("$message tidak boleh lebih dari $check");
 	} else
-		error("$params harus berisi angka");
+		error("$message harus berisi angka");
 	return $value;
 }
 
 function min_value($params, $value, $check)
 {
+	$message = underline($params);
 	if (is_numeric($value) && is_numeric($check)) {
 		if ($value < $check)
-			error("$params tidak boleh kurang dari $check");
+			error("$message tidak boleh kurang dari $check");
 	} else
-		error("$params harus berisi angka");
+		error("$message harus berisi angka");
 	return $value;
 }
 
 function unique($params, $value, $table)
 {
+	$message = underline($params);
 	$found = DB_MODEL::find($table, array($params => $value));
 	if (!$found->error)
-		error("$params sudah digunakan");
+		error("$message sudah digunakan");
 	return $value;
 }
 
 function email($params, $value)
 {
+	$message = underline($params);
 	if (!filter_var($value, FILTER_VALIDATE_EMAIL))
-		error("$params tidak valid sebagai email");
+		error("$message tidak valid sebagai email");
 	return $value;
 }
 
 function required($params, $value)
 {
+	$message = underline($params);
 	if (empty(post($params))) {
 		$params = underline($params);
-		error("data input $params tidak boleh kosong");
+		error("data input $message tidak boleh kosong");
 	}
 	return $value;
 }
 function rupiah($params, $value)
 {
+	$message = underline($params);
 	if (substr($value, 0, 3) == "Rp.") {
 		return str_replace(["Rp. ", "."], "", $value);
 	} else
-		error("data input $params harus berupa nilai rupiah.");
+		error("data input $message harus berupa nilai rupiah.");
+}
+function set_rupiah($value)
+{
+	$hasil_rupiah = "Rp. " . number_format($value, 0, ',', '.');
+	return $hasil_rupiah;
 }
 
 function numeric($params, $value)
 {
+	$message = underline($params);
+	$value = str_replace(".", "", $value);
 	if (!is_numeric($value)) {
-		error("$params harus berupa angka");
+		error("$message harus berupa angka");
 	}
 	return $value;
 }

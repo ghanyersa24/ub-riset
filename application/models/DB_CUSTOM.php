@@ -22,11 +22,11 @@ class DB_CUSTOM extends CI_Model
 		$id = $CI->session->userdata('id');
 		if (count($arr) > 0)
 			$query = $CI->db->from('users')
-				->where("id != $id")
+				->where(["id !="=>$id])
 				->where_not_in("id", $arr)->get();
 		else
 			$query = $CI->db->from('users')
-				->where("id != $id")->get();
+				->where(["id !="=>$id])->get();
 		if ($query)
 			return true($query->result());
 		else

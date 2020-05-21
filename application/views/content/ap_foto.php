@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
-		<button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
+		<button class="btn btn-info " data-toggle="tooltip" data-placement="left" title="Tambahkan <?= $title ?> inovasimu, disini !" onclick="$('#add').modal('show')" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
 			<i class="fa fa-plus"></i>
 		</button>
 
@@ -51,7 +51,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<label>Foto Produk</label>
 								<div class="input-group">
 									<div class="custom-file">
-										<input type="file" class="custom-file-input" id="add-foto" aria-describedby="btn-upload">
+										<input type="file" class="custom-file-input" name="foto" id="add-foto" aria-describedby="btn-upload">
 										<label class="custom-file-label" for="add-foto">Cari file</label>
 									</div>
 								</div>
@@ -97,7 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<div class="input-group">
 									<div class="custom-file">
 										<input type="text" class="custom-file-input" id="view-foto" name="foto" readonly>
-										<input type="file" class="custom-file-input" id="view-foto-new" aria-describedby="btn-upload">
+										<input type="file" class="custom-file-input" id="view-foto_new" aria-describedby="btn-upload">
 										<label class="custom-file-label" for="view-foto">Cari file</label>
 									</div>
 								</div>
@@ -201,10 +201,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}
 			});
 	}
+
 	$(document).ready(function() {
 		get()
 		triggerEditor('#form-add')
 		triggerEditor('#form-view')
+
 		$('#form-add').validate({
 			rules: {
 				title: {
@@ -255,9 +257,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			submitHandler: function(form) {
 				let formData = new FormData()
 				formData.append('foto_new', document.getElementById('view-foto_new').files[0])
+				formData.append('foto', $('#view-foto').val())
 				formData.append('keterangan', $('#view-keterangan').val())
 				formData.append('title', $('#view-title').val())
-				formData.append('foto', $('#view-foto').val())
 				formData.append('produk_id', $('#view-produk_id').val())
 				formData.append('id', $('#view-id').val())
 				$.ajax({

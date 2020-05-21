@@ -101,6 +101,7 @@
 		let table = $('#table').DataTable()
 		$('#table tbody').on('change', 'select', function() {
 			let data = table.row($(this).parents('tr')).data()
+			let row = table.row($(this).parents('tr'))[0][0] + 1
 			swal({
 					title: "Apakah kamu yakin?",
 					icon: "info",
@@ -114,7 +115,7 @@
 							url: api + 'service/verifikator/update',
 							data: {
 								id: data.id,
-								verifikator: $('.select').val()
+								verifikator: $(`table#table>tbody>tr:nth-of-type(${row})>td:nth-of-type(6)>select`).val()
 							},
 							success: function(response) {
 								response_alert(response)

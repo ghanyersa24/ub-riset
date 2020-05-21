@@ -9,8 +9,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
-
-
 		<div class="section-body">
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-12">
@@ -171,7 +169,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										<form id="form-view-pengurus">
 											<input type="text" name="perusahaan_id" value="<?= $id ?>" hidden readonly class="form-control">
 											<div class="form-group">
-												<label for="view-user" class="d-block">Pilih Pengurus</label>
+												<label for="view-user" class="d-block">Pilih Pengurus <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika pengurus yang dicari tidak ada, harap meminta pengurus yang bersangkutan untuk login sistem terlebih dahulu.">!</span></label>
 												<select name="users_id" id="view-user" class="select2 form-control" style="width:100%">
 
 												</select>
@@ -263,7 +261,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															No.
 														</th>
 														<th>Nama</th>
-														<!-- <th>Nama Pemilik</th> -->
 														<th>Tanggal Perolehan</th>
 														<th>Nilai Aset</th>
 														<th>Aksi</th>
@@ -280,17 +277,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<input type="text" id="add-nama_aset" name="nama_aset" class="form-control">
 													</div>
 												</div>
-												<!-- <div class="col-md-4">
-													<div class="form-group">
-														<label for="add-pemilik_aset">Nama Pemilik Aset</label>
-														<select name="pemilik_aset" id="add-pemilik_aset" class="form-control">
-															<option value="Perseorangan">Perseorangan</option>
-															<option value="Kelompok">Kelompok</option>
-															<option value="Perusahaan">Perusahaan</option>
-														</select>
-													</div>
-												</div> -->
-
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-nilai_aset">Nilai Aset Saat Ini</label>
@@ -310,8 +296,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								</div>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -319,7 +303,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</section>
 </div>
 
-<div id="progress-upload" class="position-fixed row bg-trans h-100" tabindex="-1" style="display:none; top:0; left:0; right:0;z-index:999999;background: rgba(137, 191, 202, 0.48)">
+<div id="progress-upload" class="position-fixed row bg-trans h-100" tabindex="-1" style="display:none; top:0; left:0; right:0;z-index:999;background: rgba(137, 191, 202, 0.48)">
 	<div class="d-flex justify-content-center vw-100">
 		<div class="d-flex align-items-center" style="width: 15%;top:50vh">
 			<img src="https://media3.giphy.com/media/1YePlEuqaWfba/source.gif" alt="" class="w-100">
@@ -351,7 +335,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="view">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Ubah Jabatan <span id="jabatan-nama"></span></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+			</div>
+			<form id="form-view-jabatan" class="form-view">
+				<div class="modal-body" id="form-data">
+					<div class="form-group">
+						<input id="jabatan-users_id" class="form-control" type="text" name="users_id" hidden readonly>
+						<input id="jabatan-perusahaan_id" class="form-control" type="number" name="perusahaan_id" hidden readonly value="<?= $id ?>">
+						<label for="jabatan-view">Jabatan</label>
+						<input type="text" id="jabatan-view" name="jabatan" class="form-control">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-default" data-dismiss="modal"> Cancel</button>
+					<button type="submit" class="btn btn-info" id="submit">Save</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 <script>
+	let user_id = '<?= $this->session->id; ?>',
+		created_by = '<?= $created_by ?>'
 	$('#view-logo_new').change(function() {
 		let filename = document.getElementById('view-logo_new').files[0].name
 		$('label.custom-file-label').html(filename)
@@ -420,18 +430,46 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
 				})
 				dataPengurus.forEach(element => {
-					listPengurus += `<div class="card col-sm-3 ">
+					if (created_by != element.id)
+						listPengurus += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
-										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
 									</div>
 									<hr>
 									<div class="d-flex justify-content-between">
-									<span class="h5 card-title click" onclick="view(${element.id})">${element.nama} (${element.jabatan})</span>
+									<span class="h5 card-title click" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
 									<span><button type="button" class="btn btn-default" onclick="del(${element.id},${element.perusahaan_id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
 									</div>
 								</div>
 							</div>`
+					else {
+						if (created_by == user_id)
+							listPengurus += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
+									<span><button type="button" class="btn btn-default" onclick="del(${element.id},${element.perusahaan_id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+						else
+							listPengurus += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
+									</div>
+								</div>
+							</div>`
+					}
 				})
 				$('#listPengurus').html(listPengurus)
 				$('#view-user').html(listUser)
@@ -439,6 +477,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		})
 	}
 
+	function view(id, jabatan, nama) {
+		$('#jabatan-nama').text(nama)
+		$('#jabatan-view').val(jabatan)
+		$('#jabatan-users_id').val(id)
+		$('#view').modal('show')
+	}
 	$(document).ready(function() {
 		getList()
 
@@ -455,6 +499,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		});
 
 		$('#form-view-profil').validate({
+			rules: {
+				nama: {
+					required: true
+				},
+				bentuk_usaha: {
+					required: true
+				},
+				jenis: {
+					required: true
+				},
+				tahun_berdiri: {
+					required: true,
+					min: 2000,
+					max: 2020
+				},
+				luas_ruang_produksi: {
+					required: true
+				},
+				pegawai_tetap: {
+					required: true
+				},
+				pegawai_tidak_tetap: {
+					required: true
+				},
+				telepon: {
+					required: true
+				}
+			},
 			submitHandler: function(form) {
 				let temp = $('#form-view-profil').serialize()
 				let formData = new FormData()
@@ -499,6 +571,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		})
 
 		$('#form-view-aset').validate({
+			rules: {
+				nama_aset: {
+					required: true
+				},
+				nilai_aset: {
+					required: true
+				},
+				tahun_perolehan: {
+					required: true,
+					min: 2000,
+					max: 2020
+				}
+			},
 			submitHandler: function(form) {
 				$.ajax({
 					type: "POST",
@@ -523,10 +608,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					data: $('#form-view-pengurus').serialize(),
 					success: function(response) {
 						response_alert(response)
-						if (!response.error)
+						if (!response.error) {
 							getList()
+							$('#form-view-pengurus').trigger('reset')
+						}
 					}
 				});
+			}
+		})
+		$("#form-view-jabatan").validate({
+			submitHandler: (form) => {
+				let name = $('#jabatan-nama').text()
+				konfirmasi(`mengubah jabatan pengurus ${name}.`).then((willSave) => {
+					if (willSave) {
+						$.ajax({
+							type: "POST",
+							url: api + "service/pengurus/update",
+							data: $('#form-view-jabatan').serialize(),
+							success: function(response) {
+								response_alert(response)
+								if (!response.error) {
+									getList()
+									$('#view').modal('hide')
+								}
+							}
+						});
+					}
+				})
 			}
 		})
 
@@ -546,7 +654,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}, {
 				"data": "asal_negara"
 			}, {
-				"data": "presentase"
+				"render": (data, type, row, meta) => {
+					return row.presentase + '%'
+				}
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
 					return '<button class="btn btn-light"><i class="fas fa-trash"></i>Hapus </button>';

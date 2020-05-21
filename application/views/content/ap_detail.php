@@ -6,7 +6,6 @@
       		<div class="section-header">
       			<h1><?= $title ?></h1>
       		</div>
-
       		<div class="section-body">
       			<h2 class="section-title">Brawijaya Riset dan Inovasi</h2>
       			<p class="section-lead">Halaman untuk mengelola <?= $title ?>.</p>
@@ -26,14 +25,10 @@
       													<i class="fa fa-plus"></i>
       													Data Tambahan</button>
       											</a>
-
-
       											<button id="btn-ajukan" class="btn btn-icon icon-left btn-primary mr-md-0 mb-2 ml-0 mr-auto">
       												<i class="fa fa-save"></i>
       												Ajukan verifikasi produk</button>
-
       										</div>
-
       									</div>
       								</div>
       								<div class="alert alert-light alert-has-icon">
@@ -43,10 +38,8 @@
       										Pengisian tidak harus dilakukan hingga tahap terakhir, kamu bisa mengajukan validasi produkmu setelah pengisian dari tahap berapapun agar produk dapat ditampilkan pada website utama Brawijaya Riset dan Inovasi.
       									</div>
       								</div>
-
       								<div id="verifikasi-wrap"></div>
       								<div id="roadmap-pengisian">
-
       								</div>
       							</div>
       						</div>
@@ -56,7 +49,15 @@
       		</div>
       	</section>
       </div>
+
+      <div class="modal fade" id="view">
+
+      </div>
+
       <script>
+      	let redirect = (to) => window.location.replace(`<?= base_url() . 'admin/' ?>${to}/<?= $slug ?>`)
+      	let download = (link) => window.open(link)
+
       	function dateConvert(date) {
       		const months = [
       			'Januari',
@@ -97,7 +98,7 @@
       				let roadmapDetail = `<div class="row">
       										<div class="col-md-12">
       											<div class="main-timeline7">
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('produk')">
       													<a href="<?= base_url() . 'admin/produk/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-box"></i></div>
       													</a>
@@ -109,7 +110,7 @@
       														</p>
       													</div>
       												</div>
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('roadmap')">
       													<a href="<?= base_url() . 'admin/roadmap/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-bolt"></i></div>
       													</a>
@@ -121,7 +122,7 @@
       														</p>
       													</div>
       												</div>
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('testing')">
       													<a href="<?= base_url() . 'admin/testing/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-vial"></i></div>
       													</a>
@@ -133,7 +134,7 @@
       														</p>
       													</div>
       												</div>
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('sertifikasi')">
       													<a href="<?= base_url() . 'admin/sertifikasi/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-certificate"></i></div>
       													</a>
@@ -145,7 +146,7 @@
       														</p>
       													</div>
       												</div>
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('mitra')">
       													<a href="<?= base_url() . 'admin/mitra/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-handshake"></i></div>
       													</a>
@@ -158,7 +159,7 @@
       													</div>
       												</div>
 
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('foto')">
       													<a href="<?= base_url() . 'admin/foto/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       													</a>
@@ -170,7 +171,7 @@
       														</p>
       													</div>
       												</div>
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('kegiatan')">
       													<a href="<?= base_url() . 'admin/kegiatan/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-camera"></i></div>
       													</a>
@@ -183,7 +184,7 @@
       													</div>
       												</div>
 
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('inventor')">
       													<a href="<?= base_url() . 'admin/inventor/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-users"></i></div>
       													</a>
@@ -196,7 +197,7 @@
       													</div>
       												</div>
 
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('perusahaan')">
       													<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-briefcase"></i></div>
       													</a>
@@ -208,7 +209,7 @@
       														</p>
       													</div>
       												</div>
-      												<div class="timeline">
+      												<div class="timeline click" onclick="redirect('bisnis')">
       													<a href="<?= base_url() . 'admin/bisnis/' . $slug ?>">
       														<div class="timeline-icon"><i class="fa fa-chart-bar"></i></div>
       													</a>
@@ -233,15 +234,28 @@
 															<div>
 																<p class="mb-0">Validasi Terakhir: <strong>${dateConvert(pengajuan.created_at)}</strong></p>
 																<p class="mb-0">Oleh: <strong>${pengajuan.nama_verifikator}</strong></p>
-																<a target="_blank" href="${pengajuan.file_evaluasi}">
-																<button class="btn btn-primary mb-3 btn-icon icon-left"><i class="fa fa-download mr-1"></i>Download Penilaian</button>
-																</a>
+																<button class="btn btn-primary mb-3 btn-icon icon-left" data-toggle="modal" data-target="#view" ><i class="fa fa-download mr-1"></i>Download Penilaian</button>
 															</div>
 															<div class="text-md-right">
 																<p class="mb-0">Status TKT: <strong>${pengajuan.tkt}</strong></p>
 																<p>Tingkat KATSINOV: <strong>${pengajuan.katsinov}</strong></p>
 															</div>
 														</div>`)
+      						$('#view').html(`<div class="modal-dialog modal-dialog-centered" role="document" style="z-index:9999999">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Download Penilaian</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+													</div>
+													<div class="modal-body row text-center" id="form-data">
+														<div class="col">
+															<button class="btn btn-light" onclick="download('${pengajuan.file_katsinov}')">Penilaian Katsinov</button>
+														</div>
+														<div class="col">
+															<button class="btn btn-light" onclick="download('${pengajuan.file_katsinov}')">Penilaian TKT</button>
+														</div>
+													</div>
+												</div>
+											</div>`)
       					} else {
       						$('#verifikasi-wrap').append(`<p>Kamu sedang mengajukan <strong>verifikasi</strong>, tunggu proses verifikasi selesai untuk dapat mengubah data lagi</p>`)
       					}

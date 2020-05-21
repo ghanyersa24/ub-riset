@@ -64,7 +64,7 @@ class Produk extends CI_Controller
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::join('inventor', 'produk', 'produk.id =inventor.produk_id', 'inner', ['users_id' => $this->session->userdata('id')]);
+			$do = DB_MODEL::join('inventor', 'produk', 'produk.id = inventor.produk_id', 'inner', ['users_id' => $this->session->userdata('id'), 'is_delete' => 0], 'produk.*,inventor.users_id');
 		} else {
 			$do = DB_MODEL::find($this->table, ['id' => $id]);
 		}
@@ -140,7 +140,7 @@ class Produk extends CI_Controller
 			"id" => post('id', 'required')
 		);
 
-		$do = DB_MODEL::delete($this->table, $where);
+		$do = DB_MODEL::update($this->table, $where, ['is_delete' => 1]);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);
 		else

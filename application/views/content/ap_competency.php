@@ -196,12 +196,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<label for="view-pemilik_teknologi">Nama Pemilik Teknologi</label>
 												<input id="view-pemilik_teknologi" class="form-control" type="text" name="pemilik_teknologi">
 											</div> -->
+
+											<div class="card-footer text-right">
+												<button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
+											</div>
 										</section>
 									</div>
 								</div>
-							</div>
-							<div class="card-footer text-right">
-								<button class="btn btn-primary" id="btn-save" type="submit">Simpan Perubahan</button>
 							</div>
 						</form>
 					</div>
@@ -366,9 +367,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							dataType: "json",
 							success: function(response) {
 								response_alert(response)
-								setTimeout(function() {
-									window.location.replace(`<?= base_url() ?>admin/detail/${pad(response.data.id)+'-'+response.data.nama_produk.replace(/ /gi,"-")}`)
-								}, 2000)
+								if (!response.error)
+									setTimeout(function() {
+										window.location.replace(`<?= base_url() ?>admin/roadmap/${response.data.slug}`)
+									}, 2000)
 							}
 						})
 					}

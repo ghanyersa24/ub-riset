@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
-		<button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
+		<button class="btn btn-info " data-toggle="tooltip" data-placement="left" title="Tambahkan <?= $title ?> yang akan/sedang/telah dilakukan produk inovasimu, disini !" onclick="$('#add').modal('show')" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
 			<i class="fa fa-plus"></i>
 		</button>
 
@@ -279,7 +279,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					required: true,
 				},
 				tahun: {
-					required: true
+					required: true,
+					min: 2000,
+					max: 2020
 				},
 				status: {
 					required: true
@@ -320,7 +322,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					required: true,
 				},
 				tahun: {
-					required: true
+					required: true,
+					min: 2000,
+					max: 2020
 				},
 				status: {
 					required: true

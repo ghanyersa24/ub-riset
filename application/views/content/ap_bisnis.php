@@ -73,7 +73,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
 														<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 														<label for="view-status_usaha" class="">Status Usaha </label>
-														<select id="view-status_usaha" class="form-control" name="status_usaha">
+														<select id="view-status_usaha" class="form-control" name="status_usaha" required>
+															<option value="" disabled selected>Pilih status satu</option>
 															<option value="Masih Berjalan">Masih Berjalan</option>
 															<option value="Sudah Berhenti">Sudah Berhenti</option>
 														</select>
@@ -83,7 +84,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 													<div class="form-group">
 														<label for="view-target_pasar">Target Pasar <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan mengenai target pasar yang akan dituju">!</span></label>
 														<textarea class="form-control" id="view-target_pasar" name="target_pasar"></textarea>
-
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -119,12 +119,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="view-harga_produksi">Harga Pokok Produksi <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Penjelasan HPP">!</span></label>
-														<textarea name="harga_produksi" id="view_harga_produksi"></textarea>
-
+														<textarea name="harga_produksi" id="view-harga_produksi"></textarea>
 													</div>
-													<button class="btn btn-primary d-block mr-0 mb-4 ml-auto" type="submit">Simpan Data Dasar</button>
 												</div>
-
+												<div class="col-md-12 row">
+													<div class="col form-group ">
+														<label for="view-bmc">BMC/Business Plan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="berisi BMC/Business Plan dalam format .pdf maks 10mb">!</span></label>
+														<input id="view-bmc" class="form-control" type="text" hidden readonly>
+														<input id="view-bmc_new" class="form-control mb-2" type="file">
+														<span class="bmc"></span>
+													</div>
+													<div class="col form-group">
+														<label for="view-keuangan">Catatan Keuangan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="dapat berisi Cashflow/Laporan Laba Rugi/ROI/Neraca keuangan dalam format .pdf maks 10mb">!</span></label>
+														<input id="view-keuangan" class="form-control" type="text" hidden readonly>
+														<input id="view-keuangan_new" class="form-control" type="file">
+														<span class="keuangan"></span>
+													</div>
+												</div>
+												<button class="btn btn-primary d-block mr-0 mb-4 ml-auto" type="submit">Simpan Data Dasar</button>
 											</div>
 										</form>
 									</section>
@@ -143,18 +155,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<th>Aksi</th>
 														</tr>
 													</thead>
-													<tfoot>
-														<tr>
-															<th class="text-center">
-
-															</th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-
-														</tr>
-													</tfoot>
 												</table>
 											</div>
 										</div>
@@ -169,22 +169,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<option value="Nasional">Nasional</option>
 															<option value="Ekspor">Ekspor</option>
 														</select>
-
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini">!</span></label>
+														<label for="add-volume_pemasaran">Volume Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah volume produk yang dipasarkan hingga saat ini, misal: 24 unit, 12 kg, 97 pack">!</span></label>
 														<input type="text" class="form-control" id="view-volume_pemasaran" name="volume_pemasaran">
 													</div>
-
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-nilai_pemasaran">Nilai Pemasaran <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nilai penjualan produk yang dipasarkan hingga saat ini">!</span></label>
 														<input type="text" data-type="currency" class="form-control" id="add-nilai_pemasaran" name="nilai_pemasaran">
 													</div>
-
 												</div>
 												<div class="col-md-6">
 													<div class="h-100 d-flex align-items-center">
@@ -215,19 +212,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<th>Tahun Produksi</th>
 														<th>Jumlah Produksi</th>
 														<th>Satuan</th>
-
 														<th>Aksi</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th class="text-center">
-
 														</th>
 														<th></th>
 														<th></th>
 														<th></th>
-
 													</tr>
 												</tfoot>
 											</table>
@@ -241,7 +235,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<label for="add-tahun">Tahun Produksi</label>
 														<input type="number" class="form-control" id="add-tahun" name="tahun">
 													</div>
-
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
@@ -284,24 +277,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<th class="text-center">
 																No.
 															</th>
-															<th>Jenis Periode</th>
 															<th>Tahun Penjualan</th>
 															<th>Jumlah Penjualan</th>
+															<th>Satuan</th>
 															<th>Aksi</th>
 														</tr>
 													</thead>
-													<tfoot>
-														<tr>
-															<th class="text-center">
-
-															</th>
-															<th></th>
-															<th></th>
-															<th></th>
-															<th></th>
-
-														</tr>
-													</tfoot>
 												</table>
 											</div>
 										</div>
@@ -310,30 +291,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jenis">Jenis Periode</label>
-														<select name="jenis" id="add-jenis" class="form-control">
-															<option value="Perolehan">Perolehan</option>
-															<option value="Proyeksi">Proyeksi</option>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group">
 														<label for="add-tahun">Tahun Penjualan</label>
 														<input type="number" class="form-control" id="add-tahun" name="tahun">
 													</div>
-
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label for="add-jumlah">Jumlah Penjualan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jumlah unit produk yang terjual">!</span></label>
+														<label for="add-jumlah">Jumlah Penjualan</label>
 														<input type="text" data-type="without-currency" class="form-control" id="add-jumlah" name="jumlah">
 													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="add-satuan">Satuan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Contoh: Kilogram, Meter, dll">!</span></label>
+														<input type="text" name="satuan" id="add-satuan" class="form-control">
 
+													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="h-100 d-flex align-items-center">
-														<button class="btn btn-primary" type="submit">Tambah Data Penjualan</button>
+														<button class="btn btn-primary" type="submit">Tambah Data Produksi</button>
 													</div>
 												</div>
 											</div>
@@ -348,31 +325,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 															<th class="text-center">
 																No.
 															</th>
-
 															<th>Tipe</th>
-
 															<th>Tahun</th>
 															<th>Nilai</th>
 															<th>Aksi</th>
 														</tr>
 													</thead>
-
 												</table>
 											</div>
 										</div>
 										<form id="form-omset">
 											<input class="form-control" type="text" name="produk_id" value="<?= $id ?>" hidden readonly>
 											<div class="row">
-
 												<div class="col-md-6">
 													<div class="form-group">
 														<label for="add-tipe">Tipe Omset/Profit</label>
 														<select name="tipe" id="add-tipe" class="form-control">
 															<option value="Omset">Omset</option>
 															<option value="Profit">Profit</option>
-
 														</select>
-
 													</div>
 												</div>
 
@@ -396,15 +367,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												</div>
 											</div>
 										</form>
+										<div class="mt-3 card-footer d-flex justify-content-end">
+											<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
+												<button class="btn btn-primary icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+											</a>
+											<a href="<?= base_url() . 'admin/detail/' . $slug ?>">
+												<button class="btn btn-icon btn-icon icon-right" data-toggle="tooltip" data-placement="bottom" title="Silahkan kembali ke Roadmap pengisian untuk mengajukan verifikasi produk inovasi.">Pengisian Selesai <i class="fa fa-save"></i></button>
+											</a>
+										</div>
 									</section>
 								</div>
 							</div>
-						</div>
-						<div class="card-footer d-flex justify-content-end">
-							<a href="<?= base_url() . 'admin/perusahaan_select/' . $slug ?>">
-								<button class="btn btn-icon icon-left"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
-							</a>
-
 						</div>
 					</div>
 				</div>
@@ -425,25 +398,61 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				let data = response.data
 				$('#view-id').val(data.id)
 				$('#view-status_usaha').val(data.status_usaha)
-				$('#view-harga_produksi').val(data.harga_produksi)
+				$('#view-bmc').val(data.bmc)
+				$('#view-keuangan').val(data.keuangan)
+				if (data.bmc != null && data.bmc != "")
+					$(".bmc").html(`<a href="${data.bmc}" target="_blank" rel="noopener noreferrer" >lihat disini</a>`)
+				else
+					$(".bmc").html("")
+				if (data.keuangan != null && data.keuangan != "")
+					$(".keuangan").html(`<a href="${data.keuangan}" target="_blank" rel="noopener noreferrer" >lihat disini</a>`)
+				else
+					$(".keuangan").html("")
+
 				setEditor('view-target_pasar', data.target_pasar)
 				setEditor('view-kompetitor', data.kompetitor)
 				setEditor('view-jangkauan', data.jangkauan)
 				setEditor('view-kanal_pemasaran', data.kanal_pemasaran)
 				setEditor('view-dampak_sosial', data.dampak_sosial)
 				setEditor('view-skema_harga', data.skema_harga)
+				setEditor('view-harga_produksi', data.harga_produksi)
 			}
 		});
 		$('#form-view-data').validate({
 			submitHandler: (form) => {
+				let formData = new FormData()
+				formData.append('bmc_new', document.getElementById('view-bmc_new').files[0])
+				formData.append('keuangan_new', document.getElementById('view-keuangan_new').files[0])
+				formData.append('produk_id', <?= $id ?>)
+				formData.append('id', $('#view-id').val())
+				formData.append('status_usaha', $('#view-status_usaha').val())
+				formData.append('bmc', $('#view-bmc').val())
+				formData.append('keuangan', $('#view-keuangan').val())
+				formData.append('target_pasar', $('#view-target_pasar').val())
+				formData.append('kompetitor', $('#view-kompetitor').val())
+				formData.append('jangkauan', $('#view-jangkauan').val())
+				formData.append('kanal_pemasaran', $('#view-kanal_pemasaran').val())
+				formData.append('dampak_sosial', $('#view-dampak_sosial').val())
+				formData.append('skema_harga', $('#view-skema_harga').val())
+				formData.append('harga_produksi', $('#view-harga_produksi').val())
 				$.ajax({
 					type: "POST",
 					url: api + "service/datadasar/create",
-					data: $('#form-view-data').serialize(),
+					data: formData,
+					async: false,
+					processData: false,
+					contentType: false,
 					success: function(response) {
 						response_alert(response)
-						if (!response.error)
+						if (!response.error) {
+							let data = response.data
 							$('#view-id').val(response.data.id)
+							if (data.bmc != null)
+								$(".bmc").html(`<a href="${data.bmc}" target="_blank" rel="noopener noreferrer" >lihat disini</a>`)
+							if (data.keuangan != null)
+								$(".keuangan").html(`<a href="${data.keuangan}" target="_blank" rel="noopener noreferrer" >lihat disini</a>`)
+
+						}
 					}
 				});
 			}
@@ -469,6 +478,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}]
 		});
 		$('#form-pemasaran').validate({
+			rules: {
+				volume_pemasaran: {
+					required: true
+				},
+				nilai_pemasaran: {
+					required: true
+				}
+			},
 			submitHandler: (form) => {
 				$.ajax({
 					type: "POST",
@@ -532,6 +549,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}]
 		});
 		$('#form-produksi').validate({
+			rules: {
+				tahun: {
+					required: true,
+					min: 2000,
+					max: 2020
+				},
+			},
 			submitHandler: (form) => {
 				$.ajax({
 					type: "POST",
@@ -583,11 +607,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				},
 				className: "text-center"
 			}, {
-				"data": "jenis"
-			}, {
 				"data": "tahun"
 			}, {
 				"data": "jumlah"
+			}, {
+				"data": "satuan"
 			}, {
 				"render": function(data, type, JsonResultRow, meta) {
 					return `<button class="btn btn-light btn-delete mr-1"><i class="fas fa-trash"></i></button>`
@@ -595,6 +619,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}]
 		});
 		$('#form-penjualan').validate({
+			rules: {
+				tahun: {
+					required: true,
+					min: 2000,
+					max: 2020
+				},
+			},
 			submitHandler: (form) => {
 				$.ajax({
 					type: "POST",
@@ -658,6 +689,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			}]
 		});
 		$('#form-omset').validate({
+			rules: {
+				tahun: {
+					required: true,
+					min: 2000,
+					max: 2020
+				},
+			},
 			submitHandler: (form) => {
 				$.ajax({
 					type: "POST",

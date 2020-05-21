@@ -20,7 +20,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/components.css">
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/modules/select2/dist/css/select2.min.css">
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.css">
-	</script>
 
 	<!-- CSS per Page -->
 	<?php
@@ -135,4 +134,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			list-style-type: inherit;
 		}
 	</style>
+
 </head>

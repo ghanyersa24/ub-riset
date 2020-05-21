@@ -21,10 +21,10 @@
 							</div>
 							<button id="btn-save" class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
 								<i class="fa fa-save"></i>
-								Simpan Perubahan</button>
+								Pilih Perusahaan</button>
 						</form>
 						<hr>
-						<p>Perusahaan yang anda inginkan belum terdaftar? daftar <a href="<?= base_url() . 'admin/perusahaan' ?>">di sini</a></p>
+						<p>Perusahaan yang anda inginkan belum terdaftar? daftar <a href="#" onclick="addPerusahaan()" class="ripple">di sini</a></p>
 					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end">
@@ -42,6 +42,10 @@
 
 <script>
 	let perusahaan
+	let addPerusahaan = () => {
+		sessionStorage.setItem("lastProduk", window.location.href);
+		window.location.replace("<?= base_url() . 'admin/perusahaan' ?>")
+	}
 
 	function getList() {
 		$.ajax({

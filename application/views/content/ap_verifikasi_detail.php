@@ -41,10 +41,10 @@
 										<div class="col-md-4 text-center">
 											<img src="" alt="" id="logo_produk" class="img-fluid">
 											<h5 id="nama_produk"></h5>
-											<p>Jenis: <strong id="jenis"></strong></p>
-											<p>Bidang: <strong id="bidang"></strong></p>
-											<p>Kategori: <strong id="kategori"></strong></p>
-											<p>produksi barang fisik: <strong id="produksi_barang_fisik"></strong></p>
+											<p><strong>Jenis:</strong> <span id="jenis"></span></p>
+											<p><strong>Bidang:</strong> <span id="bidang"></span></p>
+											<p><strong>produksi barang fisik:</strong> <span id="produksi_barang_fisik"></span></p>
+											<p><strong>Kategori:</strong> <span id="kategori"></span></p>
 										</div>
 										<div class="col-md-8">
 											<h5>Deskripsi</h5>
@@ -204,10 +204,8 @@
 													<th>Jenis jangkauan pemasaran</th>
 													<th>Volume pemasaran</th>
 													<th>Nilai pemasaran</th>
-
 												</tr>
 											</thead>
-
 										</table>
 									</div>
 
@@ -219,18 +217,15 @@
 													<th class="text-center">
 														No.
 													</th>
-													<th>Jenis Periode</th>
 													<th>Tahun Produksi</th>
 													<th>Jumlah Produksi</th>
-
-
+													<th>Satuan</th>
 												</tr>
 											</thead>
-
 										</table>
 									</div>
 
-									<h5>Penjualan & Omset</h5>
+									<h5>Penjualan</h5>
 									<div class="table-responsive">
 										<table class="table table-striped w-100" id="table-penjualan">
 											<thead>
@@ -238,16 +233,29 @@
 													<th class="text-center">
 														No.
 													</th>
-													<th>Jenis Periode</th>
 													<th>Tahun Penjualan</th>
 													<th>Jumlah Penjualan</th>
-
+													<th>Satuan</th>
 												</tr>
 											</thead>
-
 										</table>
 									</div>
 
+									<h5>Omset / Profit</h5>
+									<div class="table-responsive">
+										<table class="table table-striped w-100" id="table-omset">
+											<thead>
+												<tr>
+													<th class="text-center">
+														No.
+													</th>
+													<th>Tipe</th>
+													<th>Tahun</th>
+													<th>Nilai</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="foto3" role="tabpanel" aria-labelledby="tim-tab3">
 									<h5>Foto Produk</h5>
@@ -270,7 +278,7 @@
 								<div class="tab-pane fade" id="verifikasi3" role="tabpanel" aria-labelledby="tim-tab3">
 									<form class="form-add-verifikasi" id="form-add-verifikasi">
 										<div class="row">
-											<div class="col-md-4">
+											<div class="col-md-6">
 												<div class="form-group">
 													<label for="add-katsinov">Pilih tingkat katsinov</label>
 													<select name="katsinov" id="add-katsinov" class="form-control" required>
@@ -284,7 +292,14 @@
 													</select>
 												</div>
 											</div>
-											<div class="col-md-4">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="add-file">File Evaluasi Katsinov</label>
+													<input type="file" name="file_katsinov" id="add-file_katsinov" class="form-control" required>
+													<a href="https://srv-file14.gofile.io/download/zcwImW/KATSINOV%20(IRL)%20-%20Meter%20(final).xls" target="_blank" class="ml-3 mt-3 text-decoration-none">Unduh Form Katsinov</a>
+												</div>
+											</div>
+											<div class="col-md-6">
 												<div class="form-group">
 													<label for="add-tkt">Pilih tingkat TKT</label>
 													<select name="tkt" id="add-tkt" class="form-control" required>
@@ -301,10 +316,11 @@
 													</select>
 												</div>
 											</div>
-											<div class="col-md-4">
+											<div class="col-md-6">
 												<div class="form-group">
-													<label for="add-file">File Evaluasi</label>
-													<input type="file" name="file_evaluasi" id="add-file_evaluasi" class="form-control" required>
+													<label for="add-file">File Evaluasi TKT</label>
+													<input type="file" name="file_tkt" id="add-file_tkt" class="form-control" required>
+													<a href="https://srv-file14.gofile.io/download/zcwImW/TeknoMeter_v2.5.xlsx" target="_blank" class="ml-3 mt-3 text-decoration-none">Unduh Form TKT</a>
 												</div>
 											</div>
 										</div>
@@ -346,7 +362,7 @@
 
 	function insertTextArray(id, textArray) {
 		textArray.forEach(element => {
-			$(id).insertText(element + ' ')
+			insertText(id, element + ', ')
 		})
 	}
 
@@ -378,12 +394,12 @@
 				insertImage('#logo_produk', produk.logo_produk)
 				insertText('#nama_produk', produk.nama_produk)
 				insertText('#jenis', produk.jenis)
-				insertText('#kategori', produk.kategori)
+				insertTextArray('#kategori', produk.kategori)
 				insertText('#bidang', produk.bidang)
 				insertText('#produksi_barang_fisik', produk.produksi_barang_fisik)
 				insertText('#deskripsi_singkat', produk.deskripsi_singkat)
 				insertText('#website', produk.website)
-				insertText('#sosial_media', produk.sosial_media)
+				insertText('#sosial_media', produk.media_sosial)
 				insertText('#tautan_video', produk.tautan_video)
 				insertText('#kesiapan_teknologi', produk.kesiapan_teknologi)
 				//landasan
@@ -439,7 +455,6 @@
 				});
 				//table-pengujian
 				const pengujian = r.data.pengujian
-
 				$('#table-pengujian').DataTable({
 					"data": pengujian,
 					columns: [{
@@ -554,15 +569,18 @@
 				});
 
 				//data bisnis
-				const bisnis = r.data.data_bisnis.data_dasar
-				insertText('#status-usaha', bisnis.status_usaha)
-				insertText('#target-pasar', bisnis.target_pasar)
-				insertText('#kompetitor', bisnis.kompetitor)
-				insertText('#jangkauan-pemasaran', bisnis.jangkauan)
-				insertText('#kanal-pemasaran', bisnis.kanal_pemasaran)
-				insertText('#dampak-sosial', bisnis.dampak_sosial)
-				insertText('#skema-harga', bisnis.skema_harga)
-				insertText('#hpp', bisnis.harga_produksi)
+				const bisnis = r.data.data_bisnis
+				if (bisnis.data_dasar != null) {
+					const data_dasar = bisnis.data_dasar
+					insertText('#status-usaha', data_dasar.status_usaha)
+					insertText('#target-pasar', data_dasar.target_pasar)
+					insertText('#kompetitor', data_dasar.kompetitor)
+					insertText('#jangkauan-pemasaran', data_dasar.jangkauan)
+					insertText('#kanal-pemasaran', data_dasar.kanal_pemasaran)
+					insertText('#dampak-sosial', data_dasar.dampak_sosial)
+					insertText('#skema-harga', data_dasar.skema_harga)
+					insertText('#hpp', data_dasar.harga_produksi)
+				}
 
 				const pemasaran = bisnis.pemasaran
 				$('#table-pemasaran').DataTable({
@@ -593,14 +611,14 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 							},
 							// className: "text-center"
-						}, {
-							data: "jenis"
 						},
 						{
 							data: "tahun"
 						},
 						{
 							data: "jumlah"
+						}, {
+							data: "satuan"
 						},
 
 					]
@@ -615,14 +633,36 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 							},
 							// className: "text-center"
-						}, {
-							data: "jenis"
 						},
 						{
 							data: "tahun"
 						},
 						{
 							data: "jumlah"
+						}, {
+							data: "satuan"
+						},
+
+					]
+
+				});
+
+				const omset = bisnis.omset
+				$('#table-omset').DataTable({
+					"data": omset,
+					columns: [{
+							"render": function(data, type, row, meta) {
+								return meta.row + meta.settings._iDisplayStart + 1;
+							},
+							// className: "text-center"
+						},
+						{
+							data: "tipe"
+						},
+						{
+							data: "tahun"
+						}, {
+							data: "nilai"
 						},
 
 					]
@@ -711,34 +751,41 @@
 				katsinov: {
 					required: true
 				},
-				file_evaluasi: {
+				file_katsinov: {
+					required: true
+				},
+				file_tkt: {
 					required: true
 				},
 			},
 			submitHandler: function(form) {
-				let formData = new FormData()
-				formData.append('file_evaluasi', document.getElementById('add-file_evaluasi').files[0])
-				formData.append('tkt', $('#add-tkt').val())
-				formData.append('katsinov', $('#add-katsinov').val())
-				formData.append('produk_id', <?= $id ?>)
-				formData.append('id', sessionStorage.getItem("verifikasi_id"))
-				$.ajax({
-					type: "POST",
-					url: api + "service/pengajuan/update",
-					data: formData,
-					async: false,
-					processData: false,
-					contentType: false,
-					success: (response) => {
-						response_alert(response)
-						if (!response.error) {
-							sessionStorage.clear()
-							setTimeout(function() {
-								window.location.replace(`<?= base_url() ?>admin/verifikasi`)
-							}, 1500)
+				konfirmasi("memberikan penilaian TKT dan Katsinov dengan benar.").then((willSave) => {
+					let formData = new FormData()
+					formData.append('file_tkt', document.getElementById('add-file_tkt').files[0])
+					formData.append('file_katsinov', document.getElementById('add-file_katsinov').files[0])
+					formData.append('tkt', $('#add-tkt').val())
+					formData.append('katsinov', $('#add-katsinov').val())
+					formData.append('produk_id', <?= $id ?>)
+					formData.append('id', sessionStorage.getItem("verifikasi_id"))
+					$.ajax({
+						type: "POST",
+						url: api + "service/pengajuan/update",
+						data: formData,
+						async: false,
+						processData: false,
+						contentType: false,
+						success: (response) => {
+							response_alert(response)
+							if (!response.error) {
+								sessionStorage.clear()
+								setTimeout(function() {
+									window.location.replace(`<?= base_url() ?>admin/verifikasi`)
+								}, 1500)
+							}
 						}
-					}
+					})
 				})
+
 			}
 		})
 	})

@@ -18,10 +18,22 @@ class Super extends CI_Controller
 		$where = ['produk_id' => $slugs['data']['id']];
 		$dataDasar = DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data;
 		$pengajuan = DB_MODEL::join('pengajuan', 'users', 'pengajuan.verifikator=users.id', 'right', $where, 'pengajuan.*,users.nama nama_verifikator')->data;
+		$roadmap = DB_MODEL::where('roadmap', $where)->data;
+		foreach ($roadmap as $value) {
+			$value->nilai_pendanaan = set_rupiah($value->nilai_pendanaan);
+		}
+		$pemasaran = DB_MODEL::where('pemasaran', $where)->data;
+		foreach ($pemasaran as $value) {
+			$value->nilai_pemasaran = set_rupiah($value->nilai_pemasaran);
+		}
+		$omset = DB_MODEL::where('omset_profit', $where)->data;
+		foreach ($omset as $value) {
+			$value->nilai = set_rupiah($value->nilai);
+		}
 		$data = [
 			'produk' => $slugs['data']['produk'],
 			'pengajuan' => count($pengajuan) > 0 ? $pengajuan[(count($pengajuan) - 1)] : null,
-			'roadmap' => DB_MODEL::where('roadmap', $where)->data,
+			'roadmap' => $roadmap,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
 			'mitra' => DB_MODEL::where('mitra', $where)->data,
@@ -32,10 +44,10 @@ class Super extends CI_Controller
 			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,
 			'data_bisnis' => [
 				'data_dasar' => count($dataDasar) > 0 ? $dataDasar[(count($dataDasar) - 1)] : null,
-				'pemasaran' => DB_MODEL::where('pemasaran', $where)->data,
+				'pemasaran' => $pemasaran,
 				'produksi' => DB_MODEL::where('produksi', $where)->data,
 				'penjualan' => DB_MODEL::where('penjualan', $where)->data,
-				'omset' => DB_MODEL::where('omset_profit', $where)->data,
+				'omset' => $omset,
 			],
 		];
 		$data['produk']->kategori = json_decode($data['produk']->kategori);

@@ -49,7 +49,7 @@
 												</table>
 											</div>
 											<br>
-											<hr>
+											<hr class="bg-primary">
 											<form id="form-prestasi">
 												<div class="row">
 													<div class="col-md-6">
@@ -329,7 +329,9 @@
 					required: true
 				},
 				tahun: {
-					required: true
+					required: true,
+					min: 2000,
+					max: 2020
 				},
 				tingkat: {
 					required: true

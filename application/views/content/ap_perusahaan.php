@@ -5,7 +5,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <div class="main-content">
 	<section class="section">
 		<div class="section-header d-block justify-content-start align-items-center">
-
+			<a href="#" class="h5" onclick="lastProduk()" class="ripple"><i class="fa fa-chevron-left"></i>
+			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
 		<button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
@@ -17,7 +18,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="row mt-sm-4">
 				<div class="col-12 col-md-12 col-lg-12">
 					<div class="card">
-
 						<div class="card-body">
 							<div class="alert alert-dark alert-has-icon mt-4 alert-dismissible" role="alert">
 								<div class="alert-icon"><i class="fa fa-info-circle"></i></div>
@@ -32,6 +32,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="row" id="perusahaan">
 
 							</div>
+						</div>
+						<div class="card-footer d-flex justify-content-end">
+							<a href="#" onclick="lastProduk()" class="">
+								<button class="btn btn-icon icon-left ripple"><i class="fa fa-chevron-left"></i> Sebelumnya</button>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -95,6 +100,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 <script>
 	let res = []
+	let user_id = '<?= $this->session->id; ?>'
+	let lastProduk = () => {
+		if (sessionStorage.getItem('lastProduk') == null)
+			window.history.back()
+		else
+			window.location.replace(sessionStorage.getItem('lastProduk'))
+	}
 
 	function get() {
 		$.ajax({
@@ -107,7 +119,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					card = `<div class="col-12 text-center"> <p class="h5">Anda belum terdaftar di perusahaan manapun, silahkan daftarkan perusahaan anda terlebih dahulu</p></div>`
 				else
 					res.forEach(element => {
-						card += `<div class="card col-sm-3 ">
+						if (element.created_by == user_id)
+							card += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
 										<img src="${element.logo==null?'https://i.imgur.com/QE3UIgf.png':element.logo}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
@@ -116,6 +129,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class="d-flex justify-content-between">
 									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama.substring(0, 12)}</span>
 									<span><button type="button" class="btn btn-default" onclick="del(${element.id})"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+						else
+							card += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.logo==null?'https://i.imgur.com/QE3UIgf.png':element.logo}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama.substring(0, 12)}</span>
 									</div>
 								</div>
 							</div>`
@@ -137,10 +162,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				if (willDelete) {
 					$.ajax({
 						type: "POST",
-						url: api + 'service/pengurus/delete',
+						url: api + 'service/perusahaan/delete',
 						data: {
-							perusahaan_id: id,
-							users_id: <?= $this->session->userdata('id') ?>
+							id: id,
 						},
 						dataType: "json",
 						success: function(response) {
@@ -161,15 +185,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		triggerEditor('#form-add')
 		$('#form-add').validate({
 			rules: {
-				nama_produk: {
+				nama: {
 					required: true
 				},
-				bidang: {
+				bentuk_usaha: {
 					required: true
 				},
 				jenis: {
 					required: true
 				},
+				tahun_berdiri: {
+					required: true,
+					min: 2000,
+					max: 2020
+				}
 			},
 			submitHandler: function(form) {
 				$.ajax({

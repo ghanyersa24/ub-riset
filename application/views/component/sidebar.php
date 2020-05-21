@@ -51,7 +51,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			} ?>
 			<li class="<?php echo $segment == 'perusahaan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/perusahaan"><i class="fas fa-briefcase"></i> <span>Perusahaan</span></a></li>
 			<li class="<?php echo $segment == 'profile' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/profile"><i class="fas fa-user"></i> <span>Profile</span></a></li>
-			<li class="<?php echo $segment == 'logout' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/logout"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+			<li onclick="logout()"><a class="nav-link" href="#"> <i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
 		</ul>
 	</aside>
 </div>
+<script>
+	let logout = () => {
+		konfirmasi("keluar dari sistem Brawijaya Research and Innovation.").then((willLogout) => {
+			if (willLogout)
+				window.location.replace('<?= base_url() . 'admin/logout' ?>')
+		})
+	}
+</script>

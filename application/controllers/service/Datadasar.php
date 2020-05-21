@@ -12,7 +12,7 @@ class Datadasar extends CI_Controller
 	public function create()
 	{
 		$data = array(
-			"produk_id" => post('produk_id', 'required'),
+			"produk_id" => $produk = post('produk_id', 'required'),
 			"status_usaha" => post('status_usaha', 'required|enum:Masih Berjalan&Sudah Berhenti'),
 			"target_pasar" => post('target_pasar', 'allow_html'),
 			"kompetitor" => post('kompetitor', 'allow_html'),
@@ -20,8 +20,15 @@ class Datadasar extends CI_Controller
 			"kanal_pemasaran" => post('kanal_pemasaran', 'allow_html'),
 			"dampak_sosial" => post('dampak_sosial', 'allow_html'),
 			"skema_harga" => post('skema_harga', 'allow_html'),
-			"harga_produksi" => post('harga_produksi', 'required|numeric'),
+			"harga_produksi" => post('harga_produksi', 'allow_html'),
 		);
+
+		if (isset($_FILES['bmc_new']))
+			$data['bmc'] = UPLOAD_FILE::update('pdf', 'bmc', "inovasi/$produk/data dasar", "bmc-$produk");
+
+		if (isset($_FILES['keuangan_new']))
+			$data['keuangan'] = UPLOAD_FILE::update('pdf', 'keuangan', "inovasi/$produk/data dasar", "keuangan-$produk");
+
 		if (post('id') != 0) {
 			$where = array(
 				"id" => post('id', 'required'),

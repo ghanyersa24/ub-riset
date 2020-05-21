@@ -9,7 +9,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</a>
 			<h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
 		</div>
-		<button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
+		<button class="btn btn-info " data-toggle="tooltip" data-placement="left" title="Tambahkan <?= $title ?> produk inovasimu, disini !" onclick="$('#add').modal('show')" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
 			<i class="fa fa-plus"></i>
 		</button>
 
@@ -73,7 +73,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="add-file">MOU <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
+								<label for="add-file">MOU / SPK <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
 								<input name="mou_new" id="add-mou" class="form-control" type="file"></input>
 							</div>
 						</div>
@@ -113,7 +113,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="view-file">MOU <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
+								<label for="view-file">MOU / SPK <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="File format .pdf maks 10mb">!</span></label>
 								<input name="mou" id="view-mou" class="form-control" type="text" hidden></input>
 								<input name="mou_new" id="view-mou_new" class="form-control" type="file"></input>
 							</div>
@@ -144,7 +144,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				}, {
 					"render": function(data, type, row, meta) {
 						if (row.mou != null)
-							return `<a class="text-decoration-none" href="${row.mou}"> klik disini</a>`;
+							return `<a class="text-decoration-none" target="_blank" href="${row.mou}"> klik disini</a>`;
 					}
 				},
 				{

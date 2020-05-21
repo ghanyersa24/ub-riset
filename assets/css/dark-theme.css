@@ -1,0 +1,62 @@
+body,
+.modal-content,
+.section-header,
+.main-sidebar,
+.card,
+.modal-content {
+    background-color: rgb(12, 17, 17) !important;
+}
+
+.navbar-bg {
+    background-color: rgb(2, 39, 39) !important;
+}
+
+.main-sidebar .sidebar-menu li a:hover {
+    color: rgb(16, 156, 167) !important;
+}
+
+.sidebar-menu>li:not(menu-header) :hover {
+    background-color: rgb(17, 43, 43) !important;
+}
+
+a {
+    color: white !important;
+}
+
+.card {
+    border: 1.5px solid rgb(10, 55, 56) !important;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+label {
+    color: rgb(16, 156, 167) !important;
+    text-transform: capitalize;
+}
+
+.form-control,
+select,
+textarea,
+.select2-selection {
+    background-color: rgba(21, 32, 34, 0.808) !important;
+}
+
+.form-control,
+select,
+textarea,
+.select2-selection,
+.select2-selection__rendered,
+.timeline>span {
+    color: #ffffff !important;
+}

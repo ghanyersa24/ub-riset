@@ -14,14 +14,14 @@
 
 						<form id="form-inventor">
 							<div class="form-group">
-								<label for="add-inventor">Tambah Nama Inventor</label>
+								<label for="add-inventor">Tambah Nama Inventor <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika inventor yang dicari tidak ada, harap meminta inventor yang bersangkutan untuk login sistem terlebih dahulu.">!</span></label>
 								<select name="inventor[]" id="add-inventor" multiple="multiple" class="select2 form-control p-2" data-placeholder="inventor">
 
 								</select>
 							</div>
 							<button id="btn-save" class="btn btn-icon icon-left btn-primary d-block mr-md-0 ml-md-auto">
-								<i class="fa fa-save"></i>
-								Simpan Perubahan</button>
+								<i class="fa fa-plus"></i>
+								Tambahkan Inventor</button>
 						</form>
 						<!-- <p>Nama Inventor Yang Terdaftar</p> -->
 						<div class="row" id="listInventor">
@@ -42,6 +42,9 @@
 </div>
 
 <script>
+	let user_id = '<?= $this->session->id; ?>',
+		created_by = '<?= $created_by ?>'
+
 	function getList() {
 		$.ajax({
 			type: "GET",
@@ -54,18 +57,46 @@
 					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
 				})
 				dataInventor.forEach(element => {
-					listInventor += `<div class="card col-sm-3 ">
+					if (created_by != element.id)
+						listInventor += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
-										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view(${element.id})">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}')">
 									</div>
 									<hr>
 									<div class="d-flex justify-content-between">
-									<span class="h5 card-title click" onclick="view(${element.id})">${element.nama} (${element.fakultas})</span>
-									<span><button type="button" class="btn btn-default" onclick="del(${element.id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
+									<span class="h5 card-title click" onclick="view('${element.id}')">${element.nama} (${element.fakultas})</span>
+									<span><button type="button" class="btn btn-default" onclick="del('${element.id}','${element.nama}')"><i class="fas fa-trash"></i></button></span>
 									</div>
 								</div>
 							</div>`
+					else {
+						if (created_by == user_id)
+							listInventor += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.id}')">${element.nama} (${element.fakultas})</span>
+									<span><button type="button" class="btn btn-default" onclick="del('${element.id}','${element.nama}')"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+						else
+							listInventor += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.id}')">${element.nama} (${element.fakultas})</span>
+									</div>
+								</div>
+							</div>`
+					}
 				})
 				$('#listInventor').html(listInventor)
 				$('#add-inventor').html(listUser)
