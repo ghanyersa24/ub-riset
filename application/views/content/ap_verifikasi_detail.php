@@ -265,7 +265,7 @@
 								</div>
 								<div class="tab-pane fade show" id="riwayat3" role="tabpanel" aria-labelledby="riwayat-tab3">
 
-									<button class="btn btn-primary btn-icon icon-left mb-4"><i class="fa fa-download"></i> Download File Tambahan</button>
+									<button class="btn btn-primary btn-icon icon-left mb-4" data-toggle="modal" data-target="#view"><i class="fa fa-download"></i> Download File Penting</button>
 									<div class="row">
 										<div class="col-md-12">
 											<div id="timeline-wrap" class="main-timeline4">
@@ -335,6 +335,17 @@
 		</div>
 	</section>
 </div>
+<div class="modal fade" id="view">
+	<div class="modal-dialog modal-dialog-centered" role="document" style="z-index:9999999">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Download Penilaian</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+			</div>
+			<div class="modal-body row text-center" id="form-data">
+			</div>
+		</div>
+	</div>
+</div>
 
 <style>
 	p {
@@ -352,6 +363,8 @@
 </style>
 
 <script>
+	let download = (link) => window.open(link)
+
 	function insertText(id, text) {
 		let newText = text;
 		if (text == null || text == '') {
@@ -725,6 +738,30 @@
 				$('#foto-kegiatan').append(listFotoKegiatan)
 
 				//riwayat
+				if (produk.file_tambahan != null && produk.file_tambahan != "") {
+					let file_tambahan = `<div class="col">
+						<button class="btn btn-light w-100" onclick="download('${produk.file_tambahan}')">File Tambahan</button>
+					</div>`
+					$('#form-data').append(file_tambahan)
+				}
+
+				if (r.data.data_bisnis.data_dasar != null) {
+					if (bisnis.data_dasar.bmc != null && bisnis.data_dasar.bmc != "") {
+						let file_bmc = `<div class="col">
+						<button class="btn btn-light w-100" onclick="download('${bisnis.data_dasar.bmc}')">File BMC</button>
+					</div>`
+						$('#form-data').append(file_bmc)
+					}
+
+					if (bisnis.data_dasar.keuangan != null && bisnis.data_dasar.keuangan != "") {
+						let file_kauangan = `<div class="col">
+						<button class="btn btn-light w-100" onclick="download('${bisnis.data_dasar.keuangan}')">File Keuangan</button>
+					</div>`
+						$('#form-data').append(file_kauangan)
+					}
+				}
+
+
 				const riwayat = r.data.riwayat
 				riwayat.forEach(element => {
 					$('#timeline-wrap').append(`<div class="timeline">

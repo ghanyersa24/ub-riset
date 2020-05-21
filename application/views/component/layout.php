@@ -12,10 +12,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
 						<!-- <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li> -->
 					</ul>
-					<div class="custom-control custom-switch">
+					<!-- <div class="custom-control custom-switch">
 						<input type="checkbox" class="custom-control-input" id="dark-theme" <?php echo $this->session->dark_mode == true ? 'checked' : '' ?>>
 						<label class="custom-control-label text-white" for="dark-theme">Dark Theme</label>
-					</div>
+					</div> -->
 					<!-- 
 					<div class="search-element">
 						<input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
