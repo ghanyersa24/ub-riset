@@ -62,6 +62,7 @@ class Auth extends CI_Controller
 			$profile = DB_MODEL::insert('users', $data);
 		$session_auth = (array) $profile->data;
 		$session_auth['logged_in'] = true;
+		$session_auth['dark_mode'] = false;
 		$this->session->set_userdata($session_auth);
 		success("Welcome to system", $session_auth);
 	}

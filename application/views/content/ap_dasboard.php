@@ -111,7 +111,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							</div>
 							<div class="form-group">
 								<label for="add-bidang">Bidang</label>
-								<select class="custom-select" name="bidang">
+								<select class="custom-select select2" name="bidang" style="width: 100%;">
 									<option selected disabled>Pilih salah satu</option>
 									<option value="Pangan">Pangan</option>
 									<option value="Energi">Energi</option>

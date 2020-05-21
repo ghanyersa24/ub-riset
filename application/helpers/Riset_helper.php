@@ -5,7 +5,7 @@ class riset
 	public static function slugs_produk($slug = null)
 	{
 		$CI = &get_instance();
-		$produk = DB_MODEL::join('inventor', 'produk', 'produk.id =inventor.produk_id', 'inner', ['users_id' => $CI->session->userdata('id')]);
+		$produk = DB_MODEL::join('inventor', 'produk', 'produk.id =inventor.produk_id', 'inner', ['users_id' => $CI->session->userdata('id'), 'is_delete' => 0], "produk.*, inventor.users_id");
 		if ($produk->error)
 			redirect('admin');
 		$arr = [];
@@ -14,6 +14,7 @@ class riset
 				'id' => (int) $value->id,
 				'nama_produk' => $value->nama_produk,
 				'slug' => str_pad($value->id, 4, '0', STR_PAD_LEFT) . '-' . str_replace(" ", "-", $value->nama_produk),
+				'created_by' => $value->created_by,
 			];
 		}
 
@@ -27,13 +28,16 @@ class riset
 			$id = (int) str_replace(' ', '', substr($title, 0, 5));
 			$title = substr($title, 5);
 			foreach ($arr as $value) {
-				if ($id == $value['id'] && $title == $value['nama_produk'])
+				if ($id == $value['id'] && $title == $value['nama_produk']) {
+					$created_by = $value['created_by'];
 					$find = true;
+				}
 			}
 			if (!isset($find))
 				redirect('admin');
 			return [
 				'title' => $title,
+				'created_by' => $created_by,
 				'slug' => $slug,
 				'id' => $id,
 				'produk' => $arr
@@ -43,7 +47,7 @@ class riset
 	public static function slugs_perusahaan($slug = null)
 	{
 		$CI = &get_instance();
-		$perusahaan = DB_MODEL::join('pengurus', 'perusahaan', null, null, ['users_id' => $CI->session->userdata('id')]);
+		$perusahaan = DB_MODEL::join('pengurus', 'perusahaan', null, null, ['users_id' => $CI->session->userdata('id'), 'is_delete' => 0], "perusahaan.*,pengurus.users_id");
 		if ($perusahaan->error)
 			redirect('admin');
 		$arr = [];
@@ -52,6 +56,7 @@ class riset
 				'id' => (int) $value->id,
 				'perusahaan' => $value->nama,
 				'slug' => str_pad($value->id, 4, '0', STR_PAD_LEFT) . '-' . str_replace(" ", "-", $value->nama),
+				'created_by' => $value->created_by,
 			];
 		}
 		if (is_null($slug)) {
@@ -64,14 +69,17 @@ class riset
 			$id = (int) str_replace(' ', '', substr($title, 0, 5));
 			$title = substr($title, 5);
 			foreach ($arr as $value) {
-				if ($id == $value['id'] && $title == $value['perusahaan'])
+				if ($id == $value['id'] && $title == $value['perusahaan']) {
 					$find = true;
+					$created_by = $value['created_by'];
+				}
 			}
 			if (!isset($find))
 				redirect('admin');
 			return [
 				'title' => $title,
 				'slug' => $slug,
+				'created_by' => $created_by,
 				'id' => $id,
 				'perusahaan' => $arr
 			];
@@ -82,7 +90,7 @@ class riset
 		$title = str_replace('-', " ", $slug);
 		$id = (int) str_replace(' ', '', substr($title, 0, 5));
 		$title = substr($title, 5);
-		$produk = DB_MODEL::find('produk', ['id' => $id, 'nama_produk' => $title]);
+		$produk = DB_MODEL::find('produk', ['id' => $id, 'nama_produk' => $title, 'is_delete' => 0]);
 		if ($produk->error)
 			return ['error' => true];
 		else
@@ -103,7 +111,7 @@ class riset
 			$data[] = [
 				"type" => "informasi",
 				"tahun" => (int) date('Y', strtotime($value->tanggal)),
-				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk .' '. strip_tags($value->informasi),
+				"riwayat" => "pada " . date('d F Y', strtotime($value->tanggal)) . " produk " . $nama_produk . ' ' . strip_tags($value->informasi),
 			];
 		}
 		foreach ($pengajuan as $value) {

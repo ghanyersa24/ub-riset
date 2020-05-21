@@ -169,7 +169,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										<form id="form-view-pengurus">
 											<input type="text" name="perusahaan_id" value="<?= $id ?>" hidden readonly class="form-control">
 											<div class="form-group">
-												<label for="view-user" class="d-block">Pilih Pengurus</label>
+												<label for="view-user" class="d-block">Pilih Pengurus <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Jika pengurus yang dicari tidak ada, harap meminta pengurus yang bersangkutan untuk login sistem terlebih dahulu.">!</span></label>
 												<select name="users_id" id="view-user" class="select2 form-control" style="width:100%">
 
 												</select>
@@ -360,6 +360,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 </div>
 <script>
+	let user_id = '<?= $this->session->id; ?>',
+		created_by = '<?= $created_by ?>'
 	$('#view-logo_new').change(function() {
 		let filename = document.getElementById('view-logo_new').files[0].name
 		$('label.custom-file-label').html(filename)
@@ -428,7 +430,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
 				})
 				dataPengurus.forEach(element => {
-					listPengurus += `<div class="card col-sm-3 ">
+					if (created_by != element.id)
+						listPengurus += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
 										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
@@ -440,6 +443,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									</div>
 								</div>
 							</div>`
+					else {
+						if (created_by == user_id)
+							listPengurus += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
+									<span><button type="button" class="btn btn-default" onclick="del(${element.id},${element.perusahaan_id},'${element.nama}')"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+						else
+							listPengurus += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.foto}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.id}','${element.jabatan}','${element.nama}')">${element.nama} (${element.jabatan})</span>
+									</div>
+								</div>
+							</div>`
+					}
 				})
 				$('#listPengurus').html(listPengurus)
 				$('#view-user').html(listUser)

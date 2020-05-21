@@ -93,6 +93,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 <script>
 	let res = []
+	let user_id = '<?= $this->session->id; ?>'
 
 	function get() {
 		$.ajax({
@@ -105,7 +106,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					card = `<div class="col-12 text-center"> <p class="h5">silahkan tambahkan produk inovasi anda !!!</p></div>`
 				else
 					res.forEach(element => {
-						card += `<div class="card col-sm-3 ">
+						if (element.created_by == user_id)
+							card += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
 										<img src="${element.logo_produk==null?'https://i.imgur.com/QE3UIgf.png':element.logo_produk}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
@@ -114,6 +116,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class="d-flex justify-content-between">
 									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama_produk.substring(0, 12)}</span>
 									<span><button type="button" class="btn btn-default" onclick="del(${element.id})"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+						else
+							card += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.logo_produk==null?'https://i.imgur.com/QE3UIgf.png':element.logo_produk}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama_produk.substring(0, 12)}</span>
 									</div>
 								</div>
 							</div>`
@@ -126,7 +140,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	function del(id, link) {
 		swal({
 				title: "Apakah Kamu yakin?",
-				text: "keluar dari inventor produk!",
+				text: "Menghapus secara permanen produk inovasi!",
 				icon: "warning",
 				buttons: true,
 				dangerMode: true,
@@ -135,10 +149,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				if (willDelete) {
 					$.ajax({
 						type: "POST",
-						url: api + 'service/inventor/delete',
+						url: api + 'service/produk/delete',
 						data: {
-							produk_id: id,
-							users_id: '<?= $this->session->userdata('id') ?>'
+							id: id,
 						},
 						dataType: "json",
 						success: function(response) {

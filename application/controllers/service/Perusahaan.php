@@ -33,9 +33,9 @@ class Perusahaan extends CI_Controller
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::join('pengurus', 'perusahaan', null, 'inner', ['users_id' => $this->session->userdata('id')]);
+			$do = DB_MODEL::join('pengurus', 'perusahaan', null, 'inner', ['users_id' => $this->session->userdata('id'), 'is_delete' => 0], "perusahaan.*");
 		} else {
-			$do = DB_MODEL::find($this->table, array("id" => $id));
+			$do = DB_MODEL::find($this->table, array("id" => $id, 'is_delete' => 0));
 		}
 
 		if (!$do->error)
@@ -109,10 +109,9 @@ class Perusahaan extends CI_Controller
 	{
 		$where = array(
 			"id" => post('id', 'required'),
-			'created_by' => $this->session->userdata('id')
 		);
 
-		$do = DB_MODEL::delete($this->table, $where);
+		$do = DB_MODEL::update($this->table, $where, ['is_delete' => 1]);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);
 		else

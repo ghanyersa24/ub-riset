@@ -14,4 +14,14 @@ class Profile extends CI_Controller
 		else
 			error("data profil tidak ditemukan");
 	}
+	public function dark_mode()
+	{
+		if ($this->session->dark_mode) {
+			$this->session->set_userdata(['dark_mode' => false]);
+			success("anda berada dalam mode terang", $this->session->dark_mode);
+		} else {
+			$this->session->set_userdata(['dark_mode' => true]);
+			success("anda berada dalam mode gelap", $this->session->dark_mode);
+		}
+	}
 }

@@ -26,16 +26,12 @@ class Produk_perusahaan extends CI_Controller
 
 	public function listPerusahaan()
 	{
-		$do = DB_MODEL::all('perusahaan');
+		$do = DB_MODEL::where('perusahaan', ['is_delete' => 0]);
 		success("data perusahaan berhasil diterima", $do->data);
 	}
 	public function get($id = null)
 	{
-		// if (is_null($id)) {
-		// $do = DB_MODEL::all($this->table);
-		// } else {
-		$do = DB_MODEL::join('produk_perusahaan', 'perusahaan', null, null, ['produk_id' => $id]);
-		// }
+		$do = DB_MODEL::join('produk_perusahaan', 'perusahaan', null, null, ['produk_id' => $id, 'is_delete' => 0]);
 
 		if (!$do->error)
 			success("data berhasil ditemukan", $do->data);

@@ -100,6 +100,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </div>
 <script>
 	let res = []
+	let user_id = '<?= $this->session->id; ?>'
 	let lastProduk = () => {
 		if (sessionStorage.getItem('lastProduk') == null)
 			window.history.back()
@@ -118,7 +119,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					card = `<div class="col-12 text-center"> <p class="h5">Anda belum terdaftar di perusahaan manapun, silahkan daftarkan perusahaan anda terlebih dahulu</p></div>`
 				else
 					res.forEach(element => {
-						card += `<div class="card col-sm-3 ">
+						if (element.created_by == user_id)
+							card += `<div class="card col-sm-3 ">
 								<div class="card-body shadow rounded">
 									<div style="height:200px">
 										<img src="${element.logo==null?'https://i.imgur.com/QE3UIgf.png':element.logo}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
@@ -127,6 +129,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<div class="d-flex justify-content-between">
 									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama.substring(0, 12)}</span>
 									<span><button type="button" class="btn btn-default" onclick="del(${element.id})"><i class="fas fa-trash"></i></button></span>
+									</div>
+								</div>
+							</div>`
+						else
+							card += `<div class="card col-sm-3 ">
+								<div class="card-body shadow rounded">
+									<div style="height:200px">
+										<img src="${element.logo==null?'https://i.imgur.com/QE3UIgf.png':element.logo}" alt="" class="w-100 h-100 click" style="object-fit:cover; object-position: center" onclick="view('${element.slug}')">
+									</div>
+									<hr>
+									<div class="d-flex justify-content-between">
+									<span class="h5 card-title click" onclick="view('${element.slug}')">${element.nama.substring(0, 12)}</span>
 									</div>
 								</div>
 							</div>`
@@ -148,10 +162,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				if (willDelete) {
 					$.ajax({
 						type: "POST",
-						url: api + 'service/pengurus/delete',
+						url: api + 'service/perusahaan/delete',
 						data: {
-							perusahaan_id: id,
-							users_id: '<?= $this->session->userdata('id') ?>'
+							id: id,
 						},
 						dataType: "json",
 						success: function(response) {
