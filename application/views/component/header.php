@@ -40,7 +40,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script src="<?= base_url(); ?>assets/modules/bootstrap-daterangepicker/daterangepicker.js"></script>
 	<script type="module" src="<?= base_url() . 'assets/js/viewer.min.js' ?>"></script>
 
-	<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js">
+	<script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167752502-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-167752502-1');
 	</script>
 	<script>
 		const api = '<?= base_url() ?>'
