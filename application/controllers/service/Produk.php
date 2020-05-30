@@ -36,13 +36,13 @@ class Produk extends CI_Controller
 			"id" => $produk = post('id', 'required'),
 		);
 		if (isset($_FILES['file_tambahan_new']))
-			$data['file_tambahan'] = UPLOAD_FILE::update('rar', 'file_tambahan', "inovasi/$produk/tambahan", "file-$produk");
+			$data['file_tambahan'] = UPLOAD_FILE::update('rar', 'file_tambahan', "inovasi/$produk/tambahan", "file_tambahan-$produk");
 		else
-			error('silahkan pilih logo file tambahan inovasi terlebih dahulu');
+			error('silahkan pilih file tambahan inovasi terlebih dahulu');
 
 		$do = DB_MODEL::update($this->table, $where, $data);
 		if (!$do->error)
-			success("logo berhasil diupload", $do->data);
+			success("file tambahan berhasil diupload", $do->data);
 		else
 			error("data gagal diubah");
 	}
