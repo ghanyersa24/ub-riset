@@ -77,12 +77,11 @@ class Login extends CI_Controller
 		$data = [
 			'email' => $email = post('email', 'required|email'),
 			'foto' => post('foto', 'required'),
-			'nama_lengkap' => post('nama_lengkap', 'required'),
-			'auth' => $auth = post('auth', 'required')
+			'nama' => post('nama', 'required'),
+			'auth' => $auth = base64_encode(post('auth', 'required'))
 		];
 		$profile = DB_MASTER::find('users', "email='$email' AND auth='$auth'");
 		if ($profile->error) {
-			$data['do'] = 'register';
 			$this->session->set_userdata($data);
 			error("kamu akan diteruskan pada halaman registrasi.",  AUTHORIZATION::generateToken(['auth' => $auth]));
 		} else {

@@ -42,8 +42,8 @@
 				<p class="h4 text-white">Register Account</p>
 				<form class="form-add" id="form-add">
 					<div class="form-group">
-						<label for="add-nama_lengkap">Nama Lengkap</label>
-						<input id="add-nama_lengkap" class="form-control" type="text" name="nama_lengkap" value="<?= $this->session->userdata('nama_lengkap') ?>" required>
+						<label for="add-nama">Nama Lengkap</label>
+						<input id="add-nama" class="form-control" type="text" name="nama" value="<?= $this->session->userdata('nama') ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="add-kontak">Kontak</label>
@@ -121,12 +121,6 @@
 					url: api + "account/register/email",
 					data: $('#form-add').serialize(),
 					success: function(response) {
-						if (!response.error) {
-							$('#add').modal('hide')
-							setTimeout(function() {
-								window.location.replace(`<?= base_url() ?>admin/detail/${response.data.slug}`)
-							}, 2000)
-						}
 						if (!response.error)
 							swal('Berhasil !', response.message, 'success')
 						else

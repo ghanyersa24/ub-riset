@@ -6,6 +6,7 @@
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
 	<meta name="google-signin-client_id" content="233130642128-pj63qqpc93o94nvndo215920jtuhati9.apps.googleusercontent.com">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.css">
+	<script src="<?php echo base_url(); ?>assets/modules/sweetalert/sweetalert.min.js"></script>
 	<title><?php echo $title; ?> &mdash; BRAIN Apps</title>
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/login.css">
@@ -74,6 +75,30 @@
 	<script>
 		function onSignIn(googleUser) {
 			var profile = googleUser.getBasicProfile();
+			$.ajax({
+				type: "POST",
+				url: api + 'account/login/spesial',
+				data: {
+					auth: profile.getId(),
+					nama: profile.getName(),
+					foto: profile.getImageUrl(),
+					email: profile.getEmail(),
+				},
+				dataType: "json",
+				success: function(response) {
+					if (!response.error) {
+						swal('Berhasil !', response.message, 'success')
+						setTimeout(function() {
+							window.location.reload()
+						}, 2000)
+					} else {
+						swal('Info !', response.message, 'info')
+						setTimeout(function() {
+							window.location.replace(`<?= base_url() ?>register/account/${response.data}`)
+						}, 2000)
+					}
+				}
+			});
 			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
 			console.log('Name: ' + profile.getName());
 			console.log('Image URL: ' + profile.getImageUrl());
@@ -100,8 +125,6 @@
 	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 	<script src="<?php echo base_url(); ?>assets/modules/jquery.min.js">
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	</script>
 	<script>
 		function bounce(height, delay = 0) {

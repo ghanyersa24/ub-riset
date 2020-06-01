@@ -83,7 +83,6 @@ class DB_MASTER extends CI_Model
 	public static function update_straight($table, $where, $data)
 	{
 		$CI = &get_instance();
-		$data['updated_by'] = $CI->session->userdata('id');
 		$query = $CI->db->where($where)->update($table, $data);
 		if ($CI->db->affected_rows() !== 0)
 			if (is_array($where))
