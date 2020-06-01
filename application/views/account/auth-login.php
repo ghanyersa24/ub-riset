@@ -156,11 +156,30 @@
 			auth2.attachClickHandler(element, {},
 				function(googleUser) {
 					const profile = googleUser.getBasicProfile();
-					console.log('ID: ' + googleUser.getId());
-					console.log('Name: ' + profile.getName());
-					console.log('Image URL: ' + profile.getImageUrl());
-					console.log('Email: ' + profile.getEmail());
-					$('#login-success').css('display', 'block')
+					$.ajax({
+						type: "POST",
+						url: api + 'account/login/spesial',
+						data: {
+							auth: profile.getId(),
+							nama: profile.getName(),
+							foto: profile.getImageUrl(),
+							email: profile.getEmail(),
+						},
+						dataType: "json",
+						success: function(response) {
+							if (!response.error) {
+								$('#login-success').css('display', 'block')
+								setTimeout(function() {
+									window.location.replace(`<?= base_url() ?>admin`)
+								}, 2000)
+							} else {
+								swal('Info !', response.message, 'info')
+								setTimeout(function() {
+									window.location.replace(`<?= base_url() ?>register/account/${response.data}`)
+								}, 2000)
+							}
+						}
+					});
 				},
 				function(error) {
 					// alert(JSON.stringify(error, undefined, 2));
