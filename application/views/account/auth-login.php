@@ -119,7 +119,7 @@
 			await bounce(0)
 			await $.ajax({
 				type: "post",
-				url: api + 'account/auth',
+				url: api + 'account/login',
 				data: $('#form-login').serialize(),
 				success: function(response) {
 					if (!response.error) {

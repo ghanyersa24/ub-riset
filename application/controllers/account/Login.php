@@ -1,7 +1,7 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
-class Auth extends CI_Controller
+class Login extends CI_Controller
 {
 	public function index()
 	{
@@ -10,7 +10,7 @@ class Auth extends CI_Controller
 		$found = false;
 		if ($username == 'admin super' && $password == 'adminbrainmantab') {
 			$data = [
-				'id' => "admin super",
+				'identifier' => "admin super",
 				'nama' => "Super Admin",
 				'status' => 'mahasiswa',
 				'fakultas' => 'BIW Corporation',
@@ -22,7 +22,7 @@ class Auth extends CI_Controller
 			$found = true;
 		} elseif ($username == 'verifikator' && $password == 'bagianverifikasi') {
 			$data = [
-				'id' => "verifikator",
+				'identifier' => "verifikator",
 				'nama' => "Tim Verifikator",
 				'status' => 'mahasiswa',
 				'fakultas' => 'BIW Corporation',
@@ -39,7 +39,7 @@ class Auth extends CI_Controller
 			if ($auth['status']) {
 				$angkatan = substr($auth['nim'], 0, 2);
 				$data = [
-					'id' => $auth['nim'],
+					'identifier' => $auth['nim'],
 					'nama' => $auth['nama'],
 					'status' => 'mahasiswa',
 					'fakultas' => $auth['fak'],
@@ -56,29 +56,35 @@ class Auth extends CI_Controller
 	}
 	private function checking($username, $data)
 	{
-		$profile = DB_MODEL::find('users', ['id' => $username]);
-		$this->session->set_userdata('id', $data['id']);
+		$profile = DB_MODEL::find('users', ['identifier' => $username]);
+		$this->session->set_userdata('identifier', $data['identifier']);
 		if ($profile->error)
-			$profile = DB_MODEL::insert('users', $data);
+			$profile = DB_MASTER::insert('users', $data);
 		$session_auth = (array) $profile->data;
 		$session_auth['logged_in'] = true;
 		$session_auth['dark_mode'] = false;
 		$this->session->set_userdata($session_auth);
 		success("Welcome to system", $session_auth);
 	}
+	public function spesial()
+	{
+		$data = [
+			'email' => $email = post('email', 'required|email'),
+			'foto' => post('foto', 'required'),
+			'nama' => post('nama', 'required'),
+			'auth' => $auth = post('auth', 'required')
+		];
 
-	// public function index()
-	// {
-	// 	$username = post('username', 'required');
-	// 	$do = DB_MODEL::login('customer', $username);
-	// 	if (is_null($do->data)) {
-	// 		error("username and password isn't match");
-	// 	} else {
-	// 		if (password_verify(post("password"), $do->data->password)) {
-	// 			$do->data->token = AUTHORIZATION::generateToken($do->data);
-	// 			success("Welcome to system", $do->data);
-	// 		} else
-	// 			error("username and password isn't match");
-	// 	}
-	// }
+		$profile = DB_MASTER::find('users', "email='$email' OR auth='$auth'");
+		if ($profile->error) {
+			$this->session->set_userdata($data);
+			error("anda harus registrasi akun terlebih dahulu");
+		} else {
+			$session_auth = (array) $profile->data;
+			$session_auth['logged_in'] = true;
+			$session_auth['dark_mode'] = false;
+			$this->session->set_userdata($session_auth);
+			success("Welcome to system", $session_auth);
+		}
+	}
 }
