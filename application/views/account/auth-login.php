@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-	<meta name="google-signin-client_id" content="233130642128-pj63qqpc93o94nvndo215920jtuhati9.apps.googleusercontent.com">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.css">
 	<title><?php echo $title; ?> &mdash; BRAIN Apps</title>
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
@@ -25,6 +24,53 @@
 
 		gtag('config', 'UA-167752502-1');
 	</script>
+	<script src="https://apis.google.com/js/api:client.js"></script>
+
+	<style type="text/css">
+		#customBtn {
+			display: inline-block;
+			background: #003961;
+			color: white;
+			width: 190px;
+			border-radius: 5px;
+			/* border: thin solid #888; */
+			box-shadow: 4px 4px 5px rgba(200, 200, 200, 1);
+			white-space: nowrap;
+		}
+
+		#customBtn:hover {
+			cursor: pointer;
+		}
+
+		span.label {
+			font-family: serif;
+			font-weight: normal;
+		}
+
+		span.icon {
+			background: url('<?= base_url() ?>/assets/img/logo gapura.png') transparent 50% no-repeat;
+			background-size: cover;
+			display: inline-block;
+			vertical-align: middle;
+			width: 42px;
+			height: 42px;
+		}
+
+		span.buttonText {
+			display: inline-block;
+			vertical-align: middle;
+			padding-left: 42px;
+			padding-right: 42px;
+			font-size: 14px;
+			font-weight: bold;
+			/* Use the Roboto font that is loaded in the <head> */
+			font-family: 'Roboto', sans-serif;
+		}
+
+		.primary {
+			color: #fbaa19;
+		}
+	</style>
 </head>
 
 <body class="bg-primary overflow-hidden">
@@ -45,10 +91,11 @@
 			<div style="display: none" id="greating" class="alert alert-success alert-dismissible fade show" role="alert">
 				<strong>Hi, <span id="name"></span> !</strong> Selamat Datang di <strong>Brawijaya Research and Innovation</strong>, Sistem Informasi Manajemen Inovasi Universitas Brawijaya.
 			</div>
-			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Logo_Universitas_Brawijaya.svg/1200px-Logo_Universitas_Brawijaya.svg.png" alt="" id="icon-login" class="p-2 bg-white rounded-circle login-icon position-icon" />
+
 			<div class="shadow bg-white p-5 login-form m-3" id="card-login">
-				<p class="h3 mt-5 mb-4 text-center">Login</p>
-				<form name="form-login" id="form-login">
+				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Logo_Universitas_Brawijaya.svg/1200px-Logo_Universitas_Brawijaya.svg.png" alt="" id="icon-login" class="p-2 bg-white rounded-circle login-icon position-icon" />
+				<p class="h6 font-weight-bold mb-4 text-center">Masuk dengan Email UB</p>
+				<!-- <form name="form-login" id="form-login">
 					<div class="form-group">
 						<label class="form-label" for="username">Username</label>
 						<input id="username" class="form-control rounded-pill" type="text" name="username">
@@ -60,11 +107,28 @@
 					<div class="text-center text-danger" id="msg"></div>
 					<button class="btn btn-primary rounded-pill form-control" id="btn-login" type="submit">Login</button>
 				</form>
-				<p class="text-center mb-0">atau</p>
+				<p class="text-center mb-0">atau</p> -->
 
-				<div class="d-flex align-items-center justify-content-center">
-					<div id="my-signin2"></div>
+				<div id="gSignInWrapper">
+					<div id="customBtn" class="customGPlusSignIn">
+						<span class="icon"></span>
+						<span class="buttonText">Gapura <span class="primary">UB</span></span>
+					</div>
 				</div>
+				<div id="name"></div>
+				<div id="login-success" style="display:none">
+					<div class="d-flex align-items-center justify-content-center mt-4">
+						<p class="text-center mb-0 mr-2">Login Berhasil </p>
+						<span class="spinner-border text-dark" role="status"></span>
+					</div>
+				</div>
+				<div id="login-failed" style="display:none">
+					<div class="d-flex align-items-center justify-content-center mt-4">
+						<p class="text-center mb-0 mr-2 text-danger">Login Gagal, pastikan kamu <br>menggunakan EMAIL UB </p>
+
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<div class="simple-footer fixed-bottom text-white">
@@ -72,32 +136,43 @@
 		</div>
 	</div>
 	<script>
-		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-			console.log('Name: ' + profile.getName());
-			console.log('Image URL: ' + profile.getImageUrl());
-			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-		}
-
-		function onFailure(error) {
-			console.log(error);
-		}
-
-		function renderButton() {
-			gapi.signin2.render('my-signin2', {
-				'scope': 'profile email',
-				'width': 240,
-				'height': 50,
-				'longtitle': true,
-				'theme': 'dark',
-				'onsuccess': onSignIn,
-				'onfailure': onFailure
+		var googleUser = {};
+		var startApp = function() {
+			gapi.load('auth2', function() {
+				// Retrieve the singleton for the GoogleAuth library and set up the client.
+				auth2 = gapi.auth2.init({
+					client_id: '233130642128-pj63qqpc93o94nvndo215920jtuhati9.apps.googleusercontent.com',
+					cookiepolicy: 'single_host_origin',
+					// Request scopes in addition to 'profile' and 'email'
+					// scope: 'name'
+				});
+				attachSignin(document.getElementById('customBtn'));
 			});
+		};
+
+		function attachSignin(element) {
+			console.log(element.id);
+			auth2.attachClickHandler(element, {},
+				function(googleUser) {
+					const profile = googleUser.getBasicProfile();
+					console.log('ID: ' + googleUser.getId());
+					console.log('Name: ' + profile.getName());
+					console.log('Image URL: ' + profile.getImageUrl());
+					console.log('Email: ' + profile.getEmail());
+					$('#login-success').css('display', 'block')
+				},
+				function(error) {
+					// alert(JSON.stringify(error, undefined, 2));
+					$('#login-failed').css('display', 'block')
+					setTimeout(() => {
+						$('#login-failed').css('display', 'none')
+					}, 5000);
+				});
 		}
 	</script>
-
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+	<script>
+		startApp();
+	</script>
 
 	<script src="<?php echo base_url(); ?>assets/modules/jquery.min.js">
 	</script>
