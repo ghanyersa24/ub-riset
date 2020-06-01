@@ -20,13 +20,12 @@ class Register extends CI_Controller
 			} else
 				error("autentikasi lanjutan khusus mahasiswa.");
 			$data = array(
-				"nama" => post('nama', 'required'),
 				"status" => post('status', 'enum:mahasiswa&dosen&alumni'),
 				"email" => $this->session->userdata('email'),
 				"auth" => $this->session->userdata('auth'),
 				"kontak" => post('kontak', 'required|numeric|min_char:11'),
 			);
-			$do = DB_MASTER::update_straight('users', ['identifier' => $identifier], $data);
+			$do = DB_MASTER::update_straight('users', ['identifier' => $identifier, 'nama' => $this->session->userdata('nama')], $data);
 			if ($do->error)
 				error("Data gagal memperbarui akun lama.");
 			else {
@@ -36,11 +35,10 @@ class Register extends CI_Controller
 				success("Data berhasil memperbarui akun lama.", []);
 			}
 		} else {
-			$find = DB_MASTER::find('users', ['identifier' => $identifier]);
+			$find = DB_MASTER::find('users', ['identifier' => $identifier, 'nama' => $this->session->userdata('nama')]);
 			if (!$find->error)
 				error("terdapat akun serupa.", $find->data);
 			$data = array(
-				"nama" => post('nama', 'required'),
 				"fakultas" => post('fakultas', 'required|enum:FH&FEB&FIA&FP&FAPET&FT&FK&FPIK&FMIPA&FTP&FISIP&FIB&FKH&FILKOM&FKG&Vokasi'),
 				"jurusan" => post('jurusan', 'required'),
 				"prodi" => post('prodi', 'required'),
