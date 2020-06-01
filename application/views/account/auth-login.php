@@ -137,7 +137,6 @@
 		</div>
 	</div>
 	<script>
-<<<<<<< HEAD
 		var googleUser = {};
 		var startApp = function() {
 			gapi.load('auth2', function() {
@@ -149,53 +148,6 @@
 					// scope: 'name'
 				});
 				attachSignin(document.getElementById('customBtn'));
-=======
-		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			$.ajax({
-				type: "POST",
-				url: api + 'account/login/spesial',
-				data: {
-					auth: profile.getId(),
-					nama: profile.getName(),
-					foto: profile.getImageUrl(),
-					email: profile.getEmail(),
-				},
-				dataType: "json",
-				success: function(response) {
-					if (!response.error) {
-						swal('Berhasil !', response.message, 'success')
-						setTimeout(function() {
-							window.location.reload()
-						}, 2000)
-					} else {
-						swal('Info !', response.message, 'info')
-						setTimeout(function() {
-							window.location.replace(`<?= base_url() ?>register/account/${response.data}`)
-						}, 2000)
-					}
-				}
-			});
-			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-			console.log('Name: ' + profile.getName());
-			console.log('Image URL: ' + profile.getImageUrl());
-			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-		}
-
-		function onFailure(error) {
-			console.log(error);
-		}
-
-		function renderButton() {
-			gapi.signin2.render('my-signin2', {
-				'scope': 'profile email',
-				'width': 240,
-				'height': 50,
-				'longtitle': true,
-				'theme': 'dark',
-				'onsuccess': onSignIn,
-				'onfailure': onFailure
->>>>>>> origin/master
 			});
 		};
 
