@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-	<meta name="google-signin-client_id" content="233130642128-pj63qqpc93o94nvndo215920jtuhati9.apps.googleusercontent.com">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/bootstrap/css/bootstrap.css">
 	<title><?php echo $title; ?> &mdash; BRAIN Apps</title>
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
@@ -14,7 +13,6 @@
 	</script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167752502-1"></script>
-
 	<script>
 		window.dataLayer = window.dataLayer || [];
 
@@ -47,7 +45,7 @@
 			</div>
 			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Logo_Universitas_Brawijaya.svg/1200px-Logo_Universitas_Brawijaya.svg.png" alt="" id="icon-login" class="p-2 bg-white rounded-circle login-icon position-icon" />
 			<div class="shadow bg-white p-5 login-form m-3" id="card-login">
-				<p class="h3 mt-5 mb-4 text-center">Login</p>
+				<p class="h3 mt-4 mb-4">Gapura UB - Authentication</p>
 				<form name="form-login" id="form-login">
 					<div class="form-group">
 						<label class="form-label" for="username">Username</label>
@@ -60,47 +58,13 @@
 					<div class="text-center text-danger" id="msg"></div>
 					<button class="btn btn-primary rounded-pill form-control" id="btn-login" type="submit">Login</button>
 				</form>
-				<p class="text-center mb-0">atau</p>
-
-				<div class="d-flex align-items-center justify-content-center">
-					<div id="my-signin2"></div>
-				</div>
 			</div>
 		</div>
 		<div class="simple-footer fixed-bottom text-white">
 			Copyright &copy; Brawijaya Research and Innovation
 		</div>
 	</div>
-	<script>
-		function onSignIn(googleUser) {
-			var profile = googleUser.getBasicProfile();
-			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-			console.log('Name: ' + profile.getName());
-			console.log('Image URL: ' + profile.getImageUrl());
-			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-		}
-
-		function onFailure(error) {
-			console.log(error);
-		}
-
-		function renderButton() {
-			gapi.signin2.render('my-signin2', {
-				'scope': 'profile email',
-				'width': 240,
-				'height': 50,
-				'longtitle': true,
-				'theme': 'dark',
-				'onsuccess': onSignIn,
-				'onfailure': onFailure
-			});
-		}
-	</script>
-
-	<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
-
-	<script src="<?php echo base_url(); ?>assets/modules/jquery.min.js">
-	</script>
+	<script src="<?php echo base_url(); ?>assets/modules/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	</script>
 	<script>
@@ -109,8 +73,6 @@
 				'margin-top': height + "em"
 			}, 500);
 		}
-
-
 
 		$('#form-login').submit(async function(e) {
 			e.preventDefault()
