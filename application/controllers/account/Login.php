@@ -3,6 +3,11 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Login extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+		// load
+	}
 	public function index()
 	{
 		$username = post('username', 'required');
@@ -66,19 +71,20 @@ class Login extends CI_Controller
 		$this->session->set_userdata($session_auth);
 		success("Welcome to system", $session_auth);
 	}
+
 	public function spesial()
 	{
 		$data = [
 			'email' => $email = post('email', 'required|email'),
 			'foto' => post('foto', 'required'),
-			'nama' => post('nama', 'required'),
+			'nama_lengkap' => post('nama_lengkap', 'required'),
 			'auth' => $auth = post('auth', 'required')
 		];
-
-		$profile = DB_MASTER::find('users', "email='$email' OR auth='$auth'");
+		$profile = DB_MASTER::find('users', "email='$email' AND auth='$auth'");
 		if ($profile->error) {
+			$data['do'] = 'register';
 			$this->session->set_userdata($data);
-			error("anda harus registrasi akun terlebih dahulu");
+			error("kamu akan diteruskan pada halaman registrasi.",  AUTHORIZATION::generateToken(['auth' => $auth]));
 		} else {
 			$session_auth = (array) $profile->data;
 			$session_auth['logged_in'] = true;
