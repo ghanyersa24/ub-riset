@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class DB_MODEL extends CI_Model
+class DB_MASTER extends CI_Model
 {
 
 	public static function all($table)
@@ -50,8 +50,6 @@ class DB_MODEL extends CI_Model
 	{
 		$CI = &get_instance();
 		$data['created_at'] = date('Y-m-d H:i:s');
-		$data['created_by'] = $CI->session->userdata('id');
-		$data['updated_by'] = $CI->session->userdata('id');
 		$query = $CI->db->insert($table, $data);
 		if ($query) {
 			$id = $CI->db->insert_id();
@@ -75,7 +73,6 @@ class DB_MODEL extends CI_Model
 	public static function update($table, $where, $data)
 	{
 		$CI = &get_instance();
-		$data['updated_by'] = $CI->session->userdata('id');
 		$CI->db->where($where)->update($table, $data);
 		if (is_array($where))
 			return true(array_merge($where, $data));
@@ -118,22 +115,6 @@ class DB_MODEL extends CI_Model
 			return true($query->result());
 		else
 			return false();
-	}
-
-	public static function login($table, $username)
-	{
-		$CI = &get_instance();
-		$query = $CI->db
-			->select('*')
-			->from($table)
-			->where("username =", $username)
-			->or_where("email =", $username)
-			->get();
-		if ($query) {
-			return true($query->row());
-		} else {
-			return false();
-		}
 	}
 }
 

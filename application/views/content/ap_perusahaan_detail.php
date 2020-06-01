@@ -427,7 +427,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				let dataPengurus = response.data.pengurus
 				let listPengurus = listUser = ""
 				dataUser.forEach(element => {
-					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
+					listUser += `<option value="${element.id}">${element.nama+'  ('+element.fakultas+')'}</option>`
 				})
 				dataPengurus.forEach(element => {
 					if (created_by != element.id)

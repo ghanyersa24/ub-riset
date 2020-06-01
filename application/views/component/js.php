@@ -11,7 +11,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <!-- JS Libraies -->
 <?php
 if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") { ?>
-	<script src="<?php echo base_url(); ?>assets/modules/simple-weather/jquery.simpleWeather.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/modules/chart.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/jquery.vmap.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/modules/jqvmap/dist/maps/jquery.vmap.world.js"></script>

@@ -54,7 +54,7 @@
 				let dataInventor = response.data.inventor
 				let listInventor = listUser = ""
 				dataUser.forEach(element => {
-					listUser += `<option value="${element.id}">${element.nama+'  ('+element.id+')'}</option>`
+					listUser += `<option value="${element.id}">${element.nama+'  ('+element.fakultas+')'}</option>`
 				})
 				dataInventor.forEach(element => {
 					if (created_by != element.id)

@@ -1,0 +1,1 @@
+<h1>REGISTER ACCOUNT</h1>
