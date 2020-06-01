@@ -20,12 +20,21 @@ class AUTHORIZATION
 
 	public static function generateToken($data)
 	{
+		$data = (array) $data;
 		$CI = &get_instance();
-		$data->timestamp = now();
+		$data['timestamp'] = date('Y-m-d H:i:s');
 		return JWT::encode($data, $CI->config->item('jwt_key'));
 	}
 
 	// ------------------------Ghany -------------------------
+	public static function myjwt($data)
+	{
+		$decodedToken = AUTHORIZATION::validateToken($data);
+		if ($decodedToken != false) {
+			return $decodedToken;
+		} else
+			error("Unauthorize.");
+	}
 	public static function User()
 	{
 		$CI = &get_instance();

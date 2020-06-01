@@ -235,14 +235,14 @@ function success($msg, $data)
 	exit;
 }
 
-function error($msg)
+function error($msg, $data = [])
 {
 	header('Content-Type: application/json');
 	echo json_encode(
 		array(
 			"error" => true,
 			"message" => $msg,
-			"data" => []
+			"data" => $data
 		)
 	);
 	exit;
