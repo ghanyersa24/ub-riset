@@ -133,7 +133,13 @@
                             if (response.message == 'terdapat akun serupa.') {
                                 swal({
                                         text: `Terdapat akun serupa atas nama ${response.data.nama} silahkan masukkan password untuk autentikasi pada SIAM`,
-                                        content: "input",
+                                        content: {
+                                            element: "input",
+                                            attributes: {
+                                                placeholder: "password",
+                                                type: "password",
+                                            },
+                                        },
                                         button: {
                                             text: "Submit",
                                             closeModal: false,

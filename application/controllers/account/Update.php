@@ -9,7 +9,6 @@ class Update extends CI_Controller
 			"id" =>  $this->session->userdata('id'),
 		);
 		$data = array(
-			"email" => post('email', 'required'),
 			"kontak" => post('kontak', 'required|min_char:12|numeric'),
 			"tanggal_lahir" => post('tanggal_lahir', 'date_valid'),
 		);
