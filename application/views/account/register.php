@@ -129,6 +129,9 @@
                     success: function(response) {
                         if (!response.error) {
                             swal('Berhasil !', response.message, 'success')
+                            setTimeout(() => {
+                                window.location.replace(`<?= base_url() ?>login`)
+                            }, 2000);
                         } else {
                             if (response.message == 'terdapat akun serupa.') {
                                 swal({
