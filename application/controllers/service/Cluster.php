@@ -1,18 +1,22 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master extends CI_Controller
+class Cluster extends CI_Controller
 {
-	protected $table = "table";
-	public function __construct()
+	protected $table = "cluster";
+	function __construct()
 	{
 		parent::__construct();
-		// additional library
+		if (!$this->session->has_userdata('logged_in')) {
+			redirect('login');
+		}
 	}
 	public function create()
 	{
+		if ($this->session->is_admin == 'no')
+			redirect('login');
 		$data = array(
-			"column" => post('column'),
+			"cluster" => post('cluster', 'required|max_char:30'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -26,7 +30,7 @@ class Master extends CI_Controller
 	public function get($id = null)
 	{
 		if (is_null($id)) {
-			$do = DB_MODEL::all($this->table);
+			$do = DB_MODEL::where($this->table, ['is_delete' => 0]);
 		} else {
 			$do = DB_MODEL::find($this->table, array("id" => $id));
 		}
@@ -39,8 +43,11 @@ class Master extends CI_Controller
 
 	public function update()
 	{
+		if ($this->session->is_admin == 'no')
+			redirect('login');
+
 		$data = array(
-			"column" => post('column'),
+			"cluster" => post('cluster', 'required|max_char:30'),
 		);
 
 		$where = array(
@@ -56,11 +63,14 @@ class Master extends CI_Controller
 
 	public function delete()
 	{
+		if ($this->session->is_admin == 'no')
+			redirect('login');
+
 		$where = array(
-			"id" => post('id', 'required')
+			"id" => post('id', 'required'),
 		);
 
-		$do = DB_MODEL::delete($this->table, $where);
+		$do = DB_MODEL::update($this->table, $where, ['is_delete' => 1]);
 		if (!$do->error)
 			success("data " . $this->table . " berhasil dihapus", $do->data);
 		else

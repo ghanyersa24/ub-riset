@@ -15,9 +15,11 @@ class Pengajuan extends CI_Controller
 	{
 		if ($this->session->userdata('id') != post('auth', 'required'))
 			error('konfirmasi kamu salah, silahkan masukkan kembali.');
+
 		$slug = riset::slug_public(post('slug', 'required'));
 		if ($slug['error'])
 			error("maaf data inovasi bermasalah");
+
 		else {
 			$last = DB_MODEL::find('pengajuan', ['produk_id' => $slug['data']['id']]);
 			if (!$last->error) {
@@ -26,6 +28,7 @@ class Pengajuan extends CI_Controller
 			}
 			$data = array(
 				"produk_id" => $slug['data']['id'],
+				"cluster" => post('cluster_id', 'required'),
 				"nama_produk" => $slug['data']['title'],
 				"slug" => $slug['data']['slug'],
 				"inventor" => $this->session->userdata('nama'),
@@ -58,18 +61,27 @@ class Pengajuan extends CI_Controller
 
 	public function update()
 	{
+		if (!$this->session->has_userdata('logged_in') || $this->session->is_admin == 'no') {
+			redirect('login');
+		}
 		$where = array(
 			"id" => post('id', 'required'),
 		);
 		$produk = post('produk_id', 'required');
-		$data = array(
-			"katsinov" => $katsinov = post('katsinov', 'required|numeric|min_value:0|max_value:6'),
-			"tkt" => $tkt = post('tkt', 'required|numeric|min_value:0|max_value:9'),
-			"file_tkt" => UPLOAD_FILE::excel('file_tkt', "inovasi/$produk/evaluasi", 'evaluasi_tkt'),
-			"file_katsinov" => UPLOAD_FILE::excel('file_katsinov', "inovasi/$produk/evaluasi", 'evaluasi_katsinov'),
-			"status" => 'dinilai',
-		);
-
+		if (post('is_verified', 'enum:true&false') == 'true')
+			$data = array(
+				"katsinov" => $katsinov = post('katsinov', 'required|numeric|min_value:0|max_value:6'),
+				"tkt" => $tkt = post('tkt', 'required|numeric|min_value:0|max_value:9'),
+				"file_tkt" => UPLOAD_FILE::excel('file_tkt', "inovasi/$produk/evaluasi", 'evaluasi_tkt'),
+				"file_katsinov" => UPLOAD_FILE::excel('file_katsinov', "inovasi/$produk/evaluasi", 'evaluasi_katsinov'),
+				"catatan" => post('catatan'),
+				"status" => 'dinilai',
+			);
+		else
+			$data = [
+				"status" => 'dinilai',
+				"catatan" => post('catatan')
+			];
 		$do = DB_MODEL::update($this->table, $where, $data);
 		if (!$do->error) {
 			DB_MODEL::update('produk', ['id' => $produk], ['katsinov' => $katsinov, 'tkt' => $tkt]);
@@ -78,16 +90,16 @@ class Pengajuan extends CI_Controller
 			error("data gagal diubah");
 	}
 
-	public function delete()
-	{
-		$where = array(
-			"id" => post('id', 'required')
-		);
+	// public function delete()
+	// {
+	// 	$where = array(
+	// 		"id" => post('id', 'required')
+	// 	);
 
-		$do = DB_MODEL::delete($this->table, $where);
-		if (!$do->error)
-			success("data berhasil dihapus", $do->data);
-		else
-			error("data gagal dihapus");
-	}
+	// 	$do = DB_MODEL::delete($this->table, $where);
+	// 	if (!$do->error)
+	// 		success("data berhasil dihapus", $do->data);
+	// 	else
+	// 		error("data gagal dihapus");
+	// }
 }

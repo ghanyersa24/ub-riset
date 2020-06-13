@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2020 at 11:11 AM
+-- Generation Time: Jun 13, 2020 at 07:25 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -91,6 +91,30 @@ CREATE TABLE `aspek_bisnis` (
   `updated_by` varchar(15) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cluster`
+--
+
+CREATE TABLE `cluster` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cluster` varchar(30) DEFAULT NULL,
+  `is_delete` tinyint(1) NOT NULL,
+  `created_by` varchar(15) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_by` varchar(15) NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cluster`
+--
+
+INSERT INTO `cluster` (`id`, `cluster`, `is_delete`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, 'Penilaian TKT/Katsinov', 0, '', '2020-06-13 13:45:42', '16', '2020-06-13 17:12:58'),
+(3, 'Hello Word', 0, '16', '2020-06-14 00:14:09', '16', '2020-06-13 17:14:44');
 
 -- --------------------------------------------------------
 
@@ -251,7 +275,9 @@ INSERT INTO `inventor` (`produk_id`, `users_id`, `created_by`, `created_at`, `up
 (42, 42, '39', '2020-06-01 13:14:44', '39', '2020-06-01 06:14:44'),
 (43, 35, '35', '2020-05-31 23:36:45', '35', '2020-05-31 16:36:45'),
 (44, 41, '41', '2020-06-01 12:35:10', '41', '2020-06-01 05:35:10'),
-(45, 48, '48', '2020-06-01 13:55:51', '48', '2020-06-01 06:55:51');
+(45, 48, '48', '2020-06-01 13:55:51', '48', '2020-06-01 06:55:51'),
+(46, 16, '16', '2020-06-01 16:15:04', '16', '2020-06-01 09:15:04'),
+(47, 16, '16', '2020-06-05 09:54:13', '16', '2020-06-05 02:54:13');
 
 -- --------------------------------------------------------
 
@@ -385,6 +411,7 @@ CREATE TABLE `pemasaran` (
 CREATE TABLE `pengajuan` (
   `id` int(10) UNSIGNED NOT NULL,
   `produk_id` int(10) UNSIGNED NOT NULL,
+  `cluster_id` int(10) UNSIGNED NOT NULL,
   `inventor` varchar(100) NOT NULL,
   `slug` tinytext DEFAULT NULL,
   `nama_produk` varchar(100) NOT NULL,
@@ -621,7 +648,9 @@ INSERT INTO `produk` (`id`, `nama_produk`, `katsinov`, `tkt`, `slug`, `bidang`, 
 (42, 'Seawith', NULL, NULL, '0042-Seawith', 'Kemaritiman', '[\"E-commerce\"]', 'digital', NULL, NULL, 'Platform digital e-commerce dan marketplace berbasis website dan aplikasi yang menyediakan kebutuhan budidaya rumput laut, olahan rumput laut, dan rumput laut.', '', '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, 0, '39', '2020-05-31 19:58:19', '39', '2020-05-31 12:58:19'),
 (43, 'unifarm', NULL, NULL, '0043-unifarm', 'Pangan', '[\"Pangan Olahan\"]', 'digital', NULL, NULL, 'Platform Jasa Cathering Susu Segar Harian', '', '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, 0, '35', '2020-05-31 23:36:45', '35', '2020-05-31 16:36:45'),
 (44, 'Foldable Bag and Bottle', NULL, NULL, '0044-Foldable-Bag-and-Bottle', 'Rekayasa Keteknikan', '[\"Hardware\",\"Limbah Plastik\",\"Tekstil\"]', 'non digital', 'ada', NULL, 'Tas dan pouch yang terbuat dari limbah produksi kain pabrik serta wadah tempat minum dan makan yang bisa dilipat terbuat dari silikon ', '<p>Foldable bag dan pouch adalah sebuah tas belanja dan kantong belanja yang terbuat dari limbah kain sisa pabrik garment atau konveksi yang bisa dilipat dan diserta tali untuk memudahkan pengguna membawanya sebagai barang sehari-hari yang wajib dibawa sebagai pengganti kantong kresek.</p><p>Foldable bottle dan food storage adalah sebuah wadah makanan dan minuman yang terbuat dari silikon yang bisa dilipat saat tidak terisi oleh makanan atau minuman dan mudah dibawa bepergian.</p>', '<p>Banyaknya keberadaaan swalayan yang mudah dijangkau masyarakat serta keharusan untuk memenuhi berbagai macam kebutuhan di swalayan memaksa masyarakat untuk tetap menggunakan kantong plastik atau kresek yang umumnya tidak akan digunakan kembali saat mereka akan melakukan kegiatan belanja dikemudian hari. Adapun kebiasaan ibu rumah tangga saat berbelanja kebutuhan dapur yang beraneka ragam membuat mereka mengantongi satu kresek untuk satu jenis bahan makanan. Mengikuti perkembangan industri indonesia yang terus meningkat dengan banyaknya didirikan pabrik garment serta konveksi dari skala kecil hingga besar yang pada tiap produksinya menyisakan kain-kain sisa yang tidak terpakai merupakan peluang bagi kami untuk memanfaatkan kain sisa tersebut sebagai pengganti kantong plastik atau kresek dan pouch serut yang bisa dilipat dan praktis dibawa bepergian.&nbsp;<br>Maraknya inovasi dalam bidang food and beverage di Indonesia yang menarik banyak masyarakat untuk mencobanya serta kebiasaan mahasiswa berbelanja makanan ringan disekitar kampus adalah salah satu kontribusi nyata dalam penumpukan sampah plastik sekali pakai. Maka dari itu, dibuatlah produk wadah makanan dan minuman yang bentuknya menyerupai kemasan-kemasan tersebut tanpa mahasiswa atau pengguna lainnya malu membawanya. Kecendrungan akan hal yang praktis dan tidak merepotkanpun menjadi pertimbangan sehingga kedua wadah ini didesain dapat dilipat dan mudah dibawa bepergian.</p>', '<p>Foldable bag and pouch sudah banyak diproduksi di Indonesia, namun pemilihan bahan baku menjadi hal yang membedakan produk ini dengan produk lainnya.</p><p>Foldable bottle and food storage di Indonesia belum terlalu banyak di produksi. Produksi yang telah dilakukan dan dipasarkanpun memiliki spesifikasi yang berbeda dimana foldable bottle produk lain hanya dilengkapi dengan satu lubang untuk minum minuman cair (tanpa topping)</p><p>Foldable food storage di Indonesia belum terlalu banyak di produksi. Produksi yang telah dilakukan dan dipasarkanpun memiliki spesifikasi yang berbeda dimana foldable food storage produk lain bentuknya tidak menyerupai kemasan plastik yang umumnya digunakan untuk jajan, sehingga dalam segi ukuran dan bentuk masih kurang cocok dibawa bepergian</p>', '', '<ul><li>Belum mengetahui teknis pembuatan wadah silikon</li></ul>', NULL, '<ul><li>Menghubungi pabrik silikon untuk menanyakan teknis pembuatan wadah silikon&nbsp;</li></ul>', '<ul><li>Foldable bag dilengkapi dengan strap untuk menjaga bentuk tas tetap terlipat saat tidak digunakan dan tali yang memudahkan pengguna untuk membawa dan menyimpannya</li><li>Foldable pouch dilengkapi dengan tali serut untuk memudahkan dan mempercepat proses memasukkan bahan makanan kedalam pouch dan terdapat variasi ukuran sesuai dengan jenis bahan makanan yang dibeli</li><li>Foldable bottle dilengkapi dengan dua opsi cara minum, yaitu dengan sedotan berukuran besar untuk mengomsumsi minuman bertopping dan kontak langsung antara mulut dengan permukaan botol. Tali dan strap untuk memudahkan pengguna melipat dan menyimpannys</li><li>Foldable food storage dilengkapi dengan strap untuk membuka dan menutup wadah makanan serta tali untuk memudahkan pengguna membawanya</li></ul>', '<ul><li>Foldable bag berguna menampung barang belanjaan&nbsp;</li><li>Foldable pouch berguna untuk menampung barang berdasarkan jenis-jenisnya</li><li>Foldable bottle berguna sebagai wadah minum yang memiliki umur penggunaan lebih panjang daripada botol kemasan sekali pakai</li><li>Foldable food storage berguna sebagai wadah makanan yang memiliki umur penggunaan lebih panjang daripada plastik kiloan sekali pakai</li></ul><p>&nbsp;</p>', '<ul><li>Foldable bag dan pouch terbuat dari kain sisa produksi pabrik atau konveksi</li><li>Foldable bag dan pouch bisa dilipat ketika tidak terisi barang</li><li>Foldable bag and pouch tidak memakan tempat bila dimasukkan kedalam tas sehari-hari</li><li>Foldable bag and pouch dapat digunakan dalam waktu yang panjang</li><li>Foldable bottle and food storage anti bocor karena terbuat dari silikon</li><li>Foldable bottle and food storage tidak berbahaya untuk makanan dan minuman panas</li><li>Foldable bottle and food storage bisa dilipat bila tidak terisi makanan atau minuman</li></ul>', 'masih riset', NULL, NULL, '', '<p>Apabila ketersediaan bahan baku (kain sisa produksi pabrik) terus meningkat, produk akan dikembangkan dalam segi desain dan kegunaannya. Tidak hanya tas dan pouch untuk belanja tetapi juga tas sehari-hari dan produk lainnya yang terbuat dari kain.</p>', '', '', '', 0, '41', '2020-06-01 12:35:09', '41', '2020-06-01 06:28:56'),
-(45, 'token kerja', NULL, NULL, '0045-token-kerja', 'Rekayasa Keteknikan', '[\"Content Management System\"]', 'digital', NULL, NULL, 'dsd', '', '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, 0, '48', '2020-06-01 13:55:51', '48', '2020-06-01 06:55:51');
+(45, 'token kerja', NULL, NULL, '0045-token-kerja', 'Rekayasa Keteknikan', '[\"Content Management System\"]', 'digital', NULL, NULL, 'dsd', '', '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, 0, '48', '2020-06-01 13:55:51', '48', '2020-06-01 06:55:51'),
+(46, 'Repudiandae quia cup', NULL, NULL, '0046-Repudiandae-quia-cup', 'Energi', '[\"Kesehatan Masyarakat\",\"Management Tools\",\"Pangan Olahan\",\"Peternakan\"]', 'digital', NULL, NULL, 'asd asd sad', '', '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, 1, '16', '2020-06-01 16:15:04', '16', '2020-06-05 03:03:09'),
+(47, 'Aliquam ad cupiditat', NULL, NULL, '0047-Aliquam-ad-cupiditat', 'Material Maju', '[\"Alat Kesehatan\",\"Kebencanaan\",\"Keramik Struktural\",\"Kosmetika dan Produk Kecantikan\",\"Material Bio-Katalis\",\"Material untuk Bahan Bangunan\"]', 'digital', NULL, NULL, '', '', '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, '', '', NULL, NULL, NULL, 1, '16', '2020-06-05 09:54:13', '16', '2020-06-05 02:54:18');
 
 -- --------------------------------------------------------
 
@@ -765,7 +794,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `identifier`, `nama`, `fakultas`, `jurusan`, `prodi`, `status`, `is_admin`, `email`, `kontak`, `foto`, `nik`, `jenis_kelamin`, `tanggal_lahir`, `foto_ktp`, `cv`, `pendidikan_terakhir`, `fcm`, `auth`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
 (1, '135020500111002', 'ANGGIT SETIADI', 'FEB', 'Studi Pembangunan', 'Ekonomi Islam', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2013/135020500111002.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 18:28:00', '', '2020-06-01 09:02:53'),
-(2, '135050101111155', 'Tawang Aji Lestari', 'FAPET', 'Non jurusan', 'Peternakan', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2013/135050101111155.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 17:37:28', '', '2020-06-01 09:03:20'),
+(2, '135050101111155', 'Tawang Aji Lestari', 'FAPET', 'Non jurusan', 'Peternakan', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2013/135050101111155.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 17:37:28', '16', '2020-06-13 17:02:37'),
 (3, '145090400111025', 'IMRON MASHURI', 'FMIPA', 'Matematika', 'Matematika', 'mahasiswa', 'admin', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2014/145090400111025.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-28 13:07:33', '', '2020-06-01 09:08:13'),
 (4, '155020100111021', 'DIKAU TONDO PRASTYO', 'FEB', 'Studi Pembangunan', 'Ekonomi Pembangunan', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2015/155020100111021.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 18:33:21', '', '2020-06-01 09:02:53'),
 (5, '155060301111051', 'Mochammad Abdul Ghofur', 'FT', 'Teknik Elektro', 'Teknik Elektro', 'mahasiswa', 'no', 'mochabdulghofur18@gmail.com', '085732830007', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2015/155060301111051.jpg', NULL, NULL, '1996-09-18', NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-31 22:30:29', '', '2020-06-01 09:09:05'),
@@ -779,7 +808,7 @@ INSERT INTO `users` (`id`, `identifier`, `nama`, `fakultas`, `jurusan`, `prodi`,
 (13, '165100200111013', 'MEY YULIANA', 'FTP', 'Keteknikan Pertanian', 'Teknik Pertanian', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165100200111013.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-30 11:52:02', '', '2020-06-01 09:02:31'),
 (14, '165100907111019', 'Adam Taufan Firdaus', 'FTP', 'Keteknikan Pertanian', 'Teknik Lingkungan', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165100907111019.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 18:26:36', '', '2020-06-01 09:02:31'),
 (15, '165150207111058', 'danang trisdiana putra', 'FILKOM', 'Teknik Informatika', 'Teknik Informatika', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150207111058.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-27 17:49:13', '', '2020-06-01 09:09:28'),
-(16, '165150401111060', 'Ghany Abdillah Ersa', 'FILKOM', 'Sistem Informasi', 'Sistem Informasi', 'mahasiswa', 'admin', 'ghany.ae@student.ub.ac.id', '082164028264', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150401111060.jpg', NULL, NULL, '1997-12-24', NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-27 08:47:06', '', '2020-06-01 09:09:28'),
+(16, '165150401111060', 'Ghany Abdillah Ersa', 'FILKOM', 'Sistem Informasi', 'Sistem Informasi', 'mahasiswa', 'admin', 'ghany.ae@student.ub.ac.id', '21312312331231', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2016/165150401111060.jpg', NULL, NULL, '1997-12-24', NULL, NULL, 'SMA/Sederajat', NULL, 'MTEzNDA4MTIzOTIxMzQwMTM1MDU4', '', '2020-05-27 08:47:06', '', '2020-06-01 21:10:06'),
 (17, '173140414111066', 'RACHMATIKA PUTRI ADRIARINI', 'Vokasi', 'Non jurusan', 'Kesekretariatan BK. Public Relation', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2017/173140414111066.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 18:36:14', '', '2020-06-01 09:10:32'),
 (18, '173141414111134', 'Suliyono', 'Vokasi', 'Non jurusan', 'Keuangan dan Perbankan BK. Perpajakan', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2017/173141414111134.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-27 14:32:56', '', '2020-06-01 09:10:32'),
 (19, '175040100111151', 'DZAHABY RAZAN', 'FP', 'Sosial Ekonomi Pertanian', 'Agribisnis', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2017/175040100111151.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-27 13:51:44', '', '2020-06-01 09:07:37'),
@@ -836,6 +865,12 @@ ALTER TABLE `aset`
 ALTER TABLE `aspek_bisnis`
   ADD PRIMARY KEY (`produk_id`),
   ADD KEY `aspek_bisnis_FKIndex1` (`produk_id`);
+
+--
+-- Indexes for table `cluster`
+--
+ALTER TABLE `cluster`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `data_dasar`
@@ -926,7 +961,8 @@ ALTER TABLE `pemasaran`
 --
 ALTER TABLE `pengajuan`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `pengajuan_FKIndex1` (`produk_id`);
+  ADD KEY `pengajuan_FKIndex1` (`produk_id`),
+  ADD KEY `cluster` (`cluster_id`);
 
 --
 -- Indexes for table `pengujian`
@@ -1037,6 +1073,12 @@ ALTER TABLE `aset`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `cluster`
+--
+ALTER TABLE `cluster`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `data_dasar`
 --
 ALTER TABLE `data_dasar`
@@ -1130,7 +1172,7 @@ ALTER TABLE `prestasi`
 -- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `produksi`
@@ -1154,7 +1196,7 @@ ALTER TABLE `ulasan`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- Constraints for dumped tables
@@ -1243,6 +1285,7 @@ ALTER TABLE `pemasaran`
 -- Constraints for table `pengajuan`
 --
 ALTER TABLE `pengajuan`
+  ADD CONSTRAINT `cluster` FOREIGN KEY (`cluster_id`) REFERENCES `cluster` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pengajuan_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --

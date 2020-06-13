@@ -17,9 +17,9 @@ class Master extends CI_Controller
 
 		$do = DB_MODEL::insert($this->table, $data);
 		if (!$do->error) {
-			success("data berhasil ditambahkan", $do->data);
+			success("data " . $this->table . " berhasil ditambahkan", $do->data);
 		} else {
-			error("data gagal ditambahkan");
+			error("data " . $this->table . " gagal ditambahkan");
 		}
 	}
 
@@ -32,9 +32,9 @@ class Master extends CI_Controller
 		}
 
 		if (!$do->error)
-			success("data berhasil ditemukan", $do->data);
+			success("data " . $this->table . " berhasil ditemukan", $do->data);
 		else
-			error("data gagal ditemukan");
+			error("data " . $this->table . " gagal ditemukan");
 	}
 
 	public function update()
@@ -49,9 +49,9 @@ class Master extends CI_Controller
 
 		$do = DB_MODEL::update($this->table, $where, $data);
 		if (!$do->error)
-			success("data berhasil diubah", $do->data);
+			success("data " . $this->table . " berhasil diubah", $do->data);
 		else
-			error("data gagal diubah");
+			error("data " . $this->table . " gagal diubah");
 	}
 
 	public function delete()
@@ -62,8 +62,8 @@ class Master extends CI_Controller
 
 		$do = DB_MODEL::delete($this->table, $where);
 		if (!$do->error)
-			success("data berhasil dihapus", $do->data);
+			success("data " . $this->table . " berhasil dihapus", $do->data);
 		else
-			error("data gagal dihapus");
+			error("data " . $this->table . " gagal dihapus");
 	}
 }

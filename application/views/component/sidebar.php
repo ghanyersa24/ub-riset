@@ -47,6 +47,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<li class="<?php echo $segment == 'plotting' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/plotting"><i class="fas fa-at"></i><span>Plotting</span></a></li>
 				</li>
 				<li class="<?php echo $segment == 'manage' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/manage"><i class="fas fa-users"></i> <span>Management User</span></a></li>
+				<li class="<?php echo $segment == 'cluster' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/cluster"><i class="fab fa-accusoft"></i> <span>Clusterization</span></a></li>
 			<?php
 			} ?>
 			<li class="<?php echo $segment == 'perusahaan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/perusahaan"><i class="fas fa-briefcase"></i> <span>Perusahaan</span></a></li>

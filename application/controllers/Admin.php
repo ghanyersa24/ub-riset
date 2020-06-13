@@ -195,6 +195,15 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function cluster()
+	{
+		if ($this->session->is_admin != 'admin')
+			redirect('admin');
+		$data['title'] = 'Halaman Cluster';
+		$data['content'] = 'ap_cluster';
+		$this->load->view('template', $data);
+	}
+
 	public function tambahan($slug)
 	{
 		$data = riset::slugs_produk($slug);
