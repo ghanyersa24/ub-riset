@@ -4,10 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Master extends CI_Controller
 {
 	protected $table = "table";
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
-		// additional library
+		if (!$this->session->has_userdata('logged_in')) {
+			redirect('login');
+		}
 	}
 	public function create()
 	{
@@ -44,7 +46,7 @@ class Master extends CI_Controller
 		);
 
 		$where = array(
-			"id" => post('id','required'),
+			"id" => post('id', 'required'),
 		);
 
 		$do = DB_MODEL::update($this->table, $where, $data);
@@ -57,7 +59,7 @@ class Master extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id','required')
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);

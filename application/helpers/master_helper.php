@@ -182,9 +182,17 @@ function email($params, $value)
 function required($params, $value)
 {
 	$message = underline($params);
-	if (empty(post($params))) {
+	if (empty($value)) {
 		$params = underline($params);
 		error("data input $message tidak boleh kosong");
+	}
+	return $value;
+}
+
+function session($value)
+{
+	if (empty($value)) {
+		error("pastikan kamu sudah login ya.");
 	}
 	return $value;
 }

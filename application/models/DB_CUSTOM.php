@@ -22,11 +22,11 @@ class DB_CUSTOM extends CI_Model
 		$id = $CI->session->userdata('id');
 		if (count($arr) > 0)
 			$query = $CI->db->from('users')
-				->where(["id !="=>$id])
+				->where(["id !=" => $id])
 				->where_not_in("id", $arr)->get();
 		else
 			$query = $CI->db->from('users')
-				->where(["id !="=>$id])->get();
+				->where(["id !=" => $id])->get();
 		if ($query)
 			return true($query->result());
 		else
@@ -41,6 +41,17 @@ class DB_CUSTOM extends CI_Model
 			->join('produk', 'produk_perusahaan.produk_id = produk.id')
 			->join('roadmap', 'produk.id = roadmap.produk_id')
 			->where(['perusahaan_id' => $perusahaan_id])->get();
+		if ($query)
+			return true($query->result());
+		else
+			return false();
+	}
+	public static function product($where, $order)
+	{
+		$CI = &get_instance();
+		$query = $CI->db
+			->from('produk')
+			->where($where)->get();
 		if ($query)
 			return true($query->result());
 		else

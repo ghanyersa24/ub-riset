@@ -1,23 +1,23 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Super extends CI_Controller
+class Get extends CI_Controller
 {
 	protected $table = "produk";
 	public function __construct()
 	{
 		parent::__construct();
-		if (!$this->session->has_userdata('logged_in')) {
-			redirect('login');
-		}
 		$this->load->helper('riset');
 	}
 
+	public function product()
+	{
+	}
 	public function get($slug)
 	{
 		$slugs = riset::slug_public($slug);
 		if ($slugs['error'])
-			redirect('admin');
+			error('data tidak ditemukan');
 		$where = ['produk_id' => $slugs['data']['id']];
 		$dataDasar = DB_MODEL::join('data_dasar', 'produk', null, 'right', $where, "data_dasar.*")->data;
 		$pengajuan = DB_MODEL::join('pengajuan', 'users', 'pengajuan.verifikator=users.id', 'right', $where, 'pengajuan.*,users.nama nama_verifikator')->data;
@@ -25,14 +25,17 @@ class Super extends CI_Controller
 		foreach ($roadmap as $value) {
 			$value->nilai_pendanaan = set_rupiah($value->nilai_pendanaan);
 		}
+
 		$pemasaran = DB_MODEL::where('pemasaran', $where)->data;
 		foreach ($pemasaran as $value) {
 			$value->nilai_pemasaran = set_rupiah($value->nilai_pemasaran);
 		}
+
 		$omset = DB_MODEL::where('omset_profit', $where)->data;
 		foreach ($omset as $value) {
 			$value->nilai = set_rupiah($value->nilai);
 		}
+
 		$data = [
 			'produk' => $slugs['data']['produk'],
 			'pengajuan' => count($pengajuan) > 0 ? $pengajuan[(count($pengajuan) - 1)] : null,

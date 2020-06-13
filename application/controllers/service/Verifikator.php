@@ -4,10 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Verifikator extends CI_Controller
 {
 	protected $table = "users";
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
-		// additional library
+		if (!$this->session->has_userdata('logged_in') || $this->session->is_admin == 'no') {
+			redirect('login');
+		}
 	}
 
 	public function get()

@@ -4,10 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Produk extends CI_Controller
 {
 	protected $table = "produk";
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
-		// additional library
+		if (!$this->session->has_userdata('logged_in')) {
+			redirect('login');
+		}
 	}
 	public function create()
 	{
@@ -137,7 +139,8 @@ class Produk extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id', 'required')
+			"id" => post('id', 'required'),
+			'created_by' => $this->session->userdata('id')
 		);
 
 		$do = DB_MODEL::update($this->table, $where, ['is_delete' => 1]);

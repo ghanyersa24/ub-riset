@@ -1,23 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Foto_kegiatan extends CI_Controller
+class Master extends CI_Controller
 {
-	protected $table = "foto_kegiatan";
-	function __construct()
+	protected $table = "table";
+	public function __construct()
 	{
 		parent::__construct();
-		if (!$this->session->has_userdata('logged_in')) {
-			redirect('login');
-		}
+		// additional library
 	}
 	public function create()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
-			"title" => $title = post('title', 'required'),
-			"foto" => UPLOAD_FILE::img('foto', "inovasi/$produk/foto", "$title-foto-$produk"),
-			"keterangan" => post('keterangan', 'allow_html')
+			"column" => post('column'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -33,7 +28,7 @@ class Foto_kegiatan extends CI_Controller
 		if (is_null($id)) {
 			$do = DB_MODEL::all($this->table);
 		} else {
-			$do = DB_MODEL::where($this->table, array("produk_id" => $id));
+			$do = DB_MODEL::find($this->table, array("id" => $id));
 		}
 
 		if (!$do->error)
@@ -45,12 +40,9 @@ class Foto_kegiatan extends CI_Controller
 	public function update()
 	{
 		$data = array(
-			"produk_id" => $produk = post('produk_id', 'required'),
-			"title" => $title = post('title', 'required'),
-			"keterangan" => post('keterangan', 'allow_html')
+			"column" => post('column'),
 		);
-		if (isset($_FILES['foto_new']))
-			$data['foto'] = UPLOAD_FILE::update('img', 'foto', "inovasi/$produk/foto", "$title-foto-$produk");
+
 		$where = array(
 			"id" => post('id', 'required'),
 		);
@@ -68,7 +60,6 @@ class Foto_kegiatan extends CI_Controller
 			"id" => post('id', 'required')
 		);
 
-		UPLOAD_FILE::delete('foto');
 		$do = DB_MODEL::delete($this->table, $where);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);

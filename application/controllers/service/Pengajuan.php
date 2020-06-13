@@ -4,10 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Pengajuan extends CI_Controller
 {
 	protected $table = "pengajuan";
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
-		$this->load->helper(['riset']);
+		if (!$this->session->has_userdata('logged_in')) {
+			redirect('login');
+		}
 	}
 	public function create()
 	{

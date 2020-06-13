@@ -4,10 +4,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Foto_produk extends CI_Controller
 {
 	protected $table = "foto_produk";
-	public function __construct()
+	function __construct()
 	{
 		parent::__construct();
-		// additional library
+		if (!$this->session->has_userdata('logged_in')) {
+			redirect('login');
+		}
 	}
 	public function create()
 	{
