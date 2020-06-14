@@ -283,6 +283,7 @@
 													<label for="add-katsinov">Pilih tingkat katsinov</label>
 													<select name="katsinov" id="add-katsinov" class="form-control" required>
 														<option selected disabled>silahkan pilih Katsinov</option>
+														<option value="belum memenuhi">Belum memenuhi</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
@@ -304,6 +305,7 @@
 													<label for="add-tkt">Pilih tingkat TKT</label>
 													<select name="tkt" id="add-tkt" class="form-control" required>
 														<option selected disabled>silahkan pilih TKT</option>
+														<option value="belum memenuhi">Belum memenuhi</option>
 														<option value="1">1</option>
 														<option value="2">2</option>
 														<option value="3">3</option>
@@ -321,6 +323,12 @@
 													<label for="add-file">File Evaluasi TKT</label>
 													<input type="file" name="file_tkt" id="add-file_tkt" class="form-control" required>
 													<a href="https://srv-file14.gofile.io/download/zcwImW/TeknoMeter_v2.5.xlsx" target="_blank" class="ml-3 mt-3 text-decoration-none">Unduh Form TKT</a>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label for="add-catatan">Catatan</label>
+													<textarea name="catatan" id="add-catatan"></textarea>
 												</div>
 											</div>
 										</div>
@@ -396,7 +404,7 @@
 	}
 
 	$(document).ready(function() {
-
+		triggerEditor('#form-add-verifikasi')
 		$.ajax({
 			method: 'get',
 			url: "<?= base_url() . 'service/super/get/' . $slug ?>",

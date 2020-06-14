@@ -234,13 +234,15 @@
 															<div>
 																<p class="mb-0">Validasi Terakhir: <strong>${dateConvert(pengajuan.created_at)}</strong></p>
 																<p class="mb-0">Oleh: <strong>${pengajuan.nama_verifikator}</strong></p>
-																<button class="btn btn-primary mb-3 btn-icon icon-left" data-toggle="modal" data-target="#view" ><i class="fa fa-download mr-1"></i>Download Penilaian</button>
+																<button class="btn btn-primary mb-3 btn-icon icon-left" data-toggle="modal" data-target="#view" ><i class="fa fa-download mr-1"></i>Download Penilaian</button>																
 															</div>
 															<div class="text-md-right">
 																<p class="mb-0">Status TKT: <strong>${pengajuan.tkt}</strong></p>
 																<p>Tingkat KATSINOV: <strong>${pengajuan.katsinov}</strong></p>
 															</div>
-														</div>`)
+														</div>
+														<p class="mb-0">Catatan: ${pengajuan.catatan}</p>
+														`)
       						$('#view').html(`<div class="modal-dialog modal-dialog-centered" role="document" style="z-index:9999999">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -293,30 +295,61 @@
       			}
       		})
 
-      		$('#btn-ajukan').click(function(e) {
-      			e.preventDefault();
+      		$('#btn-ajukan').click(async function(e) {
+      			let clusterData = []
+      			e.preventDefault()
+      			await $.ajax({
+      				method: 'get',
+      				url: "<?= base_url() . 'service/cluster/get/' ?>",
+      				dataType: 'json',
+      				success: (r) => {
+      					clusterData = r.data
+      				}
+      			})
+      			let confirm = document.createElement('form')
+      			confirm.id = 'confirm-form'
+      			let clusterWrapper = document.createElement('select')
+      			clusterWrapper.setAttribute('name', 'cluster_id')
+      			clusterWrapper.className = 'form-control text-center'
+      			let clusterOption = ''
+      			clusterData.forEach(element => {
+      				clusterOption += `<option value="${element.id}">${element.cluster}</option>`
+      			});
+      			clusterWrapper.innerHTML = clusterOption
+      			confirm.append(clusterWrapper)
+      			let confirmTitle = document.createElement('p')
+      			confirmTitle.innerHTML = `Silahkan tulis "<?= $this->session->userdata('id') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!`
+      			confirm.append(confirmTitle)
+      			let confirmInput = document.createElement('input')
+      			confirmInput.setAttribute('name', 'auth')
+      			confirmInput.className = 'form-control text-center'
+      			confirmInput.setAttribute('type', 'number')
+      			confirm.append(confirmInput)
+
       			swal({
       					title: "Apakah kamu yakin?",
       					icon: "warning",
-      					text: 'silahkan tulis "<?= $this->session->userdata('id') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!',
+      					text: `Silahkan pilih tujuan pengajuanmu`,
       					content: {
-      						element: "input",
-      						attributes: {
-      							type: "number",
-      							className: "text-center form-control",
-      						},
+      						element: confirm
       					},
+      					// text: `Silahkan tulis "<?= $this->session->userdata('id') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!`,
+      					// content: {
+      					// 	element: "input",
+      					// 	attributes: {
+      					// 		type: "number",
+      					// 		className: "text-center form-control",
+      					// 	},
+      					// },
       					buttons: true,
       				})
       				.then(pass => {
       					if (!pass) throw null;
+      					let data = $('#confirm-form').serialize()
       					$.ajax({
       						type: "POST",
       						url: api + 'service/pengajuan/create',
-      						data: {
-      							slug: '<?= $slug ?>',
-      							auth: pass
-      						},
+      						data: data + '&slug=<?= $slug ?>',
       						success: function(response) {
       							response_alert(response)
       							if (!response.error) {

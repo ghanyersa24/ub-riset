@@ -21,6 +21,7 @@
 											<th>Nama Produk</th>
 											<th>Inventor</th>
 											<th>Bidang</th>
+											<th>Tujuan Pengajuan</th>
 											<th>Status</th>
 											<th width="35%">Verifikator</th>
 										</tr>
@@ -82,6 +83,9 @@
 				},
 				{
 					data: 'bidang'
+				},
+				{
+					data: 'cluster'
 				},
 				{
 					render: function(data, type, row, meta) {

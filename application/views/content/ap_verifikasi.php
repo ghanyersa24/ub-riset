@@ -21,6 +21,7 @@
 											<th>Nama Produk</th>
 											<th>Inventor</th>
 											<th>Waktu pengajuan</th>
+											<th>Tujuan pengajuan</th>
 											<th>Status</th>
 											<th>Aksi</th>
 										</tr>
@@ -66,6 +67,9 @@
 				},
 				{
 					data: 'created_at'
+				},
+				{
+					data: 'cluster'
 				},
 				{
 					"render": function(data, type, row, meta) {

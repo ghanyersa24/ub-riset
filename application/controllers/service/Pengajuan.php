@@ -13,6 +13,7 @@ class Pengajuan extends CI_Controller
 	}
 	public function create()
 	{
+		$this->load->helper('riset');
 		if ($this->session->userdata('id') != post('auth', 'required'))
 			error('konfirmasi kamu salah, silahkan masukkan kembali.');
 
@@ -28,7 +29,7 @@ class Pengajuan extends CI_Controller
 			}
 			$data = array(
 				"produk_id" => $slug['data']['id'],
-				"cluster" => post('cluster_id', 'required'),
+				"cluster_id" => post('cluster_id', 'required'),
 				"nama_produk" => $slug['data']['title'],
 				"slug" => $slug['data']['slug'],
 				"inventor" => $this->session->userdata('nama'),
