@@ -46,6 +46,23 @@ class DB_CUSTOM extends CI_Model
 		else
 			return false();
 	}
+	// public static function detailPengajuan($id = null)
+	// {
+	// 	$CI = &get_instance();
+	// 	$query = $CI->db->select('pengajuan.*,cluster.cluster')
+	// 		->from('produk')
+	// 		->join('pengajuan', 'pengajuan.produk_id=produk.id', 'right')
+	// 		->join('cluster', 'pengajuan.cluster_id=cluster.id','left');
+	// 	if (is_null($id)) {
+	// 		$do = $query->get();
+	// 	} else {
+	// 		$do = $query->where(['verifikator' => $CI->session->userdata('id')])->get();
+	// 	}
+	// 	if ($query)
+	// 		return true($do->result());
+	// 	else
+	// 		return false();
+	// }
 	public static function product($where, $order)
 	{
 		$CI = &get_instance();

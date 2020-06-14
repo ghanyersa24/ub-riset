@@ -296,7 +296,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="add-file">File Evaluasi Katsinov</label>
-													<input type="file" name="file_katsinov" id="add-file_katsinov" class="form-control" required>
+													<input type="file" name="file_katsinov" id="add-file_katsinov" class="form-control">
 													<a href="https://srv-file14.gofile.io/download/zcwImW/KATSINOV%20(IRL)%20-%20Meter%20(final).xls" target="_blank" class="ml-3 mt-3 text-decoration-none">Unduh Form Katsinov</a>
 												</div>
 											</div>
@@ -321,7 +321,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="add-file">File Evaluasi TKT</label>
-													<input type="file" name="file_tkt" id="add-file_tkt" class="form-control" required>
+													<input type="file" name="file_tkt" id="add-file_tkt" class="form-control">
 													<a href="https://srv-file14.gofile.io/download/zcwImW/TeknoMeter_v2.5.xlsx" target="_blank" class="ml-3 mt-3 text-decoration-none">Unduh Form TKT</a>
 												</div>
 											</div>
@@ -795,40 +795,37 @@
 				},
 				katsinov: {
 					required: true
-				},
-				file_katsinov: {
-					required: true
-				},
-				file_tkt: {
-					required: true
-				},
+				}
 			},
 			submitHandler: function(form) {
 				konfirmasi("memberikan penilaian TKT dan Katsinov dengan benar.").then((willSave) => {
-					let formData = new FormData()
-					formData.append('file_tkt', document.getElementById('add-file_tkt').files[0])
-					formData.append('file_katsinov', document.getElementById('add-file_katsinov').files[0])
-					formData.append('tkt', $('#add-tkt').val())
-					formData.append('katsinov', $('#add-katsinov').val())
-					formData.append('produk_id', <?= $id ?>)
-					formData.append('id', sessionStorage.getItem("verifikasi_id"))
-					$.ajax({
-						type: "POST",
-						url: api + "service/pengajuan/update",
-						data: formData,
-						async: false,
-						processData: false,
-						contentType: false,
-						success: (response) => {
-							response_alert(response)
-							if (!response.error) {
-								sessionStorage.clear()
-								setTimeout(function() {
-									window.location.replace(`<?= base_url() ?>admin/verifikasi`)
-								}, 1500)
+					if (willSave) {
+						let formData = new FormData()
+						formData.append('file_tkt', document.getElementById('add-file_tkt').files[0])
+						formData.append('file_katsinov', document.getElementById('add-file_katsinov').files[0])
+						formData.append('tkt', $('#add-tkt').val())
+						formData.append('katsinov', $('#add-katsinov').val())
+						formData.append('catatan', $('#add-catatan').val())
+						formData.append('produk_id', <?= $id ?>)
+						formData.append('id', sessionStorage.getItem("verifikasi_id"))
+						$.ajax({
+							type: "POST",
+							url: api + "service/pengajuan/update",
+							data: formData,
+							async: false,
+							processData: false,
+							contentType: false,
+							success: (response) => {
+								response_alert(response)
+								if (!response.error) {
+									sessionStorage.clear()
+									setTimeout(function() {
+										window.location.replace(`<?= base_url() ?>admin/verifikasi`)
+									}, 1500)
+								}
 							}
-						}
-					})
+						})
+					}
 				})
 
 			}

@@ -19,7 +19,7 @@ class UPLOAD_FILE
 
 	public static function excel($post_name, $location = null, $file_name = null, $max_size = 10000)
 	{
-		return self::uploads('xlx|xlsx', $post_name, $location, $file_name, $max_size);
+		return self::uploads('xls|xlsx', $post_name, $location, $file_name, $max_size);
 	}
 
 	public static function ppt($post_name, $location = null, $file_name = null, $max_size = 10000)
@@ -88,8 +88,11 @@ class UPLOAD_FILE
 				case 'The file you are attempting to upload is larger than the permitted size.':
 					error($name . " hanya bisa menerima file dengan ukuran " . number_format($max_size / 1000) . ' MB');
 					break;
+				case 'You did not select a file to upload.':
+					error($name . " wajib menyertakan file.");
+					break;
 				default:
-					error("File yang kamu kirim tidak sesuai dengan ketentuan.");
+					error("$name yang kamu kirim tidak sesuai dengan ketentuan.");
 					break;
 			}
 		}

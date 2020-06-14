@@ -15,7 +15,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</div>
 				</div>
 			</div>
-			<div class="col-md-8">
+			<!-- <div class="col-md-8">
 				<div class="card">
 					<div class="card-header">
 						<h4>Perkembangan Produk Inovasi UB</h4>
@@ -72,7 +72,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</section>
 </div>

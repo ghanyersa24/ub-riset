@@ -35,7 +35,7 @@ class Super extends CI_Controller
 		}
 		$data = [
 			'produk' => $slugs['data']['produk'],
-			'pengajuan' => count($pengajuan) > 0 ? $pengajuan[(count($pengajuan) - 1)] : null,
+			'pengajuan' => count($pengajuan) > 0 ? $pengajuan[0] : null,
 			'roadmap' => $roadmap,
 			'pengujian' => DB_MODEL::where('pengujian', $where)->data,
 			'ki' => DB_MODEL::where('kekayaan_intelektual', $where)->data,
@@ -59,7 +59,7 @@ class Super extends CI_Controller
 	private function riwayat($nama_produk, $where)
 	{
 		$informasi = DB_MODEL::where('informasi', $where)->data;
-		$pengajuan = DB_MODEL::where('pengajuan', $where)->data;
+		$pengajuan = DB_MODEL::join('pengajuan', 'cluster', null, null, $where)->data;
 		$prestasi = DB_MODEL::where('prestasi', $where)->data;
 		$data = riset::riwayat($nama_produk, $informasi, $pengajuan, $prestasi);
 		return $data;

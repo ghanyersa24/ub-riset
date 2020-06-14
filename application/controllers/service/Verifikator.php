@@ -23,7 +23,7 @@ class Verifikator extends CI_Controller
 
 	public function update()
 	{
-		$do = DB_MODEL::update('pengajuan', ['id' => post('id', 'required')], ['verifikator' => post('verifikator', 'required'), 'status' => 'diperiksa']);
+		$do = DB_MODEL::update_straight('pengajuan', ['id' => post('id', 'required')], ['verifikator' => post('verifikator', 'required'), 'status' => 'diperiksa']);
 		if (!$do->error)
 			success("data berhasil diperbarui", $do->data);
 		else

@@ -93,7 +93,6 @@
       			url: "<?= base_url() . 'service/super/get/' . $slug ?>",
       			dataType: 'json',
       			success: (r) => {
-      				console.log(r)
       				const produk = r.data
       				let roadmapDetail = `<div class="row">
       										<div class="col-md-12">
@@ -243,21 +242,26 @@
 														</div>
 														<p class="mb-0">Catatan: ${pengajuan.catatan}</p>
 														`)
-      						$('#view').html(`<div class="modal-dialog modal-dialog-centered" role="document" style="z-index:9999999">
+      						let download = `<div class="modal-dialog modal-dialog-centered" role="document" style="z-index:9999999">
 												<div class="modal-content">
 													<div class="modal-header">
 														<h5 class="modal-title" id="exampleModalLabel">Download Penilaian</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
 													</div>
-													<div class="modal-body row text-center" id="form-data">
-														<div class="col">
-															<button class="btn btn-light" onclick="download('${pengajuan.file_katsinov}')">Penilaian Katsinov</button>
-														</div>
-														<div class="col">
-															<button class="btn btn-light" onclick="download('${pengajuan.file_katsinov}')">Penilaian TKT</button>
-														</div>
-													</div>
-												</div>
-											</div>`)
+													<div class="modal-body row text-center" id="form-data">`
+      						if (pengajuan.file_katsinov != null)
+      							download += `<div class="col">
+												<button class="btn btn-light" onclick="download('${pengajuan.file_katsinov}')">Penilaian Katsinov</button>
+											</div>`
+
+      						if (pengajuan.file_tkt != null)
+      							download += `<div class="col">
+												<button class="btn btn-light" onclick="download('${pengajuan.file_tkt}')">Penilaian TKT</button>
+											</div>`
+      						download +=
+      							`</div>
+									</div>
+										</div>`
+      						$('#view').html(download)
       					} else {
       						$('#verifikasi-wrap').append(`<p>Kamu sedang mengajukan <strong>verifikasi</strong>, tunggu proses verifikasi selesai untuk dapat mengubah data lagi</p>`)
       					}

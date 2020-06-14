@@ -119,14 +119,14 @@ class riset
 				$data[] = [
 					"type" => "pengajuan",
 					"tahun" => (int) date('Y', strtotime($value->updated_at)),
-					"riwayat" => "pada " . date('d F Y', strtotime($value->updated_at)) . " produk " . $nama_produk . " telah diverifikasi dengan mendapat TKT " . $value->tkt . " dan KATSINOV " . $value->katsinov,
+					"riwayat" => "pada <strong>" . date('d F Y', strtotime($value->updated_at)) . "</strong> produk " . $nama_produk . " telah diverifikasi untuk <strong>" . $value->cluster . "</strong> dengan mendapat TKT " . $value->tkt . " dan KATSINOV " . $value->katsinov,
 				];
 		}
 		foreach ($prestasi as $value) {
 			$data[] = [
 				"type" => "prestasi",
 				"tahun" => (int) $value->tahun,
-				"riwayat" => "pada tahun " . $value->tahun . " produk " . $nama_produk . " mengikuti " . $value->nama_acara . " yang diselenggarakan oleh " . $value->penyelenggara . " dengan mendapat pencapaian " . $value->pencapaian,
+				"riwayat" => "pada tahun <strong>" . $value->tahun . "</strong> produk " . $nama_produk . " mengikuti " . $value->nama_acara . " yang diselenggarakan oleh " . $value->penyelenggara . " dengan mendapat pencapaian " . $value->pencapaian,
 			];
 		}
 		return self::sorting($data);

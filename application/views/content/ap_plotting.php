@@ -119,7 +119,7 @@
 							url: api + 'service/verifikator/update',
 							data: {
 								id: data.id,
-								verifikator: $(`table#table>tbody>tr:nth-of-type(${row})>td:nth-of-type(6)>select`).val()
+								verifikator: $(`#table>tbody>tr:nth-of-type(${row})>td:nth-of-type(7)>select`).val()
 							},
 							success: function(response) {
 								response_alert(response)

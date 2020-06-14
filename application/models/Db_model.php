@@ -111,9 +111,19 @@ class DB_MODEL extends CI_Model
 	{
 		$CI = &get_instance();
 		if (is_null($on))
-			$query = $CI->db->select($select)->from($to_table)->where($where)->join($table_join, $table_join . '.' . $to_table . '_id = ' . $to_table . '.id', $type)->get();
+			$query = $CI->db->select($select)
+				->from($to_table)
+				->where($where)
+				->join($table_join, $table_join . '.' . $to_table . '_id = ' . $to_table . '.id', $type)
+				->order_by("$table_join.created_at", 'desc')
+				->get();
 		else
-			$query = $CI->db->select($select)->from($to_table)->where($where)->join($table_join, $on, $type)->get();
+			$query = $CI->db->select($select)
+				->from($to_table)
+				->where($where)
+				->join($table_join, $on, $type)
+				->order_by("$table_join.created_at", 'desc')
+				->get();
 		if ($query)
 			return true($query->result());
 		else

@@ -48,11 +48,11 @@ class Pengajuan extends CI_Controller
 
 	public function get($id = null)
 	{
-		if (is_null($id)) {
-			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", 'right');
-		} else {
-			$do = DB_MODEL::join($this->table, 'produk', "pengajuan.produk_id=produk.id", "right", ['verifikator' => $this->session->userdata('id')]);
-		}
+		if (is_null($id))
+			$do = DB_MODEL::join($this->table, 'cluster', "pengajuan.cluster_id=cluster.id", 'right');
+		else
+			$do = DB_MODEL::join($this->table, 'cluster', "pengajuan.cluster_id=cluster.id", "right", ['verifikator' => $this->session->userdata('id')]);
+
 
 		if (!$do->error)
 			success("data berhasil ditemukan", $do->data);
@@ -69,23 +69,22 @@ class Pengajuan extends CI_Controller
 			"id" => post('id', 'required'),
 		);
 		$produk = post('produk_id', 'required');
-		if (post('is_verified', 'enum:true&false') == 'true')
-			$data = array(
-				"katsinov" => $katsinov = post('katsinov', 'required|numeric|min_value:0|max_value:6'),
-				"tkt" => $tkt = post('tkt', 'required|numeric|min_value:0|max_value:9'),
-				"file_tkt" => UPLOAD_FILE::excel('file_tkt', "inovasi/$produk/evaluasi", 'evaluasi_tkt'),
-				"file_katsinov" => UPLOAD_FILE::excel('file_katsinov', "inovasi/$produk/evaluasi", 'evaluasi_katsinov'),
-				"catatan" => post('catatan'),
-				"status" => 'dinilai',
-			);
-		else
-			$data = [
-				"status" => 'dinilai',
-				"catatan" => post('catatan')
-			];
+		$data = [
+			"katsinov" => $katsinov = post('katsinov', 'required|enum:1&2&3&4&5&6&belum memenuhi'),
+			"tkt" => $tkt = post('tkt', 'required|enum:1&2&3&4&5&6&7&8&9&belum memenuhi'),
+			"catatan" => post('catatan', 'allow_html'),
+			"status" => 'dinilai',
+		];
+		
+		if ($katsinov !== 'belum memenuhi')
+			$data["file_katsinov"] = UPLOAD_FILE::excel('file_katsinov', "inovasi/$produk/evaluasi", 'evaluasi_katsinov');
+		
+			if ($tkt !== 'belum memenuhi')
+			$data["file_tkt"] = UPLOAD_FILE::excel('file_tkt', "inovasi/$produk/evaluasi", 'evaluasi_tkt');
+
 		$do = DB_MODEL::update($this->table, $where, $data);
 		if (!$do->error) {
-			DB_MODEL::update('produk', ['id' => $produk], ['katsinov' => $katsinov, 'tkt' => $tkt]);
+			DB_MODEL::update_straight('produk', ['id' => $produk], ['katsinov' => $katsinov, 'tkt' => $tkt]);
 			success("data berhasil diubah", $do->data);
 		} else
 			error("data gagal diubah");
