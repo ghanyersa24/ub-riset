@@ -66,7 +66,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div class="form-group">
 								<input id="add-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
 								<label for="add-nama">Jenis Sertifikasi / Perijinan <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nama sertifikasi/pengujian, misal : Paten, BPOM, Halal, SNI, dst">!</span></label>
-								<input type="text" class="form-control" name="jenis" id="add-jenis" placeholder="jenis sertifikasi">
+								<!-- <input type="text" class="form-control" name="jenis" id="add-jenis" placeholder="jenis sertifikasi"> -->
+								<select name="jenis" id="add-jenis" class="form-control">
+									<option value="" selected disabled>Pilih jenis sertifikasi</option>
+									<option value="Paten">Paten</option>
+									<option value="Hak Cipta">Hak Cipta</option>
+									<option value="Merk Dagang">Merk Dagang</option>
+									<option value="Desain Industri">Desain Industri</option>
+									<option value="Indikasi Geografis">Indikasi Geografis</option>
+									<option value="Rahasia Dagang">Rahasia Dagang</option>
+									<option value="PVT">PVT</option>
+									<option value="Sertifikasi Halal">Sertifikasi Halal</option>
+									<option value="BPOM">BPOM</option>
+									<option value="P-IRT">P-IRT</option>
+									<option value="Ijin Kemenkes">Ijin Kemenkes</option>
+									<option value="SNI">SNI</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -155,7 +170,21 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<input id="view-id" class="form-control" type="text" name="id" hidden readonly>
 								<input id="view-produk_id" class="form-control" type="text" name="produk_id" hidden readonly value="<?= $id ?>">
 								<label for="view-nama">Jenis Kekayaan Intelektual <span class="badge badge-secondary badge-xs" data-toggle="tooltip" data-placement="right" title="Nama sertifikasi/pengujian, misal : Paten, BPOM, Halal, SNI, dst">!</span></label>
-								<input type="text" class="form-control" name="jenis" id="view-jenis">
+								<!-- <input type="text" class="form-control" name="jenis" id="view-jenis"> -->
+								<select name="jenis" id="view-jenis" class="form-control">
+									<option value="Paten">Paten</option>
+									<option value="Hak Cipta">Hak Cipta</option>
+									<option value="Merk Dagang">Merk Dagang</option>
+									<option value="Desain Industri">Desain Industri</option>
+									<option value="Indikasi Geografis">Indikasi Geografis</option>
+									<option value="Rahasia Dagang">Rahasia Dagang</option>
+									<option value="PVT">PVT</option>
+									<option value="Sertifikasi Halal">Sertifikasi Halal</option>
+									<option value="BPOM">BPOM</option>
+									<option value="P-IRT">P-IRT</option>
+									<option value="Ijin Kemenkes">Ijin Kemenkes</option>
+									<option value="SNI">SNI</option>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-4">
