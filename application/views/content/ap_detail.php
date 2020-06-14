@@ -322,7 +322,7 @@
       			clusterWrapper.innerHTML = clusterOption
       			confirm.append(clusterWrapper)
       			let confirmTitle = document.createElement('p')
-      			confirmTitle.innerHTML = `Silahkan tulis "<?= $this->session->userdata('id') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!`
+      			confirmTitle.innerHTML = `Silahkan tulis "<?= $this->session->userdata('identifier') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!`
       			confirm.append(confirmTitle)
       			let confirmInput = document.createElement('input')
       			confirmInput.setAttribute('name', 'auth')
@@ -337,7 +337,7 @@
       					content: {
       						element: confirm
       					},
-      					// text: `Silahkan tulis "<?= $this->session->userdata('id') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!`,
+      					// text: `Silahkan tulis "<?= $this->session->userdata('identifier') ?>" untuk mengkonfirmasi tindakan pengajuan produk untuk divalidasi!`,
       					// content: {
       					// 	element: "input",
       					// 	attributes: {

@@ -14,7 +14,7 @@ class Pengajuan extends CI_Controller
 	public function create()
 	{
 		$this->load->helper('riset');
-		if ($this->session->userdata('id') != post('auth', 'required'))
+		if ($this->session->userdata('identifier') != post('auth', 'required'))
 			error('konfirmasi kamu salah, silahkan masukkan kembali.');
 
 		$slug = riset::slug_public(post('slug', 'required'));
