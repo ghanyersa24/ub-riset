@@ -229,7 +229,7 @@
       					if (produk.pengajuan.status == 'dinilai') {
       						$('#roadmap-pengisian').html(roadmapDetail)
       						const pengajuan = r.data.pengajuan
-      						$('#verifikasi-wrap').html(`<div class="d-flex flex-wrap justify-content-between mb-4">
+      						$('#verifikasi-wrap').html(`<div class="d-flex flex-wrap justify-content-between">
 															<div>
 																<p class="mb-0">Validasi Terakhir: <strong>${dateConvert(pengajuan.created_at)}</strong></p>
 																<p class="mb-0">Oleh: <strong>${pengajuan.nama_verifikator}</strong></p>
@@ -240,7 +240,7 @@
 																<p>Tingkat KATSINOV: <strong>${pengajuan.katsinov}</strong></p>
 															</div>
 														</div>
-														<p class="mb-0">Catatan: ${pengajuan.catatan}</p>
+														<p class="mb-0"><strong>Catatan:</strong> ${pengajuan.catatan}</p>
 														`)
       						let download = `<div class="modal-dialog modal-dialog-centered" role="document" style="z-index:9999999">
 												<div class="modal-content">
