@@ -182,7 +182,7 @@
 					});
 				},
 				function(error) {
-					// alert(JSON.stringify(error, undefined, 2));
+					alert(JSON.stringify(error, undefined, 2));
 					$('#login-failed').css('display', 'block')
 					setTimeout(() => {
 						$('#login-failed').css('display', 'none')
