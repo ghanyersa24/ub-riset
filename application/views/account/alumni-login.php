@@ -25,48 +25,8 @@
 
 		gtag('config', 'UA-167752502-1');
 	</script>
-	<script src="https://apis.google.com/js/api:client.js"></script>
 
 	<style type="text/css">
-		#customBtn {
-			display: inline-block;
-			background: #003961;
-			color: white;
-			width: 190px;
-			border-radius: 5px;
-			/* border: thin solid #888; */
-			box-shadow: 4px 4px 5px rgba(200, 200, 200, 1);
-			white-space: nowrap;
-		}
-
-		#customBtn:hover {
-			cursor: pointer;
-		}
-
-		span.label {
-			font-family: serif;
-			font-weight: normal;
-		}
-
-		span.icon {
-			background: url('<?= base_url() ?>/assets/img/logo gapura.png') transparent 50% no-repeat;
-			background-size: cover;
-			display: inline-block;
-			vertical-align: middle;
-			width: 42px;
-			height: 42px;
-		}
-
-		span.buttonText {
-			display: inline-block;
-			vertical-align: middle;
-			padding-left: 42px;
-			padding-right: 42px;
-			font-size: 14px;
-			font-weight: bold;
-			/* Use the Roboto font that is loaded in the <head> */
-			font-family: 'Roboto', sans-serif;
-		}
 
 		.primary {
 			color: #fbaa19;
@@ -95,8 +55,8 @@
 
 			<div class="shadow bg-white p-5 login-form m-3" id="card-login">
 				<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Logo_Universitas_Brawijaya.svg/1200px-Logo_Universitas_Brawijaya.svg.png" alt="" id="icon-login" class="p-2 bg-white rounded-circle login-icon position-icon" />
-				<p class="h6 font-weight-bold mb-4 text-center">Masuk dengan Email UB</p>
-				<!-- <form name="form-login" id="form-login">
+				<p class="h6 font-weight-bold mb-4 text-center">Masuk sebagai alumni</p>
+				<form name="form-login" id="form-login">
 					<div class="form-group">
 						<label class="form-label" for="username">Username</label>
 						<input id="username" class="form-control rounded-pill" type="text" name="username">
@@ -108,17 +68,11 @@
 					<div class="text-center text-danger" id="msg"></div>
 					<button class="btn btn-primary rounded-pill form-control" id="btn-login" type="submit">Login</button>
 				</form>
-				<p class="text-center mb-0">atau</p> -->
 
-				<div id="gSignInWrapper">
-					<div id="customBtn" class="customGPlusSignIn">
-						<span class="icon"></span>
-						<span class="buttonText">Gapura <span class="primary">UB</span></span>
-					</div>
-				</div>
+				
 				<div class="text-center mt-2">
-				<p class="mb-0">atau</p>
-				<p><a href="<?= base_url().'alumni/login'?>">Masuk</a> sebagai alumni</p>
+				
+				<p>Belum terdaftar? <a href="<?= base_url().'alumni/register'?>">klik disini!</a></p>
 				</div>
 				<div id="name"></div>
 				<div id="login-success" style="display:none">
@@ -140,63 +94,6 @@
 			Copyright &copy; Brawijaya Research and Innovation
 		</div>
 	</div>
-	<script>
-		var googleUser = {};
-		var startApp = function() {
-			gapi.load('auth2', function() {
-				// Retrieve the singleton for the GoogleAuth library and set up the client.
-				auth2 = gapi.auth2.init({
-					client_id: '233130642128-pj63qqpc93o94nvndo215920jtuhati9.apps.googleusercontent.com',
-					cookiepolicy: 'single_host_origin',
-					// Request scopes in addition to 'profile' and 'email'
-					// scope: 'name'
-				});
-				attachSignin(document.getElementById('customBtn'));
-			});
-		};
-
-		function attachSignin(element) {
-			console.log(element.id);
-			auth2.attachClickHandler(element, {},
-				function(googleUser) {
-					const profile = googleUser.getBasicProfile();
-					$.ajax({
-						type: "POST",
-						url: api + 'account/login/spesial',
-						data: {
-							auth: profile.getId(),
-							nama: profile.getName(),
-							foto: profile.getImageUrl(),
-							email: profile.getEmail(),
-						},
-						dataType: "json",
-						success: function(response) {
-							if (!response.error) {
-								$('#login-success').css('display', 'block')
-								setTimeout(function() {
-									window.location.replace(`<?= base_url() ?>admin`)
-								}, 2000)
-							} else {
-								swal('Info !', response.message, 'info')
-								setTimeout(function() {
-									window.location.replace(`<?= base_url() ?>register/account/${response.data}`)
-								}, 2000)
-							}
-						}
-					});
-				},
-				function(error) {
-					// alert(JSON.stringify(error, undefined, 2));
-					$('#login-failed').css('display', 'block')
-					setTimeout(() => {
-						$('#login-failed').css('display', 'none')
-					}, 5000);
-				});
-		}
-	</script>
-	<script>
-		startApp();
-	</script>
 
 	<script src="<?php echo base_url(); ?>assets/modules/jquery.min.js">
 	</script>
