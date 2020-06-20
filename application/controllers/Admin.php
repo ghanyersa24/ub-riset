@@ -211,6 +211,14 @@ class Admin extends CI_Controller
 		$data['content'] = 'ap_tambahan';
 		$this->load->view('template', $data);
 	}
+	public function alumni()
+	{
+		if ($this->session->is_admin != 'admin')
+			redirect('admin');
+		$data['title'] = 'Halaman Verifikasi Alumni';
+		$data['content'] = 'ap_alumni';
+		$this->load->view('template', $data);
+	}
 
 	public function logout()
 	{
