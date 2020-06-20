@@ -173,6 +173,7 @@ function unique($params, $value, $table)
 
 function email($params, $value)
 {
+	$value = str_replace('%40', '@', $value);
 	$message = underline($params);
 	if (!filter_var($value, FILTER_VALIDATE_EMAIL))
 		error("$message tidak valid sebagai email");

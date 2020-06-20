@@ -59,22 +59,32 @@ class Register extends CI_Controller
 		}
 	}
 
-	// public function account()
-	// {
-	// 	post('password_confirmation', 'required|same:password');
-	// 	$data = [
-	// 		"nama" => post('nama', 'required'),
-	// 		"fakultas" => post('fakultas', 'required|enum:FH&FEB&FIA&FP&FAPET&FT&FK&FPIK&FMIPA&FTP&FISIP&FIB&FKH&FILKOM&FKG&Vokasi'),
-	// 		"jurusan" => post('jurusan', 'required'),
-	// 		"prodi" => post('prodi', 'required'),
-	// 		'username' => post('username', 'required|unique:alumni'),
-	// 		'password' => password_hash(post('password', 'required'), PASSWORD_DEFAULT, array('cost' => 10)),
-	// 		'status' => 'deactivate'
-	// 	];
-	// 	$do = DB_MASTER::insert('users', $data);
-	// 	if (!$do->error)
-	// 		success("data sedang diajukan untuk mendapatkan aktivasi", $do->data);
-	// 	else
-	// 		error("data gagal diajukan");
-	// }
+	public function account()
+	{
+		post('password_konfirmasi', 'required|same:password');
+		$data = [
+			'nim' => post('nim', 'required|numeric|min_char:15|max_char:20'),
+			"nama_lengkap" => $nama = post('nama_lengkap', 'required'),
+			"fakultas" => $fakultas = post('fakultas', 'required|enum:FH&FEB&FIA&FP&FAPET&FT&FK&FPIK&FMIPA&FTP&FISIP&FIB&FKH&FILKOM&FKG&Vokasi'),
+			"jurusan" => post('jurusan', 'required'),
+			"prodi" => post('prodi', 'required'),
+			'email' => $email = post('email', 'required|email|unique:users'),
+			'kontak' => post('kontak', 'required|numeric'),
+			'bukti' => UPLOAD_FILE::pdf('bukti', 'bukti', $fakultas . '_' . $nama),
+			'password' => password_hash(post('password', 'required'), PASSWORD_DEFAULT, array('cost' => 10)),
+			'status' => 'deactivate'
+		];
+		$where = ['status' => 'activate', 'email' => $email];
+		$same = DB_MASTER::find('alumni', $where);
+
+		if ($same->error)
+			$do = DB_MASTER::insert('alumni', $data);
+		else
+			error('email sudah dipakai akun lain.');
+
+		if (!$do->error)
+			success("data sedang diajukan untuk mendapatkan aktivasi", $do->data);
+		else
+			error("data gagal diajukan");
+	}
 }

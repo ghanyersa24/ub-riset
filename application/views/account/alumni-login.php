@@ -58,8 +58,8 @@
 				<p class="h6 font-weight-bold mb-4 text-center">Masuk sebagai alumni</p>
 				<form name="form-login" id="form-login">
 					<div class="form-group">
-						<label class="form-label" for="username">Username</label>
-						<input id="username" class="form-control rounded-pill" type="text" name="username">
+						<label class="form-label" for="email">Username</label>
+						<input id="email" class="form-control rounded-pill" type="email" name="email">
 					</div>
 					<div class="form-group mt-n1">
 						<label class="form-label" for="password">Password</label>
@@ -113,7 +113,7 @@
 			await bounce(0)
 			await $.ajax({
 				type: "post",
-				url: api + 'account/login',
+				url: api + 'account/login/alumni',
 				data: $('#form-login').serialize(),
 				success: function(response) {
 					if (!response.error) {

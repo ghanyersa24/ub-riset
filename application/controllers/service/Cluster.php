@@ -16,7 +16,7 @@ class Cluster extends CI_Controller
 		if ($this->session->is_admin == 'no')
 			redirect('login');
 		$data = array(
-			"cluster" => post('cluster', 'required|max_char:30'),
+			"cluster" => post('cluster', 'required|max_char:100'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -47,7 +47,7 @@ class Cluster extends CI_Controller
 			redirect('login');
 
 		$data = array(
-			"cluster" => post('cluster', 'required|max_char:30'),
+			"cluster" => post('cluster', 'required|max_char:100'),
 		);
 
 		$where = array(

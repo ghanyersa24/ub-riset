@@ -6,7 +6,6 @@ class Login extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// load
 	}
 	public function index()
 	{
@@ -91,5 +90,23 @@ class Login extends CI_Controller
 			$this->session->set_userdata($session_auth);
 			success("Welcome to system", $session_auth);
 		}
+	}
+
+	public function alumni()
+	{
+		$this->load->helper('auth');
+		$email = post('email', 'required');
+		$password = post('password', 'required');
+		$auth =	Auth::login('alumni', ['email' => $email, 'status' => 'activate'], $password);
+
+		$user = DB_MASTER::find('users', ['email' => $email, 'identifier' => $auth->nim, 'auth' => $auth->password]);
+		if ($user->error)
+			error('terjadi kesalahan dalam validasi akun');
+
+		$sesi = $user->data;
+		$sesi->logged_in = true;
+		$sesi->dark_mode = false;
+		$this->session->set_userdata((array) $sesi);
+		success('Welcome to our system', $sesi);
 	}
 }

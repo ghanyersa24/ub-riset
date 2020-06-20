@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2020 at 04:06 PM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Waktu pembuatan: 21 Jun 2020 pada 01.57
+-- Versi server: 10.4.11-MariaDB
+-- Versi PHP: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 
 DELIMITER $$
 --
--- Functions
+-- Fungsi
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `id` (`identifier` VARCHAR(15)) RETURNS INT(11) NO SQL
 RETURN (SELECT `id` FROM `users` WHERE `users`.`identifier`=identifier)$$
@@ -34,29 +34,41 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alumni`
+-- Struktur dari tabel `alumni`
 --
 
 CREATE TABLE `alumni` (
   `id` int(10) UNSIGNED NOT NULL,
+  `nim` varchar(20) NOT NULL,
   `nama_lengkap` varchar(100) NOT NULL,
   `fakultas` varchar(100) NOT NULL,
   `jurusan` tinytext NOT NULL,
   `prodi` tinytext NOT NULL,
-  `username` varchar(15) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `password` tinytext NOT NULL,
   `status` enum('activate','deactivate') NOT NULL,
   `foto` tinytext DEFAULT NULL,
+  `bukti` tinytext NOT NULL,
+  `kontak` varchar(15) NOT NULL,
   `created_by` varchar(15) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_by` varchar(15) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `alumni`
+--
+
+INSERT INTO `alumni` (`id`, `nim`, `nama_lengkap`, `fakultas`, `jurusan`, `prodi`, `email`, `password`, `status`, `foto`, `bukti`, `kontak`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
+(1, '434564546546234', 'Ut quisquam vel dolo', 'FK', 'Velit quis tempore ', 'Voluptatum facere en', 'ghany.ersa@bigio.id', '$2y$10$E4g/VqmktmGk/JgQlY..r.ajp/d8IV8XWQ1KdP264NNeYj3Gpm4xC', 'activate', NULL, 'http://localhost/ub-riset/uploads/bukti/FK_Ut_quisquam_vel_dolo_2020-06-21_05_21.pdf', '20', '', '2020-06-21 05:21:27', '16', '2020-06-20 23:35:08'),
+(2, '434564546546234', 'Ut quisquam vel dolo', 'FK', 'Velit quis tempore ', 'Voluptatum facere en', 'ghany.ersa@bigio.id', '$2y$10$oVjEgnSr5eqIOrcRuKTLhOSgI4qRfcDGfv2MHSe1dfhUs0/hB4B7e', 'deactivate', NULL, 'http://localhost/ub-riset/uploads/bukti/FK_Ut_quisquam_vel_dolo_2020-06-21_05_22.pdf', '20', '', '2020-06-21 05:22:24', '', '2020-06-20 22:22:24'),
+(3, '165150401111060', 'Assumenda tenetur ea', 'Vokasi', 'Nisi placeat volupt', 'Blanditiis dolore al', 'ghany.ersa@bigio.id', '$2y$10$HBT40ahqjsCgrvrvYYbU5.VgpF9s.S3QAGHs/KwsSqJG8.ITLbE6.', 'activate', NULL, 'http://localhost/ub-riset/uploads/bukti/Vokasi_Assumenda_tenetur_ea_2020-06-21_05_33.pdf', '37', '', '2020-06-21 05:33:43', '16', '2020-06-20 23:52:38');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aset`
+-- Struktur dari tabel `aset`
 --
 
 CREATE TABLE `aset` (
@@ -74,7 +86,7 @@ CREATE TABLE `aset` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aspek_bisnis`
+-- Struktur dari tabel `aspek_bisnis`
 --
 
 CREATE TABLE `aspek_bisnis` (
@@ -95,7 +107,7 @@ CREATE TABLE `aspek_bisnis` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cluster`
+-- Struktur dari tabel `cluster`
 --
 
 CREATE TABLE `cluster` (
@@ -109,7 +121,7 @@ CREATE TABLE `cluster` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `cluster`
+-- Dumping data untuk tabel `cluster`
 --
 
 INSERT INTO `cluster` (`id`, `cluster`, `is_delete`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -119,7 +131,7 @@ INSERT INTO `cluster` (`id`, `cluster`, `is_delete`, `created_by`, `created_at`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `data_dasar`
+-- Struktur dari tabel `data_dasar`
 --
 
 CREATE TABLE `data_dasar` (
@@ -144,7 +156,7 @@ CREATE TABLE `data_dasar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_kegiatan`
+-- Struktur dari tabel `foto_kegiatan`
 --
 
 CREATE TABLE `foto_kegiatan` (
@@ -162,7 +174,7 @@ CREATE TABLE `foto_kegiatan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `foto_produk`
+-- Struktur dari tabel `foto_produk`
 --
 
 CREATE TABLE `foto_produk` (
@@ -178,7 +190,7 @@ CREATE TABLE `foto_produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `foto_produk`
+-- Dumping data untuk tabel `foto_produk`
 --
 
 INSERT INTO `foto_produk` (`id`, `produk_id`, `title`, `foto`, `keterangan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -187,7 +199,7 @@ INSERT INTO `foto_produk` (`id`, `produk_id`, `title`, `foto`, `keterangan`, `cr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `guest`
+-- Struktur dari tabel `guest`
 --
 
 CREATE TABLE `guest` (
@@ -202,7 +214,7 @@ CREATE TABLE `guest` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `informasi`
+-- Struktur dari tabel `informasi`
 --
 
 CREATE TABLE `informasi` (
@@ -219,7 +231,7 @@ CREATE TABLE `informasi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventor`
+-- Struktur dari tabel `inventor`
 --
 
 CREATE TABLE `inventor` (
@@ -232,7 +244,7 @@ CREATE TABLE `inventor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `inventor`
+-- Dumping data untuk tabel `inventor`
 --
 
 INSERT INTO `inventor` (`produk_id`, `users_id`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -282,7 +294,7 @@ INSERT INTO `inventor` (`produk_id`, `users_id`, `created_by`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Table structure for table `izin_produk`
+-- Struktur dari tabel `izin_produk`
 --
 
 CREATE TABLE `izin_produk` (
@@ -306,7 +318,7 @@ CREATE TABLE `izin_produk` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kekayaan_intelektual`
+-- Struktur dari tabel `kekayaan_intelektual`
 --
 
 CREATE TABLE `kekayaan_intelektual` (
@@ -331,7 +343,7 @@ CREATE TABLE `kekayaan_intelektual` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kepemilikan`
+-- Struktur dari tabel `kepemilikan`
 --
 
 CREATE TABLE `kepemilikan` (
@@ -351,7 +363,7 @@ CREATE TABLE `kepemilikan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mitra`
+-- Struktur dari tabel `mitra`
 --
 
 CREATE TABLE `mitra` (
@@ -369,7 +381,7 @@ CREATE TABLE `mitra` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `omset_profit`
+-- Struktur dari tabel `omset_profit`
 --
 
 CREATE TABLE `omset_profit` (
@@ -387,7 +399,7 @@ CREATE TABLE `omset_profit` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pemasaran`
+-- Struktur dari tabel `pemasaran`
 --
 
 CREATE TABLE `pemasaran` (
@@ -405,7 +417,7 @@ CREATE TABLE `pemasaran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengajuan`
+-- Struktur dari tabel `pengajuan`
 --
 
 CREATE TABLE `pengajuan` (
@@ -431,7 +443,7 @@ CREATE TABLE `pengajuan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pengajuan`
+-- Dumping data untuk tabel `pengajuan`
 --
 
 INSERT INTO `pengajuan` (`id`, `produk_id`, `cluster_id`, `inventor`, `slug`, `nama_produk`, `bidang`, `kategori`, `katsinov`, `tkt`, `file_katsinov`, `file_tkt`, `status`, `catatan`, `verifikator`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -444,7 +456,7 @@ INSERT INTO `pengajuan` (`id`, `produk_id`, `cluster_id`, `inventor`, `slug`, `n
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengujian`
+-- Struktur dari tabel `pengujian`
 --
 
 CREATE TABLE `pengujian` (
@@ -466,7 +478,7 @@ CREATE TABLE `pengujian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengurus`
+-- Struktur dari tabel `pengurus`
 --
 
 CREATE TABLE `pengurus` (
@@ -480,7 +492,7 @@ CREATE TABLE `pengurus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pengurus`
+-- Dumping data untuk tabel `pengurus`
 --
 
 INSERT INTO `pengurus` (`users_id`, `perusahaan_id`, `jabatan`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -490,7 +502,7 @@ INSERT INTO `pengurus` (`users_id`, `perusahaan_id`, `jabatan`, `created_by`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penjualan`
+-- Struktur dari tabel `penjualan`
 --
 
 CREATE TABLE `penjualan` (
@@ -508,7 +520,7 @@ CREATE TABLE `penjualan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perusahaan`
+-- Struktur dari tabel `perusahaan`
 --
 
 CREATE TABLE `perusahaan` (
@@ -541,7 +553,7 @@ CREATE TABLE `perusahaan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `perusahaan`
+-- Dumping data untuk tabel `perusahaan`
 --
 
 INSERT INTO `perusahaan` (`id`, `nama`, `slug`, `alamat`, `nama_pendiri`, `tahun_berdiri`, `bentuk_usaha`, `status_kantor`, `alamat_kantor`, `kota_kabupaten`, `logo`, `izin`, `akta`, `luas_ruang_produksi`, `alamat_produksi`, `pegawai_tetap`, `pegawai_tidak_tetap`, `email`, `telepon`, `website`, `sosmed`, `is_delete`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -551,7 +563,7 @@ INSERT INTO `perusahaan` (`id`, `nama`, `slug`, `alamat`, `nama_pendiri`, `tahun
 -- --------------------------------------------------------
 
 --
--- Table structure for table `prestasi`
+-- Struktur dari tabel `prestasi`
 --
 
 CREATE TABLE `prestasi` (
@@ -571,7 +583,7 @@ CREATE TABLE `prestasi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produk`
+-- Struktur dari tabel `produk`
 --
 
 CREATE TABLE `produk` (
@@ -612,7 +624,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `produk`
+-- Dumping data untuk tabel `produk`
 --
 
 INSERT INTO `produk` (`id`, `nama_produk`, `katsinov`, `tkt`, `slug`, `bidang`, `kategori`, `jenis`, `produksi_barang_fisik`, `logo_produk`, `deskripsi_singkat`, `deskripsi_lengkap`, `latar_belakang`, `keterbaruan_produk`, `kerjasama`, `masalah`, `file_tambahan`, `solusi`, `spesifikasi_teknis`, `kegunaan_manfaat`, `keunggulan_keunikan`, `kesiapan_teknologi`, `kepemilikan_teknologi`, `pemilik_teknologi`, `teknologi_yang_dikembangkan`, `rencana_pengembangan`, `tautan_video`, `media_sosial`, `website`, `is_delete`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -667,7 +679,7 @@ INSERT INTO `produk` (`id`, `nama_produk`, `katsinov`, `tkt`, `slug`, `bidang`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produksi`
+-- Struktur dari tabel `produksi`
 --
 
 CREATE TABLE `produksi` (
@@ -685,7 +697,7 @@ CREATE TABLE `produksi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `produk_perusahaan`
+-- Struktur dari tabel `produk_perusahaan`
 --
 
 CREATE TABLE `produk_perusahaan` (
@@ -700,7 +712,7 @@ CREATE TABLE `produk_perusahaan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating`
+-- Struktur dari tabel `rating`
 --
 
 CREATE TABLE `rating` (
@@ -716,7 +728,7 @@ CREATE TABLE `rating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roadmap`
+-- Struktur dari tabel `roadmap`
 --
 
 CREATE TABLE `roadmap` (
@@ -740,7 +752,7 @@ CREATE TABLE `roadmap` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seen`
+-- Struktur dari tabel `seen`
 --
 
 CREATE TABLE `seen` (
@@ -754,7 +766,7 @@ CREATE TABLE `seen` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ulasan`
+-- Struktur dari tabel `ulasan`
 --
 
 CREATE TABLE `ulasan` (
@@ -771,7 +783,7 @@ CREATE TABLE `ulasan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -801,7 +813,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id`, `identifier`, `nama`, `fakultas`, `jurusan`, `prodi`, `status`, `is_admin`, `email`, `kontak`, `foto`, `nik`, `jenis_kelamin`, `tanggal_lahir`, `foto_ktp`, `cv`, `pendidikan_terakhir`, `fcm`, `auth`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -852,74 +864,75 @@ INSERT INTO `users` (`id`, `identifier`, `nama`, `fakultas`, `jurusan`, `prodi`,
 (45, '196030200011004', 'Erlanda Zakaria', 'FIA', 'Ilmu Administrasi Bisnis', 'Ilmu Administrasi Bisnis', 'mahasiswa', 'no', 'erlandazakaria@gmail.com', '082232944548', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2019/196030200011004.jpg', NULL, NULL, '1992-09-22', NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 19:47:16', '', '2020-06-01 09:09:48'),
 (46, '196060600111001', 'ALIFAL HAMDAN', 'FT', 'Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota', 'mahasiswa', 'no', '', '', 'https://siakad.ub.ac.id/dirfoto/foto/foto_2019/196060600111001.jpg', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-29 17:13:08', '', '2020-06-01 09:09:05'),
 (47, 'admin super', 'Super Admin', 'BIW Corporation', '', '', 'mahasiswa', 'admin', '', '', 'https://i.pinimg.com/originals/28/93/ca/2893ca2a6c253b745b5ce9a7ce70c9ba.png', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-28 13:36:38', '', '2020-05-28 06:36:38'),
-(48, 'verifikator', 'Tim Verifikator', 'BIW Corporation', '', '', 'mahasiswa', 'verifikator', '', '', 'https://media.tabloidbintang.com/files/thumb/1111af44ae808bc127ab84342b15af5a.jpg/745', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-28 13:35:11', '', '2020-05-28 06:35:11');
+(48, 'verifikator', 'Tim Verifikator', 'BIW Corporation', '', '', 'mahasiswa', 'verifikator', '', '', 'https://media.tabloidbintang.com/files/thumb/1111af44ae808bc127ab84342b15af5a.jpg/745', NULL, NULL, NULL, NULL, NULL, 'SMA/Sederajat', NULL, '', '', '2020-05-28 13:35:11', '', '2020-05-28 06:35:11'),
+(70, '165150401111060', 'Assumenda tenetur ea', 'Vokasi', 'Nisi placeat volupt', 'Blanditiis dolore al', 'alumni', 'no', 'ghany.ersa@bigio.id', '37', '', NULL, NULL, NULL, NULL, NULL, 'S1', NULL, '$2y$10$HBT40ahqjsCgrvrvYYbU5.VgpF9s.S3QAGHs/KwsSqJG8.ITLbE6.', '16', '2020-06-21 06:47:03', '16', '2020-06-20 23:47:03');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `alumni`
+-- Indeks untuk tabel `alumni`
 --
 ALTER TABLE `alumni`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `aset`
+-- Indeks untuk tabel `aset`
 --
 ALTER TABLE `aset`
   ADD PRIMARY KEY (`id`),
   ADD KEY `aset_FKIndex1` (`perusahaan_id`);
 
 --
--- Indexes for table `aspek_bisnis`
+-- Indeks untuk tabel `aspek_bisnis`
 --
 ALTER TABLE `aspek_bisnis`
   ADD PRIMARY KEY (`produk_id`),
   ADD KEY `aspek_bisnis_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `cluster`
+-- Indeks untuk tabel `cluster`
 --
 ALTER TABLE `cluster`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `data_dasar`
+-- Indeks untuk tabel `data_dasar`
 --
 ALTER TABLE `data_dasar`
   ADD PRIMARY KEY (`id`),
   ADD KEY `data_dasar_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `foto_kegiatan`
+-- Indeks untuk tabel `foto_kegiatan`
 --
 ALTER TABLE `foto_kegiatan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `foto_kegiatan_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `foto_produk`
+-- Indeks untuk tabel `foto_produk`
 --
 ALTER TABLE `foto_produk`
   ADD PRIMARY KEY (`id`),
   ADD KEY `foto_produk_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `guest`
+-- Indeks untuk tabel `guest`
 --
 ALTER TABLE `guest`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `informasi`
+-- Indeks untuk tabel `informasi`
 --
 ALTER TABLE `informasi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `informasi_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `inventor`
+-- Indeks untuk tabel `inventor`
 --
 ALTER TABLE `inventor`
   ADD PRIMARY KEY (`produk_id`,`users_id`),
@@ -927,49 +940,49 @@ ALTER TABLE `inventor`
   ADD KEY `produk_has_users_FKIndex2` (`users_id`);
 
 --
--- Indexes for table `izin_produk`
+-- Indeks untuk tabel `izin_produk`
 --
 ALTER TABLE `izin_produk`
   ADD PRIMARY KEY (`id`),
   ADD KEY `izin_produk_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `kekayaan_intelektual`
+-- Indeks untuk tabel `kekayaan_intelektual`
 --
 ALTER TABLE `kekayaan_intelektual`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kekayaan_intelektual_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `kepemilikan`
+-- Indeks untuk tabel `kepemilikan`
 --
 ALTER TABLE `kepemilikan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kepemilikan_FKIndex1` (`perusahaan_id`);
 
 --
--- Indexes for table `mitra`
+-- Indeks untuk tabel `mitra`
 --
 ALTER TABLE `mitra`
   ADD PRIMARY KEY (`id`),
   ADD KEY `mitra_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `omset_profit`
+-- Indeks untuk tabel `omset_profit`
 --
 ALTER TABLE `omset_profit`
   ADD PRIMARY KEY (`id`),
   ADD KEY `omset_profit_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `pemasaran`
+-- Indeks untuk tabel `pemasaran`
 --
 ALTER TABLE `pemasaran`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pemasaran_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `pengajuan`
+-- Indeks untuk tabel `pengajuan`
 --
 ALTER TABLE `pengajuan`
   ADD PRIMARY KEY (`id`),
@@ -977,14 +990,14 @@ ALTER TABLE `pengajuan`
   ADD KEY `cluster` (`cluster_id`);
 
 --
--- Indexes for table `pengujian`
+-- Indeks untuk tabel `pengujian`
 --
 ALTER TABLE `pengujian`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pengujian_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `pengurus`
+-- Indeks untuk tabel `pengurus`
 --
 ALTER TABLE `pengurus`
   ADD PRIMARY KEY (`users_id`,`perusahaan_id`),
@@ -992,40 +1005,40 @@ ALTER TABLE `pengurus`
   ADD KEY `users_has_perusahaan_FKIndex2` (`perusahaan_id`);
 
 --
--- Indexes for table `penjualan`
+-- Indeks untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`id`),
   ADD KEY `penjualan_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `perusahaan`
+-- Indeks untuk tabel `perusahaan`
 --
 ALTER TABLE `perusahaan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `prestasi`
+-- Indeks untuk tabel `prestasi`
 --
 ALTER TABLE `prestasi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `prestasi_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `produk`
+-- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `produksi`
+-- Indeks untuk tabel `produksi`
 --
 ALTER TABLE `produksi`
   ADD PRIMARY KEY (`id`),
   ADD KEY `produksi_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `produk_perusahaan`
+-- Indeks untuk tabel `produk_perusahaan`
 --
 ALTER TABLE `produk_perusahaan`
   ADD PRIMARY KEY (`produk_id`,`perusahaan_id`),
@@ -1033,7 +1046,7 @@ ALTER TABLE `produk_perusahaan`
   ADD KEY `produk_has_perusahaan_FKIndex2` (`perusahaan_id`);
 
 --
--- Indexes for table `rating`
+-- Indeks untuk tabel `rating`
 --
 ALTER TABLE `rating`
   ADD PRIMARY KEY (`produk_id`,`users_id`),
@@ -1041,20 +1054,20 @@ ALTER TABLE `rating`
   ADD KEY `produk_has_users_FKIndex2` (`users_id`);
 
 --
--- Indexes for table `roadmap`
+-- Indeks untuk tabel `roadmap`
 --
 ALTER TABLE `roadmap`
   ADD PRIMARY KEY (`id`),
   ADD KEY `roadmap_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `seen`
+-- Indeks untuk tabel `seen`
 --
 ALTER TABLE `seen`
   ADD KEY `seen_FKIndex1` (`produk_id`);
 
 --
--- Indexes for table `ulasan`
+-- Indeks untuk tabel `ulasan`
 --
 ALTER TABLE `ulasan`
   ADD PRIMARY KEY (`id`),
@@ -1062,303 +1075,303 @@ ALTER TABLE `ulasan`
   ADD KEY `ulasan_FKIndex2` (`users_id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_unique` (`email`,`identifier`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `alumni`
+-- AUTO_INCREMENT untuk tabel `alumni`
 --
 ALTER TABLE `alumni`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `aset`
+-- AUTO_INCREMENT untuk tabel `aset`
 --
 ALTER TABLE `aset`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `cluster`
+-- AUTO_INCREMENT untuk tabel `cluster`
 --
 ALTER TABLE `cluster`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `data_dasar`
+-- AUTO_INCREMENT untuk tabel `data_dasar`
 --
 ALTER TABLE `data_dasar`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `foto_kegiatan`
+-- AUTO_INCREMENT untuk tabel `foto_kegiatan`
 --
 ALTER TABLE `foto_kegiatan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `guest`
+-- AUTO_INCREMENT untuk tabel `guest`
 --
 ALTER TABLE `guest`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `informasi`
+-- AUTO_INCREMENT untuk tabel `informasi`
 --
 ALTER TABLE `informasi`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `izin_produk`
+-- AUTO_INCREMENT untuk tabel `izin_produk`
 --
 ALTER TABLE `izin_produk`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `kekayaan_intelektual`
+-- AUTO_INCREMENT untuk tabel `kekayaan_intelektual`
 --
 ALTER TABLE `kekayaan_intelektual`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `kepemilikan`
+-- AUTO_INCREMENT untuk tabel `kepemilikan`
 --
 ALTER TABLE `kepemilikan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mitra`
+-- AUTO_INCREMENT untuk tabel `mitra`
 --
 ALTER TABLE `mitra`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `omset_profit`
+-- AUTO_INCREMENT untuk tabel `omset_profit`
 --
 ALTER TABLE `omset_profit`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pemasaran`
+-- AUTO_INCREMENT untuk tabel `pemasaran`
 --
 ALTER TABLE `pemasaran`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pengajuan`
+-- AUTO_INCREMENT untuk tabel `pengajuan`
 --
 ALTER TABLE `pengajuan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `pengujian`
+-- AUTO_INCREMENT untuk tabel `pengujian`
 --
 ALTER TABLE `pengujian`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `penjualan`
+-- AUTO_INCREMENT untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `perusahaan`
+-- AUTO_INCREMENT untuk tabel `perusahaan`
 --
 ALTER TABLE `perusahaan`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `prestasi`
+-- AUTO_INCREMENT untuk tabel `prestasi`
 --
 ALTER TABLE `prestasi`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `produk`
+-- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `produksi`
+-- AUTO_INCREMENT untuk tabel `produksi`
 --
 ALTER TABLE `produksi`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `roadmap`
+-- AUTO_INCREMENT untuk tabel `roadmap`
 --
 ALTER TABLE `roadmap`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `ulasan`
+-- AUTO_INCREMENT untuk tabel `ulasan`
 --
 ALTER TABLE `ulasan`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `aset`
+-- Ketidakleluasaan untuk tabel `aset`
 --
 ALTER TABLE `aset`
   ADD CONSTRAINT `aset_ibfk_1` FOREIGN KEY (`perusahaan_id`) REFERENCES `perusahaan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `aspek_bisnis`
+-- Ketidakleluasaan untuk tabel `aspek_bisnis`
 --
 ALTER TABLE `aspek_bisnis`
   ADD CONSTRAINT `aspek_bisnis_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `data_dasar`
+-- Ketidakleluasaan untuk tabel `data_dasar`
 --
 ALTER TABLE `data_dasar`
   ADD CONSTRAINT `data_dasar_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `foto_kegiatan`
+-- Ketidakleluasaan untuk tabel `foto_kegiatan`
 --
 ALTER TABLE `foto_kegiatan`
   ADD CONSTRAINT `foto_kegiatan_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `foto_produk`
+-- Ketidakleluasaan untuk tabel `foto_produk`
 --
 ALTER TABLE `foto_produk`
   ADD CONSTRAINT `foto_produk_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `informasi`
+-- Ketidakleluasaan untuk tabel `informasi`
 --
 ALTER TABLE `informasi`
   ADD CONSTRAINT `informasi_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `inventor`
+-- Ketidakleluasaan untuk tabel `inventor`
 --
 ALTER TABLE `inventor`
   ADD CONSTRAINT `inventor_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `inventor_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `izin_produk`
+-- Ketidakleluasaan untuk tabel `izin_produk`
 --
 ALTER TABLE `izin_produk`
   ADD CONSTRAINT `izin_produk_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `kekayaan_intelektual`
+-- Ketidakleluasaan untuk tabel `kekayaan_intelektual`
 --
 ALTER TABLE `kekayaan_intelektual`
   ADD CONSTRAINT `kekayaan_intelektual_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `kepemilikan`
+-- Ketidakleluasaan untuk tabel `kepemilikan`
 --
 ALTER TABLE `kepemilikan`
   ADD CONSTRAINT `kepemilikan_ibfk_1` FOREIGN KEY (`perusahaan_id`) REFERENCES `perusahaan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `mitra`
+-- Ketidakleluasaan untuk tabel `mitra`
 --
 ALTER TABLE `mitra`
   ADD CONSTRAINT `mitra_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `omset_profit`
+-- Ketidakleluasaan untuk tabel `omset_profit`
 --
 ALTER TABLE `omset_profit`
   ADD CONSTRAINT `omset_profit_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `pemasaran`
+-- Ketidakleluasaan untuk tabel `pemasaran`
 --
 ALTER TABLE `pemasaran`
   ADD CONSTRAINT `pemasaran_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `pengajuan`
+-- Ketidakleluasaan untuk tabel `pengajuan`
 --
 ALTER TABLE `pengajuan`
   ADD CONSTRAINT `cluster` FOREIGN KEY (`cluster_id`) REFERENCES `cluster` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pengajuan_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `pengujian`
+-- Ketidakleluasaan untuk tabel `pengujian`
 --
 ALTER TABLE `pengujian`
   ADD CONSTRAINT `pengujian_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `pengurus`
+-- Ketidakleluasaan untuk tabel `pengurus`
 --
 ALTER TABLE `pengurus`
   ADD CONSTRAINT `pengurus_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `pengurus_ibfk_2` FOREIGN KEY (`perusahaan_id`) REFERENCES `perusahaan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `penjualan`
+-- Ketidakleluasaan untuk tabel `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD CONSTRAINT `penjualan_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `prestasi`
+-- Ketidakleluasaan untuk tabel `prestasi`
 --
 ALTER TABLE `prestasi`
   ADD CONSTRAINT `prestasi_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `produksi`
+-- Ketidakleluasaan untuk tabel `produksi`
 --
 ALTER TABLE `produksi`
   ADD CONSTRAINT `produksi_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `produk_perusahaan`
+-- Ketidakleluasaan untuk tabel `produk_perusahaan`
 --
 ALTER TABLE `produk_perusahaan`
   ADD CONSTRAINT `produk_perusahaan_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `produk_perusahaan_ibfk_2` FOREIGN KEY (`perusahaan_id`) REFERENCES `perusahaan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `rating`
+-- Ketidakleluasaan untuk tabel `rating`
 --
 ALTER TABLE `rating`
   ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `roadmap`
+-- Ketidakleluasaan untuk tabel `roadmap`
 --
 ALTER TABLE `roadmap`
   ADD CONSTRAINT `roadmap_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `seen`
+-- Ketidakleluasaan untuk tabel `seen`
 --
 ALTER TABLE `seen`
   ADD CONSTRAINT `seen_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `ulasan`
+-- Ketidakleluasaan untuk tabel `ulasan`
 --
 ALTER TABLE `ulasan`
   ADD CONSTRAINT `ulasan_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
