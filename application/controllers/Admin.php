@@ -220,6 +220,15 @@ class Admin extends CI_Controller
 		$this->load->view('template', $data);
 	}
 
+	public function user()
+	{
+		if ($this->session->is_admin != 'admin')
+			redirect('admin');
+		$data['title'] = 'Halaman Data Dosen/Mahasiswa';
+		$data['content'] = 'ap_user';
+		$this->load->view('template', $data);
+	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();

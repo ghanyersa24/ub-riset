@@ -46,9 +46,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			?>
 				<li class="<?php echo $segment == 'plotting' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/plotting"><i class="fas fa-at"></i><span>Plotting</span></a></li>
 				</li>
-				<li class="<?php echo $segment == 'manage' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/manage"><i class="fas fa-users"></i> <span>Management User</span></a></li>
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i> <span>User</span></a>
+					<ul class="dropdown-menu">
+						<li class="<?php echo $segment == 'manage' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/manage"><i class="fas fa-user-tie"></i> <span>Verifikator</span></a></li>
+						<li class="<?php echo $segment == 'user' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/user"><i class="fas fa-user"></i> <span>Dosen/Mahasiswa</span></a></li>
+						<li class="<?php echo $segment == 'alumni' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/alumni"><i class="fas fa-user-graduate"></i> <span>Alumni</span></a></li>
+					</ul>
 				<li class="<?php echo $segment == 'cluster' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/cluster"><i class="fab fa-accusoft"></i> <span>Clusterization</span></a></li>
-				<li class="<?php echo $segment == 'alumni' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/alumni"><i class="fas fa-user-graduate"></i> <span>Alumni</span></a></li>
+				</li>
+
 			<?php
 			} ?>
 			<li class="<?php echo $segment == 'perusahaan' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>admin/perusahaan"><i class="fas fa-briefcase"></i> <span>Perusahaan</span></a></li>

@@ -25,7 +25,16 @@ class Users extends CI_Controller
 			error("data gagal ditemukan");
 		}
 	}
-
+	public function get_all()
+	{
+		$where = ['is_admin !=' => 'verifikator', 'is_admin !=' => 'admin', 'status !=' => 'alumni'];
+		$do = DB_MODEL::where($this->table, $where);
+		if (!$do->error) {
+			success("data berhasil ditemukan", $do->data);
+		} else {
+			error("data gagal ditemukan");
+		}
+	}
 	public function alumni($func)
 	{
 		if ($func == 'get') {
