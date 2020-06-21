@@ -27,7 +27,6 @@
 	</script>
 
 	<style type="text/css">
-
 		.primary {
 			color: #fbaa19;
 		}
@@ -58,7 +57,7 @@
 				<p class="h6 font-weight-bold mb-4 text-center">Masuk sebagai alumni</p>
 				<form name="form-login" id="form-login">
 					<div class="form-group">
-						<label class="form-label" for="email">Username</label>
+						<label class="form-label" for="email">Email</label>
 						<input id="email" class="form-control rounded-pill" type="email" name="email">
 					</div>
 					<div class="form-group mt-n1">
@@ -69,10 +68,12 @@
 					<button class="btn btn-primary rounded-pill form-control" id="btn-login" type="submit">Login</button>
 				</form>
 
-				
+
 				<div class="text-center mt-2">
-				
-				<p>Belum terdaftar? <a href="<?= base_url().'alumni/register'?>">klik disini!</a></p>
+
+					<p class="mb-0">Belum terdaftar? <a href="<?= base_url() . 'alumni/register' ?>">klik disini!</a></p>
+					<p class="mb-0">Atau</p>
+					<p class="mb-0"><a href="<?= base_url() . '' ?>">Login</a> menggunakan email UB</p>
 				</div>
 				<div id="name"></div>
 				<div id="login-success" style="display:none">

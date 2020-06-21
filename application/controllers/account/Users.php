@@ -31,7 +31,7 @@ class Users extends CI_Controller
 		if ($func == 'get') {
 			$this->get_alumni();
 		} elseif ($func == 'delete') {
-			$this->del_alumni()();
+			$this->del_alumni();
 		} elseif ($func == 'update') {
 			$this->verify();
 		}
@@ -47,7 +47,7 @@ class Users extends CI_Controller
 	private function del_alumni()
 	{
 		$where = ['id' => post('id', 'required'), 'status' => 'deactivate'];
-		$do = DB_MODEL::delete($this->table, $where);
+		$do = DB_MODEL::delete('alumni', $where);
 		if (!$do->error)
 			success("data berhasil dihapus", $do->data);
 		else
