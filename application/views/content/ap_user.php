@@ -3,9 +3,6 @@
         <div class="section-header d-block justify-content-start align-items-center">
             <h1 class="pt-2 pb-2 mt-0 ml-3"><?= $title ?></h1>
         </div>
-        <button class="btn btn-info " data-toggle="modal" data-target="#add" style="position: fixed; bottom: 36px;   right: 20px; padding: 18.5px;z-index: 10;">
-            <i class="fa fa-plus"></i>
-        </button>
 
         <div class="section-body">
             <div class="row mt-sm-4">
@@ -47,50 +44,8 @@
         </div>
     </section>
 </div>
-<div id="add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Cluster</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            </div>
-            <form id="form-add" class="form-add">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="add-cluster">Nama Cluster</label>
-                        <input id="add-cluster" class="form-control" type="text" name="cluster" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" id="btn-save" type="submit">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
-<div id="view" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ubah Cluster</h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            </div>
-            <form id="form-view" class="form-view">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="view-cluster">Nama Cluster</label>
-                        <input id="view-id" class="form-control" type="text" name="id" required hidden readonly>
-                        <input id="view-cluster" class="form-control" type="text" name="cluster" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" data-dismiss="modal">Batal</button>
-                    <button class="btn btn-primary" id="btn-save" type="submit">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
 <script>
     $(document).ready(function() {
         $('#table tfoot th').each(function() {
