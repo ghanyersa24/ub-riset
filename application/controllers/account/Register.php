@@ -11,7 +11,7 @@ class Register extends CI_Controller
 	public function email()
 	{
 		$update = post('is_update', 'enum:true&false');
-		$identifier = post('identifier', 'required|max_char:15');
+		$identifier = post('identifier', 'required|max_char:20');
 		if ($update == 'true') {
 			if (post('status') == 'mahasiswa') {
 				$auth = Auth::siam($identifier, post('password', 'required'));
