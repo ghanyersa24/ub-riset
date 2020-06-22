@@ -44,7 +44,7 @@
 		</div>
 		<div class="col-md-6 bg-primary d-flex align-items-center">
 			<div class="col-md-8 offset-md-2">
-				<div class="container">
+				<div class="container py-4">
 					<p class="h4 text-white">Register Account</p>
 					<form class="form-add" id="form-add">
 						<div class="form-group">
