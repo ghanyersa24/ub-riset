@@ -180,6 +180,9 @@
 								</div>
 								<div class="tab-pane fade" id="bisnis3" role="tabpanel" aria-labelledby="tim-tab3">
 									<p>Status Usaha: <strong id="status-usaha"></strong></p>
+									<div id="file-bisnis" class="d-flex my-2">
+
+									</div>
 									<h5>Target Pasar</h5>
 									<p id="target-pasar"></p>
 									<h5>Kompetitor</h5>
@@ -364,10 +367,10 @@
 		font-weight: bold
 	}
 
-	ul:not(.list-unstyled),
+	/* ul:not(.list-unstyled),
 	ol {
 		line-height: 0px
-	}
+	} */
 </style>
 
 <script>
@@ -601,6 +604,17 @@
 					insertText('#dampak-sosial', data_dasar.dampak_sosial)
 					insertText('#skema-harga', data_dasar.skema_harga)
 					insertText('#hpp', data_dasar.harga_produksi)
+					//bmc
+					if (data_dasar.bmc !== null) {
+						$('#file-bisnis').append(`<a target="_blank" href="${data_dasar.bmc}"><button class="btn btn-primary mr-2 btn-icon icon-left"><i class="fa fa-download"></i> BMC</button></a>`)
+					} else {
+						$('#file-bisnis').append('<p class="mr-2">File BMC tidak ditemukan</p>')
+					}
+					if (data_dasar.keuangan !== null) {
+						$('#file-bisnis').append(`<a target="_blank" href="${data_dasar.keuangan}"><button class="btn btn-primary btn-icon icon-left"><i class="fa fa-download"></i> Catatan Keuangan</button></a>`)
+					} else {
+						$('#file-bisnis').append('<p>File catatan keuangan tidak ditemukan</p>')
+					}
 				}
 
 				const pemasaran = bisnis.pemasaran
@@ -751,22 +765,6 @@
 						<button class="btn btn-light w-100" onclick="download('${produk.file_tambahan}')">File Tambahan</button>
 					</div>`
 					$('#form-data').append(file_tambahan)
-				}
-
-				if (r.data.data_bisnis.data_dasar != null) {
-					if (bisnis.data_dasar.bmc != null && bisnis.data_dasar.bmc != "") {
-						let file_bmc = `<div class="col">
-						<button class="btn btn-light w-100" onclick="download('${bisnis.data_dasar.bmc}')">File BMC</button>
-					</div>`
-						$('#form-data').append(file_bmc)
-					}
-
-					if (bisnis.data_dasar.keuangan != null && bisnis.data_dasar.keuangan != "") {
-						let file_kauangan = `<div class="col">
-						<button class="btn btn-light w-100" onclick="download('${bisnis.data_dasar.keuangan}')">File Keuangan</button>
-					</div>`
-						$('#form-data').append(file_kauangan)
-					}
 				}
 
 
