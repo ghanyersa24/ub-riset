@@ -170,6 +170,8 @@ class Admin extends CI_Controller
 			$this->load->view('template', $data);
 		} else {
 			$temp = riset::slug_public($slug);
+			if ($temp['error'])
+				redirect('admin');
 			$data = $temp['data'];
 			$data['title'] = 'Halaman Verifikasi KATSINOV dan TKT ' . $data['title'];
 			$data['content'] = 'ap_verifikasi_detail';
