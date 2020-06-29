@@ -74,17 +74,18 @@ class Register extends CI_Controller
 			'password' => password_hash(post('password', 'required'), PASSWORD_DEFAULT, array('cost' => 10)),
 			'status' => 'deactivate'
 		];
-		$where = ['status' => 'activate', 'email' => $email];
+		$where = ['email' => $email];
 		$same = DB_MASTER::find('alumni', $where);
-
-		if ($same->error)
+		if ($same->error) {
 			$do = DB_MASTER::insert('alumni', $data);
-		else
-			error('email sudah dipakai akun lain.');
-
-		if (!$do->error)
 			success("data sedang diajukan untuk mendapatkan aktivasi", $do->data);
-		else
-			error("data gagal diajukan");
+		} else {
+			if ($same->data->status == "deactivate")
+				error("email sedang dalam pengajuan, mohon menunggu verifikasi");
+			elseif ($same->data->status == "activate")
+				error("email sudah dipakai akun lain.");
+			else
+				error("data gagal diajukan");
+		}
 	}
 }
