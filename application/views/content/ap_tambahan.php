@@ -331,7 +331,7 @@
 				tahun: {
 					required: true,
 					min: 2000,
-					max: 2020
+					max: <?=date('Y')?>
 				},
 				tingkat: {
 					required: true

@@ -197,7 +197,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun_berdiri: {
 					required: true,
 					min: 2000,
-					max: 2020
+					max: <?=date('Y')?>
 				}
 			},
 			submitHandler: function(form) {

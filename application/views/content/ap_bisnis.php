@@ -552,8 +552,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			rules: {
 				tahun: {
 					required: true,
-					min: 2000,
-					max: 2020
+					min: <?= date('Y') - 2 ?>,
+					max: <?= date('Y') + 3 ?>
 				},
 			},
 			submitHandler: (form) => {
@@ -622,8 +622,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			rules: {
 				tahun: {
 					required: true,
-					min: 2000,
-					max: 2020
+					min: <?= date('Y') - 2 ?>,
+					max: <?= date('Y') + 3 ?>
 				},
 			},
 			submitHandler: (form) => {
@@ -692,8 +692,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			rules: {
 				tahun: {
 					required: true,
-					min: 2000,
-					max: 2020
+					min: <?= date('Y') - 2 ?>,
+					max: <?= date('Y') + 3 ?>
 				},
 			},
 			submitHandler: (form) => {

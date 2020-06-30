@@ -286,7 +286,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-tahun_perolehan">Tahun Perolehan Aset</label>
-														<input name="tahun_perolehan" id="add-tahun_perolehan" class="form-control" type="number" max="2020" />
+														<input name="tahun_perolehan" id="add-tahun_perolehan" class="form-control" type="number" max="<?=date('Y')?>" />
 													</div>
 												</div>
 											</div>
@@ -512,7 +512,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun_berdiri: {
 					required: true,
 					min: 2000,
-					max: 2020
+					max: <?=date('Y')?>
 				},
 				luas_ruang_produksi: {
 					required: true
@@ -581,7 +581,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun_perolehan: {
 					required: true,
 					min: 2000,
-					max: 2020
+					max: <?=date('Y')?>
 				}
 			},
 			submitHandler: function(form) {
