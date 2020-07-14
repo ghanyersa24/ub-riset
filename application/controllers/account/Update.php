@@ -9,7 +9,7 @@ class Update extends CI_Controller
 			"id" =>  $this->session->userdata('id'),
 		);
 		$data = array(
-			"kontak" => post('kontak', 'required|min_char:12|numeric'),
+			"kontak" => post('kontak', 'required|min_char:10|max_char:15|numeric'),
 			"tanggal_lahir" => post('tanggal_lahir', 'date_valid'),
 		);
 		$do = DB_MODEL::update('users', $where, $data);

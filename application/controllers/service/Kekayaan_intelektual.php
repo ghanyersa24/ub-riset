@@ -15,7 +15,7 @@ class Kekayaan_intelektual extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => $jenis = post('jenis', 'required|enum:Paten&Hak Cipta&Merek Dagang&Desain Industri&Indikasi Geografis&Rahasia Dagang&PVT&Sertifikasi Halal&BPOM&P-IRT&Ijin Kemenkes&SNI'),
+			"jenis" => $jenis = post('jenis', 'required|enum:Paten&Hak Cipta&Merk Dagang&Desain Industri&Indikasi Geografis&Rahasia Dagang&PVT&Sertifikasi Halal&BPOM&P-IRT&Ijin Kemenkes&SNI'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status_perolehan" => post('status_perolehan'),
 			"no_pemohon" => post('no_pemohon'),
@@ -56,7 +56,7 @@ class Kekayaan_intelektual extends CI_Controller
 	{
 		$data = array(
 			"produk_id" => $produk = post('produk_id', 'required'),
-			"jenis" => $jenis = post('jenis', 'required|enum:Paten&Hak Cipta&Merek Dagang&Desain Industri&Indikasi Geografis&Rahasia Dagang&PVT&Sertifikasi Halal&BPOM&P-IRT&Ijin Kemenkes&SNI'),
+			"jenis" => $jenis = post('jenis', 'required|enum:Paten&Hak Cipta&Merk Dagang&Desain Industri&Indikasi Geografis&Rahasia Dagang&PVT&Sertifikasi Halal&BPOM&P-IRT&Ijin Kemenkes&SNI'),
 			"deskripsi" => post('deskripsi', 'allow_html'),
 			"status_perolehan" => post('status_perolehan'),
 			"no_pemohon" => post('no_pemohon'),
