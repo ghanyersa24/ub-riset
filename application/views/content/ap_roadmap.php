@@ -316,12 +316,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun_mulai: {
 					required: true,
 					min: 2000,
-					max: <?=date('Y')?>
+					max: <?= date('Y') ?>
 				},
 				tahun_selesai: {
 					required: true,
 					min: 2000,
-					max: <?=date('Y')?>
+					max: <?= date('Y') ?>
 				},
 				sumber_pendanaan: {
 					required: true,
@@ -361,13 +361,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				},
 				tahun_mulai: {
 					required: true,
-					min: 2000,
-					max: <?=date('Y')?>
 				},
 				tahun_selesai: {
 					required: true,
-					min: 2000,
-					max: <?=date('Y')?>
 				},
 				sumber_pendanaan: {
 					required: true,

@@ -280,8 +280,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				},
 				tahun: {
 					required: true,
-					min: 2000,
-					max: <?=date('Y')?>
 				},
 				status: {
 					required: true
@@ -324,7 +322,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun: {
 					required: true,
 					min: 2000,
-					max: <?=date('Y')?>
+					max: <?= date('Y') ?>
 				},
 				status: {
 					required: true
