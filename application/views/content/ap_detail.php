@@ -151,9 +151,9 @@
       													</a>
       													<span class="year" id="mitra-check">Tahap 5 </span>
       													<div class="timeline-content">
-      														<h5 class="title">Mitra dan Kerjsama</h5>
+      														<h5 class="title">Mitra dan Kerja sama</h5>
       														<p class="description">
-      															Tunjukkan kekecean produkmu
+      															Siapa saja yang sudah bekerja sama dengan produkmu
       														</p>
       													</div>
       												</div>
