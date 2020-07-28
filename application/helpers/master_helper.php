@@ -64,6 +64,11 @@ function date_now($params, $value)
 }
 
 // --------------- helper inputan
+function get($params, $constrains = null)
+{
+	$CI = &get_instance();
+	return $CI->input->get($params);
+}
 function post($params, $constrains = null)
 {
 	if (isset($_POST[$params])) {
