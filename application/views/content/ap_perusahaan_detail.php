@@ -90,7 +90,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<input type="number" class="form-control" id="view-tahun_berdiri" name="tahun_berdiri">
 													</div>
 													<div class="form-group">
-														<label for="view-nama_pendiri">Tahun Berdiri</label>
+														<label for="view-nama_pendiri">Nama Pendiri</label>
 														<input type="text" class="form-control" id="view-nama_pendiri" name="nama_pendiri">
 													</div>
 													<div class="form-group">
@@ -286,7 +286,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="add-tahun_perolehan">Tahun Perolehan Aset</label>
-														<input name="tahun_perolehan" id="add-tahun_perolehan" class="form-control" type="number" max="<?=date('Y')?>" />
+														<input name="tahun_perolehan" id="add-tahun_perolehan" class="form-control" type="number" max="<?= date('Y') ?>" />
 													</div>
 												</div>
 											</div>
@@ -512,7 +512,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun_berdiri: {
 					required: true,
 					min: 2000,
-					max: <?=date('Y')?>
+					max: <?= date('Y') ?>
 				},
 				luas_ruang_produksi: {
 					required: true
@@ -581,7 +581,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				tahun_perolehan: {
 					required: true,
 					min: 2000,
-					max: <?=date('Y')?>
+					max: <?= date('Y') ?>
 				}
 			},
 			submitHandler: function(form) {

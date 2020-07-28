@@ -68,6 +68,8 @@ function post($params, $constrains = null)
 {
 	if (isset($_POST[$params])) {
 		$value = $_POST[$params];
+		$value = str_replace('%3A', ':', $value);
+		$value = str_replace('%2F', '/', $value);
 		if (!is_null($constrains) && !empty($constrains)) {
 			if (strpos($constrains, 'allow_html') !== 0)
 				$value = strip_tags(r($value));
