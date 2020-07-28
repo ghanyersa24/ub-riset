@@ -133,7 +133,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="add-bukti">Foto bukti kelulusan (Surat yudisium/KTA/Surat Keterangan Lulus)</label>
+							<label for="add-bukti">Foto bukti kelulusan (Surat yudisium/KTA/Surat Keterangan Lulus/ijasah)</label>
 							<input type="file" id="add-bukti" name="bukti" class="form-control">
 						</div>
 						<div class="d-flex justify-content-end">

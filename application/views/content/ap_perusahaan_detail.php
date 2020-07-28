@@ -196,7 +196,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 														<th>Tipe Pemegang Saham</th>
 														<th>Tipe Kewarganegaraan</th>
 														<th>Negara Asal</th>
-														<th class="text-center">Presentasi Kepemilikan</th>
+														<th class="text-center">Presentase Kepemilikan</th>
 														<th>Aksi</th>
 													</tr>
 												</thead>
