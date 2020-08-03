@@ -92,6 +92,24 @@ class Login extends CI_Controller
 		}
 	}
 
+	public function public()
+	{
+		$data = [
+			'email' => $email = post('email', 'required|email'),
+			'foto' => post('foto', 'required'),
+			'nama' => post('nama', 'required'),
+			'auth' => $auth = base64_encode(post('auth_google', 'required'))
+		];
+		$profile = DB_MASTER::find('users', "email='$email' AND auth='$auth'");
+		if ($profile->error) {
+			$data['auth'] = AUTHORIZATION::generateToken($data);
+			error("kamu akan diteruskan pada halaman registrasi.",  $data);
+		} else {
+			$profile->data->auth = AUTHORIZATION::generateToken($profile->data);
+			success("welcome to our system", $profile->data);
+		}
+	}
+
 	public function alumni()
 	{
 		$this->load->helper('auth');

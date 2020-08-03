@@ -88,4 +88,35 @@ class Register extends CI_Controller
 				error("data gagal diajukan");
 		}
 	}
+
+	public function public()
+	{
+		$data = array(
+			"nama" => AUTHORIZATION::User()->nama,
+			"status" => $status = post('status', 'enum:umum&mahasiswa&dosen'),
+			"foto" => AUTHORIZATION::User()->foto,
+			"email" => AUTHORIZATION::User()->email,
+			"auth" => AUTHORIZATION::User()->auth,
+			"kontak" => post('kontak', 'required|numeric|min_char:11'),
+		);
+		if ($status == 'dosen' || $status == 'mahasiswa') {
+			$data["fakultas"] = post('fakultas', 'required|enum:FH&FEB&FIA&FP&FAPET&FT&FK&FPIK&FMIPA&FTP&FISIP&FIB&FKH&FILKOM&FKG&Vokasi');
+			$data["jurusan"] = post('jurusan', 'required');
+			$data["prodi"] = post('prodi', 'required');
+			$data["identifier"] = post('nomor_identitas_kampus', 'required');
+			$do = DB_MASTER::insert('users', $data);
+			if (!$do->error) {
+				$do->data['auth'] = AUTHORIZATION::generateToken($do->data);
+				success("welcome to our system.", $do->data);
+			} else
+				error("terjadi kesalahan pada saat registrasi $status");
+		} else {
+			$do = DB_MASTER::insert('users', $data);
+			if (!$do->error) {
+				$do->data['auth'] = AUTHORIZATION::generateToken($do->data);
+				success("welcome to our system.", $do->data);
+			} else
+				error("terjadi kesalahan pada saat registrasi");
+		}
+	}
 }

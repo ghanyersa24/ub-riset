@@ -14,7 +14,7 @@ class Get extends CI_Controller
 	{
 		$limit = 10;
 		$page = 0;
-		$where = ['is_delete ' => 0];
+		$where = ['is_delete ' => 0, 'tkt !=' => 'belum memenuhi', 'katsinov !=' => 'belum memenuhi','tkt !=' => '', 'katsinov !=' => ''];
 		$like = [];
 
 		if (!empty(get('produk')))
@@ -86,7 +86,7 @@ class Get extends CI_Controller
 			'foto_produk' => DB_MODEL::where('foto_produk', $where)->data,
 			'riwayat' => $this->riwayat($slugs['data']['produk']->nama_produk, $where),
 			'foto_kegiatan' => DB_MODEL::where('foto_kegiatan', $where)->data,
-			'inventor' => DB_MODEL::join('inventor', 'users', null, 'inner', $where)->data,
+			'inventor' => DB_MODEL::join('inventor', 'users', null, 'inner', $where, "users.id, nama, status, foto, fakultas, kontak,email")->data,
 			'perusahaan' => DB_MODEL::join('produk_perusahaan', 'perusahaan', null, 'right', $where)->data,
 			'data_bisnis' => [
 				'data_dasar' => count($dataDasar) > 0 ? $dataDasar[(count($dataDasar) - 1)] : null,
@@ -95,6 +95,7 @@ class Get extends CI_Controller
 				'penjualan' => DB_MODEL::where('penjualan', $where)->data,
 				'omset' => $omset,
 			],
+			'review' => DB_MODEL::join('ulasan', 'users', null, null, [], "users.id, nama, status, foto, ulasan, ulasan.created_at")->data
 		];
 		$data['produk']->kategori = json_decode($data['produk']->kategori);
 		DB_MASTER::insert('seen', $where);
