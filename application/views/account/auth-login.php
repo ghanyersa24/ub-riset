@@ -133,7 +133,9 @@
 
 					</div>
 				</div>
-
+				<a target="_blank" href="<?= base_url().'assets/img/manualbook-brain.pdf' ?>">
+				<button class="btn btn-primary btn-icon icon-left d-block mx-auto"><i class="fa fa-download"></i> Buku Panduan</button>
+				</a>
 			</div>
 		</div>
 		<div class="simple-footer fixed-bottom text-white">
