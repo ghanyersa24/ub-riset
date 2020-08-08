@@ -162,7 +162,9 @@
 			auth2.attachClickHandler(element, {},
 				function(googleUser) {
 					const profile = googleUser.getBasicProfile();
-					$.ajax({
+					const email = profile.getEmail().split('@').pop();
+					if(email.includes('ub.ac.id')){
+						$.ajax({
 						type: "POST",
 						url: api + 'account/login/spesial',
 						data: {
@@ -186,6 +188,13 @@
 							}
 						}
 					});
+					}else{
+					$('#login-failed').css('display', 'block')
+					setTimeout(() => {
+					$('#login-failed').css('display', 'none')
+					}, 5000);
+					}
+					
 				},
 				function(error) {
 					// alert(JSON.stringify(error, undefined, 2));
