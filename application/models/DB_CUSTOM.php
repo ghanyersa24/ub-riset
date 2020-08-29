@@ -13,10 +13,10 @@ class DB_CUSTOM extends CI_Model
 			return false();
 	}
 
-	public static function search($where, $like,  $limit, $page)
+	public static function search($where, $like,  $limit, $page, $column = 'created_at', $order = 'desc')
 	{
 		$CI = &get_instance();
-		$query = $CI->db->select("(select count(`produk_id`) from `seen` where `produk_id`= `produk`.`id` ) as seen,id,slug,nama_produk,katsinov,tkt,bidang,kategori,deskripsi_singkat,deskripsi_lengkap")->where($where)->like($like)->order_by("created_at", 'DESC')->get('produk', $limit, $page);
+		$query = $CI->db->select("(select count(`produk_id`) from `seen` where `produk_id`= `produk`.`id` ) as seen,id,slug,nama_produk,katsinov,tkt,bidang,kategori,deskripsi_singkat,deskripsi_lengkap, logo_produk")->where($where)->like($like)->order_by($column, $order)->get('produk', $limit, $page);
 		if ($query)
 			return true($query->result());
 		else

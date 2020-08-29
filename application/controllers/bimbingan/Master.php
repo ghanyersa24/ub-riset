@@ -1,24 +1,18 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Review extends CI_Controller
+class Master extends CI_Controller
 {
-	protected $table = "ulasan";
+	protected $table = "table";
+	public function __construct()
+	{
+		parent::__construct();
+		// additional library
+	}
 	public function create()
 	{
-		$check = DB_MODEL::find($this->table, [
-			"users_id" => AUTHORIZATION::User()->id,
-			"produk_id" => post('produk_id')
-		]);
-		if (!$check->error)
-			error("kamu sudah pernah melakukan review pada produk ini");
-
 		$data = array(
-			"users_id" => AUTHORIZATION::User()->id,
-			"produk_id" => post('produk_id'),
-			"rating" => post('rating', 'required|enum:1&2&3&4&5'),
-			"ulasan" => post('ulasan'),
-			"created_by" => AUTHORIZATION::User()->id,
+			"column" => post('column'),
 		);
 
 		$do = DB_MODEL::insert($this->table, $data);
@@ -29,20 +23,31 @@ class Review extends CI_Controller
 		}
 	}
 
+	public function get($id = null)
+	{
+		if (is_null($id)) {
+			$do = DB_MODEL::all($this->table);
+		} else {
+			$do = DB_MODEL::find($this->table, array("id" => $id));
+		}
+
+		if (!$do->error)
+			success("data " . $this->table . " berhasil ditemukan", $do->data);
+		else
+			error("data " . $this->table . " gagal ditemukan");
+	}
 
 	public function update()
 	{
 		$data = array(
-			"rating" => post('rating', 'required|enum:1&2&3&4&5'),
-			"ulasan" => post('ulasan', 'required'),
+			"column" => post('column'),
 		);
 
 		$where = array(
 			"id" => post('id', 'required'),
-			"created_by" => AUTHORIZATION::User()->id,
 		);
 
-		$do = DB_MODEL::update_straight($this->table, $where, $data);
+		$do = DB_MODEL::update($this->table, $where, $data);
 		if (!$do->error)
 			success("data " . $this->table . " berhasil diubah", $do->data);
 		else
@@ -52,8 +57,7 @@ class Review extends CI_Controller
 	public function delete()
 	{
 		$where = array(
-			"id" => post('id', 'required'),
-			"created_by" => AUTHORIZATION::User()->id,
+			"id" => post('id', 'required')
 		);
 
 		$do = DB_MODEL::delete($this->table, $where);
