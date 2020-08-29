@@ -133,7 +133,9 @@
 
 					</div>
 				</div>
-
+				<a target="_blank" href="<?= base_url().'assets/img/manualbook-brain.pdf' ?>">
+				<button class="btn btn-primary btn-icon icon-left d-block mx-auto mt-3"><i class="fa fa-download"></i> Buku Panduan</button>
+				</a>
 			</div>
 		</div>
 		<div class="simple-footer fixed-bottom text-white">
@@ -160,7 +162,9 @@
 			auth2.attachClickHandler(element, {},
 				function(googleUser) {
 					const profile = googleUser.getBasicProfile();
-					$.ajax({
+					const email = profile.getEmail().split('@').pop();
+					if(email.includes('ub.ac.id')){
+						$.ajax({
 						type: "POST",
 						url: api + 'account/login/spesial',
 						data: {
@@ -184,6 +188,13 @@
 							}
 						}
 					});
+					}else{
+					$('#login-failed').css('display', 'block')
+					setTimeout(() => {
+					$('#login-failed').css('display', 'none')
+					}, 5000);
+					}
+					
 				},
 				function(error) {
 					// alert(JSON.stringify(error, undefined, 2));
